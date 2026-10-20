@@ -111,10 +111,6 @@ REALM_TYPE = PvE
 
 DISCORD_INVITE = https://discord.gg/r6nj5p8U4
 CLIENT_DOWNLOADS = TEMP        # TEMP = setup guide links, PACKED = client zips
-CLIENT_112_URL_TEMP = https://openvanilla.app/clients.html#vanilla
-CLIENT_335_URL_TEMP = https://openvanilla.app/clients.html#wotlk
-CLIENT_112_URL_PACKED = https://removed.invalid/client.zip
-CLIENT_335_URL_PACKED = https://removed.invalid/client.zip
 OPENVANILLA_CLIENT_URL = https://github.com/orionopenwow/OpenVanilla/releases/latest
 ```
 
