@@ -1,0 +1,27 @@
+{
+  "schema": 1,
+  "slug": "warfront",
+  "name": "Warfront",
+  "official": true,
+  "state": "soon",
+  "order": 30,
+  "tagline": "TODO(owner): one-line tagline",
+  "summary": "TODO(owner): a short paragraph about the realm",
+  "type": "PvP",
+  "profile": null,
+  "connect": null,
+  "rules": [],
+  "features": [],
+  "media": {
+    "icon": "assets/realm_ui/realm_icon_warfront.webp",
+    "screenshots": [],
+    "trailer": null
+  },
+  "discord": "https://discord.gg/hVeUxYwbkr",
+  "status": null,
+  "leaderboards": {
+    "duels": null,
+    "bossfights": null
+  },
+  "updated": "2026-10-24"
+}

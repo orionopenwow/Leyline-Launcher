@@ -1,0 +1,71 @@
+{
+  "schema": 1,
+  "slug": "wrathunleashed",
+  "name": "WrathUnleashed",
+  "official": true,
+  "state": "live",
+  "order": 10,
+  "tagline": "TODO(owner): one-line tagline",
+  "summary": "TODO(owner): a short paragraph about the realm",
+  "type": "PvE",
+  "profile": {
+    "game": "Wrath of the Lich King",
+    "version": "3.3.5a",
+    "build": 12340,
+    "address": "play.openvanilla.app",
+    "port": 3724,
+    "warden": false,
+    "ruleset": "normal",
+    "patches": null,
+    "clientFiles": "stream-or-own"
+  },
+  "connect": {
+    "kind": "web-signin",
+    "url": "https://play.openvanilla.app/wrath",
+    "label": "Sign in to play",
+    "note": "Sign in with Google or your Hero Key. Dalaran plays in your browser with no download; the whole world uses your own 3.3.5a game files, read on your computer and never uploaded."
+  },
+  "rules": [
+    "TODO(owner): realm rules"
+  ],
+  "features": [
+    {
+      "title": "Start at 1 or 80",
+      "text": "Each new character chooses: the normal game from level 1, or a boost to 80 with a spec kit."
+    },
+    {
+      "title": "Spec kits",
+      "text": "Boosted characters get a PvE and a PvP set for their spec."
+    },
+    {
+      "title": "Armory at 80",
+      "text": "Free gear at level 80, in Dalaran, arenas and battlegrounds."
+    },
+    {
+      "title": "Modern race and class combos"
+    },
+    {
+      "title": "Ride from level 1",
+      "text": "New characters start with Apprentice Riding and their race's mount."
+    },
+    {
+      "title": "Forever UI",
+      "text": "The modern-style interface is on in the browser; add ?foreverui=0 for the classic look."
+    }
+  ],
+  "media": {
+    "icon": "assets/realm_ui/realm_icon_warfront.webp",
+    "screenshots": [],
+    "trailer": null
+  },
+  "discord": "https://discord.gg/hVeUxYwbkr",
+  "status": {
+    "url": "https://play.openvanilla.app/wrath/status.json",
+    "format": "openvanilla-status-1"
+  },
+  "leaderboards": {
+    "duels": null,
+    "bossfights": null
+  },
+  "updated": "2026-10-24"
+}

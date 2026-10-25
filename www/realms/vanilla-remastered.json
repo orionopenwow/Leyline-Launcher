@@ -1,0 +1,38 @@
+{
+  "schema": 1,
+  "slug": "vanilla-remastered",
+  "name": "Vanilla Remastered",
+  "official": true,
+  "state": "offline",
+  "stateNote": "Offline while WrathUnleashed runs.",
+  "order": 20,
+  "tagline": "TODO(owner): one-line tagline",
+  "summary": "TODO(owner): a short paragraph about the realm",
+  "type": "PvE",
+  "profile": {
+    "game": "World of Warcraft",
+    "version": "1.12.1",
+    "build": 5875,
+    "address": null,
+    "port": null,
+    "warden": null,
+    "ruleset": "TODO(owner): ruleset",
+    "patches": null,
+    "clientFiles": "own"
+  },
+  "connect": null,
+  "rules": [],
+  "features": [],
+  "media": {
+    "icon": "assets/realm_ui/realm_icon_vanilla.webp",
+    "screenshots": [],
+    "trailer": null
+  },
+  "discord": "https://discord.gg/hVeUxYwbkr",
+  "status": null,
+  "leaderboards": {
+    "duels": null,
+    "bossfights": null
+  },
+  "updated": "2026-10-24"
+}

@@ -4251,8 +4251,6 @@
         <button class="ovh3-ib ovh3-tab" onclick="openRealmListModal()" title="Realms"><img src="assets/nav_v2/realms.webp" alt="Realms"></button>
         <button class="ovh3-ib ovh3-tab" onclick="switchTab('mods')" title="Mods"><img src="assets/nav_v2/mods.webp" alt="Mods"></button>
         <button class="ovh3-ib ovh3-tab" onclick="goToServerSection()" title="Host your own realm"><img src="assets/nav_v2/server.webp" alt="Server"></button>
-        <a class="ovh3-ib" href="duels.html" title="Duels: a 1v1 in your browser"><img src="assets/nav_v2/duels.webp" alt="Duels" width="329" height="100"></a>
-        <a class="ovh3-ib ovh3-new" href="bossfights.html" title="Boss Fights: raids in your browser, your group's own copy of the raid"><img src="assets/nav_v2/bossfights.webp" alt="Boss Fights" width="470" height="100"></a>
       </nav>
 
       <div class="ovh3-auth">
@@ -4332,7 +4330,7 @@
             <!-- Bottom Status Text -->
             <div class="realm-bottom-status">
               <div class="realm-total-players" id="realmTotalPlayersText">
-                <span id="realmPlayersOnline">Vanilla Remastered is online</span>
+                <span id="realmPlayersOnline">WrathUnleashed is online</span>
               </div>
               <div class="realm-lan-hint">
                 * To host your own realm, see Host your own realm below.
@@ -6155,8 +6153,6 @@
           <li><b>Its own progression:</b> PvP weapons, transmogs and seasonal reward tracks</li>
         </ul>
         <p><small><span id="wfStatusNote">It shows in the realm list, marked SOON&trade;.</span> <span id="wfLiveNote" hidden></span></small></p>
-        <p><b>Duels:</b> quick 1v1 in your browser. Any class, any gear set, best of three rounds, a live ladder. <a href="duels.html" style="color: var(--gold-primary);">Open Duels</a></p>
-        <p><b>Boss Fights:</b> raids in your browser. Queue from Gurubashi Arena; your group gets its own copy of the raid, five tiers per raid, a fastest-clears scoreboard. <a href="bossfights.html" style="color: var(--gold-primary);">Open Boss Fights</a></p>
       </div>
       <div class="og-card">
         <h3>Host a realm from a template <span class="og-badge blue">Planned</span></h3>
@@ -6404,8 +6400,6 @@
         <a href="#server-software" style="color: var(--gold-dim); text-decoration: none;">Realm Software</a>
         <a href="realms.html" style="color: var(--gold-dim); text-decoration: none;">Realms</a>
         <a href="armory.html" style="color: var(--gold-dim); text-decoration: none;">Armory</a>
-        <a href="duels.html" style="color: var(--gold-dim); text-decoration: none;">Duels</a>
-        <a href="bossfights.html" style="color: var(--gold-dim); text-decoration: none;">Boss Fights</a>
         <a href="legend.html" style="color: var(--gold-dim); text-decoration: none;">Legend</a>
         <a href="workshop.html" style="color: var(--gold-dim); text-decoration: none;">Workshop</a>
         <a href="solo.html" style="color: var(--gold-dim); text-decoration: none;">Play Solo</a>
@@ -6493,87 +6487,22 @@
     // WARCRAFT REALM LIST CONTROLLER (BUILT-IN)
     // ==========================================
     // the emblem left of each realm's name (assets/realm_ui/realm_icon_*.webp)
-    const REALM_ICONS = { rppve: 'vanilla', duels: 'warfront', pvp60: 'warfront', moonguard: 'moonguard', ascension: 'ascension' };
+    const REALM_ICONS = { wrath: 'warfront', rppve: 'vanilla', duels: 'warfront', pvp60: 'warfront', moonguard: 'moonguard', ascension: 'ascension' };
     const OPENVANILLA_REALMS_LIST = [
       {
-        id: 'rppve',
-        name: 'Vanilla Remastered',
-        selectVal: 'Vanilla Remastered',
-        subtext: 'classic vanilla, remastered',
-        heroSub: 'DEDICATED CLOUD • PvE',
+        id: 'wrath',
+        name: 'WrathUnleashed',
+        selectVal: 'WrathUnleashed',
+        subtext: 'Wrath 3.3.5a • start at 1 or 80',
+        heroSub: 'DEDICATED CLOUD • 3.3.5a',
         type: 'PvE',
-        category: ['all', 'classicplus'],
-        players: '',
-        playersRaw: 0,
-        status: 'ONLINE',
-        isOnline: true,
-        ping: '--',
-        pingRaw: 0
-      },
-      {
-        id: 'duels',
-        name: 'Duels',
-        selectVal: 'Duels',
-        subtext: 'instant 60 • duel anyone in the Gurubashi pit',
-        heroSub: 'DEDICATED CLOUD • DUELS',
-        type: 'PvP',
-        category: ['all', 'pvp'],
-        players: '',
-        playersRaw: 0,
-        status: 'ONLINE',
-        isOnline: true,
-        // its own page first (sign in, then the character screen); the launcher's Duels realm plays it in the desktop game
-        playUrl: 'duels.html',
-        ping: '--',
-        pingRaw: 0
-      },
-      {
-        id: 'pvp60',
-        name: 'Warfront',
-        selectVal: 'Warfront',
-        subtext: 'dedicated PvP • instant 60 arenas & world PvP',
-        heroSub: 'DEDICATED CLOUD • PvP',
-        type: 'PvP',
-        category: ['all', 'pvp'],
-        players: '',
-        playersRaw: 0,
-        status: 'SOON™',
-        isOnline: false,
-        comingSoon: true,
-        // built and stored, not running; its own realm stack (hetzner/warfront_up.sh); WARFRONT_OPEN = 1 in downloads/links.txt opens it here
-        playUrl: 'https://warfront.openvanilla.app/',
-        ping: '--',
-        pingRaw: 0
-      },
-      {
-        id: 'moonguard',
-        name: 'Moonguard',
-        selectVal: 'Moonguard',
-        subtext: 'a new roleplay realm • details soon',
-        heroSub: 'DEDICATED CLOUD • RP • SOON™',
-        type: 'RP',
-        category: ['all', 'rp'],
-        players: '',
-        playersRaw: 0,
-        status: 'SOON™',
-        isOnline: false,
-        comingSoon: true,
-        ping: '--',
-        pingRaw: 0
-      },
-      {
-        id: 'ascension',
-        name: 'Ascension Resurrected',
-        selectVal: 'Ascension Resurrected',
-        subtext: 'a new realm • details soon',
-        heroSub: 'DEDICATED CLOUD • FUN • SOON™',
-        type: 'Fun',
         category: ['all'],
         players: '',
         playersRaw: 0,
-        status: 'SOON™',
-        isOnline: false,
-        comingSoon: true,
+        status: 'ONLINE',
+        isOnline: true,
+        // sign in with Google or a Hero Key, then your Wrath login is shown there
+        playUrl: 'https://play.openvanilla.app/wrath',
         ping: '--',
         pingRaw: 0
       },
@@ -6581,13 +6510,13 @@
         id: 'yourserver',
         name: 'Your Server...',
         selectVal: 'Your Server',
-        subtext: 'host your own realm and list it here • soon',
-        heroSub: 'COMMUNITY HOSTED • SOON™',
+        subtext: 'host your own realm • private with an invite link, or public in Beacons',
+        heroSub: 'COMMUNITY HOSTED • BEACONS',
         type: 'Community',
         category: ['all'],
         players: '',
         playersRaw: 0,
-        status: 'SOON™',
+        status: 'HOST',
         isOnline: false,
         comingSoon: true,
         ping: '--',
@@ -6597,8 +6526,8 @@
 
     document.addEventListener('DOMContentLoaded', () => renderRealmRows());
     let currentRealmFilter = 'all';
-    let selectedRealmId = 'rppve';
-    let activeRealmId = 'rppve';
+    let selectedRealmId = 'wrath';
+    let activeRealmId = 'wrath';
     let realmSortKey = 'players';
     let realmSortAsc = false;
 
@@ -6623,9 +6552,9 @@
     }
 
     function resetRealmSelection() {
-      selectedRealmId = 'rppve';
+      selectedRealmId = 'wrath';
       filterRealmList('all');
-      showToast('Selection reset to Vanilla Remastered', 'sword');
+      showToast('Selection reset to WrathUnleashed', 'sword');
     }
 
     document.addEventListener('keydown', (e) => {
@@ -6679,10 +6608,13 @@
       },
       yourserver: {
         art: 'assets/showcase_server.webp',
-        lead: 'Your realm, on this list. Host a server from the Open Vanilla launcher and players will soon find it right here.',
-        points: [['Host from the launcher', 'Host > Dedicated server runs a whole realm on your own PC'],
-          ['Listed for everyone', 'Community realms will appear here next to the official ones', 'new'],
-          ['Your rules', 'Your rates, your content, your community']]
+        lead: 'Your realm, on this list. Host a WrathUnleashed realm on your own PC and light its Beacon: private for friends, or public for everyone.',
+        points: [['Host a realm', 'One script starts a full 3.3.5a realm on your PC; you pick the name, the rules, private or public'],
+          ['Private realms', 'Friends join with your invite link; nobody else gets in'],
+          ['Your IP stays hidden', 'Players connect through the Open Vanilla relay, never to your home address'],
+          ['Public realms light a Beacon', 'Listed here with live status, players and bots counted separately, no paid placement', 'new'],
+          ['Claim your Beacon', 'Sign in with your Hero Key to prove the realm is yours'],
+          ['See all Beacons', 'realms.html lists every realm with its own page']]
       }
     };
     function openSoonRealm(id) {
@@ -7581,7 +7513,7 @@
     function owRealmLive(d) {
       var realm = d && d.realm;
       var row = OPENVANILLA_REALMS_LIST.find(function(r) { return r.id === 'rppve'; });
-      if (!realm || !row) return;
+      if (!realm || !row || row.offline) return;   // Vanilla Remastered is offline while Wrath runs
       var n = Number(realm.players);
       var hasN = realm.players !== null && realm.players !== undefined && isFinite(n) && n >= 0;
       // Always shown as online (set by hand while the realm's status feed is being fixed);
