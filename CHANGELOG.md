@@ -1,6 +1,9 @@
 # Open Vanilla changelog
 (build_repack.py turns the newest sections into the launcher's patch notes: "## Section" headers, "- item" lines.)
 
+## New in 1.55.0
+- A.
+
 ## New in 1.54.1
 - Hotfix: launcher sign-in certificates chain to ISRG Root X1 (RSA); the launcher trusts Mozilla's roots too.
 - Hotfix: a game button clicks when you lift after it shows pushed (slow phones).
