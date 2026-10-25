@@ -44,6 +44,18 @@ while [ $# -gt 0 ]; do case $1 in
   *) echo "unknown option $1"; exit 2;; esac; shift; done
 say() { printf '\033[1;33m== %s\033[0m\n' "$*"; }
 [ "$(id -u)" -eq 0 ] || { echo "Run as root"; exit 1; }
+# WrathUnleashed (3.3.5a, AzerothCore, 2026-10-24) runs on this server in place of the 1.12 realm. Its deploy
+# (WrathUnleashed/server/deploy.sh) stopped this stack's mangosd and realmd, put its sign-in page and SOAP bridge
+# (container wu-portal) on this stack's network under the name "mangosd", and added /wrath to the site's Caddyfile.
+# A hot update here would write the 1.12 world database, pull and recreate the realm service the Wrath sign-in
+# depends on, and send .announce through the bridge to Wrath's players: so while Wrath is live it does nothing.
+# /srv/wrath/rollback.sh (back to vanilla) removes both markers; OV_ALLOW_WITH_WRATH=1 forces a run anyway.
+wrath_live() { [ -e /srv/wrath/stopped-vanilla.txt ] || docker ps -a --format '{{.Names}}' 2>/dev/null | grep -qx wu-portal; }
+if [ $DRY = 0 ] && [ "${OV_ALLOW_WITH_WRATH:-0}" != 1 ] && wrath_live; then
+  say "WrathUnleashed is the live realm on this server: the 1.12 realm is parked, nothing was updated"
+  echo "  (bash /srv/wrath/rollback.sh brings vanilla back; OV_ALLOW_WITH_WRATH=1 forces this update anyway)"
+  exit 0
+fi
 cd "$REALM_DIR"
 set -a; . ./.env; set +a
 mkdir -p "$CP/www"

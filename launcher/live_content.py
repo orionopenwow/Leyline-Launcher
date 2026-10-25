@@ -14,7 +14,8 @@ What it can set (see www/downloads/live.src.json, the file you edit):
                   image, status}]                                   (up to 12; type exe|engine|web,
                                                                     status available|coming_soon)
     flags       {solo, host_friends, relay, browser_play, workshop, dedicated_server, solo_pack, ai}
-    realms      [{name, host, port, portal, build}]                realm list defaults (up to 8)
+    realms      [{name, host, port, portal, build,                 realm list defaults (up to 8)
+                  play_url, status_url}]
     buttons     {<key>: {label, link}}                             labels/links of named buttons
     links       {SPP_URL, SPP_SHA256, SPP_SIZE, ...}               links.txt keys (allow-listed)
     message     {text, level}                                      a one-line notice under the bar
@@ -133,8 +134,9 @@ def _realm(d):
     if not 0 < port < 65536:
         return None
     r = {"name": _text(d.get("name") or d["host"], 40), "host": d["host"], "port": port, "build": build}
-    if d.get("portal") and safe_link(d["portal"]).startswith("https://"):
-        r["portal"] = safe_link(d["portal"])
+    for key in ("portal", "play_url", "status_url"):   # play_url: the browser entry; status_url: openvanilla-status-1
+        if d.get(key) and safe_link(d[key]).startswith("https://"):
+            r[key] = safe_link(d[key])
     return r
 
 

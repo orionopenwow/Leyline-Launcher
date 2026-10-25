@@ -3,6 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- The old home page (Vanilla Remastered, Duels, Warfront...). On the public website it sends visitors to the
+       current home page; local and self-hosted copies are unaffected. -->
+  <script>if (/^(www\.)?openvanilla\.app$/.test(location.hostname)) location.replace('/');</script>
   <title>Open Vanilla — Free, Open-Source, Community-Built Vanilla in Your Browser</title>
   <!-- Link previews (Discord, Reddit, X, iMessage) -->
   <meta property="og:type" content="website">

@@ -8,11 +8,6 @@
   "_news": "Up to 6 cards on HOME and the NEWS page. date is free text.",
   "news": [
     {
-      "title": "Vanilla Remastered: a friendlier pace",
-      "date": "October 2026",
-      "text": "Quest items always drop and are shared with your group, quest XP is 1.5x, flights are twice as fast, the Hearthstone is back in 15 minutes, and every dungeon entrance has a quest board. Same world, less waiting."
-    },
-    {
       "title": "One launcher, clear folders",
       "date": "October 2026",
       "text": "OpenVanilla.exe is now the only thing to run. Addons, solo realms, screenshots and logs each have their own folder, and updates install themselves: press 'Update ready' when you see it."
@@ -54,10 +49,9 @@
     "SPP_PAGE": "https://github.com/celguar/spp-classics-cmangos/releases"
   },
 
-  "_realms": "The official realms every launcher lists (they replace the shipped list; the player's own and local realms stay). A realm with a portal and no open game port plays through its website (the desktop game via the launcher's bridge).",
+  "_realms": "The official realms every launcher lists (they replace the shipped list; the player's own and local realms stay). portal is the realm service (sign-in API); play_url is where PLAY > Browser goes; status_url is the realm's openvanilla-status-1 JSON (www/realms/SCHEMA.md). Launchers released before this change (1.55.0 and older) ignore play_url and status_url: they open the portal (which redirects to /wrath) and ping the login port. A realm with a portal and no open game port plays through its website (the desktop game via the launcher's bridge).",
   "realms": [
-    {"name": "Open Vanilla", "host": "play.openvanilla.app", "port": 3724, "portal": "https://play.openvanilla.app/", "build": 5875},
-    {"name": "Duels", "host": "duels.openvanilla.app", "port": 3724, "portal": "https://duels.openvanilla.app/", "build": 5875}
+    {"name": "WrathUnleashed", "host": "play.openvanilla.app", "port": 3724, "portal": "https://play.openvanilla.app/", "play_url": "https://play.openvanilla.app/wrath", "status_url": "https://play.openvanilla.app/wrath/status.json", "build": 12340}
   ],
 
   "_message": "Optional one-line notice under the PLAY bar: {\"text\": \"...\", \"level\": \"info|warn|good\"}. Remove it when it's no longer needed."

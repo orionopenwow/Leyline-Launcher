@@ -114,7 +114,7 @@ class HomeGuiTests(unittest.TestCase):
         app._client_line_click()
         self.assertTrue(app.cv.find_withtag("menu"))
         texts = [app.cv.itemcget(i, "text") for i in app.cv.find_withtag("menu") if app.cv.type(i) == "text"]
-        self.assertIn("Vanilla (stock client)", texts)
+        self.assertIn("Wrath of the Lich King", texts)            # WrathUnleashed: the 3.3.5a client is the built-in one
         self.assertTrue(any(t.startswith("More clients in Workshop") for t in texts))
         app._menu_more()
         self.assertTrue(self.pump(1, until=lambda: app.page == "mods"))
@@ -241,6 +241,9 @@ class HomeGuiTests(unittest.TestCase):
         app.live.doc = {"schema": 1, "hero": {"title": "Welcome to Open Vanilla"},
                         "featured": [{"id": "herald", "title": "Meet Herald", "text": "x"}]}   # a 1.17.0-era live.json
         app.show_page("play", animate=False)
+        self.assertEqual(app._client_btn_label, "SET UP CLIENT")  # 3.3.5a, no folder yet: the player picks their own
+        app.workshop_add_client({e["id"]: e for e in app.client_catalog()}["vanilla"], select=True)   # parked 1.12.1
+        app.show_page("play", animate=False)
         self.assertFalse(app.cv.find_withtag("clientbtn"))      # GET VANILLA CLIENT V1.3 is hidden for now
         self.assertEqual(app._client_btn_label, "")
         self.addCleanup(setattr, L.home_logic, "HIDE_GET_VANILLA_CLIENT", True)
@@ -285,16 +288,16 @@ class HomeGuiTests(unittest.TestCase):
             return out
 
         shown = labels()
-        for name in ("Vanilla (stock client)", "Open Vanilla Classic+", "Live One", "My Test Client"):
+        for name in ("Wrath of the Lich King", "Vanilla (stock client)", "Open Vanilla Classic+", "Live One", "My Test Client"):
             self.assertIn(name, shown)
         self.assertIn("COMING SOON", shown)
         self.assertIn("From clients.txt", shown)
         cat = {e["id"]: e for e in app.client_catalog()}
         app.workshop_add_client(cat["my-test-client"])
         self.assertEqual(app.settings["my_clients"], ["my-test-client"])
-        self.assertEqual([c["id"] for c in app.clients], ["vanilla", "my-test-client"])
+        self.assertEqual([c["id"] for c in app.clients], ["wotlk", "my-test-client"])
         self.assertEqual(app.clients[1]["download_url"], "https://example.org/t.zip")
-        app.workshop_remove_client(cat["vanilla"])                 # built in: stays
+        app.workshop_remove_client(cat["wotlk"])                   # built in: stays
         self.assertEqual(len(app.clients), 2)
         fetched = []
         app.fetch_or_open = lambda url, label, then=None: fetched.append(url)
@@ -302,8 +305,8 @@ class HomeGuiTests(unittest.TestCase):
         self.assertEqual(app.client()["id"], "my-test-client")
         self.assertEqual(fetched, ["https://example.org/t.zip"])
         app.workshop_remove_client(cat["my-test-client"])
-        self.assertEqual([c["id"] for c in app.clients], ["vanilla"])
-        self.assertEqual(app.client()["id"], "vanilla")
+        self.assertEqual([c["id"] for c in app.clients], ["wotlk"])
+        self.assertEqual(app.client()["id"], "wotlk")
 
     def test_advanced_switch_and_folders(self):
         app = self.start()

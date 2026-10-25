@@ -4281,8 +4281,11 @@
         <div class="hero-build-tag" title="Open Vanilla is in alpha: expect changes, and tell us what breaks"><span class="dot" aria-hidden="true"></span>Alpha <span class="ver">v0.1.8</span></div>
 
         <!-- Sub-Hero Project Information -->
-        <p class="hero-description-paragraph">
-          A free, open-source, community-built MMO project: Open Vanilla in Rust. Play Vanilla Remastered in your browser or desktop launcher, build and share mods, maps and quests in the Workshop, and host your own realm in a few clicks.</p>
+        <!-- TODO(owner): the hero line. Until 2026-10-24 it read: "A free, open-source, community-built MMO project:
+             Open Vanilla in Rust. Play Vanilla Remastered in your browser or desktop launcher, build and share mods, maps and
+             quests in the Workshop, and host your own realm in a few clicks." Write the new line here and remove the
+             owner-todo class and the hidden attribute. Hidden to visitors; index.html?preview=1 shows the placeholder. -->
+        <p class="hero-description-paragraph owner-todo" hidden>TODO(owner): hero line</p>
 
         <div class="hero-cta-group">
           <div class="epic-play-btn-wrapper" onclick="launchClient()" role="button" tabindex="0" title="Play Open Vanilla Now (Direct Instant Launch)">
@@ -7328,7 +7331,7 @@
       DONATE_CARD_URL: 'https://ko-fi.com/orionvanilla',
       REALM_HOST: 'play.openvanilla.app',
       REALM_PORT: '3724',
-      REALM_NAME: 'Vanilla Remastered',
+      REALM_NAME: 'WrathUnleashed',
       REALM_TYPE: 'PvE',
       DISCORD_INVITE: 'https://discord.gg/hVeUxYwbkr',
       GITHUB_REPO: 'https://github.com/orionopenwow/OpenVanilla',
@@ -8004,5 +8007,13 @@
     head.addEventListener('focusin', function () { head.classList.remove('ovh3-away'); });
   })();
   </script>
+<script>
+  // Owner placeholders (class owner-todo, hidden): shown and outlined only with ?preview=1, as on realms.html.
+  if (/[?&]preview=1\b/.test(location.search)) {
+    document.querySelectorAll('.owner-todo').forEach(function (e) {
+      e.hidden = false; e.style.outline = '1px dashed #f07a6e'; e.style.outlineOffset = '2px'; e.style.color = '#f0a59c';
+    });
+  }
+</script>
 </body>
 </html>

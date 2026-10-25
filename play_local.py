@@ -1805,6 +1805,8 @@ class SoloSession:
         self.db = None
         self.db_started = False
         self.keep_running = False
+        # Settings > "Keep the solo world running after I close the game": the next Play Solo jumps straight back in.
+        self.keep_after_game = bool(isinstance(settings, dict) and settings.get("solo_keep_running"))
         self.manifest = None
         self.servers = None
         self.game = None
@@ -1892,6 +1894,8 @@ class SoloSession:
         for d in (p.logs, p.custom):
             os.makedirs(d, exist_ok=True)
         self.state = load_state(p)
+        if self.play and solo_world_running(p):   # kept running after the last game: just start the game again
+            return self._resume()
         cleanup_stale(p, self.state, r)
         self.servers = ServerSet(p, self.state, popen=self.popen)
         self.servers.check_ports_free()  # a local realm on 3724/8085: say so before downloading anything
@@ -1928,23 +1932,67 @@ class SoloSession:
                 write_json(p.run_file, rec)
                 r.stage("ready", "Solo servers are running. Stop them with: 'Play Solo.bat' solo-stop")
                 return 0
-            r.stage("play", f"Starting the game. {SOLO_NOTE}")
-            if kind == "exe":
-                restore = point_client_at_solo(os.path.dirname(exe), self.state)
-                r.info(f"Sign in with account {SOLO_ACCOUNT}, password {SOLO_PASSWORD}.")
-                self.game = self.popen([exe], cwd=os.path.dirname(exe))
-            else:
-                self.game = self.popen([exe], cwd=os.path.dirname(exe), env=client_env(self.state, data))
-            started = time.monotonic()
-            while self.game.poll() is None:
-                if self.cancel.is_set():
-                    break
-                time.sleep(1.0)
-            if time.monotonic() - started < 15 and self.game.poll() not in (None, 0):
-                r.warn(f"The game closed right away (exit {self.game.poll()}).")
+            restore = self._play_game(kind, exe, data)
+            if self.keep_after_game and not self.cancel.is_set():
+                self._detach()
             return 0
         finally:
             self.shutdown(restore)
+
+    def _play_game(self, kind, exe, data):
+        """Start the game against the solo world and wait for it to close. Returns the realmlist restore."""
+        r = self.reporter
+        restore = None
+        r.stage("play", f"Starting the game. {SOLO_NOTE}")
+        if kind == "exe":
+            restore = point_client_at_solo(os.path.dirname(exe), self.state)
+            r.info(f"Sign in with account {SOLO_ACCOUNT}, password {SOLO_PASSWORD}.")
+            self.game = self.popen([exe], cwd=os.path.dirname(exe))
+        else:
+            self.game = self.popen([exe], cwd=os.path.dirname(exe), env=client_env(self.state, data))
+        started = time.monotonic()
+        while self.game.poll() is None:
+            if self.cancel.is_set():
+                break
+            time.sleep(1.0)
+        if time.monotonic() - started < 15 and self.game.poll() not in (None, 0):
+            r.warn(f"The game closed right away (exit {self.game.poll()}).")
+        return restore
+
+    def _detach(self):
+        """Leave the solo world running after the game closed (Settings > keep the solo world running)."""
+        self.keep_running = True
+        rec = read_json(self.paths.run_file, {}) or {}
+        rec["detached"] = True   # solo-stop, Settings > Stop the solo world, or a Play Solo with the setting off stops it
+        write_json(self.paths.run_file, rec)
+
+    def _resume(self):
+        """The solo world is still running from last time: start the game against it, no server start at all."""
+        r = self.reporter
+        restore = None
+        r.stage("start", "The solo world is still running: starting the game…")
+        try:
+            kind, exe, data = find_client(self.client_hint, self.settings)
+            if self.data_hint:
+                data = self.data_hint
+            if not exe:
+                raise SoloError("No game client found. Set your World of Warcraft 1.12.1 folder (or the Open Vanilla engine) "
+                                "in the launcher's Settings and press Play Solo again.")
+            restore = self._play_game(kind, exe, data)
+        finally:
+            if restore:
+                try:
+                    restore()
+                except OSError:
+                    pass
+        if self.keep_after_game:
+            self.keep_running = True
+            r.stage("ready", "The solo world keeps running. Press Play Solo to jump back in.")
+            return 0
+        r.stage("stop", "Stopping the solo world…")
+        cleanup_stale(self.paths, self.state, r)
+        r.stage("done", "Solo stopped. Your solo characters are saved on this PC.")
+        return 0
 
     def _record(self):
         procs = {}
@@ -1956,8 +2004,17 @@ class SoloSession:
 
     def shutdown(self, restore=None):
         r = self.reporter
-        if self.keep_running:
-            return  # --no-play: leave them running
+        if self.keep_running:   # --no-play, or kept running after the game (Settings): leave them running
+            if restore:
+                try:
+                    restore()   # the game's realmlist goes back to normal; the solo world stays up
+                except OSError:
+                    pass
+            if self.state:
+                save_state(self.paths, self.state)
+            if self.play:
+                r.stage("ready", "The solo world keeps running. Press Play Solo to jump back in.")
+            return
         try:
             if self.servers:
                 self.servers.stop(r)
@@ -1981,6 +2038,17 @@ class SoloSession:
     def stop(self):
         """From another thread: end the session (closes nothing in the game; the servers stop)."""
         self.cancel.set()
+
+
+def solo_world_running(paths, alive=None):
+    """True when a solo world was left running on purpose (detached) and its world, login and database are all up."""
+    alive = alive or pid_alive
+    rec = read_json(paths.run_file)
+    if not rec or not rec.get("detached"):
+        return False
+    servers = rec.get("servers", {}) or {}
+    pids = [servers.get(k) for k in ("mangosd", "realmd", "mariadb")]
+    return all(pids) and all(alive(pid) for pid in pids)
 
 
 def solo_stop(root=None, reporter=None):

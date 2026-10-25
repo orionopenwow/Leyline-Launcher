@@ -470,6 +470,26 @@ def realm_health(portal, timeout=5):
     return "online", "Plays through the realm's website"
 
 
+def realm_status(url, timeout=5):
+    """(status, detail) from a realm's own status endpoint (www/realms/SCHEMA.md, openvanilla-status-1:
+    {online, players, bots, uptime_s, build}), or None when it doesn't answer ("status unavailable",
+    never "offline"). players and bots are counted separately; null means not known."""
+    try:
+        d = http_json(url, timeout=timeout)
+    except Exception:
+        return None
+    if not isinstance(d, dict) or not isinstance(d.get("online"), bool):
+        return None
+    if not d["online"]:
+        return "offline", "World server down"
+    parts = []
+    for key, label in (("players", "Players"), ("bots", "Bots")):
+        v = d.get(key)
+        if isinstance(v, int) and not isinstance(v, bool):
+            parts.append(f"{label}: {v}")
+    return "online", " · ".join(parts) or "Online"
+
+
 # The public half of the key CI signs downloads/version.json with (packaging/release_manifest.py).
 # An update is only offered when version.json.sig verifies against it, so a tampered mirror or a
 # hijacked page can't point launchers at another file. Rotating the key means shipping a launcher
@@ -515,6 +535,24 @@ def exe_command(exe):
                           "to run it here, or play in the browser.")
         return [wine, str(exe)]
     return [exe]
+
+
+def realmlist_path(folder, rel="realmlist.wtf"):
+    """Where a stock client reads its realmlist: rel under the game folder (1.12.1: realmlist.wtf beside
+    WoW.exe; 3.3.5a: Data/<locale>/realmlist.wtf). A 3.3.5a install that isn't enUS has Data/enGB,
+    Data/deDE, ... instead: use the locale folder that exists, the one with a realmlist.wtf first."""
+    parts = rel.replace("\\", "/").split("/")
+    if len(parts) == 3 and parts[0].lower() == "data" and not os.path.isdir(os.path.join(folder, *parts[:2])):
+        data = os.path.join(folder, parts[0])
+        try:
+            locales = sorted(d for d in os.listdir(data) if re.fullmatch(r"[a-z]{2}[A-Z]{2}", d)
+                             and os.path.isdir(os.path.join(data, d)))
+        except OSError:
+            locales = []
+        if locales:
+            pick = next((d for d in locales if os.path.isfile(os.path.join(data, d, parts[2]))), locales[0])
+            return os.path.join(data, pick, parts[2])
+    return os.path.join(folder, *parts)
 
 
 def find_engine():
@@ -858,8 +896,8 @@ class Launcher(tk.Tk):
         saved_host = self.settings.get("realm_host")
         if saved_host:
             by_host = next((i for i, r in enumerate(self.realms) if r.get("host") == saved_host), None)
-            if by_host is not None:
-                self.realm_index = by_host
+            # a realm that left the list (Duels, 2026-10-24): the main realm, not whatever took its index
+            self.realm_index = by_host if by_host is not None else 0
         elif self.realm_index == 1 and len(self.realms) > 2 and self.realms[1].get("host") == "duels.openvanilla.app":
             # saved before Duels joined the list: index 1 was the local server
             self.realm_index = next((i for i, r in enumerate(self.realms) if r.get("host") in LOCAL_HOSTS), 0)
@@ -2283,6 +2321,8 @@ class Launcher(tk.Tk):
 
     def web_url(self):
         r = self.realms[self.realm_index]
+        if safe_url(r.get("play_url")):   # the realm's browser entry (WrathUnleashed: /wrath), not its API root
+            return r["play_url"]
         url = r.get("portal") or self.defaults.get("community", {}).get("portal")
         return url.rstrip("/") + "/" if url else None
 
@@ -2919,7 +2959,8 @@ class Launcher(tk.Tk):
 
     def page_install(self):
         """Set up the 1.12.1 game: install a fresh copy into a new folder, or use one already on this PC."""
-        c = next((k for k in self.clients if k.get("type") == "exe"), self.client())
+        c = next((k for k in list(self.clients) + self.client_catalog() if k.get("type") == "exe"
+                  and int(k.get("build", 0) or 0) == wow_import.BUILD), self.client())   # the 1.12.1 one (Solo), even when parked
         x, y, w, h = self.big_panel("SET UP VANILLA CLIENT V1.3", "download", "Open Vanilla needs the classic Vanilla game (build 5875)")
         cw, ch = (w - 20) // 2, 250
         url = self.client_download(c)
@@ -3716,7 +3757,7 @@ class Launcher(tk.Tk):
         target = host if port == 3724 else f"{host}:{port}"
         if c["type"] == "exe":
             folder = os.path.dirname(exe)
-            rl = os.path.join(folder, *c.get("realmlist", "realmlist.wtf").split("/"))
+            rl = realmlist_path(folder, c.get("realmlist", "realmlist.wtf"))
             try:
                 if os.path.isfile(rl) and not os.path.isfile(rl + ".openvanilla-backup"):
                     shutil.copy2(rl, rl + ".openvanilla-backup")
@@ -5834,6 +5875,12 @@ class Launcher(tk.Tk):
                           ("Close the launcher when the game starts", self.var_close), ("Start the game muted", self.var_sound),
                           ("Use the Windows title bar (takes effect next start)", self.var_native)):
             self.check(inner, text, var, self.save_toggles).pack(anchor="w", pady=1)
+        self.var_solo_keep = tk.BooleanVar(value=self.settings.get("solo_keep_running", False))
+        self.check(inner, "Play Solo: keep the solo world running after I close the game (back in seconds next time)",
+                   self.var_solo_keep, self.save_toggles).pack(anchor="w", pady=1)
+        if solo and self.solo_world_up():
+            tk.Button(inner, text="STOP THE SOLO WORLD (saves first)", command=self.stop_solo_world, bg=PANEL, fg=GOLD,
+                      relief="flat", font=font(8), cursor="hand2").pack(anchor="w", padx=22, pady=(0, 4))
         self.var_auto = tk.BooleanVar(value=self.settings.get("auto_update", True))
         self.check(inner, "Download launcher updates in the background (you choose when to restart)", self.var_auto,
                    self.save_toggles).pack(anchor="w", pady=1)
@@ -6044,6 +6091,8 @@ class Launcher(tk.Tk):
         self.settings["mute_game"] = self.var_sound.get()
         self.settings["native_titlebar"] = self.var_native.get()
         self.settings["auto_update"] = self.var_auto.get()
+        if hasattr(self, "var_solo_keep"):
+            self.settings["solo_keep_running"] = self.var_solo_keep.get()
         self.save_settings()
 
     def save_settings(self):
@@ -6171,6 +6220,9 @@ class Launcher(tk.Tk):
             if not self.web_url():
                 return False, "THIS SERVER HAS NO WEBSITE", "Pick a server with a website for browser play, or another client.", "red", "servers"
             return True, "READY · PLAYS IN YOUR BROWSER", f"{realm.get('name')} · {self.web_url()}", "blue", None
+        if not self.client_exe(c) and self.own_folder_client(c):   # 3.3.5a: the player's own game folder, nothing to get
+            ver = c.get("version") or BUILD_NAMES.get(int(c.get("build", 0) or 0), "")
+            return False, f"SET UP {name}", f"Press PLAY to pick your own {ver} game folder (the one with Wow.exe).", "amber", "choose_install"
         if not self.client_exe(c):
             url = self.client_download(c)
             if url:
@@ -6351,7 +6403,10 @@ class Launcher(tk.Tk):
         if action in ("solo_install", "solo_vanilla", "solo_play", "solo_pack"):
             self.play_solo_mode()
         elif action == "choose_install":
-            self.show_page("install")
+            if self.play_mode() != "solo" and self.own_folder_client():
+                self.choose_install()    # 3.3.5a: pick the folder; the install page is the 1.12.1 one
+            else:
+                self.show_page("install")
         elif action == "download_client":
             self.get_client()
         elif action in ("settings", "servers", "solo", "host"):
@@ -6484,7 +6539,7 @@ class Launcher(tk.Tk):
             messagebox.showerror("Bad server address", f"{realm.get('host')!r} isn't a valid server address.", parent=self)
             return
         host = realm["host"] if port == 3724 else f"{realm['host']}:{port}"
-        rl = os.path.join(folder, *c.get("realmlist", "realmlist.wtf").split("/"))
+        rl = realmlist_path(folder, c.get("realmlist", "realmlist.wtf"))
         try:
             os.makedirs(os.path.dirname(rl), exist_ok=True)
             if os.path.isfile(rl) and not os.path.isfile(rl + ".openvanilla-backup"):
@@ -6501,6 +6556,8 @@ class Launcher(tk.Tk):
                 lines = open(cfg, encoding="utf-8", errors="replace").read().splitlines() if os.path.isfile(cfg) else []
                 lines = [l for l in lines if not l.lower().startswith("set accountname ")]
                 lines.append(f'SET accountName "{user}"')
+                # a realmList line here (3.3.5a writes one) would point the game back at the old server
+                lines = [f'SET realmList "{host}"' if l.lower().startswith("set realmlist ") else l for l in lines]
                 os.makedirs(os.path.dirname(cfg), exist_ok=True)
                 with open(cfg, "w", encoding="utf-8", newline="\r\n") as f:
                     f.write("\n".join(lines) + "\n")
@@ -6825,6 +6882,8 @@ class Launcher(tk.Tk):
             return
         c = self.client()
         exe = self.client_exe(c) if c["type"] in ("engine", "exe") else None
+        if exe:
+            self.sync_client_addons(c)   # AddOns\Enabled into the game's own folder, as PLAY does
         session = solo.SoloSession(reporter=None, client=exe, settings=self.settings)
         self.notice("Checking the solo server…", GOLD, 4)
 
@@ -6887,9 +6946,36 @@ class Launcher(tk.Tk):
         self.solo_session = None
         if err:
             messagebox.showerror("Play Solo", err, parent=self)
+        elif self.solo_world_up():
+            self.notice("The solo world keeps running: Play Solo jumps straight back in. Stop it in Settings.", GREEN, 10)
         else:
             self.notice("Solo stopped. Your solo characters are saved on this PC.", GREEN, 6)
         self.update_status()
+
+    def solo_world_up(self):
+        """A solo world left running after the game (Settings > keep the solo world running)."""
+        try:
+            return bool(solo) and solo.solo_world_running(solo.SoloPaths(None))
+        except Exception:
+            return False
+
+    def stop_solo_world(self):
+        """Settings > STOP THE SOLO WORLD: save and stop a solo world left running."""
+        if self.solo_session is not None:
+            self.notice("Close the game first: Play Solo stops or keeps the world when it closes.", AMBER, 5)
+            return
+        self.notice("Saving and stopping the solo world…", GOLD, 6)
+
+        def work():
+            err = None
+            try:
+                solo.solo_stop(None, _QuietReporter())
+            except Exception as e:   # never leave the launcher stuck on a stop
+                err = str(e)
+            self.after(0, lambda: self.notice(f"Couldn't stop the solo world: {err}"[:110], AMBER, 8) if err
+                       else self.notice("Solo world stopped. Your solo characters are saved on this PC.", GREEN, 6))
+
+        threading.Thread(target=work, daemon=True).start()
 
     def _started(self):
         self.notice(f"Starting {self.client()['name']}…", GREEN)
@@ -6904,10 +6990,52 @@ class Launcher(tk.Tk):
 
     # ---------- downloads (client, server software, mods, repacks, repos)
 
+    def own_folder_client(self, c=None):
+        """A stock client other than 1.12.1 (WrathUnleashed's 3.3.5a): the player brings their own game folder.
+        The launcher never downloads it and the 1.12.1 setup page doesn't apply."""
+        c = c or self.client()
+        return c.get("type") == "exe" and int(c.get("build", 0) or 0) not in (0, wow_import.BUILD)
+
+    def choose_own_folder(self, c):
+        """Pick the player's own game folder for a non-1.12.1 stock client (3.3.5a), check it has the exe, a
+        Data folder with common.MPQ and the right build, and save it for that client only (not wow_folder,
+        which is the 1.12.1 install Solo and the engine use). Returns True when a good folder was saved."""
+        want = int(c.get("build", 0) or 0)
+        ver = c.get("version") or BUILD_NAMES.get(want, str(want))
+        while True:
+            path = filedialog.askdirectory(parent=self, title=f"Choose your {ver} game folder (the one with Wow.exe)")
+            if not path:
+                return False
+            root = os.path.dirname(path) if os.path.basename(path).lower() == "data" else path
+            issues = []
+            if not self.client_exe(dict(c, path=root)):
+                issues.append(f"There's no {c.get('exe', 'Wow.exe')} in that folder.")
+            data = next((os.path.join(root, d) for d in (os.listdir(root) if os.path.isdir(root) else [])
+                         if d.lower() == "data" and os.path.isdir(os.path.join(root, d))), None)
+            if not data or not any(f.lower() == "common.mpq" for f in os.listdir(data)):
+                issues.append("There's no Data folder with common.MPQ in it.")
+            build = wow_import.exe_build(root) if not issues else None
+            if build is not None and build != want:
+                issues.append(f"This is build {build}; {ver} is build {want}.")
+            if not issues:
+                break
+            if not messagebox.askretrycancel("That folder won't work", "\n".join(issues) + "\n\nPick a different folder?",
+                                             parent=self):
+                return False
+        self._client_override(c, "path", root)  # saves settings
+        self.notice(f"{ver} game folder set. You're ready to play.", GREEN, 5)
+        self.update_status()
+        if self.page in ("play", "settings", "install"):
+            self.show_page("play" if self.page == "install" else self.page, animate=False)
+        return True
+
     def choose_install(self, c=None):
         """Pick the player's own World of Warcraft 1.12.1 folder, check it (wow_import: archives, WoW.exe build)
-        and lock it in for this client and the Open Vanilla engine. Returns True when a good folder was saved."""
+        and lock it in for this client and the Open Vanilla engine. Returns True when a good folder was saved.
+        A 3.3.5a client goes to choose_own_folder instead."""
         c = c or self.client()
+        if self.own_folder_client(c):
+            return self.choose_own_folder(c)
         while True:
             path = filedialog.askdirectory(parent=self, title="Choose your game's Data folder (or the folder with WoW.exe)")
             if not path:
@@ -6937,6 +7065,9 @@ class Launcher(tk.Tk):
         return True
 
     def get_client(self):
+        if self.own_folder_client():   # 3.3.5a: the player's own folder, never a download
+            self.choose_install()
+            return
         if self.client()["type"] == "exe":  # stock clients: install a fresh copy or pick the player's own
             self.show_page("install")
             return
@@ -7334,6 +7465,18 @@ class Launcher(tk.Tk):
         status, detail, via = ("online" if ping is not None else "offline"), "", "tcp"
         portal = realm.get("portal")
         health = None
+        own_status = bool(safe_url(realm.get("status_url")))
+        if own_status:
+            # The realm publishes its own status (WrathUnleashed: /wrath/status.json). Its game ports are
+            # public, so the desktop game connects straight to them: never through the website (via stays tcp).
+            st = realm_status(realm["status_url"])
+            if st:
+                status, detail = st
+            elif ping is not None:
+                detail = "Login server answering · status unavailable"
+            else:
+                status, detail = "partial", "Status unavailable"
+            portal = None   # the portal's /healthz and /api/status describe the old 1.12 world server
         if portal and str(portal).startswith("https://"):
             t0 = time.perf_counter()
             health = realm_health(portal)
@@ -7363,7 +7506,7 @@ class Launcher(tk.Tk):
                     detail = "Login server answering"
             except Exception:
                 detail = "Login port only (website unreachable)" if ping is not None else "Website and login port unreachable"
-        elif ping is not None:
+        elif ping is not None and not own_status:
             detail = "Login server answering"
         busy = None
         if solo and i == 0 and portal:  # the official realm: full, slow or down? (its /healthz)
@@ -7688,12 +7831,16 @@ class _P2PDialog:
             pass
 
 
+class _QuietReporter(solo.Reporter if solo else object):
+    """Settings > STOP THE SOLO WORLD: the stop reports nothing on its own; the launcher shows a notice when done."""
+
+
 class _SoloJob(solo.Reporter if solo else object):
     """Play Solo progress in the launcher's energy bar, through the same job dict downloads use.
     Called from the solo worker thread; the Tk side reads the dict on its next frame."""
     LABELS = {"download": "DOWNLOADING THE SOLO SERVER", "unpack": "UNPACKING THE SOLO SERVER",
               "extract": "MAKING MAPS FROM YOUR CLIENT", "database": "PREPARING THE SOLO WORLD",
-              "start": "STARTING THE SOLO WORLD", "play": "PLAYING SOLO", "ready": "SOLO SERVERS RUNNING",
+              "start": "STARTING THE SOLO WORLD", "play": "PLAYING SOLO", "ready": "SOLO WORLD KEEPS RUNNING",
               "stop": "STOPPING SOLO", "done": "SOLO STOPPED"}
 
     def __init__(self, app, job):

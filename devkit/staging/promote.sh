@@ -14,6 +14,13 @@ HERE=$(cd "$(dirname "$0")" && pwd)
 HOT=$LIVE_CP/repo/hetzner/openvanilla_hotpatch.sh
 [ -f "$HOT" ] || HOT=$LIVE_CP/openvanilla_hotpatch.sh
 say() { printf '\n\033[1;35m== promote: %s\033[0m\n' "$*"; }
+# WrathUnleashed runs on this server in place of the 1.12 realm (see hetzner/openvanilla_hotpatch.sh): don't wake
+# the 1.12 staging stack or hot-update the parked live one. A dry run still shows the plan.
+if [ "${OV_ALLOW_WITH_WRATH:-0}" != 1 ] && ! printf '%s\n' "$@" | grep -qx -- --dry-run \
+   && { [ -e /srv/wrath/stopped-vanilla.txt ] || docker ps -a --format '{{.Names}}' 2>/dev/null | grep -qx wu-portal; }; then
+  say "WrathUnleashed is the live realm on this server: the 1.12 realm is parked, nothing was updated"
+  exit 0
+fi
 
 if [ ! -e "$S/.env" ]; then
   say "no staging realm: hot-updating live directly"

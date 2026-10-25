@@ -15,7 +15,7 @@ PORTAL_URL = https://openvanilla.app/
 BACKEND_URL = https://play.openvanilla.app/
 REALM_HOST = play.openvanilla.app
 REALM_PORT = 3724
-REALM_NAME = Vanilla Remastered
+REALM_NAME = WrathUnleashed
 REALM_TYPE = PvE
 # The Herald's public sign-up feed and census (website: New Adventurers panel).
 COMMUNITY_FEED_URL = https://play.openvanilla.app/community/feed.json
@@ -60,10 +60,10 @@ DONATE_CARD_URL = https://ko-fi.com/orionvanilla
 WARFRONT_OPEN = 0
 WARFRONT_URL = https://warfront.openvanilla.app/
 # Duels (hetzner/duels_up.sh, realm/duels/README.md): 0 = SOON, test = playable and marked TESTING, 1 = ONLINE.
-DUELS_OPEN = 1
+DUELS_OPEN = 0
 DUELS_URL = https://duels.openvanilla.app/
 DUELS_LITE = 1
 # Boss Fights (hetzner/bossfights_up.sh, realm/bossfights/README.md): 0 = SOON, test = playable and marked TESTING,
 # 1 = ONLINE. It runs on the Duels (Modes) world server, so BOSSFIGHTS_URL is the Duels realm unless set.
-BOSSFIGHTS_OPEN = 1
+BOSSFIGHTS_OPEN = 0
 BOSSFIGHTS_URL = https://duels.openvanilla.app/

@@ -33,6 +33,16 @@ say() { printf '\n\033[1;33m== %s\033[0m\n' "$*"; }
 sha256() { if command -v sha256sum >/dev/null; then sha256sum "$1"; else shasum -a 256 "$1"; fi; }   # macOS has shasum
 # root on the realm server; a community realm in the user's own folder doesn't need it
 [ "$(id -u)" -eq 0 ] || [ -w "$REALM_DIR" ] || { echo "Run as root (or as the owner of $REALM_DIR)"; exit 1; }
+# WrathUnleashed (3.3.5a, 2026-10-24) runs on this server in place of the 1.12 realm (WrathUnleashed/server/deploy.sh).
+# This script would start the 1.12 world server again (a second "mangosd" next to Wrath's SOAP bridge) and rewrite
+# the site's Caddyfile without the /wrath route, taking the Wrath sign-in down. So while Wrath is live it stops here.
+# /srv/wrath/rollback.sh (back to vanilla) removes both markers; OV_ALLOW_WITH_WRATH=1 forces a run anyway.
+if [ "$STAGING" != 1 ] && [ "$COMMUNITY" != 1 ] && [ "${OV_ALLOW_WITH_WRATH:-0}" != 1 ] \
+   && { [ -e /srv/wrath/stopped-vanilla.txt ] || docker ps -a --format '{{.Names}}' 2>/dev/null | grep -qx wu-portal; }; then
+  echo "WrathUnleashed is the live realm on this server: the 1.12 realm is parked, nothing was changed."
+  echo "(bash /srv/wrath/rollback.sh brings vanilla back first; OV_ALLOW_WITH_WRATH=1 forces this anyway)"
+  exit 0
+fi
 cd "$REALM_DIR"
 set -a; . ./.env; set +a
 # This stack's own volumes (a staging stack on the same machine has its own; never mix them up).

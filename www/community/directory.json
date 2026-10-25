@@ -1,17 +1,17 @@
 {
   "servers": [
     {
-      "name": "Vanilla Remastered",
+      "name": "WrathUnleashed",
       "host": "play.openvanilla.app",
       "port": 3724,
       "portal": "https://play.openvanilla.app/",
-      "build": 5875,
+      "build": 12340,
       "tags": [
-        "Classic+",
+        "3.3.5a",
         "PvE",
         "official"
       ],
-      "description": "The official Open Vanilla realm, Vanilla Remastered: Vanilla with Classic+ additions."
+      "description": "The official Open Vanilla realm: Wrath of the Lich King 3.3.5a (build 12340). Bring your own 3.3.5a game files."
     }
   ],
   "mods": [],

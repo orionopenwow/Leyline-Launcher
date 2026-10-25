@@ -1,25 +1,13 @@
 {
   "realms": [
     {
-      "name": "Open Vanilla",
+      "name": "WrathUnleashed",
       "host": "play.openvanilla.app",
       "port": 3724,
       "portal": "https://play.openvanilla.app/",
-      "build": 5875
-    },
-    {
-      "name": "Duels",
-      "host": "duels.openvanilla.app",
-      "port": 3724,
-      "portal": "https://duels.openvanilla.app/",
-      "build": 5875
-    },
-    {
-      "name": "Local server (this PC)",
-      "host": "127.0.0.1",
-      "port": 3724,
-      "portal": "http://127.0.0.1:18090",
-      "build": 5875
+      "play_url": "https://play.openvanilla.app/wrath",
+      "status_url": "https://play.openvanilla.app/wrath/status.json",
+      "build": 12340
     }
   ],
   "community": {
@@ -31,14 +19,14 @@
   "update_manifest": "https://openvanilla.app/downloads/version.json",
   "clients": [
     {
-      "id": "vanilla",
-      "name": "Vanilla (stock client)",
-      "version": "1.12.1",
+      "id": "wotlk",
+      "name": "Wrath of the Lich King",
+      "version": "3.3.5a",
       "type": "exe",
-      "exe": "WoW.exe",
-      "build": 5875,
-      "realmlist": "realmlist.wtf",
-      "download_url": "https://removed.invalid/"
+      "exe": "Wow.exe",
+      "build": 12340,
+      "realmlist": "Data/enUS/realmlist.wtf",
+      "note": "Your own 3.3.5a game folder"
     }
   ],
   "directory_url": "https://openvanilla.app/community/directory.json",
@@ -46,31 +34,17 @@
   "directory": {
     "servers": [
       {
-        "name": "Open Vanilla",
+        "name": "WrathUnleashed",
         "host": "play.openvanilla.app",
         "port": 3724,
         "portal": "https://play.openvanilla.app/",
-        "build": 5875,
+        "build": 12340,
         "tags": [
-          "Classic+",
+          "3.3.5a",
           "PvE",
           "official"
         ],
-        "description": "The official Open Vanilla realm: Vanilla with Classic+ additions."
-      },
-      {
-        "name": "Duels",
-        "host": "duels.openvanilla.app",
-        "port": 3724,
-        "portal": "https://duels.openvanilla.app/",
-        "build": 5875,
-        "tags": [
-          "Duels",
-          "PvP",
-          "instant 60",
-          "official"
-        ],
-        "description": "Open Vanilla's dueling realm: level 60 and geared on arrival, duel anyone in the Gurubashi pit."
+        "description": "The official Open Vanilla realm: Wrath of the Lich King 3.3.5a (build 12340). Bring your own 3.3.5a game files."
       }
     ],
     "mods": [],
@@ -122,6 +96,16 @@
   },
   "clients_parked": [
     {
+      "id": "vanilla",
+      "name": "Vanilla (stock client)",
+      "version": "1.12.1",
+      "type": "exe",
+      "exe": "WoW.exe",
+      "build": 5875,
+      "realmlist": "realmlist.wtf",
+      "download_url": "https://removed.invalid/"
+    },
+    {
       "id": "openvanilla",
       "name": "Open Vanilla Classic+",
       "version": "1.12.1",
@@ -136,19 +120,7 @@
       "version": "Web",
       "type": "web",
       "build": 5875
-    },
-    {
-      "id": "wotlk",
-      "name": "Wrath of the Lich King",
-      "version": "3.3.5a",
-      "type": "exe",
-      "exe": "Wow.exe",
-      "build": 12340,
-      "realmlist": "Data/enUS/realmlist.wtf",
-      "download_url": "https://openvanilla.app/clients.html#wotlk",
-      "coming_soon": false,
-      "note": "Supported · set its folder to play"
     }
   ],
-  "_note_clients": "Alpha: only the Vanilla 1.12.1 stock client is offered. Move entries back from clients_parked into clients to offer them again."
+  "_note_clients": "WrathUnleashed (3.3.5a) is the only realm: the HOME dropdown offers the player's own 3.3.5a client, which they point at their own game folder (never downloaded). The Vanilla 1.12.1 stock client and the engine are parked: Workshop > CLIENTS still lists them. Move entries between clients and clients_parked to change that."
 }

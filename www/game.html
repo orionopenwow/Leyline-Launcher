@@ -36,6 +36,9 @@
 </style>
 <a href="index.html" id="portal-btn" title="Return to Open Vanilla Community & Realm Portal">← Portal</a>
 <script>
+  // On the public website (static hosting, no game server behind it) this 1.12.1 page can't connect: the
+  // realm is WrathUnleashed now, played from its own page. Local and self-hosted copies of this page are unaffected.
+  if (/^(www\.)?openvanilla\.app$/.test(location.hostname)) location.replace('https://play.openvanilla.app/wrath');
   // Sound: the browser suspends any AudioContext created before the first user gesture (autoplay
   // policy), and the mixer (kira/cpal) creates its at startup and never resumes it — so the tab
   // stayed silent. Remember every context the page creates and resume them on the first
