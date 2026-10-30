@@ -1,5 +1,5 @@
 # Source: packaging/workflows/loadgate.yml (Ship.bat and Release.bat copy it into .github/workflows).
-# The load-time gate: after every hot update or new realm image (and once a day), sign in as the
+# The load-time gate: after every hot update (and once a day), sign in as the
 # bot in headless Chromium, time the cold and warm loads (devkit/loadlab/measure.mjs, 3 repeats,
 # medians), and compare with the saved baseline (devkit/loadlab/gate.mjs). It fails, and posts to
 # Discord, when the login screen, character list or world got more than 20% and 750 ms slower, or
@@ -12,7 +12,7 @@
 name: loadgate
 on:
   workflow_run:
-    workflows: ["hotpatch", "realm-image"]
+    workflows: ["hotpatch"]
     types: [completed]
   schedule:
     - cron: "23 11 * * *"

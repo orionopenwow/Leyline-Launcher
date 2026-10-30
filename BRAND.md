@@ -38,7 +38,7 @@ change only with a redirect or migration.
 |---|---|---|
 | Domains | `openvanilla.app`, `play.openvanilla.app` | Existing links, sign-in redirects, the launcher's update manifest (`openvanilla.app/downloads/version.json`). A new domain comes later |
 | Repo homepage | `https://play.openvanilla.app/wrath/leyline` | Until the new domain |
-| Container images | `ghcr.io/orionopenwow/openvanilla-realm`, `openvanilla-mangos` | Package names; the live realms pull them |
+| Container images | `ghcr.io/orionopenwow/openvanilla-realm`, `openvanilla-mangos` | Deleted by the owner (October 2026), and this repo no longer builds them (the realm-image workflows are gone). `hetzner/*_up.sh` still name them: the running realm keeps the image it has, but a fresh pull fails until the realm has another image source |
 | Code and config | `openvanilla_*` scripts and modules, `openvanilla://` links, `OPENVANILLA_*` environment variables, settings keys, addon saved-variable names, protocol headers | Internal; renaming has no player benefit and would lose saved data |
 | Hero Key files | `-----BEGIN OPEN VANILLA HERO KEY-----` | Keys players already saved must keep loading |
 | Firewall rules | `Open Vanilla Host TCP <port>` | Hosts' existing rules must still be found and removed |
