@@ -76,6 +76,10 @@ try:  # Settings > AI: "Activate your AI (optional)" (launcher/ai_setup.py)
     import ai_setup
 except ImportError:
     ai_setup = None
+try:  # 1.57.0: the start card "Open Vanilla is now Leyline" with the Leyline launcher download (launcher/leyline_bridge.py)
+    import leyline_bridge
+except ImportError:
+    leyline_bridge = None
 try:  # PLAY SOLO: play_local.py sits in the Open Vanilla folder (a dev checkout) or is frozen in with the launcher
     sys.path.insert(1, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
     import play_local as solo
@@ -976,6 +980,8 @@ class Launcher(tk.Tk):
         if self.settings.get("p2p_node", {}).get("enabled"):
             self.after(4000, self._node_resume)  # the volunteer ran a node last time (and agreed to today's text)
         self._nowplaying_start()
+        if leyline_bridge:   # before the AI card (2.5 s), which then waits for the next start
+            leyline_bridge.on_start(self)
         if ai_setup:   # counts the launch; once, from the second launch, offers the optional AI card
             ai_setup.on_start(self, LAYOUT.data)
 
@@ -7607,7 +7613,7 @@ def _windows_app_id():
 
 SELF_TEST_MODULES = ("p2p.host", "p2p.join", "p2p.directory", "p2p.torrent", "play_local", "workshop", "spp", "home_logic", "game_clients",
                      "server_host", "updater", "live_content", "layout", "fetch", "server_control", "asset_server",
-                     "studio", "aiohttp", "pymysql")
+                     "studio", "aiohttp", "pymysql", "leyline_bridge")
 
 
 def self_test(out_path):

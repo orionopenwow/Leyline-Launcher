@@ -47,6 +47,7 @@ DEFAULT_FLAGS = {
     "dedicated_server": True,  # HOST > Dedicated server
     "online": True,            # PLAY > Online
     "ai": True,                # Settings > AI and the one-time "Activate your AI (optional)" card
+    "leyline_bridge": True,    # the 1.57.0 start card "Open Vanilla is now Leyline" (launcher/leyline_bridge.py)
 }
 # Download addresses and checksums of anything a launcher runs (SPP_URL, SPP_SHA256, SPP_SIZE) are NOT
 # live content: they come only from links.txt shipped inside the signed release, so a change on main
