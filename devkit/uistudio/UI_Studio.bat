@@ -1,7 +1,7 @@
 @echo off
 setlocal
 TITLE Open Vanilla - UI Studio
-cd /d "%~dp0"
+cd /d "%~dp0..\.."
 rem UI Studio: tune every Open Vanilla window by hand - drag, resize, recolour, fonts, theme, art.
 rem It opens in your browser and writes Data\Interface\AddOns\WenillaCore\Layout.lua as you go.
 rem   UI_Studio.bat                                  start it

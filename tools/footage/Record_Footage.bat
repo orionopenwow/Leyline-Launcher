@@ -1,7 +1,7 @@
 @echo off
 setlocal
 TITLE Open Vanilla - record trailer footage
-cd /d "%~dp0"
+cd /d "%~dp0..\.."
 rem Records trailer footage of every Open Vanilla feature, one video each, without OBS:
 rem   Record_Footage.bat                        every scene this PC can run
 rem   Record_Footage.bat site-home agents-demo  only those

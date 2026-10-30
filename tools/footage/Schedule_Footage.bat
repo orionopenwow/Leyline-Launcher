@@ -1,7 +1,7 @@
 @echo off
 setlocal
 TITLE Open Vanilla - nightly trailer footage
-cd /d "%~dp0"
+cd /d "%~dp0..\.."
 rem Schedule_Footage.bat           record every scene by itself every night at 3:30 (or: Schedule_Footage.bat 04:15)
 rem Schedule_Footage.bat off       stop the nightly recording
 rem Schedule_Footage.bat now       run tonight's recording right away (to try it)

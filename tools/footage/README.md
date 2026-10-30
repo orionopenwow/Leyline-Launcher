@@ -1,6 +1,6 @@
 # Trailer footage recorder
 
-`Record_Footage.bat` (repo root) films every Open Vanilla feature on its own, without OBS, and writes one video per feature to `_local\video\raw\<date>\<scene>.mp4` (1920x1080, 60 fps, H.264), plus each shot as its own file in `<scene>\` for editing.
+`tools\footage\Record_Footage.bat` films every Open Vanilla feature on its own, without OBS, and writes one video per feature to `_local\video\raw\<date>\<scene>.mp4` (1920x1080, 60 fps, H.264), plus each shot as its own file in `<scene>\` for editing.
 
 ```
 Record_Footage.bat                         every scene this PC can run

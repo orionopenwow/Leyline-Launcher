@@ -1,7 +1,7 @@
 """UI Studio - tune every Open Vanilla window by hand, without prompting.
 
     python devkit/uistudio/server.py [--port 18095] [--game "C:\\Games\\World of Warcraft"] [--no-browser]
-    (or UI_Studio.bat in the repo root)
+    (or devkit\\uistudio\\UI_Studio.bat)
 
 Draws the real addon windows the way the Lua sim builds them (devkit/sim, same code the game runs),
 lets you click, drag and resize any piece and change its colour, alpha, font and size, and writes

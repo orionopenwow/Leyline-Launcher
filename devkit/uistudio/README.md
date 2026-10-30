@@ -1,6 +1,6 @@
 # UI Studio
 
-`UI_Studio.bat` (repo root) opens a page in your browser that draws the real Open Vanilla windows, the way the Lua sim builds them from the addon code, and lets you tune them by hand. Every change is written straight to `Data/Interface/AddOns/WenillaCore/Layout.lua`, which the addons read when they load. Undo walks back; the Changes tab lists everything.
+`devkit\uistudio\UI_Studio.bat` opens a page in your browser that draws the real Open Vanilla windows, the way the Lua sim builds them from the addon code, and lets you tune them by hand. Every change is written straight to `Data/Interface/AddOns/WenillaCore/Layout.lua`, which the addons read when they load. Undo walks back; the Changes tab lists everything.
 
 ```
 UI_Studio.bat
