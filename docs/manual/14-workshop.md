@@ -36,7 +36,7 @@ Check the label first: **Works** (loaded and logged in clean), **Partly** (uses 
 
 ## Upload an addon {#upload}
 
-On [the Workshop page](../workshop.html#upload), **Share an addon** (signed in):
+On [the Leyline catalog](https://play.openvanilla.app/wrath/leyline/submit), **Submit a mod**:
 
 | Field | Limit |
 | --- | --- |

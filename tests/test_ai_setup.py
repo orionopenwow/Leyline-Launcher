@@ -178,6 +178,7 @@ class PromptTests(unittest.TestCase):
         self.assertEqual(lua, AI.lua_prompts(AI.list_prompts(KIT)),
                          "Prompts.lua is stale: run python launcher/ai_setup.py --write-lua")
 
+    @unittest.skip("retired 2026-10-30: the page moved to the Leyline site (play.openvanilla.app/wrath/leyline)")
     def test_website_lists_every_prompt(self):
         page = read(os.path.join(ROOT, "www", "ai.html"))
         for p in AI.list_prompts(KIT):

@@ -17,7 +17,7 @@ Playing, hosting and the realm list live on the Leyline hub:
 
 - **Play now:** the Dalaran Hangout, Leyline's sample realm, at [play.openvanilla.app/wrath](https://play.openvanilla.app/wrath).
 - **Host your own:** [play.openvanilla.app/wrath/host](https://play.openvanilla.app/wrath/host) ([Host your own realm](hosting.html)).
-- **Realm list:** [play.openvanilla.app/wrath/leyline-preview/realms](https://play.openvanilla.app/wrath/leyline-preview/realms).
+- **Realm list:** [play.openvanilla.app/wrath/leyline/realms](https://play.openvanilla.app/wrath/leyline/realms).
 - **Everything else:** the [Leyline hub](https://play.openvanilla.app/wrath/leyline).
 
 ## Retired pages {#retired}

@@ -102,7 +102,7 @@ class SpinnerTests(unittest.TestCase):
         self.assertIn("root.className = 'ly-flat';", boot)
         site = "labs/openvanilla-realm/site/"   # the realm site's pages (www/ has "moved" pages in their place)
         for rel, pre in ((site + "armory/character.html", "../"), (site + "guild.html", ""), (site + "realms.html", ""),
-                         (site + "duels.html", ""), ("www/project.html", "")):
+                         (site + "duels.html", "")):
             html = read(rel)
             with self.subTest(page=rel):
                 self.assertIn(f'href="{pre}assets/leyline/leyline.css"', html)

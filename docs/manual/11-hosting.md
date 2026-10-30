@@ -18,7 +18,7 @@ Leyline is a mod launcher and a peer-to-peer realm network: anyone can host a re
 
 ## The realm list {#list}
 
-Public realms appear on **[the realm list](https://play.openvanilla.app/wrath/leyline-preview/realms)** by themselves while they're online. Private realms are only reachable with your invite link.
+Public realms appear on **[the realm list](https://play.openvanilla.app/wrath/leyline/realms)** by themselves while they're online. Private realms are only reachable with your invite link.
 
 ## Mods {#mods}
 

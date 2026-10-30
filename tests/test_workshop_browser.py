@@ -79,7 +79,7 @@ class PageLayer(unittest.TestCase):
         loader = self.read("realm/classicplus/addons-loader.js")
         self.assertIn("await loadWorkshop();", loader)
         self.assertIn("dispatchFrom", loader)                        # login events only to the Workshop addons' frames
-        self.assertIn("play.openvanilla.app/?addon=", self.read("www/workshop/addon.html"))
+        # www/workshop/addon.html moved to the Leyline site (2026-10-30)
 
 
 if __name__ == "__main__":

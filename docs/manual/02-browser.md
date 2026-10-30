@@ -19,7 +19,7 @@ Open the same address on a phone or tablet. A keyboard and mouse work best.
 
 ## Other realms {#realms}
 
-The realm list at **[play.openvanilla.app/wrath/leyline-preview/realms](https://play.openvanilla.app/wrath/leyline-preview/realms)** shows every realm on the Leyline network, including ones players host themselves. Want your own? See [Host your own realm](hosting.html).
+The realm list at **[play.openvanilla.app/wrath/leyline/realms](https://play.openvanilla.app/wrath/leyline/realms)** shows every realm on the Leyline network, including ones players host themselves. Want your own? See [Host your own realm](hosting.html).
 
 ## If something goes wrong {#trouble}
 

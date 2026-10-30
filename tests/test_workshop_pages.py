@@ -183,6 +183,7 @@ class WorkshopPages(unittest.TestCase):
     def no_hscroll(self, p):
         self.assertLessEqual(p.evaluate("document.documentElement.scrollWidth"), p.evaluate("innerWidth"))
 
+    @unittest.skip("retired 2026-10-30: the page moved to the Leyline site (play.openvanilla.app/wrath/leyline)")
     def test_listing_search_filters_sort(self):
         p = self.page("workshop.html")
         n = self.index["count"]
@@ -221,6 +222,7 @@ class WorkshopPages(unittest.TestCase):
         self.assertIn("Sign in on the realm to upload", p.inner_text("#uploadBox"))
         self.assertEqual(self.errors, [])
 
+    @unittest.skip("retired 2026-10-30: the page moved to the Leyline site (play.openvanilla.app/wrath/leyline)")
     def test_listing_offline_is_read_only(self):
         p = self.page("workshop.html", FakeRealm(online=False))
         self.assertEqual(p.locator("#grid .card").count(), self.index["count"])
@@ -228,6 +230,7 @@ class WorkshopPages(unittest.TestCase):
         self.assertIn("cannot be reached", p.inner_text("#uploadBox"))
         self.assertEqual(self.errors, [])
 
+    @unittest.skip("retired 2026-10-30: the page moved to the Leyline site (play.openvanilla.app/wrath/leyline)")
     def test_hosted_addon_page_rating_and_reviews(self):
         realm = FakeRealm(signed_in=True)
         p = self.page("workshop/addon.html?id=shaguchat", realm)
@@ -248,6 +251,7 @@ class WorkshopPages(unittest.TestCase):
         self.assertIn("saved", p.inner_text("#rm"))
         self.assertEqual(self.errors, [])
 
+    @unittest.skip("retired 2026-10-30: the page moved to the Leyline site (play.openvanilla.app/wrath/leyline)")
     def test_link_out_addon_page(self):
         lo = next(c for c in self.index["addons"] if not c["install"] and not c["ours"])
         p = self.page("workshop/addon.html?id=" + lo["id"])
@@ -258,6 +262,7 @@ class WorkshopPages(unittest.TestCase):
         self.assertIn("Sign in on the realm", p.inner_text("#rateBox"))
         self.assertEqual(self.errors, [])
 
+    @unittest.skip("retired 2026-10-30: the page moved to the Leyline site (play.openvanilla.app/wrath/leyline)")
     def test_addon_page_offline_and_missing(self):
         p = self.page("workshop/addon.html?id=shaguchat", FakeRealm(online=False))
         self.assertIn("read-only", p.inner_text("#reviewList"))
@@ -266,6 +271,7 @@ class WorkshopPages(unittest.TestCase):
         self.assertEqual(p.inner_text("#name"), "Addon not found")
         self.assertEqual(self.errors, [])
 
+    @unittest.skip("retired 2026-10-30: the page moved to the Leyline site (play.openvanilla.app/wrath/leyline)")
     def test_creator_and_collections(self):
         p = self.page("workshop/creator.html?u=shagu")
         self.assertEqual(p.inner_text("#name"), "Shagu")

@@ -3,7 +3,7 @@ title: Realms and friends
 kicker: Chapter 4 · Play
 summary: The classic launcher's realm browser: add a server by address, join friends with invite links, and how relays, direct connections and nodes work.
 
-> **Note:** This chapter is about the classic launcher. The Leyline realm list is at [play.openvanilla.app/wrath/leyline-preview/realms](https://play.openvanilla.app/wrath/leyline-preview/realms), and hosting your own is one click: see [Host your own realm](hosting.html).
+> **Note:** This chapter is about the classic launcher. The Leyline realm list is at [play.openvanilla.app/wrath/leyline/realms](https://play.openvanilla.app/wrath/leyline/realms), and hosting your own is one click: see [Host your own realm](hosting.html).
 
 ## The realm browser {#browser}
 
@@ -15,7 +15,7 @@ In the launcher, **Realms → Realm browser** shows the live directory, filterab
 | **Verified realms · Vetted** | Checked by the maintainers |
 | **Community P2P realms** | Hosted by players; not vetted, play at your own risk |
 
-The [Leyline realm list](https://play.openvanilla.app/wrath/leyline-preview/realms) shows the realms on the Leyline network.
+The [Leyline realm list](https://play.openvanilla.app/wrath/leyline/realms) shows the realms on the Leyline network.
 
 ## Add a server by address {#add-server}
 
