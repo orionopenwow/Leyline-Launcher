@@ -151,7 +151,7 @@ On a Linux realm, `bash realm/classicplus/openvanilla_gameplay_conf.sh` applies 
 
 The **Model Porter** turns a modern model into one the Vanilla client can show, and adds it to your realm as a creature or rideable mount.
 
-1. Run `Model_Porter.bat`; it opens `http://127.0.0.1:8765`. (Command line: `python tools/modelport model.glb --name Gryphon --kind mount --add`.)
+1. Run `tools\modelport\Model_Porter.bat`; it opens `http://127.0.0.1:8765`. (Command line: `python tools/modelport model.glb --name Gryphon --kind mount --add`.)
 2. Feed it a **glTF/glb**, or a modern `.m2` with its `.skin`, `.skel`, `.anim` and `.blp` files.
 3. For a mount, name the rider's node `Seat` (or `Saddle`); animations are matched by name (Idle, Walk, Run...).
 4. Test in game as a GM: `.additem`, `.npc add`, `.modify morph`, `.demorph`.

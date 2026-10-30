@@ -4,7 +4,7 @@ Turns a rigged, animated **.glb / .gltf**, or a **modern-format model** (.m2 wit
 .skel, .anim and .blp files), into a Vanilla model (M2 + BLP textures) and adds it
 to Open Vanilla as a creature or a rideable mount.
 
-**Start it:** double-click `Model_Porter.bat` (or drop .glb files onto it). The app opens in your
+**Start it:** double-click `tools\modelport\Model_Porter.bat` (or drop .glb files onto it). The app opens in your
 browser at http://127.0.0.1:8765. Drop a model, check the preview, press **Add to Open Vanilla**, then run
 `Ship.bat` and `Release.bat` as usual.
 

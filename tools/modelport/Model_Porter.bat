@@ -1,6 +1,6 @@
 @echo off
 TITLE Open Vanilla Model Porter
-cd /d "%~dp0"
+cd /d "%~dp0..\.."
 
 REM Drop .glb / .gltf files on this file, or double-click it: the porter opens in your browser.
 REM Find Python 3: the py launcher first, then python on PATH.
