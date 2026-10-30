@@ -204,7 +204,7 @@ def check_shell():
     if not bash or os.name == "nt":
         return skip("shell scripts parse", "no bash here (runs in CI)")
     files = glob.glob(os.path.join(REALM, "hetzner", "*.sh")) + glob.glob(os.path.join(HERE, "**", "*.sh"), recursive=True) + \
-        glob.glob(os.path.join(REALM, "devkit", "**", "*.sh"), recursive=True)
+        glob.glob(os.path.join(REALM, "devkit", "**", "*.sh"), recursive=True) + glob.glob(os.path.join(REALM, "tools", "*.sh"))
     bad = [rel(f) for f in files if subprocess.run([bash, "-n", f], capture_output=True).returncode]
     report(f"shell scripts parse ({len(files)} files)", not bad, ", ".join(bad))
 

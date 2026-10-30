@@ -47,6 +47,25 @@ What stayed outside, because the classic launcher still uses it:
 - The public guide (`www/guide.html`, "rented server") still shows the old `curl .../stable/hetzner/...`
   commands.
 
+## Turning the 1.12 jobs off on the server
+
+The 1.12 realm shares its server (`play.openvanilla.app`) with Leyline's Dalaran Hangout. Its jobs still
+run there until they are turned off:
+
+| File (in `tools/`) | What it does |
+|---|---|
+| `Turn off 1.12 jobs - dry run.bat` | Read-only: lists what would be turned off |
+| `Turn off 1.12 jobs - do it.bat` | Runs `stop-112-jobs.sh --go` over SSH (root@play.openvanilla.app, key `%USERPROFILE%\.ssh\openwow`) |
+| `Turn 1.12 jobs back on.bat` | Runs `start-112-jobs.sh --go`: the undo, from the newest `/root/ov112-off-<stamp>` |
+
+`stop-112-jobs.sh` removes only the 1.12 lines from root's crontab, disables (`systemctl disable --now`) the
+`openvanilla-*` / `openwow-*` units, and sets the 1.12 containers' restart policy to `no` and stops them
+(Warfront, Duels, staging, the Herald support proxies, and only `mangosd`/`realmd` of `wenilla-realm`).
+It never touches anything named `wu-`, `leyline`, `hangout`, `relay`, `portal`, `stream`, `wrath` or `caddy`,
+nor the `wenilla-realm` stack's `realm`, `caddy` and `mariadb` containers, which the Hangout's website
+still goes through. Everything it changes is saved first in `/root/ov112-off-<stamp>/`. Tests:
+`tests/test_stop_112_jobs.py`.
+
 ## Bringing it back
 
 1. Move the folders back: `git mv labs/openvanilla-realm/realm/* realm/`, `git mv labs/openvanilla-realm/hetzner hetzner`,
