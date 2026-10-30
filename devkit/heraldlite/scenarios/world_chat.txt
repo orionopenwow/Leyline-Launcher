@@ -1,5 +1,5 @@
 # world_chat: the World channel and the Discord bridge after a realm update (world server patch 0007,
-# realm/classicplus/classicplus_world.sql, bot/herald_bridge.py), plus the bug button's server side (0014).
+# realm/classicplus/classicplus_world.sql, labs/herald/herald_bridge.py), plus the bug button's server side (0014).
 # labs/openvanilla-realm/hetzner/world_chat_check.sh runs it on the live realm with a fresh HL_NONCE, then checks the database:
 # the line in openvanilla_world_log (what Herald posts to #world) and the report in openvanilla_bug_report
 # (what Herald posts to #bug-reports). Both posts say they are a Herald test.

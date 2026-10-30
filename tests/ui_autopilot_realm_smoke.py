@@ -1,4 +1,4 @@
-"""Smoke test of Herald Autopilot against a REAL autopilot API (bot/herald_autopilot_api.py, with
+"""Smoke test of Herald Autopilot against a REAL autopilot API (labs/herald/herald_autopilot_api.py, with
 a stand-in database and world console), and against a realm that can't be reached.
 
     xvfb-run -s "-screen 0 1280x800x24" python tests/ui_autopilot_realm_smoke.py OUT_DIR
@@ -16,7 +16,7 @@ import traceback
 HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(HERE)
 sys.path.insert(0, os.path.join(ROOT, "autopilot"))
-sys.path.insert(0, os.path.join(ROOT, "bot"))
+sys.path.insert(0, os.path.join(ROOT, "labs", "herald"))
 sys.path.insert(0, HERE)
 
 import herald_autopilot as ha  # noqa: E402

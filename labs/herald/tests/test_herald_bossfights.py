@@ -13,7 +13,7 @@ import tempfile
 import unittest
 from contextlib import redirect_stdout
 
-sys.path.insert(0, os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "bot"))
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))   # labs/herald
 import herald_bossfights as hb  # noqa: E402
 
 # Wednesday 2026-10-21 12:00 UTC; its week started Monday 2026-10-19 00:00 UTC

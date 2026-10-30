@@ -12,7 +12,7 @@ import tempfile
 import types
 import unittest
 
-sys.path.insert(0, os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "bot"))
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))   # labs/herald
 import herald_mod as hm  # noqa: E402
 
 NOW = 1_800_000_000.0

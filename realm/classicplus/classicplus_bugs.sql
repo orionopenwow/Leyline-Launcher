@@ -1,5 +1,5 @@
 -- Open Vanilla: bug reports from the game (labs/openvanilla-realm/realm/mangos/0014-openvanilla-bug-reports.patch writes them,
--- Herald's bot/herald_bugs.py posts them to the Discord #bug-reports forum). Run against classicmangos
+-- Herald's labs/herald/herald_bugs.py posts them to the Discord #bug-reports forum). Run against classicmangos
 -- (the table lives in classiccharacters); safe to run twice. Undo:
 --   DROP TABLE classiccharacters.openvanilla_bug_report;   (loses the reports)
 CREATE TABLE IF NOT EXISTS classiccharacters.openvanilla_bug_report (

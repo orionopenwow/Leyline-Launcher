@@ -84,7 +84,7 @@ popd
 goto :done
 
 :herald
-call tools\Run_Herald.bat
+call labs\openvanilla-realm\tools\Run_Herald.bat
 goto :menu
 
 :measure

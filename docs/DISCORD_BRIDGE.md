@@ -4,7 +4,7 @@ The realm has a server-side chat channel named **World** that every character jo
 factions hear each other). Discord's **#world** channel is linked to it both ways by Herald:
 
 ```
-in game                                  world server (patch 0007)                 Herald (bot/herald_bridge.py)        Discord
+in game                                  world server (patch 0007)                 Herald (labs/herald/herald_bridge.py)        Discord
 /world hi  ── or the World tab, /4 hi ─> Channel::Say ─> OwWorld::OnSay ─────────> tails openvanilla_world_log ─────────────> #world
                                           (rate limit, mute, both factions)        every 2 s, batched                     **Thrall** (Shaman): hi
                                           INSERT classiccharacters.openvanilla_world_log
@@ -21,10 +21,10 @@ Optional: an officer can link a guild's chat to another Discord channel the same
 |---|---|---|
 | World server | `labs/openvanilla-realm/realm/mangos/0007-openvanilla-world-channel.patch` (`OpenVanilla/World.h/.cpp`) | the channel, `/world`/`.world`, the log, `.wnl worldsay`, `.wnl worldoff/worldon`, guild links |
 | Tables | `realm/classicplus/classicplus_world.sql` | `openvanilla_world_log`, `openvanilla_world_pref`, `openvanilla_guild_bridge`, `openvanilla_guild_link_code` |
-| Herald | `bot/herald_bridge.py`, hooked from `bot/herald.py` | both directions, `/bridge` and `/guild` slash commands |
+| Herald | `labs/herald/herald_bridge.py`, hooked from `labs/herald/herald.py` | both directions, `/bridge` and `/guild` slash commands |
 | Chat addon | `Data/Interface/AddOns/Chat/World.lua` | the World tab, `[W]`, `[D]` lines, channel cycle, `/world`, settings |
 | Grants | `labs/openvanilla-realm/hetzner/herald_up.sh` | Herald's database login may edit the guild link tables |
-| Tests | `tests/test_herald_bridge.py`, `devkit/sim/tests/chat_world.lua` (+ `devkit/sim/ext/world.lua`) | fakes for Discord, SOAP, the DB and the server |
+| Tests | `labs/herald/tests/test_herald_bridge.py`, `devkit/sim/tests/chat_world.lua` (+ `devkit/sim/ext/world.lua`) | fakes for Discord, SOAP, the DB and the server |
 
 ## Setup (launch day)
 

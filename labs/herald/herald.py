@@ -59,8 +59,9 @@ CLASSES = [("Warrior", "⚔"), ("Paladin", "🔨"), ("Hunter", "🏹"), ("Rogue"
 
 def load_env():
     path = os.path.join(HERE, ".env")
-    if not os.path.isfile(path) and os.path.basename(HERE) == "bot":
-        path = os.path.join(os.path.dirname(HERE), ".env")   # the repo's .env (bot/ lives one level down)
+    if not os.path.isfile(path) and os.path.basename(HERE) in ("bot", "herald"):
+        up = 2 if os.path.basename(os.path.dirname(HERE)) == "labs" else 1   # labs/herald in the repo, bot/ on a server
+        path = os.path.join(HERE, *[".."] * up, ".env")   # the repo's .env
     if os.path.isfile(path):
         for line in open(path, encoding="utf-8"):
             k, sep, v = line.partition("=")

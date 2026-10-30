@@ -1,7 +1,7 @@
 @echo off
 setlocal
 TITLE Open Vanilla - Herald test bot
-cd /d "%~dp0\.."
+cd /d "%~dp0\..\..\.."
 rem Runs Herald (labs\openvanilla-realm\tools\owbot.mjs) from this PC against the live realm: signs in, enters the world as
 rem Herald the Human Hunter, runs every check and data routine, and writes owbot-summary.txt and
 rem owbot-report.json here. Needs Node.js and Chrome or Edge. Credentials come from .env:

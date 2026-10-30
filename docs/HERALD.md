@@ -8,11 +8,11 @@ claims honest: what runs today, and what is still coming.
 
 | Piece | Where | What it does today |
 |---|---|---|
-| Discord bot | `bot/herald.py` (+ `herald_bridge.py`, `herald_mod.py`, `herald_streams.py`, `herald_support.py`) | The gate question, Arrivals, the live server-status message, the moderation desk, streams. |
+| Discord bot | `labs/herald/herald.py` (+ `herald_bridge.py`, `herald_mod.py`, `herald_streams.py`, `herald_support.py`) | The gate question, Arrivals, the live server-status message, the moderation desk, streams. |
 | Browser check | `labs/openvanilla-realm/tools/owbot.mjs` | Signs in nightly with headless Chromium as **Herald, a Human Hunter**, checks graphics, art and frame rate, and posts a summary to Discord. |
 | Herald Lite | `devkit/heraldlite` | Plays every update on staging before live (sign in, vendor, weapon skills, trade). |
 | Autopilot v1 | `devkit/heraldlite` (`autopilot`), see `devkit/heraldlite/AUTOPILOT.md` | Plays a Human Hunter through Northshire, levels 1 to 5, with no human input: quests, kite cycle, loot, rest, deaths, turn-ins. Writes a JSONL run log. Hard-coded host allowlist (`src/autopilot/guard.rs`). |
-| Herald Autopilot (the program) | `autopilot/` (`Herald Autopilot.bat`), see `autopilot/README.md` | The window players use: pick a goal and press START, set rules in plain sentences, simulate gear, watch the log, map and bags. Runs the offline demo, Herald Lite on a bot account, or a realm that allows autoplay (`bot/herald_autopilot_api.py`). Learns from opted-in players' anonymous run stats and turns them into better default rules. |
+| Herald Autopilot (the program) | `autopilot/` (`Herald Autopilot.bat`), see `autopilot/README.md` | The window players use: pick a goal and press START, set rules in plain sentences, simulate gear, watch the log, map and bags. Runs the offline demo, Herald Lite on a bot account, or a realm that allows autoplay (`labs/herald/herald_autopilot_api.py`). Learns from opted-in players' anonymous run stats and turns them into better default rules. |
 | Planner and simulator | `tools/autopilot` | Builds the route and the kite tactics from classic-db and our Classic+ SQL, and predicts minutes per level. |
 | Bot lab | `labs/openvanilla-realm/tools/botlab` | Logs the realm's playerbots, so plans can be compared with lots of real levelling. |
 | Showcase | `www/herald.html`, art from `tools/gen_herald_art.py` into `www/assets/herald/` | The page, the hero art, the banner, the avatar (also for Discord), ability icons and an **illustrated** GIF. |

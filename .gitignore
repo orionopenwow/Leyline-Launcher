@@ -90,7 +90,7 @@ www/downloads/*.sha256
 rate_limits.json
 .git_local_backup/
 
-# Herald test bot output (labs/openvanilla-realm/tools/owbot.mjs, tools/Run_Herald.bat)
+# Herald test bot output (labs/openvanilla-realm/tools/owbot.mjs, labs/openvanilla-realm/tools/Run_Herald.bat)
 owbot-report.json
 owbot-summary.txt
 owbot-shots/

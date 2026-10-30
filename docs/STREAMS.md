@@ -7,7 +7,7 @@ Persona profiles.
 ```
 Twitch Helix ─┐                       ┌─> www: streamers.html, creators.html, the "Live now" strip
 YouTube v3 ───┼─> tools/streams_fetch.py ─> streams.json ─┤   (https://<realm>/community/streams.json)
-TikTok (opt) ─┘   every 5 min (timer)     (+ private      └─> Herald (bot/herald_streams.py)
+TikTok (opt) ─┘   every 5 min (timer)     (+ private      └─> Herald (labs/herald/herald_streams.py)
 realm: GET /api/creator/links ──┘          state file)          .wnl livestreamers A;B  (SOAP, 5 min)
    ^ players link channels on                                        │
      /ow/creator-link.html                     world server (0009) ──┘ LV A;B -> Social/Live.lua
@@ -96,7 +96,7 @@ again at most every 15 minutes. The link page shows "listed" once the channel ap
 All of these must be true: the creator linked a channel, named one of their own characters and
 ticked "Show me as LIVE" on the link page; the channel is proven and live right now; the player
 switched on Social → settings → **Show me as LIVE** (off by default; the addon sends
-`.wnl liveopt 1`). Herald pushes the names every 5 minutes (`bot/herald_streams.py`; a stale file
+`.wnl liveopt 1`). Herald pushes the names every 5 minutes (`labs/herald/herald_streams.py`; a stale file
 clears the list after 20 minutes); the world server (`labs/openvanilla-realm/realm/mangos/pending/0009-openvanilla-live.patch`)
 keeps only online, opted-in characters and broadcasts `LV Name;Name`. `Social/Live.lua` shows the
 mark in friends, /who, the Dungeons board, the player tooltip and Persona (badge `Persona_Live`,

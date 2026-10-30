@@ -24,7 +24,7 @@ The simplest way, and the one that works everywhere the realm allows it:
 The realm owner decides: it needs `AiPlayerbot.SelfBotLevel = 2`. Open Vanilla Server and Play Solo set
 it (Open Vanilla Server: `"herald_selfbot": false` in server_settings.json turns it off). On Vanilla
 Remastered: `bash labs/openvanilla-realm/hetzner/herald_selfbot.sh on`. Herald Autopilot (this program) can then change his
-goal from the desktop through `bot/herald_autopilot_api.py` (`.rndbot cmd <name> nc <strategies>` over the console).
+goal from the desktop through `labs/herald/herald_autopilot_api.py` (`.rndbot cmd <name> nc <strategies>` over the console).
 
 ### How Herald fights and loots
 
@@ -49,7 +49,7 @@ Pick the realm in **Settings**:
 |---|---|---|
 | **Demo (offline)** | A small simulated Elwynn Forest (`ap_link.DemoLink`) | Works now. Good for trying it, tests and screenshots. |
 | **Herald Lite (a bot account)** | `devkit/heraldlite`'s autopilot, a headless client that logs a **bot account** in and plays a `tools/autopilot` route | Works once Herald Lite is built (`cargo build --release` in `devkit/heraldlite`). It plays only on `play.openvanilla.app`, `staging.openvanilla.app`, `127.0.0.1`, `localhost`, `*.test` and `*.localhost`. The binary hard-codes this list and the program checks it too. |
-| **Vanilla Remastered / another realm** | The realm's own bot AI, through `bot/herald_autopilot_api.py` | The realm turns it on with `labs/openvanilla-realm/hetzner/herald_selfbot.sh on` (`AiPlayerbot.SelfBotLevel = 2` and `AUTOPILOT_ALLOWED=1`). START hands the online character to the realm's bot AI from the server (`.wnl autopilot <name> on`, labs/openvanilla-realm/realm/mangos 0015), then drives it with `.rndbot cmd <name> nc <strategies>`; STOP gives it back. The player watches in game and can take control back from the Herald panel. Selling, the auction house, mail, bank, guild, PvP and chat are always off on a player's character. |
+| **Vanilla Remastered / another realm** | The realm's own bot AI, through `labs/herald/herald_autopilot_api.py` | The realm turns it on with `labs/openvanilla-realm/hetzner/herald_selfbot.sh on` (`AiPlayerbot.SelfBotLevel = 2` and `AUTOPILOT_ALLOWED=1`). START hands the online character to the realm's bot AI from the server (`.wnl autopilot <name> on`, labs/openvanilla-realm/realm/mangos 0015), then drives it with `.rndbot cmd <name> nc <strategies>`; STOP gives it back. The player watches in game and can take control back from the Herald panel. Selling, the auction house, mail, bank, guild, PvP and chat are always off on a player's character. |
 
 ## The window
 

@@ -19,7 +19,7 @@ import urllib.error
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, os.path.join(ROOT, "autopilot"))
-sys.path.insert(0, os.path.join(ROOT, "bot"))
+sys.path.insert(0, os.path.join(ROOT, "labs", "herald"))   # herald_autopilot_api.py
 
 import ap_core as core  # noqa: E402
 import ap_learn  # noqa: E402

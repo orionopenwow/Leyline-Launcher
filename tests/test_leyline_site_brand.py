@@ -165,7 +165,7 @@ OLD_ORION_ART = {
     "fd6a1d6a66def36ccf45ee44222484fb31e7cb7b293085ee04a53557774c44eb",  # www/assets/launcher_workshop.webp
     "8b387cd299f5b17499915d489ead153a0e9c8025ca1f062e6a047abf9d989637",  # www/assets/workshop/ui_repack.webp
     "513b073a811f6bbb11271d5c96e0842a7fede57004d1be81fb8e7acb18fa6e63",  # docs/img/launcher.jpg
-    "779b04708fcc6963ee5b0eec998253018dde90f874fdd7a2a17b5292047afce3",  # bot/discord_assets/04_launcher.png
+    "779b04708fcc6963ee5b0eec998253018dde90f874fdd7a2a17b5292047afce3",  # labs/herald/discord_assets/04_launcher.png
     "bfdcde023eeb403894c90517d8497db24bb96c671f52d619f1e6e50ec276cc0a",  # www/assets/animated_cosmic_bg.jpg
 }
 MEDIA = (".png", ".jpg", ".jpeg", ".webp", ".gif", ".mp4", ".webm", ".avif")
