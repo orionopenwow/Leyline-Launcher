@@ -303,7 +303,11 @@ def icon(name, size=28, color="#d9b25f"):
 
 
 def emblem(size=52):
-    """The sidebar medallion: a gold ring around a violet vortex eye."""
+    """The Leyline mark (kit/emblem.png: the crystal in a swirl) at size x size; the app, taskbar and
+    release-exe icon. The drawn medallion below is only the fallback when the kit art is missing."""
+    k = kit("emblem")
+    if k is not None:
+        return k.resize((size, size), Image.Resampling.LANCZOS)
     im = _canvas(size)
     d = ImageDraw.Draw(im)
     s = size * SS

@@ -941,7 +941,7 @@ class Launcher(tk.Tk):
             # A real .ico (16-256 px, the same emblem as the release exe) for the taskbar and Alt+Tab.
             # Run from source (Play Leyline Launcher.bat), the window would otherwise show Python's icon.
             try:
-                ico = os.path.join(os.environ.get("LOCALAPPDATA") or tempfile.gettempdir(), "OpenVanilla", "openvanilla.ico")
+                ico = os.path.join(os.environ.get("LOCALAPPDATA") or tempfile.gettempdir(), "OpenVanilla", "leyline-2026-10.ico")
                 if not os.path.isfile(ico):
                     os.makedirs(os.path.dirname(ico), exist_ok=True)
                     art.emblem(256).save(ico, sizes=[(16, 16), (24, 24), (32, 32), (48, 48), (64, 64), (128, 128), (256, 256)])

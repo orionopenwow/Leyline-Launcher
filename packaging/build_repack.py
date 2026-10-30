@@ -212,6 +212,7 @@ def build_launcher(work, onedir=True):
     sys.path.insert(0, LAUNCHER_SRC)
     import launcher_art
     ico = os.path.join(work, "openvanilla.ico")
+    launcher_art.KIT_DIRS.insert(0, os.path.join(LAUNCHER_SRC, "assets", "launcher", "kit"))   # the Leyline mark
     launcher_art.emblem(256).save(ico, sizes=[(16, 16), (32, 32), (48, 48), (64, 64), (128, 128), (256, 256)])
     log("freezing launcher with PyInstaller…")
     r = subprocess.run(pyinstaller_args(work, ico))
