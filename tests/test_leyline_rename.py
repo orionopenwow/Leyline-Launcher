@@ -246,6 +246,37 @@ class LandTests(unittest.TestCase):
         r = self.sp.run(cmd, env=self.env, capture_output=True, text=True)
         return r.returncode, (r.stdout + r.stderr).strip()
 
+    def test_adopts_a_pre_scrub_history_with_the_same_files(self):
+        # GitHub's history was rewritten (same files, new commits); the PC still has the old commits.
+        self.g("-C", self.pc, "push", "-q", "origin", "main:stable")
+        old = self.g("-C", self.pc, "rev-parse", "HEAD")
+        self.g("-C", self.pc, "commit", "-q", "--amend", "-m", "a.txt (old history)")
+        old = self.g("-C", self.pc, "rev-parse", "HEAD")
+        self.g("-C", self.pc, "branch", "-q", "-f", "stable", old)
+        self.g("-C", self.pc, "tag", "v1-old", old)                                    # a tag on the old history
+        self.assertNotEqual(old, self.g("-C", self.origin, "rev-parse", "main"))
+        lines = []
+        rc = R.land(self.pc, self.bundle, "feat", runner=self.runner, out=lines.append)
+        self.assertEqual(rc, 0, lines)
+        text = "\n".join(lines)
+        self.assertIn("before the scrub", text)
+        feat = self.g("-C", self.work, "rev-parse", "feat")
+        self.assertEqual(self.g("-C", self.origin, "rev-parse", "main"), feat)        # landed and pushed
+        self.assertEqual(self.g("-C", self.pc, "rev-parse", "stable"), self.g("-C", self.origin, "rev-parse", "stable"))
+        backups = self.g("-C", self.pc, "for-each-ref", "--format=%(objectname)", "refs/backup/")
+        self.assertIn(old, backups)                                                    # the old commit is kept
+        self.assertNotIn(old, self.g("-C", self.origin, "rev-list", "--all"))          # and never pushed
+        self.assertEqual(self.g("-C", self.pc, "status", "--porcelain"), "")
+        self.assertEqual(self.g("-C", self.pc, "tag", "-l", "v1-old"), "")             # set aside, not pushable
+        self.assertIn("tag(s) from the old history", text)
+
+    def test_leaves_real_local_work_alone(self):
+        self.commit(self.pc, "mine.txt", "local work")                                 # different files
+        lines = []
+        with self.assertRaises(R.RenameError):
+            R.land(self.pc, self.bundle, "feat", runner=self.runner, out=lines.append)
+        self.assertNotIn("before the scrub", "\n".join(lines))
+
     def test_lands_and_pushes_then_skips(self):
         lines = []
         self.assertEqual(R.land(self.pc, self.bundle, "feat", runner=self.runner, out=lines.append), 0)
