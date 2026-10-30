@@ -152,9 +152,9 @@ jobs:
           v, exe, size, sha, notes, zf, zsize, zsha = sys.argv[1:9]
           print(json.dumps({
               "name": "Vanilla Forge", "version": v, "tag": f"forge-v{v}",
-              "url": f"https://github.com/orionopenwow/OpenVanilla/releases/download/forge-v{v}/{exe}",
+              "url": f"https://github.com/orionopenwow/Leyline-Launcher/releases/download/forge-v{v}/{exe}",
               "file": exe, "size": int(size), "sha256": sha,
-              "zip_url": f"https://github.com/orionopenwow/OpenVanilla/releases/download/forge-v{v}/{zf}",
+              "zip_url": f"https://github.com/orionopenwow/Leyline-Launcher/releases/download/forge-v{v}/{zf}",
               "zip": zf, "zip_size": int(zsize), "zip_sha256": zsha,
               "date": datetime.date.today().isoformat(),
               "notes": notes.strip().splitlines()[0].lstrip("- ").strip() if notes.strip() else "",

@@ -1,11 +1,11 @@
 slug: contributing
-title: Contribute to Open Vanilla
+title: Contribute to Leyline
 kicker: Chapter 16 · Share
 summary: Report bugs, fix the manual, and send changes to the project: the branches, the tests to run, and how releases ship.
 
 ## Ways to help {#ways}
 
-- **Report bugs** in the Discord's bug-reports forum or as [GitHub issues](https://github.com/orionopenwow/OpenVanilla/issues), with your logs (`Logs\` in the launcher's data folder).
+- **Report bugs** in the Discord's bug-reports forum or as [GitHub issues](https://github.com/orionopenwow/Leyline-Launcher/issues), with your logs (`Logs\` in the launcher's data folder).
 - **Make addons** and [publish them](workshop.html).
 - **Stream and make videos**: [link your channel](website.html#link-channel).
 - **Host a realm** or [run a node](realms.html#nodes).

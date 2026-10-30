@@ -1,4 +1,4 @@
-/* Open Vanilla streams & creators: shared by streamers.html and creators.html.
+/* Leyline streams & creators: shared by streamers.html and creators.html.
  *
  * Data: community/streams.json, written every 5 minutes by tools/streams_fetch.py on the realm
  * server and served by its Caddy at https://play.openvanilla.app/community/ (CORS open). ?mock=1 reads

@@ -8,12 +8,12 @@
 
 realm_or_invite_link: a directory.Realm (or its dict), an openvanilla://join/… or https://…/join/… link,
 an openvanilla://join/direct|lan/<host>:<port>?g=…&k=… guest link, or a plain "host[:port]".
-game_launcher(env, realmlist) starts the client: env has WOW_HOST/WOW_USER/WOW_PASS/WOW_REALM (the Open Vanilla engine
+game_launcher(env, realmlist) starts the client: env has WOW_HOST/WOW_USER/WOW_PASS/WOW_REALM (the Leyline engine
 signs in by itself with them). engine_launcher(exe, data) and stock_launcher(exe) build one.
 
-The Open Vanilla sign-in: POST <central>/api/identity/token {"aud": host_id} with the launcher's token,
+The Leyline sign-in: POST <central>/api/identity/token {"aud": host_id} with the launcher's token,
 then the token goes to the host's gate (through the relay, or straight to host:port) which answers
-with this realm's game account. The Open Vanilla password never reaches the host.
+with this realm's game account. The Leyline password never reaches the host.
 """
 import os
 import re
@@ -30,16 +30,16 @@ from .directory import Realm, route as directory_route
 
 def identity_token(aud, launcher_token, central=CENTRAL_URL):
     if not launcher_token:
-        raise P2PError("Sign in to Open Vanilla first (Account page) to join community realms.")
+        raise P2PError("Sign in to Leyline first (Account page) to join community realms.")
     try:
         status, data = http_json(central + "/api/identity/token", "POST", {"aud": aud},
                                  headers={"Authorization": "Bearer " + launcher_token}, timeout=10)
     except OSError as e:
-        raise P2PError(f"Open Vanilla sign-in can't be reached ({e}).") from None
+        raise P2PError(f"Leyline sign-in can't be reached ({e}).") from None
     if status in (401, 403):
-        raise P2PError("Your Open Vanilla sign-in has expired. Sign in again.")
+        raise P2PError("Your Leyline sign-in has expired. Sign in again.")
     if status != 200 or not isinstance(data, dict) or not str(data.get("token", "")).startswith("v4.public."):
-        raise P2PError(f"Open Vanilla sign-in answered {status}.")
+        raise P2PError(f"Leyline sign-in answered {status}.")
     return data["token"]
 
 
@@ -134,7 +134,7 @@ def resolve(target, directory=None):
         return r, r.host_id, None
     parsed = invites.parse_link(str(target))
     if not parsed:
-        raise P2PError("That isn't an Open Vanilla invite link.")
+        raise P2PError("That isn't a Leyline invite link.")
     host_id, code, name = parsed
     realm = next((r for r in (directory or []) if r.host_id == host_id), None)
     if realm is None:   # private realms are never listed: they are reached through the relay
@@ -146,13 +146,13 @@ def join(realm_or_invite_link, game_launcher, *, launcher_token=None, token_prov
          central=CENTRAL_URL, relay_url=RELAY_URL, directory=None, bridge_factory=Bridge, invite=None,
          guest=None, guest_name=None, username=None, password=None, pins_file=None, node_network=False,
          route=None):
-    """Direct/LAN links, plain "host:port", guest codes and username/password never call Open Vanilla's
-    central services; only relayed realms (and Open Vanilla sign-in) do."""
+    """Direct/LAN links, plain "host:port", guest codes and username/password never call Leyline's
+    central services; only relayed realms (and Leyline sign-in) do."""
     info = None
     if isinstance(realm_or_invite_link, str):
         info = invites.parse_any(realm_or_invite_link)
         if not info:
-            raise P2PError("That isn't an Open Vanilla invite link or a host:port address.")
+            raise P2PError("That isn't a Leyline invite link or a host:port address.")
     if info and info["kind"] in ("direct", "lan", "plain"):
         realm = Realm(name=info["name"] or info["host"], host=info["host"], port=info["port"], relay=False)
         host_id, code = None, info["invite"]
@@ -164,7 +164,7 @@ def join(realm_or_invite_link, game_launcher, *, launcher_token=None, token_prov
     s = JoinSession(realm, host_id, code)
     via_relay = bool(realm.relay or not realm.host)
     if not host_id and via_relay:
-        raise P2PError("This realm can't be joined through Open Vanilla (no realm id).")
+        raise P2PError("This realm can't be joined through Leyline (no realm id).")
     pin_name = host_id or f"{realm.host}:{realm.port}"
     relay_for_join, sealed_fp = relay_url, None
     if via_relay and host_id:
@@ -238,7 +238,7 @@ def pick_relay(realm, host_id, relay_url, link_fp, pins_file, node_network, rout
 
     A realm on a volunteer node is always joined end-to-end encrypted, and only with a host key we
     already trust (invite link k=, the directory's entry, or our pin): otherwise the node could sit
-    in the middle. On Open Vanilla's own relay streams are sealed too once the network is on and the host
+    in the middle. On Leyline's own relay streams are sealed too once the network is on and the host
     supports it."""
     official = relay_url.rstrip("/")
     base, key, sealed = realm.relay_url, realm.key, realm.e2e
@@ -251,7 +251,7 @@ def pick_relay(realm, host_id, relay_url, link_fp, pins_file, node_network, rout
     base = (base or official).rstrip("/")
     if base != official:
         if not node_network:
-            return official, None          # nodes are switched off in this launcher: Open Vanilla's relay
+            return official, None          # nodes are switched off in this launcher: Leyline's relay
         if not fp:
             raise P2PError("This realm is carried by a community node and its host key isn't known yet, so the "
                            "connection can't be encrypted safely. Ask the host for a fresh invite link.")
@@ -262,7 +262,7 @@ def pick_relay(realm, host_id, relay_url, link_fp, pins_file, node_network, rout
 # ---------------------------------------------------------------- client launchers
 
 def engine_launcher(exe, data_folder=None, popen=subprocess.Popen):
-    """The Open Vanilla engine: signs in by itself from the environment."""
+    """The Leyline engine: signs in by itself from the environment."""
     def launch(env, realmlist):
         env = dict(env)
         if data_folder:

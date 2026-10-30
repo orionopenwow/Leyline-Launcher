@@ -1,8 +1,8 @@
-// Open Vanilla login backdrop: a looping video behind the game canvas while the client shows its login
+// Leyline login backdrop: a looping video behind the game canvas while the client shows its login
 // screen, in place of the 3D Dark Portal gate.
 //
 // How it fits together:
-//   * The page puts `login_backdrop: "page"` in `window.__wenilla_env`. The Open Vanilla client patch
+//   * The page puts `login_backdrop: "page"` in `window.__wenilla_env`. The Leyline client patch
 //     (realm/patches/0004-openvanilla-login-backdrop.patch) then skips the UI_MainMenu scene on the
 //     login screen and configures the canvas with premultiplied alpha, so everything behind the
 //     login form is transparent and this video shows through.

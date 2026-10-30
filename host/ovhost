@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# ovhost: host an Open Vanilla realm on macOS or Linux (a laptop, a home server or a VPS), with Docker.
+# ovhost: host a Leyline realm on macOS or Linux (a laptop, a home server or a VPS), with Docker.
 #
 #   bash ovhost doctor                         what this machine has and what it still needs
 #   bash ovhost install                        guided set-up (asks the few things it needs)
@@ -19,7 +19,7 @@
 #   elsewhere instead of extracting here)  --yes (no questions)
 #
 # The game data comes from your own Vanilla Client v1.3 (build 5875) Data folder: nothing is downloaded
-# for you. The full manual: bash ovhost manual (or the Open Vanilla Manual, chapter "Host on a Mac or Linux").
+# for you. The full manual: bash ovhost manual (or the Leyline Manual, chapter "Host on a Mac or Linux").
 # Runs on the bash that ships with macOS (3.2). Safe to re-run. Windows: use Host a Realm.bat.
 set -euo pipefail
 
@@ -335,7 +335,7 @@ setup_emulation() {
   run dk run --privileged --rm tonistiigi/binfmt --install amd64
   if have systemctl && [ "$DRY" != 1 ]; then  # binfmt entries vanish at reboot: a unit puts them back
     local SUDO=""; [ "$ROOT" = 1 ] || SUDO=sudo
-    printf '[Unit]\nDescription=x86-64 emulation for Open Vanilla containers\nAfter=docker.service\nRequires=docker.service\n[Service]\nType=oneshot\nExecStart=/usr/bin/docker run --privileged --rm tonistiigi/binfmt --install amd64\n[Install]\nWantedBy=multi-user.target\n' \
+    printf '[Unit]\nDescription=x86-64 emulation for Leyline containers\nAfter=docker.service\nRequires=docker.service\n[Service]\nType=oneshot\nExecStart=/usr/bin/docker run --privileged --rm tonistiigi/binfmt --install amd64\n[Install]\nWantedBy=multi-user.target\n' \
       | $SUDO tee /etc/systemd/system/openvanilla-binfmt.service >/dev/null && $SUDO systemctl enable openvanilla-binfmt.service >/dev/null 2>&1 || true
   fi
   [ "$DRY" = 1 ] || amd64_runs || die "x86-64 emulation still doesn't work (see docs/HOSTING_MAC_LINUX.md)"
@@ -381,7 +381,7 @@ write_host_compose() {
   env_set COMPOSE_FILE "compose.yaml:compose.override.yaml:compose.host.yaml"
 }
 
-# Before the first start: the Open Vanilla images straight away (openvanilla_realm_up.sh writes the full
+# Before the first start: the Leyline images straight away (openvanilla_realm_up.sh writes the full
 # override later), so the stock ones are never downloaded only to be replaced.
 seed_override() {
   local f="$REALM_DIR/compose.override.yaml"
@@ -394,7 +394,7 @@ plat() {  # run "$@" with x86-64 as Docker's default platform on ARM (pulls of x
   if [ "$ARCH" = arm64 ]; then DOCKER_DEFAULT_PLATFORM=linux/amd64 "$@"; else "$@"; fi
 }
 
-realm_up_script() {  # the Open Vanilla layer: from this checkout when there is one, else the stable branch
+realm_up_script() {  # the Leyline layer: from this checkout when there is one, else the stable branch
   if [ -n "${OVHOST_REALM_UP:-}" ]; then echo "$OVHOST_REALM_UP"; return; fi
   local up="$SCRIPT_DIR/../hetzner/openvanilla_realm_up.sh"
   if [ ! -f "$up" ]; then up="$DIR/openvanilla_realm_up.sh"; curl -fsSL "$RAW/hetzner/openvanilla_realm_up.sh" -o "$up"; fi
@@ -514,12 +514,12 @@ cmd_install() {
   step "6/8 Starting the realm"
   (cd "$REALM_DIR" && run ./realmctl up)
 
-  step "7/8 Open Vanilla on top (Classic+ addons, races and classes, the Open Vanilla images)"
+  step "7/8 Leyline on top (Classic+ addons, races and classes, the Leyline images)"
   local up; up=$(realm_up_script)
   if [ "$DRY" = 1 ]; then say "DRY: bash $up (community mode)"
   else
     OW_REALM_DIR="$REALM_DIR" OW_CP="$CP" OW_COMMUNITY=1 OW_WARN_MIN="${OW_WARN_MIN:-0}" \
-      plat bash "$up" || die "the Open Vanilla step stopped (above). The realm itself runs; re-run 'bash ovhost install' to retry."
+      plat bash "$up" || die "the Leyline step stopped (above). The realm itself runs; re-run 'bash ovhost install' to retry."
   fi
 
   step "8/8 Network"
@@ -672,7 +672,7 @@ cmd_help() {
     logs) say "logs [PART]: follows the logs (Ctrl+C stops). Parts: mangosd (world), realmd (login), realm (website),
   caddy (HTTPS), mariadb (database).   Example: bash ovhost logs mangosd" ;;
     token) say "token: shows the setup token again (for the realm's /setup page)." ;;
-    update) say "update: newest realm files and server, then Open Vanilla on top again. Players are disconnected for a
+    update) say "update: newest realm files and server, then Leyline on top again. Players are disconnected for a
   minute or two; characters are saved first. Back up before." ;;
     backup) say "backup: accounts, characters and the realm's settings into openvanilla-realm/backups/ (the newest 14
   are kept). Nightly on Linux: cd ~/OpenVanillaRealm/openvanilla-realm && ./realmctl install-cron" ;;
@@ -691,7 +691,7 @@ cmd_help() {
   esac
 }
 
-# The manual: the Open Vanilla Manual's chapter for this tool. install puts a copy in the realm folder
+# The manual: the Leyline Manual's chapter for this tool. install puts a copy in the realm folder
 # (MANUAL.md), so it's there offline next to the realm it explains.
 MANUAL_SRC=docs/manual/11b-host-mac-linux.md
 install_manual() {  # install_manual DEST: from this checkout, else downloaded

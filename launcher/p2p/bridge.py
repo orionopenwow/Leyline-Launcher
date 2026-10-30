@@ -3,7 +3,7 @@ bridge carries each connection over its own WebSocket to the relay.
 
     b = Bridge(host_id, RELAY_URL, invite="ABCDEFGH23")
     auth_port = b.start()           # 127.0.0.1:<auth_port> is the realmlist; b.world_port is the second port
-    creds = b.login(token)          # Open Vanilla sign-in through the host's gate -> {"user","password","realm"}
+    creds = b.login(token)          # Leyline sign-in through the host's gate -> {"user","password","realm"}
     b.stop()
 
 The realm list reply (CMD_REALM_LIST, plaintext) is rewritten so every realm's address is
@@ -83,7 +83,7 @@ class Bridge:
             ws.pipe(sock, conn, meter=self._meter)
 
     def login(self, token, timeout=20, extra=None):
-        """Open Vanilla sign-in through the host's gate on its own relay stream."""
+        """Leyline sign-in through the host's gate on its own relay stream."""
         try:
             sock = self._connect(self.url(3724))
         except OSError as e:

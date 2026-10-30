@@ -3,23 +3,23 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Projects · Open Vanilla</title>
+  <title>Projects · Leyline</title>
   <!-- Link previews (Discord, Reddit, X, iMessage) -->
   <meta property="og:type" content="website">
-  <meta property="og:site_name" content="Open Vanilla">
-  <meta property="og:title" content="Projects · Open Vanilla">
-  <meta property="og:description" content="Classic Vanilla in your browser: free, no download, play in seconds. Open Vanilla is a community-built realm with Vanilla Remastered features, mods and your own servers.">
+  <meta property="og:site_name" content="Leyline">
+  <meta property="og:title" content="Projects · Leyline">
+  <meta property="og:description" content="Classic Vanilla in your browser: free, no download, play in seconds. Leyline is a community-built realm with Vanilla Remastered features, mods and your own servers.">
   <meta property="og:url" content="https://openvanilla.app/project.html">
   <meta property="og:image" content="https://openvanilla.app/assets/og-image.jpg">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
-  <meta property="og:image:alt" content="Open Vanilla: classic Vanilla in your browser. Free, no download, play in seconds.">
+  <meta property="og:image:alt" content="Leyline: classic Vanilla in your browser. Free, no download, play in seconds.">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Projects · Open Vanilla">
-  <meta name="twitter:description" content="Classic Vanilla in your browser: free, no download, play in seconds. Open Vanilla is a community-built realm with Vanilla Remastered features, mods and your own servers.">
+  <meta name="twitter:title" content="Projects · Leyline">
+  <meta name="twitter:description" content="Classic Vanilla in your browser: free, no download, play in seconds. Leyline is a community-built realm with Vanilla Remastered features, mods and your own servers.">
   <meta name="twitter:image" content="https://openvanilla.app/assets/og-image.jpg">
   <meta name="theme-color" content="#0a0816">
-  <meta name="description" content="Classic Vanilla in your browser: free, no download, play in seconds. Open Vanilla is a community-built realm with Vanilla Remastered features, mods and your own servers.">
+  <meta name="description" content="Classic Vanilla in your browser: free, no download, play in seconds. Leyline is a community-built realm with Vanilla Remastered features, mods and your own servers.">
   <!-- Built from community/directory.json: project.html#<id> shows one project, project.html lists them all.
        A project's page fills in from its entry's description, about, credits, license, author, tags and images. -->
   <link rel="icon" href="favicon.ico">
@@ -67,12 +67,12 @@
 <body>
   <div class="wrap">
     <header>
-      <a class="home" href="index.html">&larr; Open Vanilla</a>
-      <span style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;justify-content:flex-end"><a class="pill manual-link" href="manual/workshop.html#directory" style="text-decoration:none" title="Read about this in the Open Vanilla Manual">MANUAL</a><span class="pill">COMMUNITY PROJECTS</span></span>
+      <a class="home" href="index.html">&larr; Leyline</a>
+      <span style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;justify-content:flex-end"><a class="pill manual-link" href="manual/workshop.html#directory" style="text-decoration:none" title="Read about this in the Leyline Manual">MANUAL</a><span class="pill">COMMUNITY PROJECTS</span></span>
     </header>
     <main id="page"><p class="lead">Loading projects…</p></main>
-    <p class="note">Made something for the Open Vanilla community? <a href="https://github.com/orionopenwow/OpenVanilla/issues">Open an issue</a> with its name, link, a short description, the credits and a screenshot, and it gets a page here and a spot in the launcher's Workshop.</p>
-    <footer>Projects belong to their authors and keep their own licences. World of Warcraft is a trademark of Blizzard Entertainment, Inc.; Open Vanilla is an independent fan project.</footer>
+    <p class="note">Made something for the Leyline community? <a href="https://github.com/orionopenwow/Leyline-Launcher/issues">Open an issue</a> with its name, link, a short description, the credits and a screenshot, and it gets a page here and a spot in the launcher's Workshop.</p>
+    <footer>Projects belong to their authors and keep their own licences. World of Warcraft is a trademark of Blizzard Entertainment, Inc.; Leyline is an independent fan project.</footer>
   </div>
   <script>
     const el = (tag, attrs = {}, text) => {
@@ -86,7 +86,7 @@
     function projectPage(p) {
       const page = document.getElementById('page');
       page.replaceChildren();
-      document.title = `${p.name} · Open Vanilla`;
+      document.title = `${p.name} · Leyline`;
       page.append(el('h1', {}, p.name));
       if (p.description) page.append(el('p', { class: 'lead' }, p.description));
       const meta = el('div', { class: 'meta' });

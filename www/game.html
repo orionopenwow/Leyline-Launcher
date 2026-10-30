@@ -1,22 +1,22 @@
 <!doctype html>
 <meta charset="utf-8">
-<title>Open Vanilla</title>
+<title>Leyline</title>
   <!-- Link previews (Discord, Reddit, X, iMessage) -->
   <meta property="og:type" content="website">
-  <meta property="og:site_name" content="Open Vanilla">
+  <meta property="og:site_name" content="Leyline">
   <meta property="og:title" content="wenilla">
-  <meta property="og:description" content="Classic Vanilla in your browser: free, no download, play in seconds. Open Vanilla is a community-built realm with Vanilla Remastered features, mods and your own servers.">
+  <meta property="og:description" content="Classic Vanilla in your browser: free, no download, play in seconds. Leyline is a community-built realm with Vanilla Remastered features, mods and your own servers.">
   <meta property="og:url" content="https://openvanilla.app/game.html">
   <meta property="og:image" content="https://openvanilla.app/assets/og-image.jpg">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
-  <meta property="og:image:alt" content="Open Vanilla: classic Vanilla in your browser. Free, no download, play in seconds.">
+  <meta property="og:image:alt" content="Leyline: classic Vanilla in your browser. Free, no download, play in seconds.">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="wenilla">
-  <meta name="twitter:description" content="Classic Vanilla in your browser: free, no download, play in seconds. Open Vanilla is a community-built realm with Vanilla Remastered features, mods and your own servers.">
+  <meta name="twitter:description" content="Classic Vanilla in your browser: free, no download, play in seconds. Leyline is a community-built realm with Vanilla Remastered features, mods and your own servers.">
   <meta name="twitter:image" content="https://openvanilla.app/assets/og-image.jpg">
   <meta name="theme-color" content="#0a0816">
-  <meta name="description" content="Classic Vanilla in your browser: free, no download, play in seconds. Open Vanilla is a community-built realm with Vanilla Remastered features, mods and your own servers.">
+  <meta name="description" content="Classic Vanilla in your browser: free, no download, play in seconds. Leyline is a community-built realm with Vanilla Remastered features, mods and your own servers.">
 <style>
   html, body { margin: 0; padding: 0; height: 100%; overflow: hidden; background: #000; }
   #benilla { display: block; width: 100vw; height: 100vh; }
@@ -34,7 +34,7 @@
           font: 14px system-ui, sans-serif; opacity: .7; }
   #bell.on { opacity: 1; }
 </style>
-<a href="index.html" id="portal-btn" title="Return to Open Vanilla Community & Realm Portal">← Portal</a>
+<a href="index.html" id="portal-btn" title="Return to Leyline Community & Realm Portal">← Portal</a>
 <script>
   // On the public website (static hosting, no game server behind it) this 1.12.1 page can't connect: the
   // realm is WrathUnleashed now, played from its own page. Local and self-hosted copies of this page are unaffected.
@@ -113,7 +113,7 @@
     if (savedRealm) env.realm = savedRealm;
     if (savedChar) env.char = savedChar;
   } catch (e) {}
-  // Open Vanilla: the client paints no 3D gate on the login screen; login-backdrop.js plays behind it.
+  // Leyline: the client paints no 3D gate on the login screen; login-backdrop.js plays behind it.
   env.login_backdrop = 'page';
   window.__wenilla_env = env;
 </script>
@@ -153,15 +153,15 @@
         bell.classList.toggle('on', on);
         bell.title = on ? 'Notifications on — click to turn off.' : offTitle;
       });
-      // Open Vanilla: the animated login backdrop behind the canvas (login-backdrop.js).
+      // Leyline: the animated login backdrop behind the canvas (login-backdrop.js).
       import('./login-backdrop.js')
         .then(({ installLoginBackdrop }) => installLoginBackdrop(wenilla))
         .catch((e) => console.warn('login-backdrop.js:', e));
-      // Open Vanilla page layer (www/ow): the account dock off the minimap, boot-screen art, owdiag.
+      // Leyline page layer (www/ow): the account dock off the minimap, boot-screen art, owdiag.
       import('./ow/openvanilla.js?v=' + Math.floor(Date.now() / 36e5))
         .then(({ install }) => install(wenilla))
         .catch((e) => console.warn('ow/openvanilla.js:', e));
-      // Open Vanilla GM panel (www/gm/): a Game Master window over the canvas, driven through the
+      // Leyline GM panel (www/gm/): a Game Master window over the canvas, driven through the
       // bridge. Never load-bearing: if it fails, the game runs exactly as before.
       import('./gm/gm-panel.js?v=' + Math.floor(Date.now() / 36e5)).catch((e) => console.warn('gm/gm-panel.js:', e));
 

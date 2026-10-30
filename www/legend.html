@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Legend Verifier</title>
-<meta name="description" content="Check a signed Open Vanilla character record (a Legend).">
+<meta name="description" content="Check a signed Leyline character record (a Legend).">
 <style>
 :root {
   --bg: #0d0b08;
@@ -114,7 +114,7 @@ body.embed .status { padding: 8px 12px; font-size: 13px; }
 <body>
 <div class="wrap">
   <header class="full">
-    <h1><small>Open Vanilla</small>Legend Verifier</h1>
+    <h1><small>Leyline</small>Legend Verifier</h1>
     <p>Check that a character record really comes from the realm it names.</p>
   </header>
 
@@ -187,7 +187,7 @@ body.embed .status { padding: 8px 12px; font-size: 13px; }
 
 <script type="module">
 /* @@LEGEND_JS_BEGIN */
-// Legend: signed, portable character records for Open Vanilla realms.
+// Legend: signed, portable character records for Leyline realms.
 // Zero-dependency ES module for browsers and Node 18+ (WebCrypto Ed25519 + HKDF).
 // Licence: MIT. See SPEC.md.
 
@@ -507,7 +507,7 @@ async function show(input, sourceUrl) {
   }
   if (sourceUrl) {
     const code = `<iframe src="${PUBLIC_PAGE}?u=${encodeURIComponent(sourceUrl)}&embed=1" ` +
-      `width="420" height="260" style="border:0;border-radius:10px" loading="lazy" title="Open Vanilla Legend"></iframe>`;
+      `width="420" height="260" style="border:0;border-radius:10px" loading="lazy" title="Leyline Legend"></iframe>`;
     $('embed-code').value = code;
     $('embed').classList.remove('hidden');
     const link = $('open-link');

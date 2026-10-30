@@ -5,7 +5,7 @@
    "platform": "twitch",
    "id": "tw:1",
    "channel": "BerraPlays",
-   "title": "Deadmines on Open Vanilla (priest)",
+   "title": "Deadmines on Leyline (priest)",
    "viewers": 120,
    "thumbnail": "https://static-cdn.jtvnw.net/b-440x248.jpg",
    "url": "https://www.twitch.tv/berraplays",
@@ -20,7 +20,7 @@
    "platform": "youtube",
    "id": "yt:v1",
    "channel": "Orlen Maps",
-   "title": "Open Vanilla live: mage leveling",
+   "title": "Leyline live: mage leveling",
    "thumbnail": "https://i.ytimg.com/vi/v1/hqdefault.jpg",
    "url": "https://www.youtube.com/watch?v=v1",
    "embed": {
@@ -35,7 +35,7 @@
    "platform": "twitch",
    "id": "tw:2",
    "channel": "RandomRaider",
-   "title": "Open Vanilla MC night",
+   "title": "Leyline MC night",
    "viewers": 40,
    "thumbnail": "https://static-cdn.jtvnw.net/x-440x248.jpg",
    "url": "https://www.twitch.tv/randomraider",
@@ -52,7 +52,7 @@
    "platform": "youtube",
    "id": "yt:v2",
    "channel": "Orlen Maps",
-   "title": "Open Vanilla raid night",
+   "title": "Leyline raid night",
    "thumbnail": "https://i.ytimg.com/vi/v2/hqdefault.jpg",
    "url": "https://www.youtube.com/watch?v=v2",
    "embed": {
@@ -69,7 +69,7 @@
    "platform": "youtube",
    "id": "yt:v3",
    "channel": "Orlen Maps",
-   "title": "Open Vanilla warlock guide: dungeon tips",
+   "title": "Leyline warlock guide: dungeon tips",
    "thumbnail": "https://i.ytimg.com/vi/v3/hqdefault.jpg",
    "url": "https://www.youtube.com/watch?v=v3",
    "embed": {
@@ -92,7 +92,7 @@
    "platform": "youtube",
    "id": "yt:v5",
    "channel": "Orlen Maps",
-   "title": "Open Vanilla in 60 seconds #shorts",
+   "title": "Leyline in 60 seconds #shorts",
    "thumbnail": "https://i.ytimg.com/vi/v5/hqdefault.jpg",
    "url": "https://www.youtube.com/watch?v=v5",
    "embed": {

@@ -30,7 +30,7 @@
 // build and that is cosmetic — the bar is clamped at 99% until the stream actually ends.
 const BR_RATIO = 5.0;
 const READY_TIMEOUT_MS = 20000;
-// Open Vanilla: 24 at once. HTTP/2 and HTTP/3 carry them on one connection, and from the US each
+// Leyline: 24 at once. HTTP/2 and HTTP/3 carry them on one connection, and from the US each
 // file costs a ~160 ms round trip, so 8 left the boot set waiting on latency.
 const PREFETCH_CONCURRENCY = 24;
 
@@ -71,7 +71,7 @@ export async function boot(init, opts = {}) {
 }
 
 // Match wasm-bindgen's non-streaming fallback for servers without the WASM MIME type.
-// Open Vanilla (Open Vanilla): compile the Response that fetch() returned, not a re-wrapped one. The
+// Leyline (Leyline): compile the Response that fetch() returned, not a re-wrapped one. The
 // browser can keep the compiled code with that HTTP cache entry (V8's wasm code cache), so a
 // returning player skips recompiling the ~90 MB module; a constructed Response has no URL and no
 // cache entry, so every visit compiled from scratch. The progress bar now reads a clone, which
@@ -264,7 +264,7 @@ function createBootUi() {
       #wenilla-boot .err { color: #ff5555; text-shadow: 0 0 8px rgba(255,0,0,0.6); }
     </style>
     <div class="brand-header">
-      <img src="assets/openvanilla_logo.png" class="brand-logo" alt="Open Vanilla Browser RPG" />
+      <img src="assets/openvanilla_logo.png" class="brand-logo" alt="Leyline Browser RPG" />
     </div>
     <div class="bottom-dock">
       <div class="game-tip"><b>Tip:</b> Seek out the Ley-Architect's shrines throughout Azeroth to unlock Classic+ class enhancements and ancient boons.</div>

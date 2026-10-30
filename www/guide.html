@@ -3,23 +3,23 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Host Guidebook · Open Vanilla</title>
+  <title>Host Guidebook · Leyline</title>
   <!-- Link previews (Discord, Reddit, X, iMessage) -->
   <meta property="og:type" content="website">
-  <meta property="og:site_name" content="Open Vanilla">
-  <meta property="og:title" content="Host Guidebook · Open Vanilla">
-  <meta property="og:description" content="Everything about running an Open Vanilla realm: install, Open Vanilla Server, accounts, GM tools, rates, friends, backups, security and troubleshooting.">
+  <meta property="og:site_name" content="Leyline">
+  <meta property="og:title" content="Host Guidebook · Leyline">
+  <meta property="og:description" content="Everything about running a Leyline realm: install, Leyline Server, accounts, GM tools, rates, friends, backups, security and troubleshooting.">
   <meta property="og:url" content="https://openvanilla.app/guide.html">
   <meta property="og:image" content="https://openvanilla.app/assets/og-image.jpg">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
-  <meta property="og:image:alt" content="Open Vanilla: classic Vanilla in your browser. Free, no download, play in seconds.">
+  <meta property="og:image:alt" content="Leyline: classic Vanilla in your browser. Free, no download, play in seconds.">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Host Guidebook · Open Vanilla">
-  <meta name="twitter:description" content="Everything about running an Open Vanilla realm: install, Open Vanilla Server, accounts, GM tools, rates, friends, backups, security and troubleshooting.">
+  <meta name="twitter:title" content="Host Guidebook · Leyline">
+  <meta name="twitter:description" content="Everything about running a Leyline realm: install, Leyline Server, accounts, GM tools, rates, friends, backups, security and troubleshooting.">
   <meta name="twitter:image" content="https://openvanilla.app/assets/og-image.jpg">
   <meta name="theme-color" content="#0a0816">
-  <meta name="description" content="Everything about running an Open Vanilla realm: install, Open Vanilla Server, accounts, GM tools, rates, friends, backups, security and troubleshooting.">
+  <meta name="description" content="Everything about running a Leyline realm: install, Leyline Server, accounts, GM tools, rates, friends, backups, security and troubleshooting.">
   <link rel="icon" href="favicon.ico">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -112,11 +112,11 @@
 <body>
   <div class="wrap">
     <header class="top">
-      <a class="home" href="index.html">&larr; Open Vanilla</a>
-      <span style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;justify-content:flex-end"><a class="pill manual-link" href="manual/hosting.html" style="text-decoration:none" title="Read about this in the Open Vanilla Manual">MANUAL</a><span class="pill">HOST GUIDEBOOK</span></span>
+      <a class="home" href="index.html">&larr; Leyline</a>
+      <span style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;justify-content:flex-end"><a class="pill manual-link" href="manual/hosting.html" style="text-decoration:none" title="Read about this in the Leyline Manual">MANUAL</a><span class="pill">HOST GUIDEBOOK</span></span>
     </header>
     <h1>The Host Guidebook</h1>
-    <p class="lead">Everything about running your own Open Vanilla realm, from first install to backups and going public. New here? Read chapters 1&ndash;3, then come back to the rest when you need it. The short install page is <a href="host.html">Host a server</a>.</p>
+    <p class="lead">Everything about running your own Leyline realm, from first install to backups and going public. New here? Read chapters 1&ndash;3, then come back to the rest when you need it. The short install page is <a href="host.html">Host a server</a>.</p>
 
     <div class="layout">
       <nav class="toc" aria-label="Chapters">
@@ -125,7 +125,7 @@
           <li><a href="#before">Before you start</a></li>
           <li><a href="#install">Install</a></li>
           <li><a href="#first-realm">Your first realm</a></li>
-          <li><a href="#panel">The Open Vanilla Server window</a></li>
+          <li><a href="#panel">The Leyline Server window</a></li>
           <li><a href="#accounts">Accounts and roles</a></li>
           <li><a href="#gm">Game Master tools</a></li>
           <li><a href="#rates">Rates and rules</a></li>
@@ -146,8 +146,8 @@
         <section class="ch" id="before">
           <div class="kicker">Chapter 1</div>
           <h2>Before you start</h2>
-          <p>This guidebook is about <strong>Open Vanilla Server</strong>: the separate download that runs an always-on realm on your PC (<a href="https://github.com/orionopenwow/OpenVanilla/releases/latest/download/OpenVanilla-Server.zip">OpenVanilla-Server.zip</a>). The Open Vanilla launcher is for playing; it connects to your realm like any other.</p>
-          <p>An Open Vanilla realm is four programs working together on one PC. You don't need to understand them to run a realm, but knowing their names makes the Open Vanilla Server window and every error message easier to read.</p>
+          <p>This guidebook is about <strong>Leyline Server</strong>: the separate download that runs an always-on realm on your PC (<a href="https://github.com/orionopenwow/Leyline-Launcher/releases/latest/download/OpenVanilla-Server.zip">OpenVanilla-Server.zip</a>). The Leyline Launcher is for playing; it connects to your realm like any other.</p>
+          <p>A Leyline realm is four programs working together on one PC. You don't need to understand them to run a realm, but knowing their names makes the Leyline Server window and every error message easier to read.</p>
           <div class="tbl"><table>
             <tr><th>Program</th><th>Port</th><th>What it does</th></tr>
             <tr><td><strong>MySQL</strong></td><td><code>3310</code></td><td>The database. Holds accounts (<code>classicrealmd</code>), characters (<code>classiccharacters</code>) and the whole world: NPCs, items, quests, loot (<code>classicmangos</code>).</td></tr>
@@ -159,9 +159,9 @@
           <ul>
             <li>Windows 10 or 11, 64-bit, about 15 GB free. An SSD makes the world server start much faster.</li>
             <li>8 GB of RAM is comfortable for you and a few friends.</li>
-            <li><strong>Open Vanilla Server</strong>: <a href="https://github.com/orionopenwow/OpenVanilla/releases/latest/download/OpenVanilla-Server.zip">OpenVanilla-Server.zip</a>, also on the <a href="https://github.com/orionopenwow/OpenVanilla/releases/latest">latest release</a>.</li>
+            <li><strong>Leyline Server</strong>: <a href="https://github.com/orionopenwow/Leyline-Launcher/releases/latest/download/OpenVanilla-Server.zip">OpenVanilla-Server.zip</a>, also on the <a href="https://github.com/orionopenwow/Leyline-Launcher/releases/latest">latest release</a>.</li>
             <li><a href="https://www.python.org/downloads/">Python 3</a> (tick &ldquo;Add to PATH&rdquo; when you install it).</li>
-            <li><a href="https://github.com/celguar/spp-classics-cmangos">SPP Classics V2</a>, which provides the database and both game servers. The Open Vanilla launcher's Play Solo can set it up for you (chapter 2).</li>
+            <li><a href="https://github.com/celguar/spp-classics-cmangos">SPP Classics V2</a>, which provides the database and both game servers. The Leyline Launcher's Play Solo can set it up for you (chapter 2).</li>
             <li>Vanilla Client v1.3 to play on it. See the <a href="clients.html">client guide</a>.</li>
           </ul>
           <div class="callout"><p><strong>Plan on 30&ndash;45 minutes</strong> the first time. Most of it is SPP downloading its files.</p></div>
@@ -172,7 +172,7 @@
           <div class="kicker">Chapter 2</div>
           <h2>Install</h2>
           <h3>1. SPP Classics, the easy way</h3>
-          <p>In the Open Vanilla launcher, switch PLAY to <strong>SOLO</strong> and press PLAY:</p>
+          <p>In the Leyline Launcher, switch PLAY to <strong>SOLO</strong> and press PLAY:</p>
           <ol class="steps">
             <li><strong>Download.</strong> It downloads SPP Classics (about 110 MB, resumable) into the launcher's <code>Realms\Solo</code> folder.</li>
             <li><strong>Server files.</strong> Press PLAY again if asked: it unpacks SPP and fetches its server files (about 700 MB), with progress in the bar.</li>
@@ -184,16 +184,16 @@
             <li>Run <code>Server_Update.bat</code> in that folder and wait for it to fetch the server files.</li>
             <li>Run <code>SPP_Server\Launcher.bat</code>, type <code>1</code> for Vanilla and wait. If it offers to start the servers, shut them down from its menu (<code>0</code>), not the window's X.</li>
           </ol>
-          <h3>2. Open Vanilla Server</h3>
+          <h3>2. Leyline Server</h3>
           <ol class="steps">
             <li>Extract <code>OpenVanilla-Server.zip</code> anywhere, for example <code>C:\OpenVanilla-Server</code>.</li>
-            <li>Double-click <strong>Start Open Vanilla Server.bat</strong>. The first start installs the Python packages it needs (aiohttp, Pillow, psutil, PyMySQL).</li>
+            <li>Double-click <strong>Start Leyline Server.bat</strong>. The first start installs the Python packages it needs (aiohttp, Pillow, psutil, PyMySQL).</li>
             <li>It finds an SPP install in <code>C:\SPP_Classics_V2</code>, <code>D:\</code>, <code>C:\Games</code> or on your Desktop by itself. Otherwise it asks you to pick the <code>SPP_Classics_V2</code> folder (or the <code>SPP_Server</code> folder inside it). It remembers the choice; <code>python openvanilla_server.py --forget</code> makes it ask again.</li>
           </ol>
           <h3>Optional: browser play</h3>
-          <p>Desktop clients work without this. The browser client ships in Open Vanilla Server's <code>www</code> folder; it also needs game data, and, for friends over the internet, an HTTPS gateway:</p>
+          <p>Desktop clients work without this. The browser client ships in Leyline Server's <code>www</code> folder; it also needs game data, and, for friends over the internet, an HTTPS gateway:</p>
           <ul>
-            <li>Game data: extract your own Vanilla Client v1.3 MPQ contents into Open Vanilla Server's <code>Data\</code> folder (<strong>Extract assets Verification</strong> opens it). Open Vanilla never ships Blizzard files.</li>
+            <li>Game data: extract your own Vanilla Client v1.3 MPQ contents into Leyline Server's <code>Data\</code> folder (<strong>Extract assets Verification</strong> opens it). Leyline never ships Blizzard files.</li>
             <li>The HTTPS gateway (chapter 9).</li>
           </ul>
         </section>
@@ -203,19 +203,19 @@
           <div class="kicker">Chapter 3</div>
           <h2>Your first realm in ten minutes</h2>
           <ol class="steps">
-            <li><strong>Start everything.</strong> In Open Vanilla Server press <strong>START / RESTART ALL SERVICES</strong>. Watch the lights: database, login, world and web backend turn green. The world server is last and can take a minute or two while it loads the map.</li>
+            <li><strong>Start everything.</strong> In Leyline Server press <strong>START / RESTART ALL SERVICES</strong>. Watch the lights: database, login, world and web backend turn green. The world server is last and can take a minute or two while it loads the map.</li>
             <li><strong>Make your admin account.</strong> Press <strong>Player &amp; GM Admin Manager</strong>, type a name (3&ndash;16 letters or digits) and a strong password, pick <strong>Administrator</strong> and press <strong>CREATE / UPDATE ACCOUNT</strong>.</li>
-            <li><strong>Add it to your launcher.</strong> In the Open Vanilla launcher, <strong>REALMS &rarr; Add realm</strong> with address <code>127.0.0.1</code>.</li>
+            <li><strong>Add it to your launcher.</strong> In the Leyline Launcher, <strong>REALMS &rarr; Add realm</strong> with address <code>127.0.0.1</code>.</li>
             <li><strong>Play.</strong> Press PLAY and sign in with the account you just made, or press <strong>ENTER WORLD IN BROWSER</strong>. With a stock client, put <code>set realmlist 127.0.0.1</code> in <code>realmlist.wtf</code> instead.</li>
             <li><strong>Check you're in charge.</strong> In game, type <code>.gm on</code>. If chat answers that GM mode is on, your admin account works.</li>
           </ol>
-          <div class="callout"><p><strong>Tip:</strong> <strong>HALT ALL SERVICES</strong> stops everything before you shut the PC down. Tick <strong>Start services on launch</strong> to have the realm come up whenever you open Open Vanilla Server.</p></div>
+          <div class="callout"><p><strong>Tip:</strong> <strong>HALT ALL SERVICES</strong> stops everything before you shut the PC down. Tick <strong>Start services on launch</strong> to have the realm come up whenever you open Leyline Server.</p></div>
         </section>
 
         <!-- 4 -->
         <section class="ch" id="panel">
           <div class="kicker">Chapter 4</div>
-          <h2>The Open Vanilla Server window, part by part</h2>
+          <h2>The Leyline Server window, part by part</h2>
           <h3>Realm infrastructure</h3>
           <p>One row per program with its port and a light: green running, red stopped, with CPU and memory for the database and world server. The lights refresh every few seconds. The top right shows world uptime and players online.</p>
           <h3>Realm master controls</h3>
@@ -228,11 +228,11 @@
             <tr><td><strong>Open Community &amp; News Portal</strong></td><td>Your realm's website on <code>http://127.0.0.1:18090/</code>.</td></tr>
           </table></div>
           <h3>Quick actions</h3>
-          <p><strong>START / RESTART ALL SERVICES</strong> starts the database, login, world and web backend in that order. <strong>ENTER WORLD IN BROWSER</strong> opens the browser client. <strong>HALT ALL SERVICES</strong> stops what Open Vanilla Server started. <strong>Open Server Studio</strong> (top left) opens the realm admin web app (chapter 15).</p>
+          <p><strong>START / RESTART ALL SERVICES</strong> starts the database, login, world and web backend in that order. <strong>ENTER WORLD IN BROWSER</strong> opens the browser client. <strong>HALT ALL SERVICES</strong> stops what Leyline Server started. <strong>Open Server Studio</strong> (top left) opens the realm admin web app (chapter 15).</p>
           <h3>HTTPS gateway &amp; networking</h3>
           <p>The public website address, the Caddy HTTPS gateway buttons (chapter 9) and the <strong>REALM ADDRESS</strong> players' games connect to (chapter 8). <strong>SHARE SERVER LINK</strong> copies your website link and the realmlist line for friends.</p>
           <h3>Logs and the GM console</h3>
-          <p>The right side shows every service's log, with a tab per service. The box at the bottom sends world-console commands such as <code>server info</code> or <code>announce Restarting in 5 minutes</code> over SOAP: set <code>SOAP.Enabled = 1</code> in <code>mangosd.conf</code>, restart the world server, and add <code>"soap_user"</code> / <code>"soap_pass"</code> (a GM 3 account) to <code>launcher_settings.json</code> in the Open Vanilla Server folder. Console commands have no dot and run with full rights. When asking for help, send <code>web-backend.log</code> and SPP's logs.</p>
+          <p>The right side shows every service's log, with a tab per service. The box at the bottom sends world-console commands such as <code>server info</code> or <code>announce Restarting in 5 minutes</code> over SOAP: set <code>SOAP.Enabled = 1</code> in <code>mangosd.conf</code>, restart the world server, and add <code>"soap_user"</code> / <code>"soap_pass"</code> (a GM 3 account) to <code>launcher_settings.json</code> in the Leyline Server folder. Console commands have no dot and run with full rights. When asking for help, send <code>web-backend.log</code> and SPP's logs.</p>
         </section>
 
         <!-- 5 -->
@@ -247,7 +247,7 @@
             <tr><td><strong>2</strong></td><td>Game Master</td><td>Also spawn and delete NPCs and objects, kick, tickets, guilds.</td></tr>
             <tr><td><strong>3</strong></td><td>Administrator</td><td>Also bans, items, levels, server restart and shutdown, reloading settings.</td></tr>
           </table></div>
-          <p>A few commands, such as creating accounts with <code>.account create</code>, are console-only (level 4). Type those in Open Vanilla Server's GM console without the dot, or use Server Studio's Players tab.</p>
+          <p>A few commands, such as creating accounts with <code>.account create</code>, are console-only (level 4). Type those in Leyline Server's GM console without the dot, or use Server Studio's Players tab.</p>
           <h3>Common jobs</h3>
           <ul>
             <li><strong>Make someone a GM without changing their password:</strong> Server Studio &rarr; Players, change their role from the dropdown. Or <strong>Player &amp; GM Admin Manager</strong>, or in the GM console <code>account set gmlevel BOB 2</code> (their login name, then the level). They must log out and back in.</li>
@@ -290,7 +290,7 @@
         <section class="ch" id="rates">
           <div class="kicker">Chapter 7</div>
           <h2>Rates and rules</h2>
-          <p>XP rates, drop rates, the level cap, realm type and the message of the day live in one text file: <code>mangosd.conf</code>, in your SPP folder under <code>Settings\vanilla\</code>. <strong>Live Config Editor</strong> opens it. Open Vanilla Server prints which SPP folder it runs when it starts (after Play Solo's setup it is in the launcher's <code>Realms\Solo\SPP_Classics_V2\SPP_Server</code>).</p>
+          <p>XP rates, drop rates, the level cap, realm type and the message of the day live in one text file: <code>mangosd.conf</code>, in your SPP folder under <code>Settings\vanilla\</code>. <strong>Live Config Editor</strong> opens it. Leyline Server prints which SPP folder it runs when it starts (after Play Solo's setup it is in the launcher's <code>Realms\Solo\SPP_Classics_V2\SPP_Server</code>).</p>
           <ol class="steps">
             <li><strong>Back up first.</strong> Copy <code>mangosd.conf</code> to <code>mangosd.conf.bak</code> in the same folder.</li>
             <li>Open it and use Ctrl+F to find the setting. Each setting is one line: <code>Name = value</code>. Lines starting with <code>#</code> are notes explaining the setting above or below them.</li>
@@ -325,7 +325,7 @@
             <tr><td>Friends on your home network</td><td>Your PC's LAN address, e.g. <code>192.168.1.20</code> (<code>ipconfig</code> in Command Prompt shows it as IPv4 Address).</td></tr>
             <tr><td>Friends over the internet</td><td>Your public IP or a domain name pointing at it.</td></tr>
           </table></div>
-          <p>To change it, type it in <strong>REALM ADDRESS</strong> in Open Vanilla Server and press <strong>Save</strong>. It's written into the realm list straight away (and again every time the realm starts); players who are signed in log out and back in to pick it up. Open Vanilla Server also removes Play Solo's SOLO / SOLO login whenever it starts, so a Play Solo install is safe to open up.</p>
+          <p>To change it, type it in <strong>REALM ADDRESS</strong> in Leyline Server and press <strong>Save</strong>. It's written into the realm list straight away (and again every time the realm starts); players who are signed in log out and back in to pick it up. Leyline Server also removes Play Solo's SOLO / SOLO login whenever it starts, so a Play Solo install is safe to open up.</p>
           <p>To rename the realm, use Server Studio's <strong>Realm</strong> tab, or run this in Command Prompt as one line, with your own SPP path (it asks for the MySQL password), then restart the servers:</p>
           <pre><code>"C:\SPP_Classics_V2\SPP_Server\Server\Database\bin\mysql.exe" -h 127.0.0.1 -P 3310 -u root -p classicrealmd -e "UPDATE realmlist SET name='My Realm'"</code></pre>
           <div class="callout"><p><strong>Your own PC still works</strong> with a public address on most routers. If yours can't (some can't &ldquo;loop back&rdquo;), keep a second realm entry in your launcher pointing at <code>127.0.0.1</code>.</p></div>
@@ -345,7 +345,7 @@
           </ol>
           <p>Everyone who connects can see your public IP address. Only forward the two game ports; never the database or the website port.</p>
           <h3>Friends in their browser</h3>
-          <p>Browsers only connect over HTTPS, so browser play over the internet needs an HTTPS gateway (such as <a href="https://caddyserver.com/download">Caddy</a>) in front of the web backend on port 18090, with a domain name and ports 80, 443 and 8090 forwarded. Open Vanilla Server drives Caddy for you: <strong>Get Caddy</strong> (a copy also ships in its <code>bin</code> folder), type your domain in <strong>PUBLIC HTTPS ADDRESS</strong>, <strong>Save URL</strong>, <strong>Allow Web Ports</strong>, then <strong>Start</strong> and <strong>Test HTTPS</strong>. The Linux server kit in chapter 12 does the same in one command.</p>
+          <p>Browsers only connect over HTTPS, so browser play over the internet needs an HTTPS gateway (such as <a href="https://caddyserver.com/download">Caddy</a>) in front of the web backend on port 18090, with a domain name and ports 80, 443 and 8090 forwarded. Leyline Server drives Caddy for you: <strong>Get Caddy</strong> (a copy also ships in its <code>bin</code> folder), type your domain in <strong>PUBLIC HTTPS ADDRESS</strong>, <strong>Save URL</strong>, <strong>Allow Web Ports</strong>, then <strong>Start</strong> and <strong>Test HTTPS</strong>. The Linux server kit in chapter 12 does the same in one command.</p>
           <p>The login and world servers stay private in that setup: browsers reach them only through the web backend over HTTPS.</p>
           <h3>Which ports go where</h3>
           <div class="ports">
@@ -385,25 +385,25 @@
           <h2>Keeping it safe</h2>
           <p>Do these before you share your address with anyone:</p>
           <ol class="steps">
-            <li><strong>Change the database password.</strong> SPP ships with <code>root</code> / <code>123456</code>, which everyone knows. Change it with SPP's MySQL tools, then put it in a file named <code>.env</code> in the Open Vanilla Server folder, as two lines: <code>MYSQL_USER=root</code> and <code>MYSQL_PASSWORD=yournewpassword</code>.</li>
+            <li><strong>Change the database password.</strong> SPP ships with <code>root</code> / <code>123456</code>, which everyone knows. Change it with SPP's MySQL tools, then put it in a file named <code>.env</code> in the Leyline Server folder, as two lines: <code>MYSQL_USER=root</code> and <code>MYSQL_PASSWORD=yournewpassword</code>.</li>
             <li><strong>Never forward port 3310.</strong> The database should only ever be reachable from your own PC. The same goes for 18090 (website and Server Studio).</li>
-            <li><strong>Strong admin passwords.</strong> Every GM 2 and GM 3 account should have one, and only people you trust should have them. Open Vanilla Server removes Play Solo's SOLO / SOLO login whenever it starts.</li>
+            <li><strong>Strong admin passwords.</strong> Every GM 2 and GM 3 account should have one, and only people you trust should have them. Leyline Server removes Play Solo's SOLO / SOLO login whenever it starts.</li>
             <li><strong>Keep <code>.env</code> and <code>launcher_settings.json</code> private.</strong> They hold passwords. Don't post screenshots of them or upload them to GitHub.</li>
             <li><strong>Back up before going public</strong> (chapter 10).</li>
           </ol>
-          <p>Found a security problem in Open Vanilla itself? See the <a href="security.html">security page</a>.</p>
+          <p>Found a security problem in Leyline itself? See the <a href="security.html">security page</a>.</p>
         </section>
 
         <!-- 12 -->
         <section class="ch" id="vps">
           <div class="kicker">Chapter 12</div>
           <h2>Moving to a Linux server</h2>
-          <p>A rented server stays online when your PC is off and gives friends a steadier connection. The <a href="https://github.com/orionopenwow/OpenVanilla/tree/main/hetzner"><code>hetzner</code> kit</a> sets one up with a single command.</p>
+          <p>A rented server stays online when your PC is off and gives friends a steadier connection. The <a href="https://github.com/orionopenwow/Leyline-Launcher/tree/main/hetzner"><code>hetzner</code> kit</a> sets one up with a single command.</p>
           <h3>New realm: one command</h3>
           <p>On a fresh Ubuntu 22.04/24.04 server, with your domain's A record pointing at it, run as root:</p>
           <pre><code>curl -fsSL https://raw.githubusercontent.com/orionopenwow/OpenVanilla/stable/hetzner/wenilla_up.sh -o wenilla_up.sh
 bash wenilla_up.sh your.domain.name</code></pre>
-          <p>It installs Docker, locks the firewall down to 22/80/443, checks the Data folder of your own 1.12.1 client that you copied to <code>/srv/client/Data</code> (it never downloads a client) and starts the realm (CMaNGOS classic, the browser client and HTTPS). Then add the Open Vanilla extras (the Vanilla Remastered addons, Discord sign-in, the sign-up feed) with:</p>
+          <p>It installs Docker, locks the firewall down to 22/80/443, checks the Data folder of your own 1.12.1 client that you copied to <code>/srv/client/Data</code> (it never downloads a client) and starts the realm (CMaNGOS classic, the browser client and HTTPS). Then add the Leyline extras (the Vanilla Remastered addons, Discord sign-in, the sign-up feed) with:</p>
           <pre><code>curl -fsSL https://raw.githubusercontent.com/orionopenwow/OpenVanilla/stable/hetzner/openvanilla_realm_up.sh -o openvanilla_realm_up.sh
 bash openvanilla_realm_up.sh</code></pre>
           <p>Both are safe to run again.</p>
@@ -429,11 +429,11 @@ bash openvanilla_realm_up.sh</code></pre>
           <h2>Troubleshooting</h2>
           <div class="tbl"><table class="wrap1">
             <tr><th>What you see</th><th>What to do</th></tr>
-            <tr><td><strong>Open Vanilla Server asks for SPP</strong></td><td>Finish Play Solo's setup (chapter 2), or pick the folder that contains <code>Server\Database</code> (or its parent). <code>python openvanilla_server.py --forget</code> makes it ask again.</td></tr>
-            <tr><td><strong>Start Open Vanilla Server.bat closes straight away</strong></td><td>Python isn't installed or isn't on PATH: reinstall it with &ldquo;Add to PATH&rdquo; ticked.</td></tr>
-            <tr><td><strong>Windows says &ldquo;Unknown publisher&rdquo; or SmartScreen stops the installer</strong></td><td>Open Vanilla isn't code-signed yet. Check the file against the checksums on the release page, then choose <strong>More info &rarr; Run anyway</strong>.</td></tr>
+            <tr><td><strong>Leyline Server asks for SPP</strong></td><td>Finish Play Solo's setup (chapter 2), or pick the folder that contains <code>Server\Database</code> (or its parent). <code>python openvanilla_server.py --forget</code> makes it ask again.</td></tr>
+            <tr><td><strong>Start Leyline Server.bat closes straight away</strong></td><td>Python isn't installed or isn't on PATH: reinstall it with &ldquo;Add to PATH&rdquo; ticked.</td></tr>
+            <tr><td><strong>Windows says &ldquo;Unknown publisher&rdquo; or SmartScreen stops the installer</strong></td><td>Leyline isn't code-signed yet. Check the file against the checksums on the release page, then choose <strong>More info &rarr; Run anyway</strong>.</td></tr>
             <tr><td><strong>Database light stays off</strong></td><td>Another MySQL is using port 3310, or SPP setup didn't finish. Run SPP's <code>Launcher.bat</code> again and pick 1.</td></tr>
-            <tr><td><strong>World light stays off for minutes</strong></td><td>Normal on first start or on a hard drive; it can take up to 2&frac12; minutes. If it never comes up, read the MANGOSD tab of the log, and <code>mangosd-startup.log</code> in the Open Vanilla Server folder.</td></tr>
+            <tr><td><strong>World light stays off for minutes</strong></td><td>Normal on first start or on a hard drive; it can take up to 2&frac12; minutes. If it never comes up, read the MANGOSD tab of the log, and <code>mangosd-startup.log</code> in the Leyline Server folder.</td></tr>
             <tr><td><strong>&ldquo;Information is not valid&rdquo; at login</strong></td><td>The account was made before the server was ready. With every light green, set its password again in the GM console: <code>account set password NAME PASS PASS</code>.</td></tr>
             <tr><td><strong>Logged in, but the realm list is empty or won't connect</strong></td><td>The realm address is wrong for where you're playing from (chapter 8), or port 8085 is blocked.</td></tr>
             <tr><td><strong>Friends can't connect</strong></td><td>Test 3724 and 8085 with an online port checker while the server runs. Check the realm address is your public IP, not <code>127.0.0.1</code>.</td></tr>
@@ -441,7 +441,7 @@ bash openvanilla_realm_up.sh</code></pre>
             <tr><td><strong>A dot command does nothing</strong></td><td>Your account's role is too low for it. The GM panel's Commands tab shows the level each needs.</td></tr>
             <tr><td><strong>Rate change didn't apply</strong></td><td>Did you save the file? Type <code>.reload config</code> as an Administrator; if it still doesn't apply, restart the world server.</td></tr>
           </table></div>
-          <p>Still stuck? Post in the Open Vanilla Discord's <strong>#bug-reports</strong> with a screenshot of the log and <code>web-backend.log</code> from the Open Vanilla Server folder. Never include <code>.env</code> or <code>launcher_settings.json</code>.</p>
+          <p>Still stuck? Post in the Leyline Discord's <strong>#bug-reports</strong> with a screenshot of the log and <code>web-backend.log</code> from the Leyline Server folder. Never include <code>.env</code> or <code>launcher_settings.json</code>.</p>
         </section>
 
         <!-- 14 -->
@@ -451,7 +451,7 @@ bash openvanilla_realm_up.sh</code></pre>
           <div class="tbl"><table class="wrap1">
             <tr><th>Word</th><th>Means</th></tr>
             <tr><td><strong>Realm</strong></td><td>Your game world, as players see it in the realm list.</td></tr>
-            <tr><td><strong>Core</strong></td><td>The server software that runs the game. Open Vanilla uses CMaNGOS Classic, via SPP.</td></tr>
+            <tr><td><strong>Core</strong></td><td>The server software that runs the game. Leyline uses CMaNGOS Classic, via SPP.</td></tr>
             <tr><td><strong>realmd / mangosd</strong></td><td>The login server and the world server.</td></tr>
             <tr><td><strong>Realmlist</strong></td><td>The address a game client asks for the realm list; also the database table holding your realm's name and address.</td></tr>
             <tr><td><strong>GM level</strong></td><td>An account's role, 0&ndash;3 (chapter 5).</td></tr>
@@ -467,10 +467,10 @@ bash openvanilla_realm_up.sh</code></pre>
         <section class="ch" id="studio">
           <div class="kicker">Chapter 15</div>
           <h2>Server Studio <span class="soon">PREVIEW</span></h2>
-          <p>Server Studio runs your realm from a web page instead of commands and files. It's new, so keep the Open Vanilla Server window and this guidebook's manual steps as a fallback.</p>
+          <p>Server Studio runs your realm from a web page instead of commands and files. It's new, so keep the Leyline Server window and this guidebook's manual steps as a fallback.</p>
           <h3>Open it</h3>
           <ul>
-            <li><strong>On a Windows PC:</strong> in Open Vanilla Server, press <strong>START / RESTART ALL SERVICES</strong>, then <strong>Open Server Studio</strong> (it opens <code>http://127.0.0.1:18090/studio/</code>).</li>
+            <li><strong>On a Windows PC:</strong> in Leyline Server, press <strong>START / RESTART ALL SERVICES</strong>, then <strong>Open Server Studio</strong> (it opens <code>http://127.0.0.1:18090/studio/</code>).</li>
             <li><strong>On a Linux server (wenilla-realm Docker stack):</strong> install it once with the steps in <code>hetzner/systemd/openvanilla-studio.service</code>. Then on your PC run <code>ssh -L 18091:127.0.0.1:18091 root@your-server</code> and browse to <code>http://localhost:18091/studio/</code> while that window stays open.</li>
             <li><strong>Just to look around:</strong> <code>py -3 studio_server.py --demo</code> opens a pretend realm. Sign in as <code>ADMIN</code> / <code>ADMIN</code>.</li>
           </ul>
@@ -502,7 +502,7 @@ bash openvanilla_realm_up.sh</code></pre>
 
     <footer>
       <a href="index.html">Home</a> · <a href="host.html">Host a server</a> · <a href="clients.html">Game clients</a> · <a href="solo.html">Play Solo</a> · <a href="herald.html">Herald</a> · <a href="privacy.html">Privacy</a> · <a href="terms.html">Terms</a> · <a href="security.html">Security</a> ·
-      World of Warcraft is a trademark of Blizzard Entertainment, Inc. Open Vanilla is an independent fan project, not affiliated with or endorsed by Blizzard Entertainment.
+      World of Warcraft is a trademark of Blizzard Entertainment, Inc. Leyline is an independent fan project, not affiliated with or endorsed by Blizzard Entertainment.
     </footer>
   </div>
   <script>

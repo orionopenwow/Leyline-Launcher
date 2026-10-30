@@ -21,7 +21,7 @@ no votes. v1 lists official realms only.
 | `schema` | `1` | This document's version. Readers ignore records with a higher number they don't know. |
 | `slug` | string | `^[a-z0-9-]{1,40}$`, the same as the file name. Never changes once published (links use it). |
 | `name` | string | Realm name as players see it. |
-| `official` | bool | Run by Open Vanilla. v1: always `true`. |
+| `official` | bool | Run by Leyline. v1: always `true`. |
 | `state` | `"live"` \| `"offline"` \| `"soon"` | What the realm is meant to be doing. `live` means "running, check `status`". |
 | `stateNote` | string? | Optional short reason, e.g. "Offline while WrathUnleashed runs." |
 | `order` | int | Sort key in the list (low first). |
@@ -53,7 +53,7 @@ no votes. v1 lists official realms only.
 | `warden` | bool \| null | Is Warden on. `null` = not stated. |
 | `ruleset` | string | Short name of the ruleset, e.g. `fun`, `blizzlike`. |
 | `patches` | `{file, sha256, url?}[]` \| null | Patches the player must have, with their SHA-256. `[]` = none required; `null` = not stated yet (shown as nothing). |
-| `clientFiles` | `"own"` | Players bring their own game files. Open Vanilla never hosts game data. |
+| `clientFiles` | `"own"` | Players bring their own game files. Leyline never hosts game data. |
 | | `"stream-or-own"` | A small part of the game streams to signed-in players; the whole world needs their own files. |
 
 ### `connect`

@@ -1,7 +1,7 @@
-"""Community realms in the Open Vanilla armory (docs/ARMORY.md, "Community realms").
+"""Community realms in the Leyline armory (docs/ARMORY.md, "Community realms").
 
 When the host turned it on (HostConfig.armory, off by default), the host agent exports its own realm
-every hour with the same exporter the Open Vanilla realm runs (tools/armory_export.py --community, over the
+every hour with the same exporter the Leyline realm runs (tools/armory_export.py --community, over the
 host's mariadb client), zips the realm folder (JSON only, stored) and posts it, signed with the host
 key, to the realm service:
 
@@ -10,7 +10,7 @@ key, to the realm service:
     X-OpenVanilla-Host-Id / X-OpenVanilla-Host-Key (hex) / X-OpenVanilla-Signature (hex Ed25519 over the body)
 
 Characters keep their own privacy setting (public / friends with a secret link / hidden), exactly
-as on the Open Vanilla realm. Nothing here ever runs unless the host opted in.
+as on the Leyline realm. Nothing here ever runs unless the host opted in.
 """
 import importlib.util
 import io
@@ -76,7 +76,7 @@ def export_and_upload(session, exporter=None, post=None, force=False):
     if not session.db:
         raise P2PError("The realm isn't running.")
     if not (session.host_id and session.p2p.get("token")):
-        raise P2PError("The realm isn't registered with the Open Vanilla directory yet.")
+        raise P2PError("The realm isn't registered with the Leyline directory yet.")
     AE = exporter or find_exporter(session.paths)
     out = os.path.join(session.host_root, "armory")
     dbc = os.path.join(session.paths.gamedata, "dbc") if getattr(session.paths, "gamedata", None) else None

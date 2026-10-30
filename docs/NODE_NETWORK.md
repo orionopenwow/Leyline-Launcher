@@ -1,4 +1,4 @@
-# The Open Vanilla node network
+# The Leyline node network
 
 Status: **built, tested, not deployed.** Code: `launcher/p2p/{node,e2e,tiers,leaderboard}.py`, the
 Node addon (in game: Esc > Become a Node), `www/nodes.html`, `hetzner/relay_up.sh`,
@@ -12,7 +12,7 @@ router ports or shows a home address. The node network lets volunteers run more 
 launcher (HOST > Become a node). A node carries only end-to-end encrypted game traffic, never
 Blizzard files. It adds connection capacity, absorbs attacks, hides addresses and shortens paths.
 It does **not** make any single world bigger. Bigger means more worlds ("slices") that share
-Open Vanilla accounts.
+Leyline accounts.
 
 ## The three tiers
 
@@ -22,8 +22,8 @@ and the directory API (`tier`, `badges`). They are defined once in `launcher/p2p
 
 | Tier | Badge | Who | Criteria | Who approves |
 |---|---|---|---|---|
-| **Verified realms** | OFFICIAL / VERIFIED (gold) | Open Vanilla's own realms, and community realms the maintainer has vetted | Official: always. Community: listed ≥ 14 days, ≥ 98% of probes passing, uses Open Vanilla sign-in (players' passwords never reach the host), backups on, has a description and rules, no upheld reports, owner in good standing (`tiers.realm_promotion_checks`) | the maintainer (`POST /admin/api/directory/verify`) |
-| **Community P2P realms** | COMMUNITY (grey), RELAYED, ENCRYPTED | Any player-hosted realm that passes the automatic checks | heartbeat every minute; reachability probe (directly, through Open Vanilla's relay, or reported by the node carrying it); name/description word list; not blocklisted | machines only. Shown below the verified realms, with "not vetted, play at your own risk" |
+| **Verified realms** | OFFICIAL / VERIFIED (gold) | Leyline's own realms, and community realms the maintainer has vetted | Official: always. Community: listed ≥ 14 days, ≥ 98% of probes passing, uses Leyline sign-in (players' passwords never reach the host), backups on, has a description and rules, no upheld reports, owner in good standing (`tiers.realm_promotion_checks`) | the maintainer (`POST /admin/api/directory/verify`) |
+| **Community P2P realms** | COMMUNITY (grey), RELAYED, ENCRYPTED | Any player-hosted realm that passes the automatic checks | heartbeat every minute; reachability probe (directly, through Leyline's relay, or reported by the node carrying it); name/description word list; not blocklisted | machines only. Shown below the verified realms, with "not vetted, play at your own risk" |
 | **Verified P2P nodes** | NODE (teal) / PENDING | Volunteers' relays (Become a node) | below | machines check, then the maintainer approves |
 
 **Node criteria** (`tiers.node_checks`, mirrored in `nodes.rs`):
@@ -47,7 +47,7 @@ and shows why). Only verified, fresh (heartbeat within 3 min), accepting and unp
 realms assigned.
 
 **Data model.** Directory entry: `tier`, `badges[]`, `verified`, `official`, `relay`, `relay_url`
-(Open Vanilla's relay or the carrying node), `key` (the host key fingerprint), `e2e`. Node (central):
+(Leyline's relay or the carrying node), `key` (the host key fingerprint), `e2e`. Node (central):
 `node_id` (key fingerprint), `key`, `url`, `region`, `version`, `protocol`, `rules`, `e2e_required`,
 `caps{kbps,daily_gb,max_hosts,max_streams}`, `accepting`, `paused`, `carrying[]`, `first_seen`,
 `last_seen`, `probes[(t,ok)]`, `status`, `message`, `days{UTC day: {relay_bytes, seed_bytes}}`,
@@ -65,10 +65,10 @@ player's game ─TCP─ launcher bridge ══ WebSocket (sealed) ══ node �
 
 * **Assignment.** A relayed host whose launcher has the network on sends `key`, `e2e`, `nodes:true`.
   The directory answers its heartbeat with `relay: {url, node_id, ticket}` when a verified node has
-  room (fewest hosts first, sticky). The ticket is a 10-minute PASETO signed by Open Vanilla (`typ:node`,
+  room (fewest hosts first, sticky). The ticket is a 10-minute PASETO signed by Leyline (`typ:node`,
   `aud` = node, `sub` = host) and is refreshed every heartbeat. The node checks it offline against
   the published keys, so volunteers hold no secrets. If the agent fails 3 reconnects to its node, it
-  goes back to Open Vanilla's relay and reports `node_failed`; that node isn't assigned to it again.
+  goes back to Leyline's relay and reports `node_failed`; that node isn't assigned to it again.
 * **Players.** The realm list carries the node's `relay_url` and the host `key`. Invite links carry
   `k=`, and private realms are looked up with `GET /api/directory/route/<host_id>`. A realm on a node
   is joined only end-to-end encrypted, and only with a host key the player already trusts (link, list
@@ -76,7 +76,7 @@ player's game ─TCP─ launcher bridge ══ WebSocket (sealed) ══ node �
   because it can't sign as the host.
 * **Why encrypt at all?** 1.12's protocol is mostly plaintext: a relay could read chat, character names
   and the sign-in frames. Sealing the stream between the two launchers makes "the node only sees
-  encrypted bytes" true, for volunteer nodes and for Open Vanilla's own relay. v1 uses only the standard
+  encrypted bytes" true, for volunteer nodes and for Leyline's own relay. v1 uses only the standard
   library: X25519 (RFC 7748, tested against its vector and the `cryptography` package), HKDF-SHA256,
   a SHAKE256 keystream with HMAC-SHA256 (encrypt-then-MAC) and implicit sequence numbers. **Have it
   reviewed before volunteer nodes carry public traffic.** The handshake's magic carries the version,
@@ -103,7 +103,7 @@ HOST > **BECOME A NODE** (the in-game Esc menu's **Become a Node** button explai
 does `www/nodes.html`):
 
 * **Off by default.** Turn on… shows the full explanation and the rules first: why, what is shared
-  (only end-to-end encrypted game traffic and, separately, seeding of Open Vanilla's own signed files,
+  (only end-to-end encrypted game traffic and, separately, seeding of Leyline's own signed files,
   never Blizzard's), the caps, who sees which addresses, the port, and how to stop. Nothing starts
   until they press *Turn on my node*.
 * **Caps:** KB/s (both directions), GB per UTC day (at the cap the node pauses until midnight UTC;
@@ -127,7 +127,7 @@ does `www/nodes.html`):
 |---|---|
 | Players and hosts using a node | the node's IP address (as with seeding a torrent). **Never each other's.** |
 | The node operator | the IP addresses connecting to it, which realm id each stream is for, when it opens and closes, and byte counts. **Not** chat, names, sign-ins or game content (sealed). The Python node writes no logs and keeps only counters. |
-| Open Vanilla (directory) | each node's address (to send players there), caps and counters, which hosts it carries |
+| Leyline (directory) | each node's address (to send players there), caps and counters, which hosts it carries |
 | Everyone (site, launcher, API) | tiers, names only by choice, rounded totals; no addresses, keys or ids |
 
 ## Supporter leaderboard
@@ -147,7 +147,7 @@ site shows the table (`www/nodes.html`), and the launcher shows the top 12 besid
   machines and uplinks. One Hetzner relay handles thousands of streams (memcpy + TLS); each volunteer
   node adds about 50 players at the default cap.
 * **DDoS absorption:** attacks hit relays, not hosts' homes. A small node can be overwhelmed, and the
-  directory then moves its hosts (fall back to Open Vanilla's relay, assign another node). Large attacks
+  directory then moves its hosts (fall back to Leyline's relay, assign another node). Large attacks
   need a provider's filtering (Hetzner's), which only the official relay has.
 * **IP privacy:** hosts and players never see each other's addresses.
 * **Reach:** hosts behind NAT/CGNAT become reachable. A node near the players or the host shortens the
@@ -157,7 +157,7 @@ site shows the table (`www/nodes.html`), and the launcher shows the top 12 besid
 
 * **One world server's CPU is the ceiling.** A realm is one `mangosd` process: every player, creature,
   bot and spell in that world runs there. Relays move bytes; they don't run game logic. A home host's
-  realm is limited by that PC (and playerbots are the heavy part), and Open Vanilla's official realm by
+  realm is limited by that PC (and playerbots are the heavy part), and Leyline's official realm by
   its box.
 * **No splitting one world across nodes.** CMaNGOS has no cross-machine sharding of maps or instances,
   and the nodes don't hold characters or state. Making one world span machines would need a different
@@ -166,8 +166,8 @@ site shows the table (`www/nodes.html`), and the launcher shows the top 12 besid
   instead of to the player).
 * **Volunteer nodes are best-effort:** they come and go. The official relay stays the floor.
 
-**Slices: how Open Vanilla grows instead.** A slice is one more realm (its own world server) that shares
-Open Vanilla accounts through identity tokens. Players sign in once and play anywhere; characters belong to
+**Slices: how Leyline grows instead.** A slice is one more realm (its own world server) that shares
+Leyline accounts through identity tokens. Players sign in once and play anywhere; characters belong to
 each realm. Examples:
 
 * **Seasonal rounds:** a fresh Classic+ realm per season, with the old one kept or archived.
@@ -175,29 +175,29 @@ each realm. Examples:
   the main world.
 * **Community realms:** players' own hosts, in the Community P2P tier, some promoted to Verified.
 
-Every slice is listed in the realm list under its tier. Official slices run on Open Vanilla's servers
+Every slice is listed in the realm list under its tier. Official slices run on Leyline's servers
 (direct, or through the relay for privacy and DDoS cover), and community slices on hosts' PCs. When
 there are enough verified nodes, the directory spreads relayed slices across them, so no single relay
 is the bottleneck or the single target.
 
-## Where Open Vanilla is today
+## Where Leyline is today
 
 * **Live:** one official realm (Vanilla Remastered, Classic+) on the maintainer's Hetzner box; the
   desktop client connects directly and the browser through wenilla-realm's WebSockets.
-* **In the launcher, working:** hosting for friends (Solo-based) with Direct and LAN. "Through Open Vanilla"
+* **In the launcher, working:** hosting for friends (Solo-based) with Direct and LAN. "Through Leyline"
   (the relay) is hidden until live flag `relay`. Joining by invite link and by address, seeding.
 * **Built, not deployed:** the relay (`relay/`), the directory, identity tokens and tracker (patch 0012),
   the node network (this doc: launcher code behind live flag `nodes`, patch 0018).
 * **How players join slices once enough nodes exist:** Realms tab → pick a realm under its tier → Join.
-  The launcher signs in with an Open Vanilla token, opens a sealed bridge to whichever relay the directory
-  names (Open Vanilla's or a node), and starts the game. Private slices are joined from an invite link, and
+  The launcher signs in with a Leyline token, opens a sealed bridge to whichever relay the directory
+  names (Leyline's or a node), and starts the game. Private slices are joined from an invite link, and
   the route lookup finds the carrying relay.
 
 ## Test round (the maintainer's steps)
 
 Each step can be undone on its own, and nothing reaches players until a live flag says so.
 
-**Step 0: Open Vanilla's relay on the existing Hetzner box (no change to the realm or the launcher).**
+**Step 0: Leyline's relay on the existing Hetzner box (no change to the realm or the launcher).**
 
 1. DNS: an A (and AAAA) record for `relay.openvanilla.app` pointing at the realm server.
 2. On the server, from a checkout: `bash hetzner/relay_up.sh`. This builds `relay/` and runs it as the
@@ -221,7 +221,7 @@ Each step can be undone on its own, and nothing reaches players until a live fla
 Deploy 0012 with `DIRECTORY_ENABLED=1 DIRECTORY_PERSIST=1 IDENTITY_ENABLED=1`, and give the realm the
 same `RELAY_VERIFY_SECRET` as `/opt/openvanilla-relay/relay.env` (the relay already points at
 `http://realm:8090/api/directory/verify`). Then set `RELAY_HOST`/`RELAY_PLAYER_URL`. Flip live flag
-`relay` to true and ask a few Discord testers to host "Through Open Vanilla".
+`relay` to true and ask a few Discord testers to host "Through Leyline".
 
 **Step 2: the first nodes (needs patch 0018).** Deploy with `NODES_ENABLED=1` (and optionally
 `NODES_LEADERBOARD_FILE=/srv/community/nodes.json`). Leave live flag `nodes` off. Run one or two test
@@ -243,7 +243,7 @@ live flags. None of it was done here.
   tiers and the status flow, leaderboard aggregation and its privacy, the node state machine, the
   relay node forwarding with fakes (sealed only; the node's tap never sees plaintext; tickets,
   private invites, daily cap, signed info), a host put on a node with a player joining sealed through
-  it, fallback to Open Vanilla's relay, the service (consent, reachability, verified, revoked, one-click
+  it, fallback to Leyline's relay, the service (consent, reachability, verified, revoked, one-click
   off, the game status file as valid Lua 5.0), and `tools/relay_smoke.py` against the real relay
   binary when it is built.
 * `xvfb-run -a python3.12 -m unittest tests.test_p2p_gui`: the Become a node tab (waits for the test

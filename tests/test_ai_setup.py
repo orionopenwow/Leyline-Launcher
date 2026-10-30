@@ -365,7 +365,7 @@ class SettingsGuiTests(unittest.TestCase):
         app = self.app = self.L.Launcher()
         app.show_page("settings", animate=False)
         shown = self.texts(app)
-        for want in ("AI  (optional)", "found  /opt/claude", "Starter prompt", "Open Vanilla stores no AI keys"):
+        for want in ("AI  (optional)", "found  /opt/claude", "Starter prompt", "Leyline stores no AI keys"):
             self.assertIn(want, shown)
         self.assertNotIn("Install Claude Code", shown)
         AI.install_kit(AI.kit_source(), self.L.LAYOUT.data)

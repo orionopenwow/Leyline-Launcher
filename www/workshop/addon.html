@@ -3,11 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Addon · Open Vanilla Workshop</title>
-  <meta name="description" content="An addon in the Open Vanilla Workshop: how it runs on Vanilla, ratings, reviews, credits and where to get it.">
+  <title>Addon · Leyline Workshop</title>
+  <meta name="description" content="An addon in the Leyline Workshop: how it runs on Vanilla, ratings, reviews, credits and where to get it.">
   <meta property="og:type" content="website">
-  <meta property="og:site_name" content="Open Vanilla">
-  <meta property="og:title" content="Open Vanilla Workshop">
+  <meta property="og:site_name" content="Leyline">
+  <meta property="og:title" content="Leyline Workshop">
   <meta property="og:image" content="https://openvanilla.app/assets/workshop/og_workshop.jpg">
   <link rel="icon" href="../favicon.ico">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -19,7 +19,7 @@
   <div class="wrap">
     <header class="top">
       <a class="home" href="../workshop.html">&larr; Workshop</a>
-      <nav aria-label="Workshop"><a href="../index.html">Open Vanilla</a><span class="pill">ADDON</span></nav>
+      <nav aria-label="Workshop"><a href="../index.html">Leyline</a><span class="pill">ADDON</span></nav>
     </header>
 
     <section class="hero slim" id="hero">
@@ -76,7 +76,7 @@
 
     <footer class="bottom">
       <a href="../workshop.html">Workshop</a>
-      <a href="../index.html">Open Vanilla</a>
+      <a href="../index.html">Leyline</a>
       <a href="../privacy.html">Privacy</a>
       <a href="../terms.html">Terms</a>
       <span>Addons belong to their authors. Problems with an addon: tell its author. Problems with a Workshop package: tell us on Discord.</span>
@@ -117,11 +117,11 @@
     function getPanel() {
       var el = $("get"), html = "";
       if (a.install) {
-        html += '<a class="btn" style="width: 100%;" href="' + esc(O.installHref([a.id])) + '" id="install">Install with Open Vanilla</a>';
-        html += '<p class="note">Opens the Open Vanilla launcher, which downloads the package from this site, checks its SHA-256 and puts it in your AddOns folder. No launcher? <a href="../index.html#desktop-launcher">Get it here</a>.</p>';
+        html += '<a class="btn" style="width: 100%;" href="' + esc(O.installHref([a.id])) + '" id="install">Install with Leyline</a>';
+        html += '<p class="note">Opens the Leyline Launcher, which downloads the package from this site, checks its SHA-256 and puts it in your AddOns folder. No launcher? <a href="../index.html#desktop-launcher">Get it here</a>.</p>';
         var f = (a.files || [])[0];
         if (f) html += '<p class="note">Or download <a href="' + esc(O.url(f.url)) + '" download>' + esc(f.name) + "</a> (" + esc(O.fmtSize(f.size)) + ") and unzip it into <code>Interface/AddOns</code>.</p>";
-        if (a.ours) html += '<p class="note">This addon ships with the Open Vanilla client already; installing restores or updates it.</p>';
+        if (a.ours) html += '<p class="note">This addon ships with the Leyline client already; installing restores or updates it.</p>';
         if (a.browser) {
           html += '<a class="btn" style="width: 100%; margin-top: 8px;" href="https://play.openvanilla.app/?addon=' + encodeURIComponent(a.id) + '" id="browserplay">Play it in your browser</a>';
           html += '<p class="note">Adds it to browser play at play.openvanilla.app: checked against the same SHA-256, kept in your browser only. Turn it off or remove it from the game page\'s menu (Addons).</p>';
@@ -150,7 +150,7 @@
       if (!a.verified) rows.push(["Checked", "source not verified yet"]);
       $("facts").innerHTML = rows.map(function (r) { return "<dt>" + r[0] + "</dt><dd>" + r[1] + "</dd>"; }).join("");
       if (c.text) { $("credits").hidden = false; $("credits").textContent = c.text; }
-      $("licNote").textContent = a.ours ? "Made by Open Vanilla for the Vanilla Remastered client." :
+      $("licNote").textContent = a.ours ? "Made by Leyline for the Vanilla Remastered client." :
         a.rehost ? "We host an unmodified copy under the author's licence; the package carries this credits file and the licence." :
         "Linked, not hosted: all rights stay with the author.";
     }

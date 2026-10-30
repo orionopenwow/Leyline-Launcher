@@ -1,4 +1,4 @@
-// custom.js: your room to build on the Open Vanilla GM panel.
+// custom.js: your room to build on the Leyline GM panel.
 // Loaded once after the panel starts. Edit, save, then refresh the game page (F5) to see changes.
 // `gm` is the panel API (also `window.gm` in the browser console, F12). Uncomment to try:
 

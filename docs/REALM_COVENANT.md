@@ -1,7 +1,7 @@
-# The Open Vanilla Realm Covenant & Continuity Pledge
+# The Leyline Realm Covenant & Continuity Pledge
 
-The Open Vanilla Realm Covenant is the foundational agreement between realm hosts,
-players, and the Open Vanilla network. Inspired by the Mastodon Server Covenant,
+The Leyline Realm Covenant is the foundational agreement between realm hosts,
+players, and the Leyline network. Inspired by the Mastodon Server Covenant,
 it ensures that thousands of independent realms can flourish without centralized
 abuse, commercial exploitation, or catastrophic data loss.
 
@@ -9,7 +9,7 @@ abuse, commercial exploitation, or catastrophic data loss.
 
 ## 1. The Core Covenant Rules
 
-Every realm listed in the Open Vanilla Directory commits to the following non-negotiable rules:
+Every realm listed in the Leyline Directory commits to the following non-negotiable rules:
 
 1. **Non-Commercial Operation (Nothing Sold)**
    - No microtransactions, cash shops, subscriptions, pay-to-win mechanics, or paid cosmetic items.
@@ -48,7 +48,7 @@ Every realm listed in the Open Vanilla Directory commits to the following non-ne
 
 The fatal flaw of past private servers was the single point of failure: when an operator vanished, was attacked, or faced legal letters, player accounts and character history were destroyed or trapped.
 
-The Open Vanilla Realm Will provides continuity before any crisis occurs:
+The Leyline Realm Will provides continuity before any crisis occurs:
 
 1. **Successor Designation**: The host designates 1 or 2 successors identified by their Hero ID (`ovh1...`).
 2. **Multi-Party Backup Escrow**: Encrypted database snapshots are periodically pushed to distributed escrow nodes (never a single central vault).
@@ -62,7 +62,7 @@ The Open Vanilla Realm Will provides continuity before any crisis occurs:
 
 | Tier | Status | Verification Requirements | Capabilities |
 |---|---|---|---|
-| **Tier 0: Official** | Open Vanilla Team | Maintained by Open Vanilla core team | Full character import; cross-realm boards |
+| **Tier 0: Official** | Leyline Team | Maintained by Leyline core team | Full character import; cross-realm boards |
 | **Tier 1: Verified** | Vetted Community | Reproducible build hash, signed recipe, Covenant signed, bots flagged, audit sampling accepted | Full character import (with stat caps); cross-realm boards |
 | **Tier 2: Community** | Self-Hosted Listed | Heartbeats passing probe, valid host key, Covenant accepted | Cosmetic import (titles, appearances); per-realm boards |
 | **Tier 3: Unverified** | Untrusted / Pocket | Unknown keys, unlisted hosts, browser sandbox | Legacy display inspect badge only |
@@ -74,4 +74,4 @@ Violations of the Covenant trigger proportionate, transparent enforcement:
 3. **Hidden from Default Sort**: Realm is unranked and accessible only via direct search or direct link.
 4. **Delisting**: Realm key removed from directory trust list.
 
-*Delisting is directory-only. Open Vanilla never operates client-side blacklists or network chokepoints.*
+*Delisting is directory-only. Leyline never operates client-side blacklists or network chokepoints.*

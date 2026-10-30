@@ -1,4 +1,4 @@
-"""Open Vanilla's own downloads over BitTorrent, with a clean plain-HTTP fallback.
+"""Leyline's own downloads over BitTorrent, with a clean plain-HTTP fallback.
 
     t = Torrents(state_dir, settings)       # settings: {"seeding": False, "upload_kbps": 256}
     t.seeding_enabled                       # False until the player turns it on (after the explainer)
@@ -6,7 +6,7 @@
     path = t.download(manifest_url, dest_dir, progress_cb)   # progress_cb(done, total, text)
     t.status()
 
-What is shared: only files listed in an Open Vanilla manifest signed with the release key (the Solo pack,
+What is shared: only files listed in a Leyline manifest signed with the release key (the Solo pack,
 the launcher/client zips, patch-Z.MPQ). Blizzard game files are never downloaded or seeded here.
 
 Manifests: the existing solo.json / version.json shape, each downloadable entry ({"url", "size",
@@ -111,7 +111,7 @@ def piece_length_for(size):
     return int(min(max(2 ** math.ceil(math.log2(target)), 256 * 1024), 16 << 20))
 
 
-def make_torrent(path, trackers=(), web_seeds=(), piece_length=None, comment="Open Vanilla", created=None):
+def make_torrent(path, trackers=(), web_seeds=(), piece_length=None, comment="Leyline", created=None):
     """A single-file v1 .torrent. -> (bytes, info_hash hex)."""
     size = os.path.getsize(path)
     plen = piece_length or piece_length_for(size)
@@ -150,7 +150,7 @@ def fetch_signed(url, pubkey=MANIFEST_PUBKEY, fetch=None):
     except (ValueError, UnicodeDecodeError):
         sig = b""
     if not ed25519.verify(bytes.fromhex(pubkey), body, sig):
-        raise P2PError("The download information isn't signed by Open Vanilla. Nothing was downloaded.")
+        raise P2PError("The download information isn't signed by Leyline. Nothing was downloaded.")
     try:
         return json.loads(body.decode("utf-8"))
     except ValueError:
@@ -443,9 +443,9 @@ class Torrents:
 
 
 EXPLAINER = (
-    "Seeding shares Open Vanilla's own downloads (the Solo server pack, launcher and client updates, and "
+    "Seeding shares Leyline's own downloads (the Solo server pack, launcher and client updates, and "
     "the Classic+ patch) with other players near you and on the internet, so updates are faster for "
-    "everyone and cost less to host. Only files signed by Open Vanilla are ever shared; your World of "
+    "everyone and cost less to host. Only files signed by Leyline are ever shared; your World of "
     "Warcraft game files are never shared. Uploads are capped at the limit you pick ({kbps} KB/s). "
     "Turn it off any time in Settings; nothing is uploaded while it is off."
 )

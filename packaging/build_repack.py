@@ -1,4 +1,4 @@
-"""Build the Open Vanilla client repack.
+"""Build the Leyline client repack.
 
     python build_repack.py                      # build engine + launcher, assemble, zip
     python build_repack.py --engine-repo PATH   # build the engine from another checkout (e.g. kind-fermi)
@@ -241,7 +241,7 @@ def read_toc(folder):
 
 
 def is_own_addon(folder, meta):
-    """Ours = no Blizzard signature file and an Open Vanilla/Classic+ author tag."""
+    """Ours = no Blizzard signature file and a Leyline/Classic+ author tag."""
     if os.path.basename(folder).lower().startswith("blizzard_"):
         return False
     if any(f.lower().endswith(".toc.sig") for f in os.listdir(folder)):
@@ -294,7 +294,7 @@ def patch_notes(version, addons, changelog_path):
             "Redesigned launcher: hand-painted UI kit, animated vortex, floating embers and a living energy bar.",
             "Accounts: sign in, create an account and change your password right in the launcher.",
             "Signed in? PLAY logs you straight into the realm, no login screen.",
-            "Pick your game client at the bottom left: Open Vanilla, the browser version, or a stock 1.12.1 / 3.3.5a client.",
+            "Pick your game client at the bottom left: Leyline, the browser version, or a stock 1.12.1 / 3.3.5a client.",
             "Servers: your list plus the community directory; Mods: community addons and repacks; GitHub search built in.",
             "Update check with a real download progress bar and checksum verification.",
         ],
@@ -326,12 +326,12 @@ def readme(version, addons):
         "START HERE: double-click OpenVanilla.exe. It is the only program you need to run.",
         "",
         "WHAT YOU NEED",
-        "  Your own English World of Warcraft 1.12.1 (build 5875) install. Open Vanilla reads it and never",
+        "  Your own English World of Warcraft 1.12.1 (build 5875) install. Leyline reads it and never",
         "  changes its game data. No Blizzard files are included here.",
         "",
         "HOW TO PLAY",
         "  1. Run OpenVanilla.exe (tip: right-click it -> Send to -> Desktop).",
-        "  2. Pick a mode in the switch at the bottom left: ONLINE (the Open Vanilla realm), SOLO (your own",
+        "  2. Pick a mode in the switch at the bottom left: ONLINE (the Leyline realm), SOLO (your own",
         "     world on this PC with playerbots: SPP Classics, which the launcher downloads, sets up",
         "     and starts for you) or BROWSER.",
         "  3. Press PLAY. If something is missing (your WoW 1.12.1 folder, Solo's one-time setup), the",
@@ -341,12 +341,12 @@ def readme(version, addons):
         "  the game exe directly. To run your own realm, get OpenVanilla-Server.zip (openvanilla.app/host.html).",
         "",
         "  Updates download by themselves: when the launcher shows 'Update ready', press it and",
-        "  Open Vanilla restarts on the new version. News and links refresh without any update.",
+        "  Leyline restarts on the new version. News and links refresh without any update.",
         "",
         "FOLDERS",
         "  OpenVanilla.exe          the launcher: start here",
         "  app\\                 the launcher's own files (don't change them)",
-        "  Game\\                the Open Vanilla engine (Open Vanilla Game.exe, started by OpenVanilla.exe) and its",
+        "  Game\\                the Leyline engine (Open Vanilla Game.exe, started by OpenVanilla.exe) and its",
         "                       settings (benilla-config)",
         "  AddOns\\Enabled       addons every game client loads; Workshop installs land here",
         "  AddOns\\Disabled      addons you switched off",
@@ -367,10 +367,10 @@ def readme(version, addons):
     lines += [
         "",
         "CREDITS & LICENCES",
-        "  The Open Vanilla engine is built on benilla (https://github.com/samwhosung/benilla),",
+        "  The Leyline engine is built on benilla (https://github.com/samwhosung/benilla),",
         "  MIT / Apache-2.0. Play Solo uses SPP Classics (https://github.com/celguar/spp-classics-cmangos),",
         "  downloaded from its own releases when you first use it. Licence texts are in LICENSES.",
-        "  World of Warcraft is a trademark of Blizzard Entertainment, Inc. Open Vanilla is an",
+        "  World of Warcraft is a trademark of Blizzard Entertainment, Inc. Leyline is an",
         "  independent fan project, not affiliated with or endorsed by Blizzard.",
         "",
     ]
@@ -380,7 +380,7 @@ def readme(version, addons):
 def user_links(links_text):
     """The player's links.txt: every setting commented out (the real defaults ship in app/data/links.txt),
     so a later update's new defaults are never hidden behind a stale copy."""
-    out = ["# Your Open Vanilla link overrides. The launcher's defaults are in app\\data\\links.txt and updates",
+    out = ["# Your Leyline link overrides. The launcher's defaults are in app\\data\\links.txt and updates",
            "# change them; a line you uncomment here wins over them (and over the live content).",
            "# Example: remove the '# ' in front of SPP_URL to use another SPP Classics download.", ""]
     for line in links_text.splitlines():
@@ -592,8 +592,8 @@ def main():
         except (OSError, ValueError):
             directory = {"servers": [], "mods": [], "repacks": []}
         repacks = [r for r in directory.get("repacks", []) if r.get("kind") not in ("client", "server")
-                   or not any(n in r.get("name", "") for n in ("Open Vanilla", "OpenWoW"))]   # replaces ours, old name too
-        repacks.insert(0, {"name": "Open Vanilla client (Windows)", "kind": "client", "client": "1.12.1", "version": version,
+                   or not any(n in r.get("name", "") for n in ("Leyline", "OpenWoW"))]   # replaces ours, old name too
+        repacks.insert(0, {"name": "Leyline client (Windows)", "kind": "client", "client": "1.12.1", "version": version,
                            "url": manifest["url"], "size": size,
                            "description": "OpenVanilla.exe: play online or solo (SPP Classics). Needs your own WoW 1.12.1 data."})
         directory["repacks"] = repacks

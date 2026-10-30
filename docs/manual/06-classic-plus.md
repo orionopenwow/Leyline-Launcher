@@ -1,9 +1,9 @@
 slug: classic-plus
 title: In-game features: the Vanilla Remastered addons
 kicker: Chapter 6 · Play
-summary: Every addon that comes with Open Vanilla, how to open it, what its settings do, and how to switch any of it off for pure Vanilla.
+summary: Every addon that comes with Leyline, how to open it, what its settings do, and how to switch any of it off for pure Vanilla.
 
-Open Vanilla ships with the **Vanilla Remastered** addons, a suite that modernises the Vanilla interface without changing what the game is: a better quest log and map, one-bag inventory, a social window, a group-finder board, achievements, meters and more. Every piece can be switched off, alone or all at once.
+Leyline ships with the **Vanilla Remastered** addons, a suite that modernises the Vanilla interface without changing what the game is: a better quest log and map, one-bag inventory, a social window, a group-finder board, achievements, meters and more. Every piece can be switched off, alone or all at once.
 
 > **Note:** Some features need the realm's help (quest pins, threat numbers, achievements). On a realm that doesn't support them, those parts simply stay quiet.
 
@@ -15,7 +15,7 @@ Open the **AddOns** window with `/addons` (or `/cplus`), or **Esc → AddOns**.
 - Bottom: **Enable All**, **Pure Vanilla** (everything off, stock interface), and **Close**.
 - `/vanilla` toggles pure Vanilla from anywhere.
 
-The **Game Menu** button at the end of the menu bar holds the Open Vanilla tools list: Meters, Threat, Bags, Raid tools, Persona, Workshop and the AddOns window.
+The **Game Menu** button at the end of the menu bar holds the Leyline tools list: Meters, Threat, Bags, Raid tools, Persona, Workshop and the AddOns window.
 
 ### First-time setup {#setup-presets}
 

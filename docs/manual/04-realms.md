@@ -9,7 +9,7 @@ In the launcher, **Realms → Realm browser** shows the live directory, filterab
 
 | Group | Meaning |
 | --- | --- |
-| **Verified realms · Official** | Run by Open Vanilla |
+| **Verified realms · Official** | Run by Leyline |
 | **Verified realms · Vetted** | Checked by the maintainers |
 | **Community P2P realms** | Hosted by players; not vetted, play at your own risk |
 
@@ -33,29 +33,29 @@ A friend hosting a realm can send you an invite link. Paste it in the **Invite l
 
 | Connection | Your IP | Notes |
 | --- | --- | --- |
-| **Through the relay** (recommended) | Hidden | Traffic passes through Open Vanilla's relay, end-to-end encrypted |
+| **Through the relay** (recommended) | Hidden | Traffic passes through Leyline's relay, end-to-end encrypted |
 | **Direct** | The host sees it | Sign-in details between friends travel unencrypted; only join hosts you trust |
-| **LAN** | Same network | Open Vanilla isn't involved at all |
+| **LAN** | Same network | Leyline isn't involved at all |
 
 The launcher remembers a host's key the first time you join. If it changes, it warns you ("Host key changed … ask them for a new invite link"): someone may be pretending to be them.
 
 ## The node network {#nodes}
 
-Nodes are volunteers' PCs that help carry relay traffic (end-to-end encrypted, never game files). It's optional and in a test round; Open Vanilla's own relay comes first.
+Nodes are volunteers' PCs that help carry relay traffic (end-to-end encrypted, never game files). It's optional and in a test round; Leyline's own relay comes first.
 
 To volunteer: launcher **Host → Become a node** (or Esc → **Become a Node** in game to read about it), set caps for speed and data per day (at the daily cap it pauses until midnight UTC), make sure TCP port 3728 is reachable (UPnP or a forwarded port; carrier-grade NAT can't host), and press **Turn on my node**. You can list it as anonymous or with a display name. Approved nodes, after three days of steady uptime, get a **NODE** badge. More on [nodes.html](../nodes.html).
 
 ## How the player network works {#p2p}
 
-Open Vanilla's network is built so anyone can host a realm and anyone can find and join it safely. It has five parts:
+Leyline's network is built so anyone can host a realm and anyone can find and join it safely. It has five parts:
 
 | Part | Runs on | What it does |
 | --- | --- | --- |
-| **The host** | The host's PC (or Open Vanilla's servers for official realms) | Runs the whole world: every player, creature, bot and spell |
-| **The directory** | Open Vanilla's server | Lists realms by tier, checks they're reachable, tells your launcher how to reach them |
-| **Relays** | Open Vanilla's servers | Carry traffic for hosts behind home routers, hiding both sides' IP addresses |
+| **The host** | The host's PC (or Leyline's servers for official realms) | Runs the whole world: every player, creature, bot and spell |
+| **The directory** | Leyline's server | Lists realms by tier, checks they're reachable, tells your launcher how to reach them |
+| **Relays** | Leyline's servers | Carry traffic for hosts behind home routers, hiding both sides' IP addresses |
 | **Nodes** | Volunteers' PCs | Extra relays: more connections, attack absorption, shorter routes |
-| **One sign-in** | Open Vanilla's server | Short-lived, realm-bound tokens: you never make a password per realm, and hosts never see yours |
+| **One sign-in** | Leyline's server | Short-lived, realm-bound tokens: you never make a password per realm, and hosts never see yours |
 
 Your connection is sealed end to end between your launcher and the host: a relay or node only copies bytes it can't read, and it can't pretend to be the host.
 
@@ -63,9 +63,9 @@ Your connection is sealed end to end between your launcher and the host: a relay
 
 ## Why there isn't one giant world {#scaling}
 
-A realm's whole world runs in one server program on one machine; on the server Open Vanilla uses, each continent is updated by a single processor core. Relays and nodes add **connections**, not world power: they can't run part of someone's world, and letting volunteers do that would let them hand out items or read everyone's chat.
+A realm's whole world runs in one server program on one machine; on the server Leyline uses, each continent is updated by a single processor core. Relays and nodes add **connections**, not world power: they can't run part of someone's world, and letting volunteers do that would let them hand out items or read everyone's chat.
 
-So Open Vanilla grows in two ways at once:
+So Leyline grows in two ways at once:
 
 - **The official realm gets faster:** measured tuning, then splitting each continent into regions that run in parallel (the approach Nostalrius used), and copies ("layers") only for launches and big events.
 - **The network gets wider:** more realms, official and player-hosted, all behind one sign-in, one realm list and one set of rules. Busy community realms can grow up: **Community** → **Verified** → hosted on a datacenter server while staying run by their community.

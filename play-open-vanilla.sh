@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
-# Open Vanilla launcher on macOS and Linux, from this folder (Windows: Play Open Vanilla.bat).
-#   bash play-open-vanilla.sh          (macOS: double-click "Play Open Vanilla.command")
+# Leyline Launcher on macOS and Linux, from this folder (Windows: Play Leyline Launcher.bat).
+#   bash play-open-vanilla.sh          (macOS: double-click "Play Leyline Launcher.command")
 #   bash play-open-vanilla.sh debug    show what the launcher prints
 # First run: finds Python 3.10+ with Tk, and puts Pillow (the launcher's image library) in a private
 # environment under your user folder if the system doesn't have it. Nothing is installed system-wide.
@@ -21,7 +21,7 @@ for c in "$VENV/bin/python3" python3.13 python3.12 python3.11 python3.10 python3
 done
 if [ -z "$PY" ]; then
   say ""
-  say "  Open Vanilla runs from this folder with Python 3.10 or newer, with Tk (its window toolkit)."
+  say "  Leyline runs from this folder with Python 3.10 or newer, with Tk (its window toolkit)."
   if [ "$(uname -s)" = Darwin ]; then
     say "  Install it from https://www.python.org/downloads/macos/ (Tk included),"
     say "  or with Homebrew: brew install python python-tk"

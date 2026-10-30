@@ -1,4 +1,4 @@
-# Open Vanilla: 1.12.1 addon compatibility report
+# Leyline: 1.12.1 addon compatibility report
 
 Date: 2026-10-12. Client tested: `AdventureWorld/www/wenilla_bg.wasm` (87,643,605 bytes, built 2026-10-12), served by `asset_server.py` at http://localhost:18090. Test character: Testflow (level 1 Human Warrior), Vanilla Realm, Northshire.
 

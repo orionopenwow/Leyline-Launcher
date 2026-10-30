@@ -227,7 +227,7 @@ def _node_modules():
 
         def enable(self):
             if not self.relay_enabled:
-                raise NodeError("The node network isn't open yet: the test round starts with Open Vanilla's own relay.")
+                raise NodeError("The node network isn't open yet: the test round starts with Leyline's own relay.")
             self.machine.state = "consent"
             return n.consent_text(self.cfg)
 

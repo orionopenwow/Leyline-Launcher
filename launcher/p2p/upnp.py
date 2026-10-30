@@ -22,7 +22,7 @@ SSDP_ADDR = ("239.255.255.250", 1900)
 SERVICES = ("urn:schemas-upnp-org:service:WANIPConnection:2", "urn:schemas-upnp-org:service:WANIPConnection:1",
             "urn:schemas-upnp-org:service:WANPPPConnection:1")
 LEASE = 3600
-DESCRIPTION = "Open Vanilla host"
+DESCRIPTION = "Leyline host"
 
 
 def local_ip_for(target="10.255.255.255"):

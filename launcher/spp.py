@@ -404,7 +404,7 @@ class SppServers:
         """A command on mangosd's console (only for a world server this launcher started)."""
         m = self.procs.get("mangosd")
         if m is None or m.poll() is not None or m.stdin is None:
-            raise SppError("The world server's console is only available when Open Vanilla started it.")
+            raise SppError("The world server's console is only available when Leyline started it.")
         with self._lock:
             m.stdin.write((command.strip() + "\n").encode("utf-8"))
             m.stdin.flush()

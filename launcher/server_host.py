@@ -176,7 +176,7 @@ class Dedicated:
         if self.cfg.get("soap_user") and self.cfg.get("soap_pass"):
             import play_local
             return play_local.soap_command(command, self.cfg["soap_user"], self.cfg["soap_pass"], int(self.cfg.get("soap_port") or 7878))
-        raise spp.SppError("This world server was started outside Open Vanilla. Stop it and start it here to use the console, "
+        raise spp.SppError("This world server was started outside Leyline. Stop it and start it here to use the console, "
                            "or turn on SOAP (SOAP.Enabled = 1 in mangosd.conf) and add soap_user / soap_pass to "
                            "Settings\\server.json.")
 

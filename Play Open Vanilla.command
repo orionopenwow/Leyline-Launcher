@@ -1,3 +1,3 @@
 #!/bin/bash
-# macOS: double-click to open the Open Vanilla launcher (it runs play-open-vanilla.sh in this folder).
+# The old name of "Play Leyline Launcher.command", kept so existing shortcuts keep working.
 cd "$(dirname "$0")" && exec bash play-open-vanilla.sh "$@"

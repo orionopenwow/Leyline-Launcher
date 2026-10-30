@@ -13,7 +13,7 @@ set -euo pipefail
 REALM_DIR=${OW_REALM_DIR:-/opt/wenilla-realm}
 CP=${OW_CP:-/opt/openvanilla-classicplus}
 REPO_DIR=$CP/repo
-REPO_URL=${OPENVANILLA_REPO:-https://github.com/orionopenwow/OpenVanilla}
+REPO_URL=${OPENVANILLA_REPO:-https://github.com/orionopenwow/Leyline-Launcher}
 SYNC=1
 [ "${1:-}" = --no-sync ] && SYNC=0
 export GIT_TERMINAL_PROMPT=0

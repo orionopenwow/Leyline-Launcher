@@ -18,7 +18,7 @@ Settings (/etc/openvanilla-herald.env; hetzner/herald_up.sh writes the server on
   TICKET_POLL_SEC=30
   SUPPORT_DB_HOST, SUPPORT_DB_PORT, SUPPORT_DB_USER, SUPPORT_DB_PASS, CHARACTERS_DATABASE=classiccharacters
   SOAP_URL=http://127.0.0.1:17878/, SOAP_USER, SOAP_PASS   a GM-3 console account
-  GITHUB_TOKEN, GITHUB_REPO=orionopenwow/OpenVanilla             optional: Log bug opens a GitHub issue
+  GITHUB_TOKEN, GITHUB_REPO=orionopenwow/Leyline-Launcher             optional: Log bug opens a GitHub issue
 """
 import asyncio
 import base64
@@ -185,7 +185,7 @@ class Realm:
 
 
 def github_issue(title, body):
-    token, repo = env("GITHUB_TOKEN"), env("GITHUB_REPO", "orionopenwow/OpenVanilla")
+    token, repo = env("GITHUB_TOKEN"), env("GITHUB_REPO", "orionopenwow/Leyline-Launcher")
     if not token:
         return None
     req = urllib.request.Request(f"https://api.github.com/repos/{repo}/issues", method="POST",

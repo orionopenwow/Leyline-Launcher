@@ -3,11 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Workshop · Open Vanilla</title>
-  <meta name="description" content="The Open Vanilla Workshop: Vanilla addons, checked in our Vanilla client simulator, with ratings and reviews. Openly licensed addons install in one click; the rest link to their authors.">
+  <title>Workshop · Leyline</title>
+  <meta name="description" content="The Leyline Workshop: Vanilla addons, checked in our Vanilla client simulator, with ratings and reviews. Openly licensed addons install in one click; the rest link to their authors.">
   <meta property="og:type" content="website">
-  <meta property="og:site_name" content="Open Vanilla">
-  <meta property="og:title" content="Workshop · Open Vanilla">
+  <meta property="og:site_name" content="Leyline">
+  <meta property="og:title" content="Workshop · Leyline">
   <meta property="og:description" content="Vanilla addons, checked in our simulator. One-click installs for openly licensed addons; every author credited.">
   <meta property="og:image" content="https://openvanilla.app/assets/workshop/og_workshop.jpg">
   <meta property="og:url" content="https://openvanilla.app/workshop.html">
@@ -20,18 +20,18 @@
 <body>
   <div class="wrap">
     <header class="top">
-      <a class="home" href="index.html">&larr; Open Vanilla</a>
+      <a class="home" href="index.html">&larr; Leyline</a>
       <nav aria-label="Workshop">
         <a href="#collections">Collections</a>
         <a href="#upload">Share an addon</a>
-        <span style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;justify-content:flex-end"><a class="pill manual-link" href="manual/workshop.html" style="text-decoration:none" title="Read about this in the Open Vanilla Manual">MANUAL</a><span class="pill">WORKSHOP</span></span>
+        <span style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;justify-content:flex-end"><a class="pill manual-link" href="manual/workshop.html" style="text-decoration:none" title="Read about this in the Leyline Manual">MANUAL</a><span class="pill">WORKSHOP</span></span>
       </nav>
     </header>
 
     <section class="hero" style="background-image: url('assets/workshop/hero_workshop.webp');">
       <div class="in">
         <h1>Workshop</h1>
-        <p class="lead">Vanilla addons, each one loaded in our Vanilla client simulator so you know what works before you install it. Addons whose licence lets us share them install in one click from the launcher; every other addon links to its author. Our own Open Vanilla addons are marked <b>Ours</b>.</p>
+        <p class="lead">Vanilla addons, each one loaded in our Vanilla client simulator so you know what works before you install it. Addons whose licence lets us share them install in one click from the launcher; every other addon links to its author. Our own Leyline addons are marked <b>Ours</b>.</p>
       </div>
     </section>
 
@@ -77,7 +77,7 @@
     <p class="note">The badges come from an automatic check: the addon is loaded in a simulated Vanilla client, through login and a few seconds of play. <b>Works</b> loaded clean; <b>Partly</b> loaded but uses parts of the client the simulator does not model (judge it in the game); <b>Needs fixes</b> showed errors; addons we may not host are not checked. Ratings, reviews and install counts are live from the realm; when it cannot be reached, the page shows the last snapshot and is read-only.</p>
 
     <footer class="bottom">
-      <a href="index.html">Open Vanilla</a>
+      <a href="index.html">Leyline</a>
       <a href="realms.html">Realms</a>
       <a href="armory.html">Armory</a>
       <a href="creators.html">Creators</a>
@@ -140,7 +140,7 @@
 
     function collections(idx, live) {
       var cols = (idx.collections || []).map(function (c) {
-        return '<a class="col" href="' + O.page("collection.html", "?id=" + encodeURIComponent(c.id)) + '" style="background-image:url(\'' + esc(O.url(c.banner || "assets/workshop/collection_raiders.webp")) + '\')"><div class="in"><b>' + esc(c.name) + "</b><p>" + esc(c.summary) + "</p><small>" + esc((c.addons || []).length) + " addons · by " + esc(c.curator || "Open Vanilla") + "</small></div></a>";
+        return '<a class="col" href="' + O.page("collection.html", "?id=" + encodeURIComponent(c.id)) + '" style="background-image:url(\'' + esc(O.url(c.banner || "assets/workshop/collection_raiders.webp")) + '\')"><div class="in"><b>' + esc(c.name) + "</b><p>" + esc(c.summary) + "</p><small>" + esc((c.addons || []).length) + " addons · by " + esc(c.curator || "Leyline") + "</small></div></a>";
       });
       (live || []).slice(0, 12).forEach(function (c) {
         cols.push('<a class="col" href="' + O.page("collection.html", "?id=" + encodeURIComponent(c.id)) + '" style="background-image:url(\'' + esc(O.url("assets/workshop/creator_banner.webp")) + '\')"><div class="in"><b>' + esc(c.name) + "</b><p>" + esc(c.summary) + "</p><small>" + esc((c.addons || []).length) + " addons · by " + esc(c.curator) + "</small></div></a>");

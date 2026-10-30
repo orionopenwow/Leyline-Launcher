@@ -1,7 +1,7 @@
 slug: workshop
 title: Publish to the Workshop
 kicker: Chapter 15 · Share
-summary: Install from the Workshop, then share your own: an addon, a Vanilla Remastered port, a collection, a fork of Open Vanilla, or a whole repo or project.
+summary: Install from the Workshop, then share your own: an addon, a Vanilla Remastered port, a collection, a fork of Leyline, or a whole repo or project.
 
 The **Workshop** is where players find addons for the Vanilla client: rated, reviewed, checked in a fake client before anyone installs them, and one click from the launcher. Bigger things (forks, clients, server projects, games) go in the **Projects** directory next to it.
 
@@ -12,7 +12,7 @@ The **Workshop** is where players find addons for the Vanilla client: rated, rev
 | An addon (UI, bags, maps, quest helpers, combat, social...) | **Workshop** | [Upload it](#upload) or [send a catalogue entry](#pull-request) |
 | A port of an open addon into Vanilla Remastered | **Workshop** | [Port it](#port), then upload |
 | A bundle of addons for a play style | **Workshop collection** | [Collections](#collections) |
-| A fork of Open Vanilla, a client, a server, a repack, a game | **Projects** directory | [List a project](#directory) |
+| A fork of Leyline, a client, a server, a repack, a game | **Projects** directory | [List a project](#directory) |
 | An addon on GitHub you want found | **Workshop**, automatically | [Tag your repo](#github-topics) |
 
 ## Install from the Workshop {#install}
@@ -22,7 +22,7 @@ The **Workshop** is where players find addons for the Vanilla client: rated, rev
 - **From a zip:** **Workshop → Installed → Install from .zip**. It accepts plain addon zips, packs of several addons and GitHub "Download ZIP" archives, renames folders to match their `.toc`, and refuses anything that would land outside your AddOns folder.
 - **From GitHub:** in Advanced mode, the **GitHub** tab searches repos (presets: Repacks, Vanilla addons) and installs a repo's default branch.
 
-Check the label first: **Works** (loaded and logged in clean), **Partly** (uses parts of the API the checker can't test), **Needs fixes**, **Not checked**, and **Ours** for the Open Vanilla addons.
+Check the label first: **Works** (loaded and logged in clean), **Partly** (uses parts of the API the checker can't test), **Needs fixes**, **Not checked**, and **Ours** for the Leyline addons.
 
 ## Before you publish {#prepare}
 
@@ -105,9 +105,9 @@ Signed-in players can rate and review addons on each addon's page. Moderators ca
 
 ## List a fork, repo or project {#directory}
 
-Forks of Open Vanilla, other clients, server projects, repacks and games built on the same tech go in the **Projects** directory (`www/community/directory.json`). Each gets a page at `project.html#<id>` and a spot in the launcher's **Workshop → Projects** tab.
+Forks of Leyline, other clients, server projects, repacks and games built on the same tech go in the **Projects** directory (`www/community/directory.json`). Each gets a page at `project.html#<id>` and a spot in the launcher's **Workshop → Projects** tab.
 
-To be listed, [open an issue](https://github.com/orionopenwow/OpenVanilla/issues) with the name, link, a short description, the credits and a screenshot. An entry looks like this:
+To be listed, [open an issue](https://github.com/orionopenwow/Leyline-Launcher/issues) with the name, link, a short description, the credits and a screenshot. An entry looks like this:
 
 ```
 {
@@ -123,20 +123,20 @@ To be listed, [open an issue](https://github.com/orionopenwow/OpenVanilla/issues
   "homepage": "https://you.example",
   "description": "One line.",
   "about": "A paragraph: what's different and who it's for.",
-  "credits": ["Open Vanilla", "benilla by samwhosung"],
+  "credits": ["Leyline", "benilla by samwhosung"],
   "images": ["https://..."]
 }
 ```
 
 `kind` is `client`, `source` or `game`.
 
-## Fork Open Vanilla {#fork}
+## Fork Leyline {#fork}
 
-1. **Fork the repo** on GitHub ([orionopenwow/OpenVanilla](https://github.com/orionopenwow/OpenVanilla)) or clone it to another host.
-2. **Keep the credits.** Open Vanilla is built on **benilla** (MIT / Apache-2.0); keep its licence files and credit line.
+1. **Fork the repo** on GitHub ([orionopenwow/Leyline-Launcher](https://github.com/orionopenwow/Leyline-Launcher)) or clone it to another host.
+2. **Keep the credits.** Leyline is built on **benilla** (MIT / Apache-2.0); keep its licence files and credit line.
 3. **Keep Blizzard's files out.** The repo's checks refuse them, and so should your fork: players bring their own Vanilla Client v1.3.
-4. **Rename it.** Use your own name and art; don't present your fork as the official Open Vanilla.
+4. **Rename it.** Use your own name and art; don't present your fork as the official Leyline.
 5. **Point it at your own realm.** Realm addresses live in the launcher's defaults and the site's config; your fork's players should never sign in to a realm you don't run.
 6. **List it** in the [Projects directory](#directory) so players can find it.
 
-> **Warning:** The licence for Open Vanilla's own code (the launcher, site, Vanilla Remastered addons and tools) is being finalised. Until it's published in the repo, ask the maintainers before releasing a fork publicly.
+> **Warning:** The licence for Leyline's own code (the launcher, site, Vanilla Remastered addons and tools) is being finalised. Until it's published in the repo, ask the maintainers before releasing a fork publicly.

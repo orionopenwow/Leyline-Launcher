@@ -37,9 +37,9 @@ import ed25519
 SCHEMA = 1
 DEFAULT_FLAGS = {
     "solo": True,              # PLAY > Solo (SPP Classics on this PC)
-    "solo_pack": False,        # the older Open Vanilla solo pack (needs downloads/solo.json published)
+    "solo_pack": False,        # the older Leyline solo pack (needs downloads/solo.json published)
     "host_friends": True,      # unused: the launcher has no HOST tab (hosting is OpenVanilla-Server.zip)
-    "relay": False,            # the Open Vanilla relay/directory is deployed: offer "Through Open Vanilla"
+    "relay": False,            # the Leyline relay/directory is deployed: offer "Through Leyline"
     "nodes": False,            # the volunteer node network is open: HOST > Become a node can switch on, hosts may be
                                # carried by verified nodes, joins seal streams end to end (docs/NODE_NETWORK.md)
     "browser_play": True,      # PLAY > Browser

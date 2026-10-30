@@ -2,7 +2,7 @@
 
 ## Overview
 
-Pocket Realm is Open Vanilla's experimental showpiece: booting a lightweight Vanilla game server
+Pocket Realm is Leyline's experimental showpiece: booting a lightweight Vanilla game server
 inside a browser tab with WebWorker compute, WebRTC DataChannel multiplayer peers, and Origin Private
 File System (OPFS) SQLite storage.
 

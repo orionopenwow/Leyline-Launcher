@@ -231,7 +231,7 @@ class WorkshopPages(unittest.TestCase):
     def test_hosted_addon_page_rating_and_reviews(self):
         realm = FakeRealm(signed_in=True)
         p = self.page("workshop/addon.html?id=pfui", realm)
-        self.assertEqual(p.title(), "pfUI · Open Vanilla Workshop")
+        self.assertEqual(p.title(), "pfUI · Leyline Workshop")
         self.assertEqual(p.get_attribute("#install", "href"), "openvanilla://workshop/install/pfui")
         self.assertIn("Licence:  MIT", p.inner_text("#credits"))
         self.assertIn("1.2k installs", p.inner_text("#get"))

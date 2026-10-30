@@ -155,6 +155,6 @@ def login_exchange(send, recv_exact_fn, token, invite=None, extra=None):
     send(encode_frame(LOGIN_MAGIC, payload))
     head = recv_exact_fn(6)
     if head[:4] != REPLY_MAGIC:
-        raise ValueError("this realm doesn't take Open Vanilla sign-in")
+        raise ValueError("this realm doesn't take Leyline sign-in")
     n = struct.unpack(">H", head[4:6])[0]
     return decode_frame_body(recv_exact_fn(n))

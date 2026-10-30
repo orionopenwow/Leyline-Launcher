@@ -1,11 +1,11 @@
 # Activate your AI (optional)
 
-Open Vanilla is open source, and your copy is yours to change. An AI coding agent can do the typing for
+Leyline is open source, and your copy is yours to change. An AI coding agent can do the typing for
 you: make an addon, restyle your interface, change your own realm's rates, add an NPC to your own
 server, or get a realm running for your friends. You say what you want in plain words; it reads the
 files, makes the change and tells you how to test and undo it.
 
-This folder is the starter kit. The launcher copies it into your Open Vanilla data folder
+This folder is the starter kit. The launcher copies it into your Leyline data folder
 (**Settings > AI > Set up AI workspace**), which becomes the agent's workspace:
 
 ```
@@ -17,7 +17,7 @@ Agent\prompts\     ready-made prompts: copy one, paste it into your AI tool
 
 ## What you need
 
-- An AI coding agent and **your own account** with its maker. Open Vanilla never asks for, stores or sends
+- An AI coding agent and **your own account** with its maker. Leyline never asks for, stores or sends
   AI keys or logins, and has no partnership with any AI company.
 - **Claude Code** works best with this kit (it reads `CLAUDE.md` by itself). Install it from
   <https://code.claude.com/docs/en/setup>; it needs a paid Claude plan (Pro, Max, Team or Enterprise)
@@ -37,9 +37,9 @@ Agent\prompts\     ready-made prompts: copy one, paste it into your AI tool
 
 ## Safety rules (the agent is told these too)
 
-- It works on **your copy and your servers only**. The official Open Vanilla realm can't be changed from
+- It works on **your copy and your servers only**. The official Leyline realm can't be changed from
   here, and your account there is not affected.
-- It never touches Blizzard's game files or Open Vanilla's program files.
+- It never touches Blizzard's game files or Leyline's program files.
 - It backs files up to `Backups\ai-<date>\` before changing them.
 - Never paste passwords, tokens or keys into the AI. Type them yourself where they're needed.
 - Read what it proposes before you say yes, especially commands that download or delete things.

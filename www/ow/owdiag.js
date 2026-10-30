@@ -1,4 +1,4 @@
-// ow/owdiag.js — Open Vanilla self-test kit. One call, one compact JSON report.
+// ow/owdiag.js — Leyline self-test kit. One call, one compact JSON report.
 //
 //   await owdiag.run()            quick checks for the current screen (login, character, world)
 //   await owdiag.run('full')      + scenario checks that move the character and open UI panels

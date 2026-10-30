@@ -1,4 +1,4 @@
-// Open Vanilla Server Studio front end. Plain ES module, no build step.
+// Leyline Server Studio front end. Plain ES module, no build step.
 // Every label is live text over the art kit; all data is set with textContent, never innerHTML.
 
 const ROLES = { 0: 'Player', 1: 'Moderator', 2: 'Game Master', 3: 'Administrator' };
@@ -489,7 +489,7 @@ async function logs(root) {
   }
   sel.addEventListener('change', () => { logSource = sel.value; delete pre.dataset.loaded; load(); });
   root.replaceChildren(panelWith('Logs', 'log', h('div', { class: 'actions' }, sel, h('label', { class: 'inline fine' }, auto, 'Follow'), btn('Refresh', { sm: true, ic: 'refresh', onclick: load })), pre,
-    h('p', { class: 'fine', text: 'Asking for help? Copy the lines around the error into the Open Vanilla Discord\'s #bug-reports.' })));
+    h('p', { class: 'fine', text: 'Asking for help? Copy the lines around the error into the Leyline Discord\'s #bug-reports.' })));
   await load();
   timer = setInterval(() => { if (auto.checked) load().catch(() => {}); }, 4000);
 }

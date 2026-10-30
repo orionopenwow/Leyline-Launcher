@@ -1,7 +1,7 @@
 Open Vanilla Solo
 ============
 
-Play Open Vanilla offline on this PC: your own private world server, with playerbots, the Classic+
+Play Leyline offline on this PC: your own private world server, with playerbots, the Classic+
 content and the same game client and addons you use on the live realm. The launcher's
 PLAY SOLO button runs all of it in the background; you never need to open this folder.
 
@@ -11,14 +11,14 @@ characters can't be brought here.
 What is in this folder
 ----------------------
   bin\                 the world server (mangosd.exe, CMaNGOS classic with PlayerBots and
-                       Open Vanilla's server hooks) and the login server (realmd.exe)
+                       Leyline's server hooks) and the login server (realmd.exe)
   bin\tools\           the map extractors (see below)
   mariadb\             a portable MariaDB database server (no installer, no service)
   db\                  the starting databases: the Classic+ world, empty character and
                        account databases
   sql\                 the Classic+ world changes, the same files the live realm runs
   conf\                the settings templates the launcher fills in
-  tools\               Open Vanilla's server DBC fix-ups (starting gear and weapon skills for the
+  tools\               Leyline's server DBC fix-ups (starting gear and weapon skills for the
                        Classic+ race and class pairs)
   pack.json            what is in this pack, with a SHA-256 for every file
 
@@ -42,7 +42,7 @@ Map data and the extractors
 ---------------------------
 No Blizzard game files are in this pack. The world server needs map data made from your own
 Vanilla client. The first time you play solo the launcher looks for map data you already have
-(solo\gamedata, the client folder, a local SPP or Open Vanilla server) and, when there is none,
+(solo\gamedata, the client folder, a local SPP or Leyline server) and, when there is none,
 runs the extractors on your client with a progress bar (about 10-20 minutes, once):
 
   bin\tools\ad.exe              DBC files and terrain maps     ad.exe -i <client> -o <out>
@@ -67,6 +67,6 @@ Close the launcher and delete solo\data to get a fresh world (your solo characte
 Delete solo\gamedata to extract the maps again.
 
 Licences: CMaNGOS and PlayerBots (GPL-2.0), classic-db (GPL-3.0), MariaDB (GPL-2.0).
-Source: https://github.com/cmangos, https://github.com/orionopenwow/OpenVanilla
-World of Warcraft is a trademark of Blizzard Entertainment, Inc. Open Vanilla is not affiliated
+Source: https://github.com/cmangos, https://github.com/orionopenwow/Leyline-Launcher
+World of Warcraft is a trademark of Blizzard Entertainment, Inc. Leyline is not affiliated
 with Blizzard Entertainment.

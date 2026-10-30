@@ -110,7 +110,7 @@ REALM_NAME = Vanilla Remastered
 REALM_TYPE = PvE
 
 DISCORD_INVITE = https://discord.gg/hVeUxYwbkr
-OPENVANILLA_CLIENT_URL = https://github.com/orionopenwow/OpenVanilla/releases/latest
+OPENVANILLA_CLIENT_URL = https://github.com/orionopenwow/Leyline-Launcher/releases/latest
 ```
 
 When you edit this file in Windows Notepad, upload it to `/opt/openvanilla/links.txt`. The website and launcher reflect the new URLs immediately without recompiling.

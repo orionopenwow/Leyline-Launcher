@@ -4,7 +4,7 @@ Links: openvanilla://join/<host_id>?i=<code>&n=<urlencoded name>
        https://play.openvanilla.app/join/<host_id>?i=<code>
 Codes are 10 upper-case base32 characters with a number of uses and an expiry. check() does not
 spend a use (the relay asks for every stream); consume() does, when a new player's account is made.
-A pass is a personal code the gate hands a player at sign-in (bound to their Open Vanilla id): it lets
+A pass is a personal code the gate hands a player at sign-in (bound to their Leyline id): it lets
 their game connections through the relay of a private realm, and can't make new accounts.
 """
 import threading

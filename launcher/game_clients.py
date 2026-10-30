@@ -20,7 +20,7 @@ import live_content
 KEYS = ("id", "name", "type", "version", "url", "page", "repo", "description", "image", "status")
 SOURCES = ("builtin", "parked", "live", "local")
 CLIENTS_TXT_EXAMPLE = """\
-# Open Vanilla game clients: one client per block, a blank line between blocks.
+# Leyline game clients: one client per block, a blank line between blocks.
 # They show up in Workshop > CLIENTS; press "Add to my clients" there to put one in the HOME dropdown.
 #
 # name = My Classic+ build

@@ -1,4 +1,4 @@
-# Open Vanilla player network (P2P)
+# Leyline player network (P2P)
 
 Status: design. Phase 2 has a prototype in wenilla-realm (`/api/directory`, off unless
 `DIRECTORY_ENABLED=1`; patch `realm/patches/0006-directory.patch`). Nothing here is deployed.
@@ -7,7 +7,7 @@ Next layer: volunteer relay nodes, the three tiers (Verified realms / Community 
 P2P nodes), end-to-end encrypted streams and the supporter leaderboard are in `docs/NODE_NETWORK.md`.
 
 The goal: any player can host a realm from their own PC with one click, other players find it in
-the launcher, connect without the host touching their router, and sign in with the same Open Vanilla
+the launcher, connect without the host touching their router, and sign in with the same Leyline
 identity everywhere. The central service stays small: a list, a relay, and a signing key.
 It never runs anybody's world and never carries Blizzard game data.
 
@@ -17,7 +17,7 @@ It never runs anybody's world and never carries Blizzard game data.
 |---|---|---|---|
 | MariaDB | live: container `mariadb`; Solo: `solo\mariadb` | 3306 (internal / 127.0.0.1) | `classicrealmd` (accounts, `realmlist`), `classicmangos` (world + our Classic+ SQL), `classiccharacters`, `classiclogs` |
 | realmd (CMaNGOS) | container `realmd`; Solo `bin\realmd.exe` | 3724 TCP | SRP6 login, realm list (`realmlist` row: name, address, icon = type) |
-| mangosd (CMaNGOS classic + PlayerBots + Open Vanilla hooks) | container `mangosd` (`ghcr.io/orionopenwow/openvanilla-mangos`); Solo `bin\mangosd.exe` | 8085 TCP (game), 7878 (SOAP, internal) | the world; our patches add the WNL addon channel, the Star Pouch level-up hook, gameplay switches (`Open Vanilla.*` in mangosd.conf) |
+| mangosd (CMaNGOS classic + PlayerBots + Leyline hooks) | container `mangosd` (`ghcr.io/orionopenwow/openvanilla-mangos`); Solo `bin\mangosd.exe` | 8085 TCP (game), 7878 (SOAP, internal) | the world; our patches add the WNL addon channel, the Star Pouch level-up hook, gameplay switches (`Leyline.*` in mangosd.conf) |
 | wenilla-realm | container `realm` | 8090 internal | sign-in (password, Discord, launcher), `/api/play` hands a session its game credentials, `/data` serves the operator's client files to the browser client, `/ws/3724` and `/ws/8085` relay WebSocket bytes to realmd/mangosd, admin panel over SOAP |
 | Caddy | container `caddy` | 80, 443 TCP, 443 UDP | TLS (HTTP/2, HTTP/3) in front of wenilla-realm; the only published ports |
 | Launcher + desktop client | player PC | outbound only | reads `www/community/directory.json` (`servers`: name, host, port, portal, build, tags, description), runs Solo, plays live |
@@ -124,7 +124,7 @@ Protocol:
    chosen by the probe result.
 
 What the relay does **not** carry: `/data` (the browser client's game files). Those are the
-operator's own Blizzard files and must not be redistributed by Open Vanilla; browser play on a
+operator's own Blizzard files and must not be redistributed by Leyline; browser play on a
 community host therefore needs the host's own portal (wenilla-realm on the host) or the player's
 desktop client with their own Data folder. This also keeps relay bandwidth small.
 
@@ -138,17 +138,17 @@ streams, KB/s, GB/day) are enforced at the relay so one host cannot spend the bu
 threshold a host is told to forward ports. Latency adds one hop (EU relay: +5–30 ms in Europe;
 a second relay region later).
 
-## Phase 4 — one identity (signed Open Vanilla tokens)
+## Phase 4 — one identity (signed Leyline tokens)
 
 Players sign in once (Discord / launcher sign-in, already in wenilla-realm) and play on any
-community host without making an account there, and without the host ever seeing their Open Vanilla
+community host without making an account there, and without the host ever seeing their Leyline
 password.
 
 * Central wenilla-realm holds an Ed25519 signing key (in `/state`, like `master.key`) and
   publishes the public keys at `https://play.openvanilla.app/.well-known/openvanilla-keys.json` (with key
   ids for rotation).
 * `POST /api/identity/token {"aud": "<host-id>"}` (session-gated) returns a PASETO v4.public
-  (or JWS EdDSA) token: `sub` = Open Vanilla account id, `name`, `roles` (e.g. banned/staff flags),
+  (or JWS EdDSA) token: `sub` = Leyline account id, `name`, `roles` (e.g. banned/staff flags),
   `aud` = the host id, `iat`, `exp` = 5 minutes, `jti` nonce.
 * The launcher hands the token to the host's agent (`POST <portal>/api/ow-login` or over the
   relay control channel). The agent verifies signature, `aud`, `exp`, and a single use of `jti`;
@@ -165,13 +165,13 @@ password.
   launcher (`POST /api/directory/report`, session-gated, rate-limited) go to staff in Discord
   (the Herald); staff can delist with one command.
 * **Players' safety:** the relay hides players' IP addresses from hosts (and hosts' from
-  players). Hosts never receive Open Vanilla credentials, only audience-bound short tokens. The client
+  players). Hosts never receive Leyline credentials, only audience-bound short tokens. The client
   never loads addons, MPQs or scripts from a community host without an explicit prompt (the
   Classic+ client already treats addons as sandboxed Lua); default is the player's own files.
 * **Hosts' safety:** the agent exposes only 3724/8085 (or nothing, with the relay); MariaDB and
   SOAP stay on loopback; host-side rate limits on logins; the agent can kick and ban.
-* **Badges:** `official` only for Open Vanilla's own realms (set centrally, never by heartbeat);
-  `verified` once the probe passes and the host has signed in with a staff-approved Open Vanilla
+* **Badges:** `official` only for Leyline's own realms (set centrally, never by heartbeat);
+  `verified` once the probe passes and the host has signed in with a staff-approved Leyline
   account; unverified entries are shown below, greyed.
 * **Data and law:** no Blizzard files over the network (players bring their own client data);
   the directory stores names, addresses and counts only; logs keep addresses for 14 days.
@@ -182,7 +182,7 @@ A host picks one of three connections in the launcher (Host → Host a realm →
 
 | Mode | Launcher label | Who can join | What players see of the host |
 |---|---|---|---|
-| `relay` (default) | Through Open Vanilla (recommended: your address stays hidden) | anyone with an invite, or everyone when Public | nothing: traffic goes through relay.openvanilla.app, no router ports opened |
+| `relay` (default) | Through Leyline (recommended: your address stays hidden) | anyone with an invite, or everyone when Public | nothing: traffic goes through relay.openvanilla.app, no router ports opened |
 | `direct` | Direct from my home connection | anyone who has the address or a link | the host's home IP address (so roughly city and ISP) |
 | `lan` | My local network only | people on the same network | the host's LAN address |
 
@@ -215,9 +215,9 @@ may have reinstalled (ask for a new invite link), or someone may be pretending t
 
 **Offline operation.** Direct and LAN links, plain `host:port` (Realms → Join by address, with an
 optional guest code or account/password), guest codes and accounts made by the host never call
-Open Vanilla's central services. When the directory or sign-in can't be reached, the launcher shows
-"Open Vanilla is offline: you can still host and join friends directly" instead of errors, and
-www/realms.html carries the same "Play without Open Vanilla" note. Only the listing, Open Vanilla sign-in
+Leyline's central services. When the directory or sign-in can't be reached, the launcher shows
+"Leyline is offline: you can still host and join friends directly" instead of errors, and
+www/realms.html carries the same "Play without Leyline" note. Only the listing, Leyline sign-in
 tokens, reports and the relay need play.openvanilla.app / relay.openvanilla.app.
 
 ## Order of work

@@ -1,5 +1,5 @@
 """End-to-end encryption between a player's launcher bridge and the host's agent, so a relay in the
-middle (Open Vanilla's own, or a volunteer's node) carries only ciphertext.
+middle (Leyline's own, or a volunteer's node) carries only ciphertext.
 
     connect = connector(host_id, expected_fp)        # player side: a ws.connect replacement
     sock = connect("ws://node.example:3728/h/<host_id>/ws/3724")   # adds ?e2e=1, does the handshake
@@ -227,7 +227,7 @@ def server_handshake(sock, host_id, host_secret, timeout=15, host_pub=None):
     """Host agent side. host_secret: the host's 32-byte Ed25519 seed."""
     m = _recv_exact_msg(sock, 7 + 32, timeout)
     if m[:7] != MAGIC + b"C":
-        raise E2EError("not an Open Vanilla encrypted stream")
+        raise E2EError("not a Leyline encrypted stream")
     c_pub = m[7:]
     s_sk, s_pub = keypair()
     host_pub = host_pub or ed25519.public_key(host_secret)

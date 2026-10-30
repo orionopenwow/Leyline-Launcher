@@ -1,4 +1,4 @@
-// The Open Vanilla Manual: sidebar search and "you are here" in the section list.
+// The Leyline Manual: sidebar search and "you are here" in the section list.
 (() => {
   // On phones the chapter list starts folded (except on the contents page) so the page itself comes first.
   const box0 = document.querySelector('details.chapters-box');

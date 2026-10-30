@@ -1,5 +1,5 @@
 #cloud-config
-# Open Vanilla One-Click Realm Deployment (Hetzner Cloud CX23 / CAX11 arm64)
+# Leyline One-Click Realm Deployment (Hetzner Cloud CX23 / CAX11 arm64)
 # Note: Zero Blizzard game files are included in the images.
 # The host extracts and uploads map data from their legally owned client.
 
@@ -39,7 +39,7 @@ write_files:
             - DIRECTORY_ENABLED=1
             - DIRECTORY_PERSIST=1
             - IDENTITY_ENABLED=1
-            - REALM_NAME=${REALM_NAME:-Open Vanilla Community Realm}
+            - REALM_NAME=${REALM_NAME:-Leyline Community Realm}
             - REALM_DOMAIN=${REALM_DOMAIN}
             - ADMIN_TOKEN=${ADMIN_TOKEN}
           volumes:
@@ -72,7 +72,7 @@ write_files:
       ufw allow 3724/tcp
       ufw allow 8085/tcp
       ufw --force enable
-      echo "Open Vanilla Cloud Realm configured. Upload your extracted maps to /opt/openvanilla/maps and run: docker compose up -d"
+      echo "Leyline Cloud Realm configured. Upload your extracted maps to /opt/openvanilla/maps and run: docker compose up -d"
 
 runcmd:
   - systemctl enable docker

@@ -64,7 +64,7 @@ jobs:
       - name: Tell Discord what changed
         if: steps.c.outputs.changed == '1' && env.OWBOT_WEBHOOK != ''
         run: |
-          if grep -q DOWN now.txt; then head='**Open Vanilla: something is down**'; else head='**Open Vanilla: everything is back up**'; fi
+          if grep -q DOWN now.txt; then head='**Leyline: something is down**'; else head='**Leyline: everything is back up**'; fi
           MSG=$(printf '%s\n```\n%s\n```' "$head" "$(cat now.txt)")
           jq -n --arg c "$MSG" '{content: $c}' | curl -fsS -H 'Content-Type: application/json' -d @- "$OWBOT_WEBHOOK" >/dev/null || true
       - name: Result

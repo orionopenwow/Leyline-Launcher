@@ -1,6 +1,6 @@
-"""Open Vanilla Server: run your own 1.12.1 realm on this PC (the separate download, not the launcher).
+"""Leyline Server: run your own 1.12.1 realm on this PC (the separate download, not the launcher).
 
-    Start Open Vanilla Server.bat        (Windows: finds Python, installs what's missing, runs this)
+    Start Leyline Server.bat        (Windows: finds Python, installs what's missing, runs this)
     python openvanilla_server.py        [--spp "C:\\SPP_Classics_V2"]  [--forget]
 
 It runs SPP Classics' database, login and world servers, the realm website with sign-up and the browser
@@ -59,8 +59,8 @@ def ask_folder():
     try:
         while True:
             go = messagebox.askyesnocancel(
-                "Open Vanilla Server",
-                "Open Vanilla Server runs an SPP Classics realm, and no SPP install was found on this PC.\n\n"
+                "Leyline Server",
+                "Leyline Server runs an SPP Classics realm, and no SPP install was found on this PC.\n\n"
                 "Yes: pick your SPP_Classics_V2 folder (or the SPP_Server folder inside it).\n"
                 "No: open the SPP Classics download page first.\n"
                 "Cancel: quit.", parent=root)
@@ -76,7 +76,7 @@ def ask_folder():
             found = as_server(pick)
             if found:
                 return found
-            messagebox.showerror("Open Vanilla Server", f"{pick}\n\nisn't an SPP install: pick the folder that contains "
+            messagebox.showerror("Leyline Server", f"{pick}\n\nisn't an SPP install: pick the folder that contains "
                                  "Server\\Database and Settings (or the one above it).", parent=root)
     finally:
         root.destroy()
@@ -103,7 +103,7 @@ def main(argv):
         # docs/HOSTING_MAC_LINUX.md). With no command, the guided set-up; else ovhost's own commands.
         ovhost = os.path.join(HERE, "host", "ovhost")
         if not os.path.isfile(ovhost):
-            print("host/ovhost is missing from this folder: get it from the Open Vanilla repository (host/ovhost).")
+            print("host/ovhost is missing from this folder: get it from the Leyline repository (host/ovhost).")
             return 1
         os.execvp("bash", ["bash", ovhost] + (argv or ["install"]))
     if "--forget" in argv:

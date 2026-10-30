@@ -47,4 +47,4 @@ The realm keeps your achievements, so they survive reinstalls and show on the [A
 
 ## Playerbots {#playerbots}
 
-Some realms use playerbots: computer-controlled characters. **Play Solo** is built around them ([chapter 5](solo.html)), and the Warfront realm fills battlegrounds with bots during bot-fill hours (you're told when you enter, and bots never count for streaks or bounties). Bots are always the realm's own; Open Vanilla never presents bots as players.
+Some realms use playerbots: computer-controlled characters. **Play Solo** is built around them ([chapter 5](solo.html)), and the Warfront realm fills battlegrounds with bots during bot-fill hours (you're told when you enter, and bots never count for streaks or bounties). Bots are always the realm's own; Leyline never presents bots as players.

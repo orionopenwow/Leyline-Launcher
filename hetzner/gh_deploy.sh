@@ -13,7 +13,7 @@ case "${SSH_ORIGINAL_COMMAND:-}" in
 esac
 R=/opt/openvanilla-classicplus/repo
 export GIT_TERMINAL_PROMPT=0
-git -C "$R" remote set-url origin https://github.com/orionopenwow/OpenVanilla
+git -C "$R" remote set-url origin https://github.com/orionopenwow/Leyline-Launcher
 git -C "$R" fetch -q origin +refs/heads/stable:refs/remotes/origin/stable
 git -C "$R" reset -q --hard origin/stable
 P=$R/devkit/staging/promote.sh

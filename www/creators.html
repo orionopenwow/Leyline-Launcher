@@ -3,12 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Creators · Open Vanilla</title>
-  <meta name="description" content="Open Vanilla videos and shorts by class and topic, the creators who make them, the monthly creator leaderboard, and how to link your own channel.">
+  <title>Creators · Leyline</title>
+  <meta name="description" content="Leyline videos and shorts by class and topic, the creators who make them, the monthly creator leaderboard, and how to link your own channel.">
   <meta property="og:type" content="website">
-  <meta property="og:site_name" content="Open Vanilla">
-  <meta property="og:title" content="Creators · Open Vanilla">
-  <meta property="og:description" content="Videos, shorts and the monthly creator leaderboard for Open Vanilla.">
+  <meta property="og:site_name" content="Leyline">
+  <meta property="og:title" content="Creators · Leyline">
+  <meta property="og:description" content="Videos, shorts and the monthly creator leaderboard for Leyline.">
   <meta property="og:image" content="https://openvanilla.app/assets/streams/og_streams.jpg">
   <meta property="og:url" content="https://openvanilla.app/creators.html">
   <link rel="icon" href="favicon.ico">
@@ -20,7 +20,7 @@
 <body>
   <div class="wrap">
     <header class="top">
-      <a class="home" href="index.html">Open Vanilla</a>
+      <a class="home" href="index.html">Leyline</a>
       <nav aria-label="Community">
         <a href="streamers.html">Streamers</a>
         <a href="creators.html" aria-current="page">Creators</a>
@@ -32,9 +32,9 @@
 
     <div class="banner">
       <img src="assets/streams/banner_creators.webp" width="1600" height="420" alt="">
-      <h1>Open Vanilla Creators</h1>
+      <h1>Leyline Creators</h1>
     </div>
-    <p class="lead">Guides, dungeon runs, raid nights and shorts about Open Vanilla from YouTube and TikTok, sorted by date, topic and class. Click a video to play it here.</p>
+    <p class="lead">Guides, dungeon runs, raid nights and shorts about Leyline from YouTube and TikTok, sorted by date, topic and class. Click a video to play it here.</p>
     <p class="status" id="status" role="status">Loading…</p>
 
     <h2 id="videos-title">Videos and shorts</h2>
@@ -53,24 +53,24 @@
     <div class="creators" id="creators" aria-labelledby="creators-title"></div>
 
     <h2 id="leaderboard">Creator of the month <span class="chip" id="lb-month"></span></h2>
-    <p class="note" style="margin-top:0">Hours streamed Open Vanilla this month (UTC), the peak and the average audience while live, and Open Vanilla videos published. It resets on the first of each month; it is a thank-you, not a contest with prizes.</p>
+    <p class="note" style="margin-top:0">Hours streamed Leyline this month (UTC), the peak and the average audience while live, and Leyline videos published. It resets on the first of each month; it is a thank-you, not a contest with prizes.</p>
     <div class="lb-wrap"><table class="lb" aria-labelledby="leaderboard">
       <thead><tr><th scope="col">#</th><th scope="col">Creator</th><th scope="col">Hours</th><th scope="col">Peak</th><th scope="col">Avg</th><th scope="col">Videos</th></tr></thead>
       <tbody id="lb"></tbody>
     </table></div>
 
     <h2 id="link">Link your channel</h2>
-    <p class="note" style="margin-top:0">Stream or post Open Vanilla videos? Link your channel to your Open Vanilla account so you are listed here under your name, count for the leaderboard even when a title forgets to say "Open Vanilla", and, if you want, get a ● LIVE mark next to your character in game while you stream.</p>
+    <p class="note" style="margin-top:0">Stream or post Leyline videos? Link your channel to your Leyline account so you are listed here under your name, count for the leaderboard even when a title forgets to say "Leyline", and, if you want, get a ● LIVE mark next to your character in game while you stream.</p>
     <ol class="steps">
       <li><b>Sign in on the realm and open the link page:</b> <a href="https://play.openvanilla.app/ow/creator-link.html" target="_blank" rel="noopener">play.openvanilla.app/ow/creator-link.html</a>. Add your Twitch, YouTube, TikTok or Kick channel name. Only the channel name is stored; we never ask for your password or a key to your channel.</li>
       <li><b>Prove it is yours.</b> The page shows your code, like <code>OW-7K2Q9M</code>. Put it anywhere in your <b>Twitch</b> "About" text (or a live title), or your <b>YouTube</b> channel description. Within 15 minutes your card appears here; you can remove the code afterwards. <b>TikTok</b> has no public profile API, so a TikTok channel is listed once you connect it through TikTok's own sign-in (ask on Discord) or staff add it. <b>Kick</b> channels are added by staff on request.</li>
       <li><b>Want the in-game LIVE mark?</b> On the link page, name the character you play and tick "Show me as LIVE". In game, open Social → settings and switch on <b>Show me as LIVE</b> too. Both are off until you turn them on, and others see the mark only while you are actually live.</li>
       <li><b>Changed your mind?</b> Unlink a channel on the same page at any time; it leaves this site at the next refresh (5 minutes). Hand-picked creators can ask staff on Discord to edit their entry.</li>
     </ol>
-    <p class="note">How the lists are made: a small program on the realm server asks the Twitch and YouTube APIs every 5 minutes for live streams and recent uploads of the linked and hand-picked channels, plus any stream or video whose title mentions Open Vanilla. TikTok videos come only from creators who connected TikTok. Nothing is re-uploaded; thumbnails and players come straight from each platform. The source is <code>tools/streams_fetch.py</code> in the Open Vanilla repository.</p>
+    <p class="note">How the lists are made: a small program on the realm server asks the Twitch and YouTube APIs every 5 minutes for live streams and recent uploads of the linked and hand-picked channels, plus any stream or video whose title mentions Leyline. TikTok videos come only from creators who connected TikTok. Nothing is re-uploaded; thumbnails and players come straight from each platform. The source is <code>tools/streams_fetch.py</code> in the Leyline repository.</p>
 
     <h2 id="embeds">Embed Generator</h2>
-    <p class="note" style="margin-top:0">Embed Open Vanilla widgets, character cards, or stream players on your guild website or community portal. Generates compliant snippets matching each platform's security policy.</p>
+    <p class="note" style="margin-top:0">Embed Leyline widgets, character cards, or stream players on your guild website or community portal. Generates compliant snippets matching each platform's security policy.</p>
     <div class="card" style="background:var(--card);border:1px solid var(--edge);border-radius:6px;padding:18px;margin-bottom:24px;">
       <div style="display:grid;grid-template-columns:repeat(auto-fit, minmax(240px, 1fr));gap:14px;margin-bottom:14px;">
         <label style="font-size:0.85rem;color:var(--text);">Widget Type
@@ -95,7 +95,7 @@
       </div>
     </div>
 
-    <footer>Open Vanilla is an independent, open-source fan project, not affiliated with Blizzard Entertainment, Twitch, YouTube, TikTok or Kick. Thumbnails, players and channel names belong to their creators. <a href="privacy.html">Privacy</a> · <a href="terms.html">Terms</a></footer>
+    <footer>Leyline is an independent, open-source fan project, not affiliated with Blizzard Entertainment, Twitch, YouTube, TikTok or Kick. Thumbnails, players and channel names belong to their creators. <a href="privacy.html">Privacy</a> · <a href="terms.html">Terms</a></footer>
   </div>
 
   <script src="streams.js"></script>
@@ -124,7 +124,7 @@
         var showShorts = shorts.length > 0;
         $("shorts").hidden = $("shorts-title").hidden = !showShorts;
         if (!longs.length) vg.append(S.empty(list.length ? "Only shorts match" : "No videos match",
-          list.length ? "They are just below." : (data.videos.length ? "Try another topic or class." : "Nobody has posted an Open Vanilla video yet. Be the first!")));
+          list.length ? "They are just below." : (data.videos.length ? "Try another topic or class." : "Nobody has posted a Leyline video yet. Be the first!")));
       }
 
       function creators() {

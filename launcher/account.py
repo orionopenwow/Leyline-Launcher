@@ -1,4 +1,4 @@
-"""Account services for the Open Vanilla launcher.
+"""Account services for the Leyline Launcher.
 
     verify_login(user, password, host, port)   the 1.12.1 SRP6 handshake against the realm's
                                                 login server, exactly as the game does it
@@ -236,7 +236,7 @@ import threading as _threading
 from http.server import BaseHTTPRequestHandler as _Handler, ThreadingHTTPServer as _Server
 from urllib.parse import parse_qs as _parse_qs, urlencode as _urlencode, urlsplit as _urlsplit
 
-_DONE_PAGE = """<!doctype html><html><head><meta charset="utf-8"><title>Open Vanilla</title>
+_DONE_PAGE = """<!doctype html><html><head><meta charset="utf-8"><title>Leyline</title>
 <style>body{{margin:0;height:100vh;display:grid;place-items:center;background:#0c0a14;color:#e8e0d0;
 font:16px system-ui,Segoe UI,sans-serif}}.c{{text-align:center;max-width:420px;padding:32px;border:1px solid #6b5426;
 border-radius:14px;background:#17121c}}h1{{color:{color};font-size:22px;margin:0 0 10px}}p{{color:#a89f90;margin:0}}</style>
@@ -269,7 +269,7 @@ class LoopbackSignIn:
                 if ok:
                     outer.code = q["code"][0]
                     page = _DONE_PAGE.format(color="#e9c46a", title="You're signed in",
-                                             body="Head back to the Open Vanilla launcher. You can close this tab.")
+                                             body="Head back to the Leyline Launcher. You can close this tab.")
                 else:
                     outer.error = "The sign-in reply didn't match this launcher. Try again."
                     page = _DONE_PAGE.format(color="#e06c5a", title="Sign-in didn't match",
@@ -367,7 +367,7 @@ def parse_hero_key(text):
 
 def hero_key_file(key):
     """The text of a key file, the realm's own format."""
-    return ("Open Vanilla Hero Key\n\nYour account's own sign-in. Keep it private: anyone with it can play as you.\n"
+    return ("Leyline Hero Key\n\nYour account's own sign-in. Keep it private: anyone with it can play as you.\n"
             f"{HERO_ARMOR[0]}\n{key}\n{HERO_ARMOR[1]}\n")
 
 

@@ -1,4 +1,4 @@
-"""The supporter leaderboard: people who run relay nodes or seed Open Vanilla's downloads.
+"""The supporter leaderboard: people who run relay nodes or seed Leyline's downloads.
 
     data = aggregate(nodes, reports, now)       # -> the www/community/nodes.json document
     rows = parse(data)                          # the launcher's view of it (tolerant of junk)
@@ -109,7 +109,7 @@ def aggregate(nodes, reports, now, window_days=WINDOW_DAYS, top=TOP, official=No
 
 
 OFFICIAL = [{"name": "relay.openvanilla.app", "status": "test round",
-             "note": "Open Vanilla's own relay, on the maintainer's server. Not on the leaderboard."}]
+             "note": "Leyline's own relay, on the maintainer's server. Not on the leaderboard."}]
 
 PRIVACY = ("Opt-in. No IP addresses, node addresses, keys or account ids are published. Names appear only for "
            "supporters who chose to show one; everyone else is \"Anonymous node\" or not listed. Totals cover the "

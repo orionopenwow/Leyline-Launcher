@@ -1,4 +1,4 @@
-"""Open Vanilla player network (P2P): the launcher side of docs/P2P_NETWORK.md.
+"""Leyline player network (P2P): the launcher side of docs/P2P_NETWORK.md.
 
     p2p.directory   the live realm list and realmd pings
     p2p.host        HostSession: run a realm from this PC (Solo pack + agent)
@@ -14,7 +14,7 @@
     p2p.firewall    Windows Firewall rules for the two game ports
 
 Standard library only (libtorrent is optional). Nothing here ever reads, sends or shares Blizzard
-game files: the only files that travel are Open Vanilla's own (Solo pack, launcher/client zips, patch-Z).
+game files: the only files that travel are Leyline's own (Solo pack, launcher/client zips, patch-Z).
 """
 import base64
 import json

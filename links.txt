@@ -1,5 +1,5 @@
 # ==============================================================================
-# Open Vanilla Master Links & Endpoints (Editable with Notepad)
+# Leyline Master Links & Endpoints (Editable with Notepad)
 # ==============================================================================
 # Change any link below. The desktop launcher, website endpoints, and packaging
 # tools automatically read from this file.
@@ -25,21 +25,21 @@ TRAILER_URL =
 TOUR_URL =
 
 # --- Community & Support ---
-# The Open Vanilla Discord invite
+# The Leyline Discord invite
 DISCORD_INVITE = https://discord.gg/hVeUxYwbkr
 # Discord sign-in page for the launcher's "Sign in with Discord" buttons. Leave commented out
 # until the backend supports it; the buttons say "coming soon" meanwhile.
 # DISCORD_LOGIN_URL = https://set-hetzner-ip-here.invalid/auth/discord
-GITHUB_REPO = https://github.com/orionopenwow/OpenVanilla
-BUG_REPORTS = https://github.com/orionopenwow/OpenVanilla/issues
+GITHUB_REPO = https://github.com/orionopenwow/Leyline-Launcher
+BUG_REPORTS = https://github.com/orionopenwow/Leyline-Launcher/issues
 
-# --- Vanilla Data (Open Vanilla's own, rewritten and open-sourced: no Blizzard files) ---
+# --- Vanilla Data (Leyline's own, rewritten and open-sourced: no Blizzard files) ---
 # Where the "Get Vanilla Data" button on the website goes: your data's download or release page
 # (https:// only). Leave it empty and the button reads "Coming soon".
 VANILLA_DATA_URL =
-# --- Open Vanilla Packages & Updates ---
-# The Open Vanilla launcher (running a realm is the separate OpenVanilla-Server.zip on the same release):
-OPENVANILLA_CLIENT_URL = https://github.com/orionopenwow/OpenVanilla/releases/latest
+# --- Leyline Packages & Updates ---
+# The Leyline Launcher (running a realm is the separate OpenVanilla-Server.zip on the same release):
+OPENVANILLA_CLIENT_URL = https://github.com/orionopenwow/Leyline-Launcher/releases/latest
 UPDATE_MANIFEST_URL = https://openvanilla.app/downloads/version.json
 PATCH_NOTES_URL = https://openvanilla.app/downloads/patch_notes.json
 # Live content: news, banner, featured cards, feature flags and links every launcher reads at start.

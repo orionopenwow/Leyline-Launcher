@@ -35,7 +35,7 @@ REALM_DIR=${OW_REALM_DIR:-/opt/wenilla-realm}
 CP=${OW_CP:-/opt/openvanilla-classicplus}
 export OW_REALM_DIR=$REALM_DIR OW_CP=$CP
 REPO_DIR=$CP/repo
-REPO_URL=${OPENVANILLA_REPO:-https://github.com/orionopenwow/OpenVanilla}
+REPO_URL=${OPENVANILLA_REPO:-https://github.com/orionopenwow/Leyline-Launcher}
 STATE=$CP/.hotpatch-applied
 QUEUE=$CP/.hotpatch-queued-world-restart
 DRY=0 WORLD=0 FORCE_WEB=0 TO=""

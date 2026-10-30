@@ -1,5 +1,5 @@
 #cloud-config
-# Open Vanilla One-Click Realm Deployment (Oracle Cloud Always Free - Ampere A1 aarch64)
+# Leyline One-Click Realm Deployment (Oracle Cloud Always Free - Ampere A1 aarch64)
 # 2-4 OCPUs, 12-24 GB RAM, 10 TB/month egress. Zero Blizzard game files in image.
 
 package_update: true
@@ -37,7 +37,7 @@ write_files:
             - DIRECTORY_ENABLED=1
             - DIRECTORY_PERSIST=1
             - IDENTITY_ENABLED=1
-            - REALM_NAME=${REALM_NAME:-Open Vanilla Oracle Realm}
+            - REALM_NAME=${REALM_NAME:-Leyline Oracle Realm}
             - REALM_DOMAIN=${REALM_DOMAIN}
             - ADMIN_TOKEN=${ADMIN_TOKEN}
           volumes:

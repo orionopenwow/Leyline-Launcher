@@ -11,19 +11,19 @@
         "PvE",
         "official"
       ],
-      "description": "The official Open Vanilla realm: Wrath of the Lich King 3.3.5a (build 12340). Bring your own 3.3.5a game files."
+      "description": "The official Leyline realm: Wrath of the Lich King 3.3.5a (build 12340). Bring your own 3.3.5a game files."
     }
   ],
   "mods": [],
   "repacks": [
     {
-      "name": "Open Vanilla client (Windows)",
+      "name": "Leyline client (Windows)",
       "kind": "client",
       "client": "1.12.1",
       "version": "1.14.2",
       "url": "https://openvanilla.app/downloads/OpenVanilla_1.14.2_Win64.zip",
       "size": 90243507,
-      "description": "Launcher + Open Vanilla engine + Classic+ addons. Needs your own Vanilla game data."
+      "description": "Launcher + Leyline engine + Classic+ addons. Needs your own Vanilla game data."
     },
     {
       "id": "benilla",
@@ -38,8 +38,8 @@
       ],
       "url": "https://github.com/samwhosung/benilla",
       "homepage": "https://openvanilla.app/project.html#benilla",
-      "description": "A complete Vanilla game client written from scratch in Rust and Bevy. The engine Open Vanilla is built on.",
-      "about": "benilla connects to any Vanilla server and reads game data from your own Vanilla install; it ships no Blizzard content. It builds and runs on Windows, macOS and Linux. The Open Vanilla desktop client (OpenVanilla.exe) is a build of benilla.",
+      "description": "A complete Vanilla game client written from scratch in Rust and Bevy. The engine Leyline is built on.",
+      "about": "benilla connects to any Vanilla server and reads game data from your own Vanilla install; it ships no Blizzard content. It builds and runs on Windows, macOS and Linux. The Leyline desktop client (OpenVanilla.exe) is a build of benilla.",
       "credits": [
         "samwhosung and benilla contributors",
         "Vendored: kira audio engine, patched Lua 5.1"
@@ -125,5 +125,5 @@
     }
   ],
   "updated": "2026-10-15",
-  "note": "Open Vanilla community directory. Each entry also gets a page at project.html#<id>: fill in about, credits, license, author and images (image URLs) to tell people about it."
+  "note": "Leyline community directory. Each entry also gets a page at project.html#<id>: fill in about, credits, license, author and images (image URLs) to tell people about it."
 }

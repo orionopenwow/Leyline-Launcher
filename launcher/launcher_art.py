@@ -1,4 +1,4 @@
-"""Procedural art for the Open Vanilla launcher.
+"""Procedural art for the Leyline Launcher.
 
 Icons, glass panels, the PLAY plate and its glow, the progress bar, particles and buttons are
 all drawn with Pillow (supersampled, then downsampled), so the launcher ships no third-party
@@ -718,7 +718,7 @@ def halo(size, color, alpha=120):
 
 # ================================================================ UI kit (assets/launcher/kit)
 #
-# Hand-painted pieces cut from the Open Vanilla UI kit sheet: plates, frames, the energy bar and the
+# Hand-painted pieces cut from the Leyline UI kit sheet: plates, frames, the energy bar and the
 # dragon heads. They are resized/sliced here so the launcher can lay them out at any size.
 
 KIT_DIRS = []  # the launcher prepends assets/launcher/kit

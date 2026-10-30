@@ -237,7 +237,7 @@ else
     *denied*|*unauthorized*)
       echo "   The image exists but is private. Make it public: github.com/orionopenwow?tab=packages -> Change visibility -> Public, then re-run this script." ;;
     *)
-      echo "   It hasn't been built. Check github.com/orionopenwow/OpenVanilla/actions (workflow realm-image, job mangos): re-run it if it failed, then re-run this script." ;;
+      echo "   It hasn't been built. Check github.com/orionopenwow/Leyline-Launcher/actions (workflow realm-image, job mangos): re-run it if it failed, then re-run this script." ;;
   esac
   MANGOS_BLOCK=""
 fi

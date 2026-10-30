@@ -13,15 +13,15 @@ Launcher: **Settings → Folders → Open logs**. The files that matter are `lau
 | --- | --- |
 | **CHOOSE YOUR GAME'S DATA FOLDER** | Press PLAY and pick your game's `Data` folder (or the folder with `WoW.exe`), or play in your browser |
 | **Missing X.MPQ** / **X is damaged** | That client is incomplete: pick another folder |
-| **This is build N; Open Vanilla needs the 1.12.1 game client (build 5875)** | Wrong version: Open Vanilla needs Vanilla Client v1.3 (English, build 5875) |
+| **This is build N; Leyline needs the 1.12.1 game client (build 5875)** | Wrong version: Leyline needs Vanilla Client v1.3 (English, build 5875) |
 | **Wow.exe wasn't found there** | Pick the folder that contains `WoW.exe`, not its parent |
 | **SERVER OFFLINE** | The realm is down; check #server-status on Discord, or [Play Solo](solo.html) |
 | **This realm doesn't let the desktop game in yet** | The realm takes the browser client only for now: switch to **Browser** |
 | **Your sign-in for this realm has ended** | Sign in again (top right), then PLAY |
 | **WoW.exe is a Windows program: install Wine** | On Linux or macOS the stock client runs through Wine (`sudo apt install wine`, or set `WINE` to your runner), or switch to **Browser** |
 | **This realm has no website set** | Pick another realm, or add its portal URL on the Realms page |
-| **Open Vanilla is offline** | The central services can't be reached; you can still play Solo and join friends directly |
-| **That isn't an Open Vanilla invite link** | Copy the whole link again, or use **Join by address** |
+| **Leyline is offline** | The central services can't be reached; you can still play Solo and join friends directly |
+| **That isn't a Leyline invite link** | Copy the whole link again, or use **Join by address** |
 | **Host key changed** | Ask your friend for a new invite link; don't join until they confirm |
 | **The update couldn't be applied** | It retries next start; details in `Logs\update.log` |
 | Windows says **Unknown publisher** | The launcher isn't code-signed yet: **More info → Run anyway**, or check the checksum first |

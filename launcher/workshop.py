@@ -1,4 +1,4 @@
-"""The launcher's half of the Open Vanilla Workshop (no Tk here, so it is testable on its own).
+"""The launcher's half of the Leyline Workshop (no Tk here, so it is testable on its own).
 
     openvanilla://workshop/install/<id>[,<id>...]      the site's Install buttons (one addon, or a collection)
 

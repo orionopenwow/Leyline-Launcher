@@ -4,9 +4,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Your own test server · Vanilla Forge</title>
-  <meta name="description" content="Vanilla Forge tests your work on your own PC: a test copy of your game and your own test server, set up once from Play Solo. Nothing you test reaches Open Vanilla's realms.">
+  <meta name="description" content="Vanilla Forge tests your work on your own PC: a test copy of your game and your own test server, set up once from Play Solo. Nothing you test reaches Leyline's realms.">
   <meta property="og:type" content="website">
-  <meta property="og:site_name" content="Open Vanilla">
+  <meta property="og:site_name" content="Leyline">
   <meta property="og:title" content="Your own test server · Vanilla Forge">
   <meta property="og:description" content="Forge tests on your own PC, on your own server. Set it up once in about half an hour.">
   <meta property="og:url" content="https://openvanilla.app/forge-server.html">
@@ -154,21 +154,21 @@
     </header>
 
     <h1>Your own test server</h1>
-    <p class="lead">Forge tests what you make on your own PC, on your own server. It runs a test copy of your game and a test server made from your Play Solo, both on this PC only. Nothing you test reaches Open Vanilla's realms or anyone else's server. Set it up once and Forge does the rest each time you press <b>Test in game</b>.</p>
+    <p class="lead">Forge tests what you make on your own PC, on your own server. It runs a test copy of your game and a test server made from your Play Solo, both on this PC only. Nothing you test reaches Leyline's realms or anyone else's server. Set it up once and Forge does the rest each time you press <b>Test in game</b>.</p>
 
     <h2>How it fits together</h2>
     <div class="flow">
       <div><b>Your game, copied</b><p>Forge makes a test copy of your game beside it (it shares the big game files, so it takes almost no space) and puts your test build in it. The copy only ever signs in to this PC.</p></div>
       <div><b>Your test server</b><p>A copy of your Play Solo that Forge starts and stops for you. It runs on this PC and listens to this PC only: no one else can join it, and it needs no internet.</p></div>
-      <div class="no"><b>Open Vanilla's realms</b><p>Never used for testing. Your work reaches a realm only when you publish it and the realm's staff choose to install it, on their own servers.</p></div>
+      <div class="no"><b>Leyline's realms</b><p>Never used for testing. Your work reaches a realm only when you publish it and the realm's staff choose to install it, on their own servers.</p></div>
     </div>
     <p class="note">Your own game folder and your own Play Solo are never changed. Your Play Solo characters stay as they are.</p>
 
     <h2 id="setup">Set it up, once</h2>
     <ol class="guide">
-      <li><b>Get the launcher and your game.</b> Install the <a href="index.html">Open Vanilla launcher</a> and point it at your game client. No client yet? The <a href="clients.html">client guide</a> shows where to get one.</li>
+      <li><b>Get the launcher and your game.</b> Install the <a href="index.html">Leyline Launcher</a> and point it at your game client. No client yet? The <a href="clients.html">client guide</a> shows where to get one.</li>
       <li><b>Set up Play Solo.</b> In the launcher, switch PLAY to SOLO and press PLAY, as the <a href="solo.html">Play Solo guide</a> shows. The first time it downloads its server files and builds its world, so it takes a while; let it finish, and when the game opens you can close it. That's your own server, ready on your PC.</li>
-      <li><b>Open Forge and check the Test screen.</b> Forge finds your game and your Open Vanilla folder from the launcher by itself. The Test screen shows them with a tick each. If one is missing, press <b>Browse</b> on Home for your game, or open <b>Open Vanilla folder</b> on the Test screen and pick the folder the launcher is in.</li>
+      <li><b>Open Forge and check the Test screen.</b> Forge finds your game and your Leyline folder from the launcher by itself. The Test screen shows them with a tick each. If one is missing, press <b>Browse</b> on Home for your game, or open <b>Leyline folder</b> on the Test screen and pick the folder the launcher is in.</li>
       <li><b>Make the test copies.</b> On the Test screen press <b>Build &amp; install</b>. The first time, Forge makes the test copy of your game and your test server from Play Solo (close Play Solo first: Forge copies it while it's quiet). That takes a few minutes; after that each install takes seconds.</li>
       <li><b>Play it.</b> Press <b>Start</b>, or on the World screen press <b>Test in game</b> (or T): Forge builds, starts your test server and the game, and puts you on the spot you were looking at. You sign in as <code>solo</code>. Press <b>Make me a GM</b> on the Test screen for the commands that find what you made.</li>
     </ol>
@@ -183,7 +183,7 @@
     </ul>
 
     <h2 id="friends">Playing it with friends: your own server</h2>
-    <p>To play your work with friends, host it on your own server: <a href="host.html">Host your own server</a> sets one up on a Windows PC with Open Vanilla Server. Then build your pack for it with <code>forge.exe</code>, which comes with Forge (it's in Forge's install folder):</p>
+    <p>To play your work with friends, host it on your own server: <a href="host.html">Host your own server</a> sets one up on a Windows PC with Leyline Server. Then build your pack for it with <code>forge.exe</code>, which comes with Forge (it's in Forge's install folder):</p>
     <ol class="guide">
       <li><b>Publish your pack</b> on Forge's Publish screen: it makes a signed <code>.ovpack</code>.</li>
       <li><b>Write a <code>realm.toml</code></b> in a new folder, naming your server's folders and the packs to install:
@@ -192,7 +192,7 @@ id = "my-realm"
 name = "My realm"
 patch = "patch-Z.MPQ"                  # the patch your players put in their Data folder
 game = "C:/Games/YourGame"             # your game folder
-server_dbc = "C:/YourServer/data/dbc"  # your server's folders (Open Vanilla Server's data folder)
+server_dbc = "C:/YourServer/data/dbc"  # your server's folders (Leyline Server's data folder)
 server_maps = "C:/YourServer/data/maps"
 server_vmaps = "C:/YourServer/data/vmaps"
 
@@ -203,7 +203,7 @@ file = "my-pack-1.0.0.ovpack"</pre></li>
     </ol>
     <p class="note">It's your server and your copy: Forge reads your server's folders and writes its results into <code>build\</code>, never into the server itself.</p>
 
-    <h2>Getting it on Open Vanilla's realms</h2>
+    <h2>Getting it on Leyline's realms</h2>
     <p>Publish your pack and share it: addons can go to the <a href="workshop.html#upload">Workshop</a>; for content packs, talk to realm staff on <a href="https://discord.gg/hVeUxYwbkr">Discord</a>. They review it and, if they take it, install it on their own servers with the same realm build. Forge itself never connects to them.</p>
 
     <h2>Questions</h2>
@@ -221,7 +221,7 @@ file = "my-pack-1.0.0.ovpack"</pre></li>
     </details>
     <details>
       <summary>Forge says Play Solo is running.</summary>
-      <div><p>Your test server and Play Solo can't run at the same time. Close the game (Play Solo stops with it), or run <code>Play Solo.bat solo-stop</code> in your Open Vanilla folder, then try again.</p></div>
+      <div><p>Your test server and Play Solo can't run at the same time. Close the game (Play Solo stops with it), or run <code>Play Solo.bat solo-stop</code> in your Leyline folder, then try again.</p></div>
     </details>
     <details>
       <summary>Mac or Linux?</summary>
@@ -231,7 +231,7 @@ file = "my-pack-1.0.0.ovpack"</pre></li>
     <footer>
       <a href="index.html">Home</a> · <a href="workshop.html">Workshop</a> · <a href="solo.html">Play Solo</a> · <a href="agents.html">Vanilla Agents</a> · <a href="realms.html">Realms</a> · <a href="clients.html">Game clients</a> ·
       <a href="privacy.html">Privacy</a> · <a href="terms.html">Terms</a> · <a href="security.html">Security</a> ·
-      World of Warcraft is a trademark of Blizzard Entertainment, Inc. Open Vanilla is an independent fan project, not affiliated with or endorsed by Blizzard Entertainment.
+      World of Warcraft is a trademark of Blizzard Entertainment, Inc. Leyline is an independent fan project, not affiliated with or endorsed by Blizzard Entertainment.
       Forge includes three.js (MIT) and the Model Porter; the installer carries Python, NumPy and Pillow under their own licences.
     </footer>
   </div>

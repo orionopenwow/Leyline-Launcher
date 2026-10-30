@@ -1,12 +1,12 @@
 {
  "index": {
   "url": "manual/index.html",
-  "title": "The Open Vanilla Manual",
-  "chapter": "The Open Vanilla Manual"
+  "title": "The Leyline Manual",
+  "chapter": "The Leyline Manual"
  },
  "start#what": {
   "url": "manual/start.html#what",
-  "title": "What Open Vanilla is",
+  "title": "What Leyline is",
   "chapter": "Getting started"
  },
  "start#ways": {
@@ -881,7 +881,7 @@
  },
  "workshop#fork": {
   "url": "manual/workshop.html#fork",
-  "title": "Fork Open Vanilla",
+  "title": "Fork Leyline",
   "chapter": "Publish to the Workshop"
  },
  "workshop": {
@@ -892,42 +892,42 @@
  "contributing#ways": {
   "url": "manual/contributing.html#ways",
   "title": "Ways to help",
-  "chapter": "Contribute to Open Vanilla"
+  "chapter": "Contribute to Leyline"
  },
  "contributing#fix-the-manual": {
   "url": "manual/contributing.html#fix-the-manual",
   "title": "Fix the manual",
-  "chapter": "Contribute to Open Vanilla"
+  "chapter": "Contribute to Leyline"
  },
  "contributing#layout": {
   "url": "manual/contributing.html#layout",
   "title": "How the code is organised",
-  "chapter": "Contribute to Open Vanilla"
+  "chapter": "Contribute to Leyline"
  },
  "contributing#branches": {
   "url": "manual/contributing.html#branches",
   "title": "Branches",
-  "chapter": "Contribute to Open Vanilla"
+  "chapter": "Contribute to Leyline"
  },
  "contributing#tests": {
   "url": "manual/contributing.html#tests",
   "title": "Tests to run",
-  "chapter": "Contribute to Open Vanilla"
+  "chapter": "Contribute to Leyline"
  },
  "contributing#releases": {
   "url": "manual/contributing.html#releases",
   "title": "How releases ship",
-  "chapter": "Contribute to Open Vanilla"
+  "chapter": "Contribute to Leyline"
  },
  "contributing#rules": {
   "url": "manual/contributing.html#rules",
   "title": "Rules for contributions",
-  "chapter": "Contribute to Open Vanilla"
+  "chapter": "Contribute to Leyline"
  },
  "contributing": {
   "url": "manual/contributing.html",
-  "title": "Contribute to Open Vanilla",
-  "chapter": "Contribute to Open Vanilla"
+  "title": "Contribute to Leyline",
+  "chapter": "Contribute to Leyline"
  },
  "troubleshooting#logs": {
   "url": "manual/troubleshooting.html#logs",
@@ -1001,7 +1001,7 @@
  },
  "faq#uses-ai": {
   "url": "manual/faq.html#uses-ai",
-  "title": "Does Open Vanilla use AI?",
+  "title": "Does Leyline use AI?",
   "chapter": "Questions and words"
  },
  "faq#delete-data": {

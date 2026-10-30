@@ -1,6 +1,6 @@
 @echo off
 setlocal
-TITLE Open Vanilla - Play Solo
+TITLE Leyline - Play Solo
 cd /d "%~dp0"
 REM   "Play Solo.bat"                 Play Solo: your own offline world on this PC (what the launcher's
 REM                                  PLAY SOLO button runs). Downloads the solo server once, then starts
@@ -22,7 +22,7 @@ if not defined PYTHON_EXE (
 )
 if not defined PYTHON_EXE (
     echo Python 3 was not found. Install it from https://www.python.org/downloads/ ^(tick "Add to PATH"^),
-    echo or press PLAY SOLO in the Open Vanilla launcher instead: it needs no Python.
+    echo or press PLAY SOLO in the Leyline Launcher instead: it needs no Python.
     pause
     exit /b 1
 )

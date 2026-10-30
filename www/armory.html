@@ -3,27 +3,27 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Armory · Open Vanilla</title>
+  <title>Armory · Leyline</title>
   <!-- Link previews (Discord, Reddit, X, iMessage) -->
   <meta property="og:type" content="website">
-  <meta property="og:site_name" content="Open Vanilla">
-  <meta property="og:title" content="Armory · Open Vanilla">
-  <meta property="og:description" content="Look up any character on the Open Vanilla realms: gear, talents, achievements, professions, and the realm rankings.">
+  <meta property="og:site_name" content="Leyline">
+  <meta property="og:title" content="Armory · Leyline">
+  <meta property="og:description" content="Look up any character on the Leyline realms: gear, talents, achievements, professions, and the realm rankings.">
   <meta property="og:url" content="https://openvanilla.app/armory.html">
   <meta property="og:image" content="https://openvanilla.app/assets/og-image.jpg">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
-  <meta property="og:image:alt" content="Open Vanilla: classic Vanilla in your browser. Free, no download, play in seconds.">
+  <meta property="og:image:alt" content="Leyline: classic Vanilla in your browser. Free, no download, play in seconds.">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Armory · Open Vanilla">
-  <meta name="twitter:description" content="Look up any character on the Open Vanilla realms: gear, talents, achievements, professions, and the realm rankings.">
+  <meta name="twitter:title" content="Armory · Leyline">
+  <meta name="twitter:description" content="Look up any character on the Leyline realms: gear, talents, achievements, professions, and the realm rankings.">
   <meta name="twitter:image" content="https://openvanilla.app/assets/og-image.jpg">
   <meta name="theme-color" content="#0a0816">
-  <meta name="description" content="Look up any character on the Open Vanilla realms: gear, talents, achievements, professions, and the realm rankings.">
+  <meta name="description" content="Look up any character on the Leyline realms: gear, talents, achievements, professions, and the realm rankings.">
   <meta property="og:type" content="website">
-  <meta property="og:site_name" content="Open Vanilla">
-  <meta property="og:title" content="Armory · Open Vanilla">
-  <meta property="og:description" content="Characters, rankings and realm firsts of every Open Vanilla realm.">
+  <meta property="og:site_name" content="Leyline">
+  <meta property="og:title" content="Armory · Leyline">
+  <meta property="og:description" content="Characters, rankings and realm firsts of every Leyline realm.">
   <meta property="og:url" content="https://openvanilla.app/armory.html">
   <link rel="icon" href="favicon.ico">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -107,11 +107,11 @@
 <body>
   <div class="wrap">
     <header>
-      <a class="home" href="index.html">&larr; Open Vanilla</a>
-      <span style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;justify-content:flex-end"><a class="pill manual-link" href="manual/website.html#armory" style="text-decoration:none" title="Read about this in the Open Vanilla Manual">MANUAL</a><span class="pill">ARMORY</span></span>
+      <a class="home" href="index.html">&larr; Leyline</a>
+      <span style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;justify-content:flex-end"><a class="pill manual-link" href="manual/website.html#armory" style="text-decoration:none" title="Read about this in the Leyline Manual">MANUAL</a><span class="pill">ARMORY</span></span>
     </header>
     <div class="hero" role="img" aria-label="An open ledger under a golden arch"><h1>Armory</h1></div>
-    <p class="lead">Every character on the Open Vanilla realms: gear, both talent specs, achievements, professions and reputations, refreshed every ten minutes. Looking for a guild? <a href="guilds.html">Browse the guilds</a>.</p>
+    <p class="lead">Every character on the Leyline realms: gear, both talent specs, achievements, professions and reputations, refreshed every ten minutes. Looking for a guild? <a href="guilds.html">Browse the guilds</a>.</p>
 
     <div class="bar" role="search">
       <label>Character <input type="search" id="q" placeholder="Name, guild or class" autocomplete="off" aria-label="Search characters"></label>
@@ -133,7 +133,7 @@
 
     <footer>
       <a href="index.html">Home</a> · <a href="guilds.html">Guilds</a> · <a href="realms.html">Realms</a> · <a href="privacy.html">Privacy</a> · <a href="terms.html">Terms</a> ·
-      World of Warcraft is a trademark of Blizzard Entertainment, Inc. Open Vanilla is an independent fan project, not affiliated with or endorsed by Blizzard Entertainment.
+      World of Warcraft is a trademark of Blizzard Entertainment, Inc. Leyline is an independent fan project, not affiliated with or endorsed by Blizzard Entertainment.
     </footer>
   </div>
   <script>
@@ -324,7 +324,7 @@
           return { realm: r.realm, name: str(r.name, 40) || r.realm, community: r.community === true, characters: num(r.characters) };
         });
         if (!realms.length) throw new Error("none");
-        var official = el("optgroup"); official.label = "Open Vanilla realms";
+        var official = el("optgroup"); official.label = "Leyline realms";
         var comm = el("optgroup"); comm.label = "Community realms";
         realms.forEach(function (r) {
           var o = new Option(r.name + " (" + r.characters + ")", r.realm);

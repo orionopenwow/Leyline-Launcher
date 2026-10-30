@@ -3,11 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Collection · Open Vanilla Workshop</title>
-  <meta name="description" content="A collection of addons in the Open Vanilla Workshop, put together for one way of playing.">
+  <title>Collection · Leyline Workshop</title>
+  <meta name="description" content="A collection of addons in the Leyline Workshop, put together for one way of playing.">
   <meta property="og:type" content="website">
-  <meta property="og:site_name" content="Open Vanilla">
-  <meta property="og:title" content="Open Vanilla Workshop collection">
+  <meta property="og:site_name" content="Leyline">
+  <meta property="og:title" content="Leyline Workshop collection">
   <meta property="og:image" content="https://openvanilla.app/assets/workshop/og_workshop.jpg">
   <link rel="icon" href="../favicon.ico">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -19,7 +19,7 @@
   <div class="wrap">
     <header class="top">
       <a class="home" href="../workshop.html#collections">&larr; Workshop</a>
-      <nav aria-label="Workshop"><a href="../index.html">Open Vanilla</a><span class="pill">COLLECTION</span></nav>
+      <nav aria-label="Workshop"><a href="../index.html">Leyline</a><span class="pill">COLLECTION</span></nav>
     </header>
 
     <section class="hero" id="hero" style="background-image: url('../assets/workshop/collection_raiders.webp'); min-height: 220px;">
@@ -40,7 +40,7 @@
 
     <footer class="bottom">
       <a href="../workshop.html">Workshop</a>
-      <a href="../index.html">Open Vanilla</a>
+      <a href="../index.html">Leyline</a>
       <a href="../privacy.html">Privacy</a>
       <a href="../terms.html">Terms</a>
     </footer>
@@ -68,7 +68,7 @@
       var render = function () { $("grid").innerHTML = cards.map(O.card).join(""); };
       render();
       if (hosted.length) {
-        $("act").innerHTML = '<a class="btn" href="' + esc(O.installHref(hosted.map(function (c) { return c.id; }))) + '">Install ' + hosted.length + " with Open Vanilla</a>";
+        $("act").innerHTML = '<a class="btn" href="' + esc(O.installHref(hosted.map(function (c) { return c.id; }))) + '">Install ' + hosted.length + " with Leyline</a>";
         var web = hosted.filter(function (c) { return c.browser; });
         if (web.length) $("act").innerHTML += ' <a class="btn" href="https://play.openvanilla.app/?addon=' + web.map(function (c) { return encodeURIComponent(c.id); }).join(",") + '">Play ' + web.length + " in your browser</a>";
       }

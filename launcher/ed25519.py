@@ -1,7 +1,7 @@
 """Ed25519 signatures (RFC 8032), standard library only.
 
 The launcher uses verify() to check that an update manifest (downloads/version.json) was signed by
-Open Vanilla's release key before it offers the update; packaging/release_manifest.py uses sign() in CI.
+Leyline's release key before it offers the update; packaging/release_manifest.py uses sign() in CI.
 Straight from the RFC's reference code: slow (milliseconds per call) but exact, and small enough to
 read. Never use it for anything secret-dependent on a shared machine (not constant time); signing
 runs only in CI.

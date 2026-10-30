@@ -1,4 +1,4 @@
-"""Open Vanilla Passport: portable, cryptographically signed character records.
+"""Leyline Passport: portable, cryptographically signed character records.
 
 Bound by GDPR Article 20, players hold their character record in a machine-readable,
 verifiable JSON format that survives any realm shutdown.
@@ -7,7 +7,7 @@ Prestige events (level 60, first kills, titles, achievements) form an append-onl
 tamper-evident hash chain signed by the issuing realm's Ed25519 key.
 
 Trust Tiers:
-  Tier 0 (Official):  Open Vanilla's official realms. Full import eligible.
+  Tier 0 (Official):  Leyline's official realms. Full import eligible.
   Tier 1 (Verified):  Reproducible recipe & build hash, Covenant signed, bots flagged.
                       Full import eligible with caps.
   Tier 2 (Community): Listed realm with valid key, Covenant signed. Cosmetic import.

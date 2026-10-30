@@ -1,13 +1,13 @@
 slug: start
 title: Getting started
 kicker: Chapter 1 · Start
-summary: What Open Vanilla is, the three ways to play, what you need, and your account.
+summary: What Leyline is, the three ways to play, what you need, and your account.
 
-## What Open Vanilla is {#what}
+## What Leyline is {#what}
 
-Open Vanilla is a free, community-run home for classic Vanilla. You can play on the official **Vanilla Remastered** realm (Vanilla with careful quality-of-life additions), play **solo offline** with bots, or **host your own realm** for friends. It's built on the open-source **benilla** client and runs in your browser or on Windows.
+Leyline is a free, community-run home for classic Vanilla. You can play on the official **Vanilla Remastered** realm (Vanilla with careful quality-of-life additions), play **solo offline** with bots, or **host your own realm** for friends. It's built on the open-source **benilla** client and runs in your browser or on Windows.
 
-> **Note:** Open Vanilla is a fan project. It isn't affiliated with or endorsed by Blizzard, it sells nothing, and it never ships Blizzard's game files: you use a copy of Vanilla Client v1.3 you obtain yourself.
+> **Note:** Leyline is a fan project. It isn't affiliated with or endorsed by Blizzard, it sells nothing, and it never ships Blizzard's game files: you use a copy of Vanilla Client v1.3 you obtain yourself.
 
 ## Three ways to play {#ways}
 
@@ -37,7 +37,7 @@ Details: [The launcher](launcher.html).
 
 ## Your account {#account}
 
-- **Sign in with Discord** is the one button for new and returning players: the first time, it creates your realm account and adds you to the Open Vanilla Discord. Open Vanilla never sees your Discord password or messages.
+- **Sign in with Discord** is the one button for new and returning players: the first time, it creates your realm account and adds you to the Leyline Discord. Leyline never sees your Discord password or messages.
 - **Guests** get a real account tied to that device (kept for 30 days of inactivity). Press **Save your heroes — link Discord** in game to keep your characters for good.
 - Accounts live on each realm: a community realm has its own accounts and its own website.
 - Staff will never ask for your password.

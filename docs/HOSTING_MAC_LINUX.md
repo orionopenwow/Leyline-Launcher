@@ -1,6 +1,6 @@
-# Hosting an Open Vanilla realm on macOS and Linux
+# Hosting a Leyline realm on macOS and Linux
 
-> The user manual is the Open Vanilla Manual's chapter **Host on a Mac or Linux**
+> The user manual is the Leyline Manual's chapter **Host on a Mac or Linux**
 > (`docs/manual/11b-host-mac-linux.md`, on the site at `manual/host-mac-linux.html`). It is also built
 > into the tool (`bash host/ovhost help`, `bash host/ovhost manual [SECTION]`) and copied into every realm
 > folder as `MANUAL.md`. This file is the technical overview for maintainers.
@@ -22,7 +22,7 @@ bash host/ovhost make-gm WR000041 3            GM powers for a game account
 bash host/ovhost uninstall [--purge]
 ```
 
-On a Mac, double-click **Host a Realm.command**. `python3 openvanilla_server.py` (the Open Vanilla
+On a Mac, double-click **Host a Realm.command**. `python3 openvanilla_server.py` (the Leyline
 Server entry point, SPP on Windows) runs `ovhost` on macOS and Linux: with no arguments the guided
 install, otherwise any ovhost command (`python3 openvanilla_server.py status`).
 
@@ -70,9 +70,9 @@ bash ovhost install --domain realm.example.org --data /srv/client/Data
 
 - `openvanilla-realm/` is the wenilla-realm checkout. It holds:
   - `.env` (secrets, mode 600; `COMPOSE_FILE` adds the next two files);
-  - `compose.override.yaml` (the Open Vanilla images and mounts, written by `openvanilla_realm_up.sh`);
+  - `compose.override.yaml` (the Leyline images and mounts, written by `openvanilla_realm_up.sh`);
   - `compose.host.yaml` (this machine: platform, ports).
-- `classicplus/` holds the Open Vanilla files: patch-Z, the page layer and SQL.
+- `classicplus/` holds the Leyline files: patch-Z, the page layer and SQL.
 - `ovhost.conf` records the choices made at install.
 - `ovhost.secret` is the password of the OVHOST console account that `ovhost gm` uses (made on first use).
 
@@ -96,7 +96,7 @@ bash ovhost install --domain realm.example.org --data /srv/client/Data
 
 ## Launcher on macOS and Linux
 
-- Run `bash play-open-vanilla.sh`, or double-click **Play Open Vanilla.command** on a Mac.
+- Run `bash play-open-vanilla.sh`, or double-click **Play Leyline Launcher.command** on a Mac.
 - It needs Python 3.10+ with Tk. Pillow goes into a private environment, so system Python is never touched (PEP 668).
 - What changed:
   - folders now open in Finder or the file manager;

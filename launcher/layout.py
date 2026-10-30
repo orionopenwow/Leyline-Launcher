@@ -1,4 +1,4 @@
-"""Where Open Vanilla keeps its files: the install folder, the user-data folder, and moving old installs over.
+"""Where Leyline keeps its files: the install folder, the user-data folder, and moving old installs over.
 
 Install folder (what the zip or the installer puts down; an update replaces it):
 
@@ -14,7 +14,7 @@ User data (survives updates and reinstalls):
       AddOns\\Enabled\\       addons every client loads (Workshop installs land here)
       AddOns\\Disabled\\      addons switched off in the launcher
       Realms\\Solo\\          SPP Classics (Play Solo)
-      Realms\\SoloPack\\      the older Open Vanilla solo pack (fallback; Host for friends runs on it)
+      Realms\\SoloPack\\      the older Leyline solo pack (fallback; Host for friends runs on it)
       Realms\\Hosted\\        realms this PC hosts for friends (P2P)
       Screenshots\\  Logs\\  Backups\\
       Settings\\             settings.json, layout.json
@@ -39,7 +39,7 @@ import time
 
 LAYOUT_VERSION = 2
 LAUNCHER_EXE = "OpenVanilla.exe"
-OLD_LAUNCHER_EXE = "OpenWoW.exe"          # the launcher's name before the Open Vanilla rename (layout 2)
+OLD_LAUNCHER_EXE = "OpenWoW.exe"          # the launcher's name before the Leyline rename (layout 2)
 LAUNCHER_EXES = (LAUNCHER_EXE, OLD_LAUNCHER_EXE)   # bridge releases ship both: older updaters only know the old one
 INTERNAL_DIR = "app"
 GAME_DIR = "Game"
@@ -216,7 +216,7 @@ def _copy_if_missing(src, dst, log):
 
 
 def is_checkout(root):
-    """A git checkout of the Open Vanilla repo (or its launcher folder), as opposed to an install."""
+    """A git checkout of the Leyline repo (or its launcher folder), as opposed to an install."""
     return any(os.path.exists(os.path.join(root, *rel)) for rel in
                ((".git",), ("launcher", "openvanilla_launcher.py"), ("openvanilla_launcher.py",)))
 

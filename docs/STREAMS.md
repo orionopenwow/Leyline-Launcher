@@ -1,6 +1,6 @@
 # Streams, creators and "now playing"
 
-Who is streaming Open Vanilla, the creators who make videos about it, a monthly creator leaderboard,
+Who is streaming Leyline, the creators who make videos about it, a monthly creator leaderboard,
 a ● LIVE mark in game for streamers who want one, and an opt-in "what I'm listening to" line on
 Persona profiles.
 
@@ -40,7 +40,7 @@ description and tags. Shorts are videos of 3 minutes or less (YouTube) and every
 Leaderboard maths (`accumulate`/`leaderboard`, unit-tested): every pass credits each live broadcast
 (one stream id) from max(its start time, the month's start, what was already counted) until now,
 plus viewer-seconds for that span at the current viewer count (a time-weighted average), and keeps
-the peak; a simulcast on two platforms adds both broadcasts' hours. Open Vanilla videos count once, in
+the peak; a simulcast on two platforms adds both broadcasts' hours. Leyline videos count once, in
 the month they were published. Months are UTC; 13 are kept in the private state file
 (`STREAMS_STATE`, mode 600, never in the site folder). Sorted by hours, then peak, then videos; the
 top 50 are published.
@@ -49,8 +49,8 @@ top 50 are published.
 
 | Platform | What we use | Limits |
 |---|---|---|
-| Twitch | Helix with an **app token** (client credentials, `TWITCH_CLIENT_ID`/`SECRET`): `streams?user_login=` for linked/curated channels, `search/channels?live_only` for "Open Vanilla", `streams?game_id=18122` filtered by title; `users?login=` for proofs | 800 points/min; a pass uses a handful |
-| YouTube | Data API v3 key: `channels`, `playlistItems` (uploads), `videos` (live/upcoming/duration), `search` for "Open Vanilla" at most every `YT_SEARCH_MINUTES` (60) | 10,000 units/day. The two searches cost 100 each, hourly: 4,800/day; the rest is about 1 unit per curated/linked channel per pass (288 passes/day), so ~8,000/day with 10 channels. Raise `YT_SEARCH_MINUTES` or ask Google for more quota as the list grows |
+| Twitch | Helix with an **app token** (client credentials, `TWITCH_CLIENT_ID`/`SECRET`): `streams?user_login=` for linked/curated channels, `search/channels?live_only` for "Leyline", `streams?game_id=18122` filtered by title; `users?login=` for proofs | 800 points/min; a pass uses a handful |
+| YouTube | Data API v3 key: `channels`, `playlistItems` (uploads), `videos` (live/upcoming/duration), `search` for "Leyline" at most every `YT_SEARCH_MINUTES` (60) | 10,000 units/day. The two searches cost 100 each, hourly: 4,800/day; the rest is about 1 unit per curated/linked channel per pass (288 passes/day), so ~8,000/day with 10 channels. Raise `YT_SEARCH_MINUTES` or ask Google for more quota as the list grows |
 | TikTok | **Display API** only: a creator signs in to TikTok (Login Kit) and grants `user.info.basic` + `video.list`; we then list *their own public videos* (`/v2/video/list/`) | No search, no live status, nothing about other accounts (the Research API is for academic researchers only). Access tokens last 24 h, refresh tokens 365 days; the fetcher refreshes them. Everyone else's TikTok is a plain profile link on their creator card |
 | Kick | Profile links only | No stable public API we rely on |
 
@@ -115,7 +115,7 @@ player's linked Spotify (PKCE, scope `user-read-currently-playing`, redirect
 `http://127.0.0.1:43129/callback`, client id `spotify_client_id` in `launcher/defaults.json`), writes
 `launcher/nowplaying.json` `{title, artist, link, at, source}`, and rewrites Persona's per-character
 SavedVariables file (`Persona_NowPlaying = {text, at}`) in every character folder that exists —
-`benilla-config/saved/<Realm>-<Char>/Persona.lua` for the Open Vanilla client and
+`benilla-config/saved/<Realm>-<Char>/Persona.lua` for the Leyline client and
 `WTF/Account/*/<Realm>/<Char>/SavedVariables/Persona.lua` for a 1.12 install. The honest limit: a
 running 1.12 client cannot be told anything, so the game sees the song **when the character enters
 the world**, and Persona shows it for 10 minutes; a later song shows after the next login.

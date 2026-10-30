@@ -197,7 +197,7 @@ of this up on the realm server (database login, DBC copy, env file, timer).
 ## Community realms
 
 A host whose `HostConfig.armory` is on (off by default; the launcher's host settings can offer it as
-"Show this realm in the Open Vanilla armory") runs the same exporter hourly on the host database (`--community --realm <host_id>`, through the mariadb client the
+"Show this realm in the Leyline armory") runs the same exporter hourly on the host database (`--community --realm <host_id>`, through the mariadb client the
 host agent already uses), zips the realm folder and uploads it:
 
 ```

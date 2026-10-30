@@ -1,4 +1,4 @@
-# The Open Vanilla test bot, Herald: signs in to the live realm in headless Chromium (CPU WebGPU),
+# The Leyline test bot, Herald: signs in to the live realm in headless Chromium (CPU WebGPU),
 # enters the world as Herald (a Human Hunter), runs the owdiag checks and the
 # data routines, and puts a short summary in the run summary (full JSON as an artifact).
 # Source: packaging/workflows/owbot.yml (Ship.bat and Release.bat copy it into .github/workflows).

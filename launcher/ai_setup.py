@@ -1,5 +1,5 @@
 """Activate your AI (optional): help a player point an AI coding agent they already have at their own
-Open Vanilla copy. Claude Code first; any agent that reads AGENTS.md works too.
+Leyline copy. Claude Code first; any agent that reads AGENTS.md works too.
 
     tools = detect_tools()                     which agents are on this PC (Claude Code first)
     res = install_kit(kit_source(), data_dir)  copy agent/ into the user-data folder (idempotent)
@@ -10,7 +10,7 @@ The workspace is the user-data folder (layout.Layout.data): CLAUDE.md and AGENTS
 the agent reads them first, the README and prompts go in Agent\\. A file the player edited is never
 overwritten (Agent\\.kit.json remembers what the kit last wrote).
 
-Open Vanilla stores no AI keys or accounts: the agent runs in its own window with the player's own account.
+Leyline stores no AI keys or accounts: the agent runs in its own window with the player's own account.
 Nothing here touches the network. Live content can hide the feature (flag "ai").
 
 The Tk parts (on_start, settings_section) take the launcher as `app` and import tkinter lazily, so the
@@ -152,7 +152,7 @@ def kit_files(src):
 def check_workspace(workspace, home=None):
     """The workspace as an absolute path, or KitError when it is somewhere a kit must never go."""
     if not workspace:
-        raise KitError("No Open Vanilla data folder is set.")
+        raise KitError("No Leyline data folder is set.")
     ws = os.path.abspath(workspace)
     real = os.path.realpath(ws)
     home = os.path.realpath(home or os.path.expanduser("~"))
@@ -208,7 +208,7 @@ def install_kit(src, workspace, version="", home=None):
     paths). Safe to run again: unchanged files are left, files the kit wrote before are refreshed, and a
     file the player edited (or wrote themselves) is kept as it is."""
     if not src or not os.path.isfile(os.path.join(src, "CLAUDE.md")):
-        raise KitError("The AI starter kit is missing from this Open Vanilla build.")
+        raise KitError("The AI starter kit is missing from this Leyline build.")
     ws = check_workspace(workspace, home)
     os.makedirs(ws, exist_ok=True)
     old = _read_manifest(ws)["files"]
@@ -394,10 +394,10 @@ def should_offer(settings, flag_on):
     return bool(flag_on) and not s.get("offered") and int(s.get("launches", 0) or 0) >= OFFER_AFTER_LAUNCHES
 
 
-OFFER_TEXT = ("Open Vanilla is open source, and your copy is yours to change. If you use an AI coding agent "
-              "(Claude Code works best; others work too), Open Vanilla can set it up to make addons, change your "
-              "own Solo world or your Open Vanilla Server realm, and help you run it.\n\n"
-              "It's optional and stays on your PC: Open Vanilla stores no AI keys or accounts (you use your own), "
+OFFER_TEXT = ("Leyline is open source, and your copy is yours to change. If you use an AI coding agent "
+              "(Claude Code works best; others work too), Leyline can set it up to make addons, change your "
+              "own Solo world or your Leyline Server realm, and help you run it.\n\n"
+              "It's optional and stays on your PC: Leyline stores no AI keys or accounts (you use your own), "
               "and nothing it does can touch the official realm. You'll find it any time in Settings → AI.")
 
 
@@ -439,7 +439,7 @@ def settings_section(app, inner, data_dir, section, note, buttons, width):
 
     section("AI  (optional)")
     note("Use an AI coding agent you already have to make addons and change your own Solo world or "
-         "Open Vanilla Server realm. Open Vanilla stores no AI keys or accounts: the agent runs in its own window with "
+         "Leyline Server realm. Leyline stores no AI keys or accounts: the agent runs in its own window with "
          "your own account (Claude Code needs a paid Claude plan or an Anthropic Console account). Everything "
          "stays on your copy and your own servers; the official realm can't be changed from here.")
     tools = detect_tools()

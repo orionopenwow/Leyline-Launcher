@@ -1,4 +1,4 @@
-"""First-run WoW data import for the Open Vanilla launcher.
+"""First-run WoW data import for the Leyline Launcher.
 
 Finds the player's own 1.12.1 install, checks it has every archive benilla
 mounts, remembers it, and hands back the env benilla reads (WOW_DATA).
@@ -55,7 +55,7 @@ def problems(data):
                     out.append(f"{want} is damaged (not an MPQ archive)")
     build = exe_build(data.parent)
     if build is not None and build != BUILD:
-        out.append(f"This is build {build}; Open Vanilla needs the 1.12.1 game client (build {BUILD})")
+        out.append(f"This is build {build}; Leyline needs the 1.12.1 game client (build {BUILD})")
     return out
 
 
@@ -107,7 +107,7 @@ def ensure_wow_data(parent=None):
     from tkinter import filedialog, messagebox
     messagebox.showinfo(
         "Find your game folder",
-        "Open Vanilla uses the game files from your own 1.12.1 game client.\n\n"
+        "Leyline uses the game files from your own 1.12.1 game client.\n\n"
         "Pick your Vanilla game folder (the one with WoW.exe or the Data folder). "
         "You only need to do this once.",
         parent=parent,

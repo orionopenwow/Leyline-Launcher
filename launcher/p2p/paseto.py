@@ -1,4 +1,4 @@
-"""Open Vanilla identity tokens: PASETO v4.public (Ed25519), verified on the host.
+"""Leyline identity tokens: PASETO v4.public (Ed25519), verified on the host.
 
     keys = KeyCache(CENTRAL_URL + "/.well-known/openvanilla-keys.json")
     v = TokenVerifier(keys, host_id)
@@ -177,9 +177,9 @@ class TokenVerifier:
             raise TokenError("token is missing sub or jti")
         roles = claims.get("roles") or []
         if isinstance(roles, list) and "banned" in roles:
-            raise TokenError("this Open Vanilla account is banned")
+            raise TokenError("this Leyline account is banned")
         if self.revoked is not None and self.revoked.is_revoked(str(sub)):
-            raise TokenError("this Open Vanilla account is banned")
+            raise TokenError("this Leyline account is banned")
         with self.lock:
             for j, e in list(self.seen.items()):
                 if e < now - CLOCK_SKEW:

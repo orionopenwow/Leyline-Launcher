@@ -1,4 +1,4 @@
-"""The three tiers of the Open Vanilla network, in one place for the launcher, the site and the directory
+"""The three tiers of the Leyline network, in one place for the launcher, the site and the directory
 (docs/NODE_NETWORK.md has the prose; www/community/nodes.json carries TIERS for the site).
 
     tier_of_realm(entry)        -> "verified" | "community"
@@ -19,12 +19,12 @@ import ipaddress
 
 TIERS = [
     {"key": "verified", "label": "Verified realms", "badge": "VERIFIED", "color": "#e8b64c",
-     "short": "Run by Open Vanilla, or a community realm the maintainer has vetted.",
+     "short": "Run by Leyline, or a community realm the maintainer has vetted.",
      "criteria": [
-         "Open Vanilla's own realms are always Verified.",
+         "Leyline's own realms are always Verified.",
          "A community realm: listed for 14 days or more with 98% of reachability probes passing,",
-         "uses Open Vanilla sign-in (players' passwords never reach the host) and keeps backups on,",
-         "has a description and rules, no upheld reports, and its host's Open Vanilla account is in good standing,",
+         "uses Leyline sign-in (players' passwords never reach the host) and keeps backups on,",
+         "has a description and rules, no upheld reports, and its host's Leyline account is in good standing,",
          "and the maintainer approved it. The maintainer can withdraw it at any time.",
      ]},
     {"key": "community", "label": "Community P2P realms", "badge": "COMMUNITY", "color": "#9aa0a6",
@@ -32,7 +32,7 @@ TIERS = [
      "criteria": [
          "Heartbeats every minute and answers the directory's probe (directly or through a relay).",
          "Name and description pass the word list; not on the blocklist.",
-         "Not vetted by a person: play at your own risk. Your Open Vanilla password never reaches the host.",
+         "Not vetted by a person: play at your own risk. Your Leyline password never reaches the host.",
      ]},
     {"key": "node", "label": "Verified P2P nodes", "badge": "NODE", "color": "#4fc3b0",
      "short": "Volunteers' relays that passed the checks and were approved by the maintainer.",
@@ -47,7 +47,7 @@ TIERS = [
 TIER_KEYS = tuple(t["key"] for t in TIERS)
 
 BADGES = {
-    "official": {"label": "OFFICIAL", "tier": "verified", "tip": "Run by the Open Vanilla team."},
+    "official": {"label": "OFFICIAL", "tier": "verified", "tip": "Run by the Leyline team."},
     "verified": {"label": "VERIFIED", "tier": "verified", "tip": "A community realm the maintainer has vetted."},
     "community": {"label": "COMMUNITY", "tier": "community", "tip": "Hosted by a player. Not vetted by a person."},
     "relayed": {"label": "RELAYED", "tier": "community", "tip": "Players connect through a relay: the host's and "
@@ -56,7 +56,7 @@ BADGES = {
                                                               "only ciphertext."},
     "node": {"label": "NODE", "tier": "node", "tip": "A verified volunteer relay."},
     "pending": {"label": "PENDING", "tier": "node", "tip": "A volunteer relay still being checked."},
-    "seeder": {"label": "SEEDER", "tier": "node", "tip": "Shares Open Vanilla's own downloads with other players."},
+    "seeder": {"label": "SEEDER", "tier": "node", "tip": "Shares Leyline's own downloads with other players."},
 }
 
 # ---------------------------------------------------------------- node criteria
@@ -169,7 +169,7 @@ def realm_promotion_checks(realm, now):
     c = {
         "age": (days >= REALM_MIN_DAYS, f"listed {days:.0f} of {REALM_MIN_DAYS} days"),
         "uptime": (total > 0 and pct >= REALM_MIN_UPTIME_PCT, f"{pct:.1f}% of probes (needs {REALM_MIN_UPTIME_PCT:.0f}%)"),
-        "identity": (bool(realm.get("identity")), "uses Open Vanilla sign-in" if realm.get("identity") else "own accounts only"),
+        "identity": (bool(realm.get("identity")), "uses Leyline sign-in" if realm.get("identity") else "own accounts only"),
         "backups": (bool(realm.get("backups")), "backups on" if realm.get("backups") else "backups off"),
         "description": (len(str(realm.get("description") or "")) >= 20, "has a description and rules"),
         "standing": (not realm.get("blocked") and int(realm.get("reports_upheld") or 0) == 0

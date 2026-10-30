@@ -1,6 +1,6 @@
-"""Open Vanilla Launcher — the player-facing launcher that ships in the client repack.
+"""Leyline Launcher — the player-facing launcher that ships in the client repack.
 
-Layout (matches the Open Vanilla UI kit mockup):
+Layout (matches the Leyline UI kit mockup):
     left rail     the realms, as medallions (+ to add one), Settings and Help at the bottom
     top bar       OPENVANILLA wordmark, tabs (Game Client, Web Play, Patch Notes, Community, Addons),
                   realm status, account chip, window buttons
@@ -49,7 +49,7 @@ tls.install()
 import account
 import launcher_art as art
 import wow_import  # finds and checks the player's own 1.12.1 install (archives, WoW.exe build)
-import ed25519     # checks that an update manifest was signed by Open Vanilla's release key
+import ed25519     # checks that an update manifest was signed by Leyline's release key
 import layout      # the install/user-data folders and moving old installs over (launcher/layout.py)
 import updater     # background update staging and the restart-to-update hand-off
 import live_content  # the signed downloads/live.json: news, banner, feature flags, links
@@ -80,7 +80,7 @@ try:  # 1.57.0: the start card "Open Vanilla is now Leyline" with the Leyline la
     import leyline_bridge
 except ImportError:
     leyline_bridge = None
-try:  # PLAY SOLO: play_local.py sits in the Open Vanilla folder (a dev checkout) or is frozen in with the launcher
+try:  # PLAY SOLO: play_local.py sits in the Leyline folder (a dev checkout) or is frozen in with the launcher
     sys.path.insert(1, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
     import play_local as solo
 except ImportError:
@@ -528,7 +528,7 @@ def wow_data_dir(folder):
 
 
 def wow_problems(folder):
-    """Why this WoW folder won't run Open Vanilla (missing or damaged archives, wrong build); [] when it's good."""
+    """Why this WoW folder won't run Leyline (missing or damaged archives, wrong build); [] when it's good."""
     data = wow_data_dir(folder)
     if not data:
         return ["No Data folder with game archives found there."]
@@ -640,7 +640,7 @@ def linux_webgpu_flags(platform=None):
 
 
 def launch_web(url, fullscreen=True):
-    """Open the Open Vanilla site in its own chromeless window (fullscreen by default).
+    """Open the Leyline site in its own chromeless window (fullscreen by default).
 
     A dedicated browser profile keeps the window separate from the player's normal browsing,
     so the flags apply even when the browser is already open. Returns (ok, message).
@@ -658,7 +658,7 @@ def launch_web(url, fullscreen=True):
         args.append("--start-fullscreen" if fullscreen else "--window-size=1600,900")
         try:
             subprocess.Popen(args, close_fds=True)
-            return True, f"Opening Open Vanilla in {name}" + (" (F11 leaves fullscreen)" if fullscreen else "")
+            return True, f"Opening Leyline in {name}" + (" (F11 leaves fullscreen)" if fullscreen else "")
         except OSError as e:
             return False, f"Could not start {name}: {e}"
     safe_open(url)
@@ -676,7 +676,7 @@ P2P_PORTAL = "https://play.openvanilla.app"
 REALM_TYPES = (("pve", "PvE"), ("pvp", "PvP"), ("rp", "RP"), ("rppvp", "RP-PvP"))
 REALM_TYPE_ICONS = {"pve": "shield", "pvp": "swords", "rp": "scroll", "rppvp": "swords"}
 REALM_TEMPLATES = (("classicplus", "Vanilla Remastered"), ("vanilla", "Vanilla"))
-CONNECTIONS = (("relay", "Through Open Vanilla (recommended: your address stays hidden)"),
+CONNECTIONS = (("relay", "Through Leyline (recommended: your address stays hidden)"),
                ("direct", "Direct from my home connection"),
                ("lan", "My local network only"))
 def legacy_link(a):
@@ -693,7 +693,7 @@ def register_link_handler():
         import winreg
         exe = sys.executable
         base = r"Software\Classes\openvanilla"
-        for sub, name, val in ((base, "", "URL:Open Vanilla"), (base, "URL Protocol", ""),
+        for sub, name, val in ((base, "", "URL:Leyline"), (base, "URL Protocol", ""),
                                (base + r"\DefaultIcon", "", f'"{exe}",0'),
                                (base + r"\shell\open\command", "", f'"{exe}" "%1"')):
             with winreg.CreateKey(winreg.HKEY_CURRENT_USER, sub) as k:
@@ -743,12 +743,12 @@ def parse_invite(text):
 
 
 DIRECT_RE = re.compile(r"^openvanilla://join/(direct|lan)/([A-Za-z0-9.\-]{1,253}|\[[0-9a-fA-F:]+\]):(\d{1,5})/?(?:\?(.*))?$")
-OFFLINE_TEXT = "Open Vanilla is offline: you can still host and join friends directly."
+OFFLINE_TEXT = "Leyline is offline: you can still host and join friends directly."
 
 
 def parse_link(text):
     """Any invite link: the relay form (parse_invite), or openvanilla://join/direct|lan/<host>:<port>?g=…&n=…&k=…
-    (no Open Vanilla services involved) -> dict(kind, host_id, host, port, code, guest, name, fp, link), else None."""
+    (no Leyline services involved) -> dict(kind, host_id, host, port, code, guest, name, fp, link), else None."""
     inv = parse_invite(text)
     if inv:
         q = urllib.parse.parse_qs(text.partition("?")[2])
@@ -766,7 +766,7 @@ def parse_link(text):
 
 
 def is_offline_error(text):
-    """Errors that only mean Open Vanilla's central services (directory, sign-in, relay) can't be reached."""
+    """Errors that only mean Leyline's central services (directory, sign-in, relay) can't be reached."""
     t = (text or "").lower()
     return any(k in t for k in ("can't be reached", "cannot be reached", "unreachable", "urlopen error",
                                 "timed out", "name or service not known", "getaddrinfo", "connection refused",
@@ -925,7 +925,7 @@ class Launcher(tk.Tk):
         self._bg_q = queue.Queue(maxsize=2)
         self._bg_i = 0
 
-        self.title("Open Vanilla Launcher")
+        self.title("Leyline Launcher")
         self.configure(bg=BG)
         self._place_window()
         self.resizable(False, False)
@@ -935,7 +935,7 @@ class Launcher(tk.Tk):
             pass
         if sys.platform == "win32":
             # A real .ico (16-256 px, the same emblem as the release exe) for the taskbar and Alt+Tab.
-            # Run from source (Play Open Vanilla.bat), the window would otherwise show Python's icon.
+            # Run from source (Play Leyline Launcher.bat), the window would otherwise show Python's icon.
             try:
                 ico = os.path.join(os.environ.get("LOCALAPPDATA") or tempfile.gettempdir(), "OpenVanilla", "openvanilla.ico")
                 if not os.path.isfile(ico):
@@ -1301,7 +1301,7 @@ class Launcher(tk.Tk):
             logo = logo.resize((round(logo.width * 104 / logo.height), 104), Image.Resampling.LANCZOS)
             cv.create_image(RAIL + 4, -4, anchor="nw", image=self.img("logo", logo), tags=("drag", "logo"))
         else:
-            cv.create_image(RAIL + 14, TOP // 2 + 1, anchor="w", image=self.img("logo", art.wordmark("OPEN VANILLA", 25)),
+            cv.create_image(RAIL + 14, TOP // 2 + 1, anchor="w", image=self.img("logo", art.wordmark("LEYLINE", 25)),
                             tags=("drag", "logo"))
 
         # frame border over everything
@@ -1655,7 +1655,7 @@ class Launcher(tk.Tk):
         builtin = self.defaults.get("clients") or [
             {"id": "openvanilla", "name": "Open Vanilla Classic+", "version": "1.12.1", "type": "engine",
              "exe": "OpenVanilla.exe", "build": 5875},
-            {"id": "web", "name": "Open Vanilla in Browser", "version": "Web", "type": "web", "build": 5875}]
+            {"id": "web", "name": "Leyline in Browser", "version": "Web", "type": "web", "build": 5875}]
         return game_clients.catalog(builtin, self.defaults.get("clients_parked", []),
                                     self.live.doc.get("clients", []) if getattr(self, "live", None) else [],
                                     game_clients.read_clients_txt(LAYOUT.clients_txt))
@@ -2346,7 +2346,7 @@ class Launcher(tk.Tk):
         cx, cwid = x + tw + 22, w - tw - 22
         self.shadow_text(cx, y + 8, "COMMUNITY", 10, GOLD)
         links = self.community_links()
-        entries = (("portal", "Open Vanilla Portal", "link"), ("forums", "Forums", "chat"), ("mods", "Mod workshop", "mods"),
+        entries = (("portal", "Leyline Portal", "link"), ("forums", "Forums", "chat"), ("mods", "Mod workshop", "mods"),
                    ("discord", "Discord", "chat"), ("github", "GitHub", "code"), ("bug_reports", "Report a bug", "bug"))
         yy = y + 30
         for key, title, ico in entries:
@@ -2540,7 +2540,7 @@ class Launcher(tk.Tk):
         inner = self._scroll_list(x, y + 36, w, h - 36 - 30)
         if not rows and entries:
             self._ws_no_match(inner)
-        source_label = {"builtin": "built in", "parked": "Open Vanilla", "live": "from Open Vanilla", "local": "clients.txt"}
+        source_label = {"builtin": "built in", "parked": "Leyline", "live": "from Leyline", "local": "clients.txt"}
         for e in rows:
             row = self.list_row(inner)
             ico = {"engine": "play", "web": "web"}.get(e.get("type"), "realms")
@@ -2556,7 +2556,7 @@ class Launcher(tk.Tk):
             status = "COMING SOON" if soon else ("IN MY CLIENTS" if e["id"] in mine else "AVAILABLE")
             self.chip(head, status, fg=AMBER if soon else (GREEN if e["id"] in mine else TAN)).pack(side="left", padx=2)
             self.chip(head, source_label.get(e.get("source"), "")).pack(side="left", padx=2)
-            tk.Label(box, text=e.get("description") or {"exe": "Your own game install (.exe)", "engine": "The Open Vanilla engine",
+            tk.Label(box, text=e.get("description") or {"exe": "Your own game install (.exe)", "engine": "The Leyline engine",
                                                          "web": "Plays in your web browser"}.get(e.get("type"), ""),
                      bg="#17121c", fg=TEXT, font=font(8), anchor="w", wraplength=w - 420, justify="left").pack(fill="x")
             if e["id"] in mine:
@@ -2572,7 +2572,7 @@ class Launcher(tk.Tk):
                              lambda e=e: self.workshop_get_client(e)).pack(side="right", padx=(0, 4))
             if e.get("page"):
                 self.wbutton(row, "Page", lambda u=e["page"]: safe_open(u)).pack(side="right", padx=(0, 4))
-        self.link_text(x, y + h - 12, "Your own clients: clients.txt in the Open Vanilla data folder ›",
+        self.link_text(x, y + h - 12, "Your own clients: clients.txt in the Leyline data folder ›",
                        self.open_clients_txt, 9)
 
     def workshop_add_client(self, e, select=False):
@@ -2627,7 +2627,7 @@ class Launcher(tk.Tk):
                                                       it.get("kind"), it.get("client"), " ".join(it.get("tags", [])))]
         live = self.directory.get("_live")
         self.cv.create_text(x + w, y - 26, anchor="e", fill=MUTED, font=font(8), tags="page",
-                            text="Live list from the Open Vanilla directory" if live else "Offline copy (the directory couldn't be reached)")
+                            text="Live list from the Leyline directory" if live else "Offline copy (the directory couldn't be reached)")
         inner = self._scroll_list(x, y, w, h - 34)
         if not items and listed:
             self._ws_no_match(inner)
@@ -2815,7 +2815,7 @@ class Launcher(tk.Tk):
 
     GH_PRESETS = (("Repacks", "wow repack"), ("Vanilla addons", "wow addon 1.12"), ("3.3.5a addons", "wow addon 3.3.5"),
                   ("vmangos", "vmangos"), ("AzerothCore", "azerothcore"), ("TrinityCore", "trinitycore 3.3.5"),
-                  ("Open Vanilla", "openvanilla"))
+                  ("Leyline", "openvanilla"))
 
     def _mods_search(self, x, y, w, h):
         """Workshop → Search: GitHub repositories (repacks, addons, server cores, tools)."""
@@ -3243,12 +3243,12 @@ class Launcher(tk.Tk):
         self.ping_directory()
         servers = self.directory.get("servers", [])
         live = self.directory.get("_live")
-        sub = "Live list from the Open Vanilla directory" if live else "Offline copy (the directory couldn't be reached)"
+        sub = "Live list from the Leyline directory" if live else "Offline copy (the directory couldn't be reached)"
         self.cv.create_text(x + w, y - 26, anchor="e", text=sub, fill=MUTED, font=font(8), tags="page")
         inner = self._scroll_list(x, y, w, h - 40)
         if not servers:
             self.empty_state(inner, "No community servers listed yet",
-                             "Run your own with Open Vanilla Server (openvanilla.app/host.html), then list it so other players can find it.")
+                             "Run your own with Leyline Server (openvanilla.app/host.html), then list it so other players can find it.")
         for srv in servers:
             key = f"{srv.get('host')}:{srv.get('port', 3724)}"
             ping = self.dir_state.get(key, "?")
@@ -3424,7 +3424,7 @@ class Launcher(tk.Tk):
                          anchor="ne", size=8, icon="refresh")
         when = ("Loading the realm list…" if st["loading"] else OFFLINE_TEXT if st["error"] == OFFLINE_TEXT
                 else "Offline" if st["error"] else
-                (f"{len(st['realms'] or [])} realms · live from the Open Vanilla directory" if st["realms"] is not None else ""))
+                (f"{len(st['realms'] or [])} realms · live from the Leyline directory" if st["realms"] is not None else ""))
         self.cv.create_text(x + w, y - 26, anchor="e", text=when, fill=AMBER if st["error"] == OFFLINE_TEXT else
                             RED if st["error"] else MUTED, font=font(8), tags="page")
 
@@ -3439,18 +3439,18 @@ class Launcher(tk.Tk):
             rows.sort(key=lambda r: recent.index(realm_key(r)))
         if not rows:
             if st["error"] == OFFLINE_TEXT and not realms:
-                self.empty_state(inner, "Open Vanilla is offline", "You can still host and join friends directly: paste a "
+                self.empty_state(inner, "Leyline is offline", "You can still host and join friends directly: paste a "
                                  "friend's invite link below, or use JOIN BY ADDRESS. Press REFRESH to try again.")
             elif st["error"] and not realms:
                 self.empty_state(inner, "Couldn't load the realm list", st["error"] + "\n\nPress REFRESH to try again, "
                                  "or use the COMMUNITY LIST tab.")
             elif st["loading"] or st["realms"] is None:
-                self.empty_state(inner, "Loading realms…", "Asking the Open Vanilla directory which realms are up.")
+                self.empty_state(inner, "Loading realms…", "Asking the Leyline directory which realms are up.")
             elif realms:
                 self.empty_state(inner, "No realm matches these filters", "Change the filters above to see more realms.")
             else:
                 self.empty_state(inner, "No realms are listed right now",
-                                 "Paste an invite link a friend sent you below, or run your own with Open Vanilla Server (openvanilla.app/host.html).")
+                                 "Paste an invite link a friend sent you below, or run your own with Leyline Server (openvanilla.app/host.html).")
         heads = {0: "VERIFIED REALMS  ·  OFFICIAL", 1: "VERIFIED REALMS  ·  VETTED BY THE MAINTAINER",
                  2: "COMMUNITY P2P REALMS  ·  NOT VETTED, PLAY AT YOUR OWN RISK"}
         group = None
@@ -3553,13 +3553,13 @@ class Launcher(tk.Tk):
             hp = (text or "").strip()
             if re.fullmatch(r"[A-Za-z0-9.\-]{1,253}(:\d{1,5})?", hp) and "." in hp:  # a plain host:port
                 return self.join_address(hp)
-            self.notice("That isn't an Open Vanilla invite link or a host:port address.", RED, 6)
+            self.notice("That isn't a Leyline invite link or a host:port address.", RED, 6)
             return False
         name = inv["name"] or "a community realm"
         if inv["kind"] == "relay":
-            body = ("This invite opens a community realm hosted by another player, through Open Vanilla's relay. "
-                    + ("You join as a guest; no Open Vanilla account needed." if inv.get("guest") else
-                       "You sign in with your Open Vanilla account; the host never sees your password."))
+            body = ("This invite opens a community realm hosted by another player, through Leyline's relay. "
+                    + ("You join as a guest; no Leyline account needed." if inv.get("guest") else
+                       "You sign in with your Leyline account; the host never sees your password."))
             if not messagebox.askyesno("Join a realm", f"Join {name}?\n\n{body}", parent=self):
                 return False
         elif not self._confirm_direct(inv["kind"], name, f"{inv['host']}:{inv['port']}"):
@@ -3571,10 +3571,10 @@ class Launcher(tk.Tk):
         """Joining a host directly (not through the relay): the host sees the player's IP address."""
         if kind == "lan":
             body = (f"Join {name} on your local network ({address})?\n\nThis realm runs on a PC in your home or "
-                    "LAN; Open Vanilla isn't involved.")
+                    "LAN; Leyline isn't involved.")
         else:
             body = (f"Join {name} directly at {address}?\n\nYou connect straight to the host's PC, not through "
-                    "Open Vanilla, so the host will see your IP address (and roughly where you are). Only join hosts "
+                    "Leyline, so the host will see your IP address (and roughly where you are). Only join hosts "
                     "you trust.")
         return messagebox.askyesno("Join directly", body, parent=self)
 
@@ -3595,7 +3595,7 @@ class Launcher(tk.Tk):
         return True
 
     def join_address_dialog(self):
-        dlg = self.p2p_dialog("JOIN BY ADDRESS", "Play on a friend's realm without Open Vanilla: enter the address they "
+        dlg = self.p2p_dialog("JOIN BY ADDRESS", "Play on a friend's realm without Leyline: enter the address they "
                               "gave you. Add their guest code, or the account they made for you, if they sent one.",
                               width=500)
         fields = {}
@@ -3738,7 +3738,7 @@ class Launcher(tk.Tk):
             return
         reasons = ("Offensive name or description", "Cheating, scams or abuse", "Not what it claims to be",
                    "Shares game files it shouldn't", "Something else")
-        dlg = self.p2p_dialog("REPORT A REALM", f"Tell Open Vanilla's staff what's wrong with {rf(r, 'name', 'this realm')}. "
+        dlg = self.p2p_dialog("REPORT A REALM", f"Tell Leyline's staff what's wrong with {rf(r, 'name', 'this realm')}. "
                               "Reports are reviewed by people; the host isn't told who reported.", width=480)
         body = dlg.body
         var = tk.StringVar(value=reasons[0])
@@ -3768,7 +3768,7 @@ class Launcher(tk.Tk):
                     status, info = account._request(url, "POST", payload, token=token, timeout=10)
                 try:
                     self.after(0, lambda: self.notice(
-                        "Thanks — the report was sent to Open Vanilla's staff." if status in (200, 201, 202, 204) else
+                        "Thanks — the report was sent to Leyline's staff." if status in (200, 201, 202, 204) else
                         (info.get("message") or f"The report couldn't be sent (HTTP {status})."),
                         GREEN if status in (200, 201, 202, 204) else RED, 6))
                 except RuntimeError:
@@ -3804,7 +3804,7 @@ class Launcher(tk.Tk):
         x, y, w, h = self.big_panel("HOST", "server", "Run a realm on this PC for friends or the whole community")
         if not tabs:
             self.empty_state(self._scroll_list(x, y, w, h), "Hosting is switched off for now",
-                             "The Open Vanilla team turned hosting off in this launcher for the moment. It comes back by itself.")
+                             "The Leyline team turned hosting off in this launcher for the moment. It comes back by itself.")
             return
         tab = self.tab_state.get("host", "realm")
         if tab not in dict(tabs):
@@ -3821,7 +3821,7 @@ class Launcher(tk.Tk):
             self._host_realm(x, y, w, h)
 
     def host_connections(self):
-        """The connection choices on offer: "Through Open Vanilla" only once the relay is live (live.json flags.relay)."""
+        """The connection choices on offer: "Through Leyline" only once the relay is live (live.json flags.relay)."""
         return [(k, t) for k, t in CONNECTIONS if k != "relay" or self.live.flag("relay")]
 
     def _host_cfg(self):
@@ -3909,7 +3909,7 @@ class Launcher(tk.Tk):
         for key, text in checks:
             self.check(form, text, v[key], self._host_save).grid(row=row, column=0, columnspan=2, sticky="w")
             row += 1
-        note = {"relay": "Players reach you through Open Vanilla's relay: nobody sees your home address, and no router "
+        note = {"relay": "Players reach you through Leyline's relay: nobody sees your home address, and no router "
                          "ports are opened.",
                 "direct": "Players connect straight to this PC and see your home IP address.",
                 "lan": "Only people on your own network (same Wi-Fi or router) can join. Works without the internet."}[conn]
@@ -3960,15 +3960,15 @@ class Launcher(tk.Tk):
 
     def direct_privacy_dialog(self, on_accept):
         """Direct hosting shows who can see what before it starts; hosting starts only on I UNDERSTAND."""
-        text = ("Direct mode lets friends connect straight to this PC, without Open Vanilla in between. Before you start:\n\n"
+        text = ("Direct mode lets friends connect straight to this PC, without Leyline in between. Before you start:\n\n"
                 "• Everyone you invite (and anyone they pass the link to) will see your home IP address, and from it "
                 "roughly where you are (your city and internet provider).\n\n"
                 "• Ports 3724 and 8085 on your router stay open to the internet while you host.\n\n"
                 "• In direct mode, sign-in details between you and your friends travel unencrypted.\n\n"
                 "Staying safe: only share invite links with people you trust, stop hosting when you're done, and "
-                + ("choose “Through Open Vanilla” instead to keep your address hidden." if self.live.flag("relay") else
-                   "use “My local network only” for friends in the same house. “Through Open Vanilla”, which keeps your "
-                   "address hidden, arrives with the Open Vanilla relay."))
+                + ("choose “Through Leyline” instead to keep your address hidden." if self.live.flag("relay") else
+                   "use “My local network only” for friends in the same house. “Through Leyline”, which keeps your "
+                   "address hidden, arrives with the Leyline relay."))
         dlg = self.p2p_dialog("BEFORE YOU HOST DIRECTLY", text, width=560)
 
         def accept():
@@ -3977,7 +3977,7 @@ class Launcher(tk.Tk):
 
         dlg.accept = accept
         if self.live.flag("relay"):
-            dlg.buttons(("I understand, start", accept, True), ("Use Open Vanilla instead", lambda: (
+            dlg.buttons(("I understand, start", accept, True), ("Use Leyline instead", lambda: (
                 dlg.close(), self._hostv["connection"].set("relay"), self._host_conn_changed()), False))
         else:   # no relay yet: the safe alternative is the local network
             dlg.buttons(("I understand, start", accept, True), ("Local network only", lambda: (
@@ -3994,7 +3994,7 @@ class Launcher(tk.Tk):
             messagebox.showerror("Host a realm", "Give your realm a name (3 to 40 characters).", parent=self)
             return
         if cfg["connection"] == "relay" and not planned and hasattr(host, "plan_connection"):
-            # Through Open Vanilla needs the relay's directory to answer; otherwise go Direct (explainer first)
+            # Through Leyline needs the relay's directory to answer; otherwise go Direct (explainer first)
             def probe():
                 conn, fell_back = host.plan_connection("relay", self.live.flag("relay"), host.relay_available)
                 try:
@@ -4008,17 +4008,17 @@ class Launcher(tk.Tk):
                     self.save_settings()
                     if self.page == "host":
                         self.show_page("host", animate=False)
-                    self.notice("Open Vanilla's relay can't be reached right now: hosting Direct instead.", AMBER, 8)
+                    self.notice("Leyline's relay can't be reached right now: hosting Direct instead.", AMBER, 8)
                 self.host_start(planned=True)
 
-            self.notice("Checking Open Vanilla's relay…", GOLD, 4)
+            self.notice("Checking Leyline's relay…", GOLD, 4)
             threading.Thread(target=probe, daemon=True).start()
             return None
         if cfg["connection"] == "direct" and not confirmed:
             return self.direct_privacy_dialog(lambda: self.host_start(confirmed=True, planned=True))
         import dataclasses
         kw = dict(name=cfg["name"], type=cfg["type"], template=cfg["template"], max_players=cfg["max_players"],
-                  bots=cfg["bots"], visibility=cfg["visibility"], data_dir=None)  # None: <Open Vanilla>\host, beside solo\
+                  bots=cfg["bots"], visibility=cfg["visibility"], data_dir=None)  # None: <Leyline>\host, beside solo\
         try:  # the consent checkboxes, under the names this p2p version uses
             names = {f.name for f in dataclasses.fields(host.HostConfig)}
         except TypeError:
@@ -4178,7 +4178,7 @@ class Launcher(tk.Tk):
         if sess is None:
             tk.Label(f, text="Not hosting.", bg=bg, fg=TEXT, font=font(10, "bold")).pack(anchor="w", pady=(16, 4))
             tk.Label(f, text="Fill in the form and press START HOSTING. Your realm runs on this PC with the Solo server; "
-                             "public realms appear in the realm browser once Open Vanilla can reach them, private ones "
+                             "public realms appear in the realm browser once Leyline can reach them, private ones "
                              "only through invite links you make here.", bg=bg, fg=MUTED, font=font(9),
                      wraplength=self._host_live_w, justify="left").pack(anchor="w")
             return
@@ -4196,7 +4196,7 @@ class Launcher(tk.Tk):
         conn = str(first(st, "connection", default=self._host_cfg()["connection"]))
         info = tk.Frame(f, bg=bg)
         info.pack(fill="x", pady=(6, 0))
-        mode = {"relay": "Through Open Vanilla (address hidden)", "direct": "Direct from your home connection",
+        mode = {"relay": "Through Leyline (address hidden)", "direct": "Direct from your home connection",
                 "lan": "Local network only"}.get(conn, conn)
         tk.Label(info, text="CONNECTION", bg=bg, fg=MUTED, font=font(7, "bold")).pack(side="left")
         tk.Label(info, text=mode, bg=bg, fg=AMBER if conn == "direct" else TEXT, font=font(9, "bold")).pack(side="left", padx=(6, 14))
@@ -4210,7 +4210,7 @@ class Launcher(tk.Tk):
             self._host_addr_lbl = addr
             self._hover_tip(addr, "Players on your network can see this address." if conn == "lan" else
                             "Everyone you invite, and anyone they pass the link to, sees this address and from it "
-                            "roughly where you are (city, internet provider). Use “Through Open Vanilla” to hide it.")
+                            "roughly where you are (city, internet provider). Use “Through Leyline” to hide it.")
         det = tk.Frame(f, bg=bg)
         det.pack(fill="x")
         ports = first(st, "exposed_ports", default=[]) or []
@@ -4321,7 +4321,7 @@ class Launcher(tk.Tk):
         if sess is None:
             return
         if guest:
-            dlg = self.p2p_dialog("GUEST INVITE", "A link that needs no Open Vanilla account and works even while Open Vanilla "
+            dlg = self.p2p_dialog("GUEST INVITE", "A link that needs no Leyline account and works even while Leyline "
                                   "is offline. Your friend pastes it in the launcher's Realms tab and gets a guest "
                                   "account on your realm. Anyone with the link can use it until it runs out of uses or "
                                   "expires.", width=500)
@@ -4398,7 +4398,7 @@ class Launcher(tk.Tk):
         def show(acc):
             rl = acc.get("realmlist")
             text = (f"Realm: {acc.get('realm', '')}\nAccount: {acc['user']}\nPassword: {acc['password']}\n"
-                    + (f"In realmlist.wtf: set realmlist {rl}" if rl else "Through Open Vanilla's relay: they join with the launcher "
+                    + (f"In realmlist.wtf: set realmlist {rl}" if rl else "Through Leyline's relay: they join with the launcher "
                        "(guest invite); the stock client needs Direct or LAN mode."))
             out.config(state="normal")
             out.delete("1.0", "end")
@@ -4460,10 +4460,10 @@ class Launcher(tk.Tk):
             self.deiconify()
             self.iconify()
             return
-        menu = pystray.Menu(pystray.MenuItem("Open Open Vanilla", lambda *a: self.after(0, self._tray_open), default=True),
+        menu = pystray.Menu(pystray.MenuItem("Open Leyline", lambda *a: self.after(0, self._tray_open), default=True),
                             pystray.MenuItem("Stop hosting and quit", lambda *a: self.after(0, self._tray_quit)))
         icon = pystray.Icon("OpenVanilla", art.kit_image("emblem", height=64) or art.icon("server", 64, GOLD),
-                            "Open Vanilla — hosting " + (self._host_cfg()["name"] or "a realm"), menu)
+                            "Leyline — hosting " + (self._host_cfg()["name"] or "a realm"), menu)
         self._tray = icon
         threading.Thread(target=icon.run, daemon=True).start()
 
@@ -4524,8 +4524,8 @@ class Launcher(tk.Tk):
         tk.Label(head, image=self._tk_icon("seed", 20, GREEN if on else GOLD_DIM), bg=bg).pack(side="left", padx=(0, 8))
         tk.Label(head, text="SEEDING", bg=bg, fg=GOLD, font=font(11, "bold", True)).pack(side="left")
         tk.Label(head, text="ON" if on else "OFF", bg=bg, fg=GREEN if on else MUTED, font=font(9, "bold")).pack(side="right")
-        tk.Label(f, text=("You share Open Vanilla's own downloads with other players, up to the limit below." if on else
-                          "Off. Turn it on to help other players download Open Vanilla faster."),
+        tk.Label(f, text=("You share Leyline's own downloads with other players, up to the limit below." if on else
+                          "Off. Turn it on to help other players download Leyline faster."),
                  bg=bg, fg=TEXT, font=font(9), wraplength=sw - 50, justify="left").pack(anchor="w", pady=(8, 8))
         row = tk.Frame(f, bg=bg)
         row.pack(fill="x")
@@ -4639,9 +4639,9 @@ class Launcher(tk.Tk):
             limit = max(32, int(self._seed_limit.get()))
         except (AttributeError, ValueError, tk.TclError):
             limit = int(ts.get("upload_kbps", 512))
-        text = ("Seeding means the launcher uploads pieces of Open Vanilla downloads you already have to other players, "
-                "so updates reach everyone faster and Open Vanilla's servers cost less.\n\n"
-                "• Only Open Vanilla's own files are shared: the launcher, the Open Vanilla client and our patch files. Never "
+        text = ("Seeding means the launcher uploads pieces of Leyline downloads you already have to other players, "
+                "so updates reach everyone faster and Leyline's servers cost less.\n\n"
+                "• Only Leyline's own files are shared: the launcher, the Leyline client and our patch files. Never "
                 "Blizzard's game files, your WoW folder, characters, or anything else on your PC.\n\n"
                 f"• Upload is capped at {limit} KB/s (change it under Upload limit). Other players can see your "
                 "IP address while you seed, as with any torrent.\n\n"
@@ -4776,7 +4776,7 @@ class Launcher(tk.Tk):
         tiers_line = "Tiers: VERIFIED realms (official or vetted)  ·  COMMUNITY P2P realms  ·  verified P2P NODES (you, once checked)"
         tk.Label(f, text=tiers_line, bg=PANEL, fg=MUTED, font=font(8)).pack(anchor="w", pady=(0, 8))
         if not svc.relay_enabled and not on:
-            tk.Label(f, text="The node network isn't open yet. The test round starts with Open Vanilla's own relay; "
+            tk.Label(f, text="The node network isn't open yet. The test round starts with Leyline's own relay; "
                              "volunteer nodes open after it (watch the news on Home). You can set things up now.",
                      bg=PANEL, fg=AMBER, font=font(9), wraplength=560, justify="left").pack(anchor="w", pady=(0, 8))
         if st.get("error"):
@@ -5026,7 +5026,7 @@ class Launcher(tk.Tk):
             tk.Label(f, text="SIGNING IN…", bg=PANEL, fg=GOLD, font=font(13, "bold", True)).pack(anchor="w")
             tk.Label(f, text="Checking your Hero Key with the realm.", bg=PANEL, fg=TEXT, font=font(9)).pack(anchor="w", pady=(8, 0))
         else:
-            tk.Label(f, text="SIGN IN TO OPEN VANILLA", bg=PANEL, fg=GOLD, font=font(13, "bold", True)).pack(anchor="w")
+            tk.Label(f, text="SIGN IN TO LEYLINE", bg=PANEL, fg=GOLD, font=font(13, "bold", True)).pack(anchor="w")
             tk.Label(f, text="New or returning: Google makes your account the first time. After that, PLAY logs "
                              "you straight in.", bg=PANEL, fg=TEXT, font=font(9), wraplength=cw - 60,
                      justify="left").pack(anchor="w", pady=(6, 10))
@@ -5081,7 +5081,7 @@ class Launcher(tk.Tk):
         self.card(rx, y, rw, 330, "acct_info", "acct_info")
         self.shadow_text(rx + 22, y + 28, "HOW IT WORKS", 10, GOLD)
         info = ("Google:  press Continue with Google and pick your account in the browser. The first time, the "
-                "realm makes your Open Vanilla account.\n\n"
+                "realm makes your Leyline account.\n\n"
                 "Hero Key:  your account's own sign-in, one line of text. The launcher keeps it for you "
                 "(encrypted on this PC) and signs you in with it, no browser and no password. Keep a copy: "
                 "with it you can sign in on any PC.\n\n"
@@ -5143,7 +5143,7 @@ class Launcher(tk.Tk):
                 "login server, the same way the game does.\n\n"
                 "Once you're signed in, PLAY logs you straight in and skips the login screen.\n\n"
                 "Creating an account uses the realm's website, so the realm needs a website set "
-                "(the Open Vanilla realm has one).")
+                "(the Leyline realm has one).")
         self.cv.create_text(rx + 22, y + 104, anchor="nw", text=info, fill=TEXT, font=font(9), width=rw - 44, tags="page")
         portal = self.realms[self.realm_index].get("portal")
         if portal:
@@ -5314,7 +5314,7 @@ class Launcher(tk.Tk):
         if not key:
             return
         path = filedialog.asksaveasfilename(parent=self, title="Save a copy of your Hero Key",
-                                            initialfile="Open Vanilla Hero Key.txt", defaultextension=".txt",
+                                            initialfile="Leyline Hero Key.txt", defaultextension=".txt",
                                             filetypes=[("Text", "*.txt")])
         if not path:
             return
@@ -5566,7 +5566,7 @@ class Launcher(tk.Tk):
     def portal_ok(self, portal):
         """Passwords only go to https sites (or this PC), and to a community server only after the player agrees."""
         if not safe_url(portal):
-            messagebox.showerror("Not a secure website", "This server's website isn't https, so Open Vanilla won't send your "
+            messagebox.showerror("Not a secure website", "This server's website isn't https, so Leyline won't send your "
                                  "password to it. Ask the server owner to set up https.", parent=self)
             return False
         host = urllib.parse.urlsplit(portal).hostname or ""
@@ -5578,7 +5578,7 @@ class Launcher(tk.Tk):
             return True
         if not messagebox.askyesno("Send your password to this server?",
                                    f"Your account name and password will be sent to {host}, which is run by the "
-                                   "server's owner, not Open Vanilla.\n\nOnly continue if you trust this server. "
+                                   "server's owner, not Leyline.\n\nOnly continue if you trust this server. "
                                    "Use a password you don't use anywhere else.", parent=self):
             return False
         trusted.append(host)
@@ -5793,14 +5793,14 @@ class Launcher(tk.Tk):
             e.bind("<Return>", lambda ev, c=c, e=e: self.set_client_link(c, e.get()))
             self.wbutton(line2, "Save", lambda c=c, e=e: self.set_client_link(c, e.get())).pack(side="left", padx=6)
 
-        section("1.12.1 GAME DATA  (for the Open Vanilla desktop client)")
+        section("1.12.1 GAME DATA  (for the Leyline desktop client)")
         wow = self.settings.get("wow_folder", "")
         data = wow_data_dir(wow)
         line = tk.Frame(inner, bg=bgc)
         line.pack(fill="x")
         tk.Label(line, text=wow or "Not set", bg=bgc, fg=TEXT if data else RED, font=font(9), anchor="w").pack(side="left", fill="x", expand=True)
         self.wbutton(line, "Browse…", self.pick_wow_folder).pack(side="right")
-        tk.Label(inner, text="Your own English 1.12.1 game client (build 5875). Open Vanilla reads its Data folder and never writes to it."
+        tk.Label(inner, text="Your own English 1.12.1 game client (build 5875). Leyline reads its Data folder and never writes to it."
                              + ("" if not wow or data else "  ⚠ no .MPQ files found there"),
                  bg=bgc, fg=MUTED, font=font(8)).pack(anchor="w")
 
@@ -5859,13 +5859,13 @@ class Launcher(tk.Tk):
         section("ACCOUNT & SECURITY")
         toggle("Remember my password on this PC (encrypted for your Windows account)", "remember")
         toggle("Ask before sending my password to a community server", "confirm_portals")
-        note("Passwords are only ever sent to https websites (or a server on this PC). Open Vanilla never sees your password; "
+        note("Passwords are only ever sent to https websites (or a server on this PC). Leyline never sees your password; "
              "each realm checks it itself.")
         buttons(("Forget saved password", self._forget_password),
                 (f"Forget trusted servers ({len(self.settings.get('trusted_portals', []))})", self._forget_trusted))
 
         section("PRIVACY")
-        toggle("Load the community directory (servers, mods, projects) from the Open Vanilla website", "load_directory")
+        toggle("Load the community directory (servers, mods, projects) from the Leyline website", "load_directory")
         toggle("Ping community servers while the Servers page is open (shows their ping)", "ping_servers")
         if nowplaying:
             toggle("Share what I'm listening to (title and artist on your Persona profile)", "share_listening", default=False)
@@ -5873,7 +5873,7 @@ class Launcher(tk.Tk):
                  "linked Spotify, every 10 seconds; only the title and artist are shared, with players who look "
                  "at your profile. The desktop game picks it up when your character enters the world.")
             buttons(("Unlink Spotify", self._unlink_spotify) if self.settings.get("spotify") else ("Link Spotify…", self._link_spotify))
-        note("The launcher sends no analytics or crash reports. It contacts: the Open Vanilla website on GitHub Pages "
+        note("The launcher sends no analytics or crash reports. It contacts: the Leyline website on GitHub Pages "
              "(updates, news, directory), the realm you pick (login and ping), GitHub when you search it, and the "
              "download site of anything you choose to download. Settings stay on this PC.")
         buttons(("Privacy policy", lambda: self._open_site_page("privacy.html")),
@@ -5883,10 +5883,10 @@ class Launcher(tk.Tk):
             ai_setup.settings_section(self, inner, LAYOUT.data, section, note, buttons, w)
 
         section("ABOUT")
-        note(f"Open Vanilla Launcher {self.version} · an independent, open-source fan project. World of Warcraft is a "
-             "trademark of Blizzard Entertainment, Inc.; Open Vanilla is not affiliated with or endorsed by Blizzard. "
+        note(f"Leyline Launcher {self.version} · an independent, open-source fan project. World of Warcraft is a "
+             "trademark of Blizzard Entertainment, Inc.; Leyline is not affiliated with or endorsed by Blizzard. "
              "The engine is built on benilla (MIT / Apache-2.0); Play Solo uses SPP Classics (CMaNGOS); the display "
-             "font is Cinzel (SIL OFL). Open Vanilla ships no Blizzard game files.")
+             "font is Cinzel (SIL OFL). Leyline ships no Blizzard game files.")
         buttons(("Terms", lambda: self._open_site_page("terms.html")),
                 ("Security", lambda: self._open_site_page("security.html")),
                 ("Source code", lambda: safe_open(self.community_links().get("github"))),
@@ -5957,7 +5957,7 @@ class Launcher(tk.Tk):
 
     def pick_client_path(self, c):
         if c["type"] == "engine":
-            path = filedialog.askopenfilename(parent=self, title="Choose the Open Vanilla engine (Open Vanilla Game.exe)", filetypes=[("Programs", "*.exe"), ("All files", "*.*")])
+            path = filedialog.askopenfilename(parent=self, title="Choose the Leyline engine (Open Vanilla Game.exe)", filetypes=[("Programs", "*.exe"), ("All files", "*.*")])
         else:
             path = filedialog.askdirectory(parent=self, title=f"Choose the {c['name']} folder (the one with Wow.exe)")
         if not path:
@@ -6080,7 +6080,7 @@ class Launcher(tk.Tk):
         rx, rw = x + lw + 40, w - lw - 40
         self.cv.create_image(rx, y + 16, anchor="w", image=self.img("support_title", art.emboss_text("Keep the realm running", 22, "#f3d179")),
                              tags="page")
-        body = ("Open Vanilla is free and built by volunteers. Tips pay for hosting first, then fixes and new features, "
+        body = ("Leyline is free and built by volunteers. Tips pay for hosting first, then fixes and new features, "
                 "and every one gets a public receipt from Orion.")
         t = self.cv.create_text(rx, y + 44, anchor="nw", text=body, fill=TEXT, font=font(10), width=rw, tags="page")
         bb = self.cv.bbox(t)
@@ -6113,7 +6113,7 @@ class Launcher(tk.Tk):
             ("PLAY SOLO", "The first SOLO press downloads SPP Classics into Realms\\Solo (progress in the bar) and opens "
                           "SPP's setup window once: type 1, wait, then 0. After that PLAY starts the servers hidden, "
                           "starts the game and logs you in as SOLO / SOLO; closing the game saves and stops everything."),
-            ("HOSTING", "Running your own realm is a separate download, Open Vanilla Server (openvanilla.app/host.html): "
+            ("HOSTING", "Running your own realm is a separate download, Leyline Server (openvanilla.app/host.html): "
                         "an always-on SPP realm with its website, Server Studio and GM tools. Friends join it from "
                         "REALMS → Add realm with your address."),
             ("FOLDERS & UPDATES", "Addons live in AddOns\\Enabled and work in every client; Settings → Folders opens "
@@ -6175,7 +6175,7 @@ class Launcher(tk.Tk):
             label = f"{name} · COMING SOON" if c.get("coming_soon") else f"SET UP {name}"
             return False, label, "Add its download link or install folder in Settings → Game clients.", "amber", "settings"
         if c["type"] == "engine" and not wow_data_dir(self.settings.get("wow_folder", "")):
-            return False, "CHOOSE YOUR GAME'S DATA FOLDER", "Press PLAY to point Open Vanilla at your game data (or pick the browser client).", "amber", "choose_install"
+            return False, "CHOOSE YOUR GAME'S DATA FOLDER", "Press PLAY to point Leyline at your game data (or pick the browser client).", "amber", "choose_install"
         if c["type"] == "engine" and self._wow_issues:
             return False, "YOUR WOW FOLDER NEEDS A FIX", f"{self._wow_issues[0]}. Press PLAY to pick another folder.", "red", "choose_install"
         rb, cb = int(realm.get("build", 5875)), int(c.get("build", 5875))
@@ -6562,7 +6562,7 @@ class Launcher(tk.Tk):
 
     def solo_readiness(self):
         if not spp:
-            if solo:   # the older Open Vanilla solo pack (live.json flags.solo_pack)
+            if solo:   # the older Leyline solo pack (live.json flags.solo_pack)
                 return True, "READY · SOLO ON THIS PC", "Press PLAY to start the solo server on this PC.", "blue", "solo_pack"
             return home_logic.solo_step(None, False)
         return home_logic.solo_step(self.spp_state(), bool(self.solo_client()), self.solo_run is not None,
@@ -6843,7 +6843,7 @@ class Launcher(tk.Tk):
             return
         if status in ("missing", "update"):
             size = solo.human_size(int(manifest["size"]))
-            text = ("Play Solo runs your own Open Vanilla world on this PC: the same client, addons and Vanilla Remastered content, "
+            text = ("Play Solo runs your own Leyline world on this PC: the same client, addons and Vanilla Remastered content, "
                     f"with playerbots to group with. It downloads the solo server ({size}, once) into Realms\\SoloPack; "
                     "no install or admin rights. The first start makes the world's maps from your game client "
                     "(10-20 minutes)." if status == "missing" else
@@ -6970,7 +6970,7 @@ class Launcher(tk.Tk):
 
     def choose_install(self, c=None):
         """Pick the player's own World of Warcraft 1.12.1 folder, check it (wow_import: archives, WoW.exe build)
-        and lock it in for this client and the Open Vanilla engine. Returns True when a good folder was saved.
+        and lock it in for this client and the Leyline engine. Returns True when a good folder was saved.
         A 3.3.5a client goes to choose_own_folder instead."""
         c = c or self.client()
         if self.own_folder_client(c):
@@ -6993,7 +6993,7 @@ class Launcher(tk.Tk):
         return True
 
     def _lock_in(self, c, root):
-        """Save a checked 1.12.1 folder for this client and the Open Vanilla engine."""
+        """Save a checked 1.12.1 folder for this client and the Leyline engine."""
         self.settings["wow_folder"] = root
         self._wow_issues = []
         self._client_override(c, "path", root)  # saves settings
@@ -7387,7 +7387,7 @@ class Launcher(tk.Tk):
             self.notice(f"Update not started: {e}"[:110], RED, 8)
             self.update_status()
             return
-        self.notice(f"Updating to {info['version']}: Open Vanilla restarts in a moment…", GOLD, 10)
+        self.notice(f"Updating to {info['version']}: Leyline restarts in a moment…", GOLD, 10)
         self.after(400, self._exit_for_update)
 
     def _exit_for_update(self):
@@ -7600,8 +7600,8 @@ class _SoloJob(solo.Reporter if solo else object):
         self._refresh()
 
 def _windows_app_id():
-    """Give the launcher its own taskbar identity, so Windows shows the Open Vanilla icon (not pythonw's)
-    and groups its windows under Open Vanilla. Must run before the first window is created."""
+    """Give the launcher its own taskbar identity, so Windows shows the Leyline icon (not pythonw's)
+    and groups its windows under Leyline. Must run before the first window is created."""
     if sys.platform != "win32":
         return
     try:
@@ -7622,7 +7622,7 @@ def self_test(out_path):
     here = os.path.dirname(os.path.abspath(__file__))
     if here not in sys.path:
         sys.path.insert(1, here)
-    lines, bad = [f"Open Vanilla {read_version()} frozen={FROZEN} layout={LAYOUT.mode}"], 0
+    lines, bad = [f"Leyline {read_version()} frozen={FROZEN} layout={LAYOUT.mode}"], 0
     for name in SELF_TEST_MODULES:
         try:
             importlib.import_module(name)
@@ -7665,7 +7665,7 @@ def main(argv=None):
     startup(argv)
     app = Launcher()
     if "--updated" in argv:
-        app.after(1200, lambda: app.notice(f"Open Vanilla is up to date: version {app.version}.", GREEN, 8))
+        app.after(1200, lambda: app.notice(f"Leyline is up to date: version {app.version}.", GREEN, 8))
     elif "--update-failed" in argv:
         app.after(1200, lambda: app.notice("The update couldn't be applied (see Logs\\update.log). It will try again.", RED, 10))
     app.mainloop()

@@ -18,7 +18,7 @@ import shutil
 import sys
 import urllib.request
 
-REPO = os.environ.get("OPENVANILLA_REPO", "orionopenwow/OpenVanilla")
+REPO = os.environ.get("OPENVANILLA_REPO", "orionopenwow/Leyline-Launcher")
 BASE = f"https://github.com/{REPO}/releases/download/web-client/"
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 WWW = os.path.join(ROOT, "www")

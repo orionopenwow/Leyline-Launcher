@@ -1,4 +1,4 @@
-# The Open Vanilla launcher
+# The Leyline Launcher
 
 `OpenVanilla.exe` is the one program players run. It is `launcher/openvanilla_launcher.py` frozen by
 `packaging/build_repack.py`; every feature (Play Solo, Host for friends, the dedicated server, the
@@ -24,8 +24,8 @@ Workshop, the updater, live content) is frozen in. It starts the game itself: `G
 - **Update ready.** Updates download quietly in the background (the text beside the bar shows
   `Downloading update 42%`). Once a signed update is staged, a gold **UPDATE READY · RESTART** button
   appears above PLAY on HOME (elsewhere the text beside the bar says it). Pressing it hands off to the
-  silent installer (installer build) or the zip swap step and restarts Open Vanilla.
-- **No HOST tab.** Running a realm is the separate Open Vanilla Server download (openvanilla_server.py +
+  silent installer (installer build) or the zip swap step and restarts Leyline.
+- **No HOST tab.** Running a realm is the separate Leyline Server download (openvanilla_server.py +
   launcher_gui.py, packed by packaging/build_server.py into OpenVanilla-Server.zip on every release).
   The hosting code (launcher/p2p host, launcher/server_host.py, page_host) is still in the tree but
   unreachable: `show_page("host")` lands on REALMS.
@@ -79,7 +79,7 @@ own account, on their own copy: it detects Claude Code (`claude` on PATH or in i
 other agents, links to the Claude Code install page, copies the starter kit (`agent/`, shipped as
 `app\agent`) into the user-data folder (CLAUDE.md and AGENTS.md at its root, README and prompts in
 `Agent\`; files the player edited are kept), opens a terminal there running `claude`, and copies a starter
-prompt to the clipboard. A one-time card offers it on the second launch. Open Vanilla stores no AI keys and
+prompt to the clipboard. A one-time card offers it on the second launch. Leyline stores no AI keys and
 makes no network calls for it. The live flag `ai` hides it. In game the Assistant addon (`/assistant`, Esc
 menu) shows the same prompts; `python launcher/ai_setup.py --write-lua` regenerates its Prompts.lua from
 `agent/prompts/*.md`. The website page is `www/ai.html`.
@@ -102,7 +102,7 @@ last good copy in `Cache\live.json`. Useful keys:
 | `news` | News on HOME and the NEWS page. `link` may be `https://…` or `openvanilla://page/<solo\|host\|notes\|…>`. |
 | `hero`, `featured` | Keep them empty (`{}` / `[]`). Current launchers don't draw them; launchers released as 1.17.0 still draw a banner and cards from them. |
 | `clients` | Game clients for Workshop > CLIENTS (up to 12): see [Game clients](#game-clients-workshop--clients). |
-| `flags` | `online`, `solo`, `browser_play` hide PLAY modes; `host_friends`, `dedicated_server` hide HOST tabs; `workshop` hides the Workshop tab (tabs change at the next start); `relay` offers *Through Open Vanilla* once the relay runs; `solo_pack` re-enables the older solo pack. |
+| `flags` | `online`, `solo`, `browser_play` hide PLAY modes; `host_friends`, `dedicated_server` hide HOST tabs; `workshop` hides the Workshop tab (tabs change at the next start); `relay` offers *Through Leyline* once the relay runs; `solo_pack` re-enables the older solo pack. |
 | `buttons` | Relabel or re-point `discord`, `support`. |
 | `links` | `SPP_URL`, `SPP_SHA256`, `SPP_SIZE`, `DISCORD_INVITE`, `PATCH_NOTES_URL`, … (allow-listed in `launcher/live_content.py`). |
 | `message` | A one-line notice under the bar: `{"text": "...", "level": "info|warn|good"}`. |
@@ -128,13 +128,13 @@ and publish as usual:
 "clients": [
   {"id": "classicplus-test", "name": "Open Vanilla Classic+ (test build)", "type": "engine", "version": "1.14.3",
    "url": "https://openvanilla.app/downloads/OpenVanilla_test.zip",
-   "page": "https://github.com/orionopenwow/OpenVanilla", "description": "The next engine build, for testers.",
+   "page": "https://github.com/orionopenwow/Leyline-Launcher", "description": "The next engine build, for testers.",
    "status": "available"}
 ]
 ```
 
 Fields: `id` (a-z, 0-9, `-`, `_`), `name`, `type` (`exe` = the player's own WoW.exe, `engine` = an
-Open Vanilla engine build, `web` = plays in the browser), `version`, `url` (https; a .zip downloads in the
+Leyline engine build, `web` = plays in the browser), `version`, `url` (https; a .zip downloads in the
 launcher, a page opens in the browser), `page` (https project page or repo), `description`, `image`
 (https, optional), `status` (`available` or `coming_soon`). Anything else is dropped.
 

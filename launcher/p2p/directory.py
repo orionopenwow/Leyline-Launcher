@@ -56,7 +56,7 @@ class Realm:
     portal: str = ""
     build: int = 5875
     version: str = ""
-    relay_url: str = ""        # which relay carries it: Open Vanilla's, or a verified volunteer node (".../h/<host_id>")
+    relay_url: str = ""        # which relay carries it: Leyline's, or a verified volunteer node (".../h/<host_id>")
     key: str = ""              # host key fingerprint (checked in the e2e handshake)
     e2e: bool = False          # the host answers end-to-end encrypted streams
     tier: str = "community"    # tiers.TIERS: "verified" | "community"

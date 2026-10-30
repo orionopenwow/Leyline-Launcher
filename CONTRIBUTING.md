@@ -1,6 +1,6 @@
-# Contributing to Open Vanilla
+# Contributing to Leyline
 
-Thanks for helping. Open Vanilla is a classic realm you can play in a browser tab, with a desktop
+Thanks for helping. Leyline is a classic realm you can play in a browser tab, with a desktop
 launcher, server patches and creator tools, all open source.
 
 ## Where things live

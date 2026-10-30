@@ -1,4 +1,4 @@
-// ow/owdiag-checks.js — the Open Vanilla self-test list (run by owdiag.js).
+// ow/owdiag-checks.js — the Leyline self-test list (run by owdiag.js).
 //
 // Each check: { id, when?: [screens], level?: 'full', timeout?, run(ctx) }.
 //   run returns true (pass), a string (fail: one short reason) or { warn: 'reason' }.

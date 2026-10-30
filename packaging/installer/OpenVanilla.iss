@@ -1,4 +1,4 @@
-; Open Vanilla player installer (Inno Setup 6). Built by .github/workflows/release.yml:
+; Leyline player installer (Inno Setup 6). Built by .github/workflows/release.yml:
 ;   ISCC /DAppVersion=1.17.0 /DSourceDir=..\..\release\OpenVanilla_1.17.0_Win64 /DOutputDir=..\..\dist OpenVanilla.iss
 ; SourceDir is the folder packaging\build_repack.py makes (layout 2, docs/LAUNCHER.md):
 ;   OpenVanilla.exe (the launcher, the only thing players run; its identical twin OpenWoW.exe stays for
@@ -28,15 +28,15 @@
 
 [Setup]
 AppId={{7B1E4C2A-5D3F-4E8B-9A61-0F2C8D4E7A15}
-AppName=Open Vanilla
+AppName=Leyline Launcher
 AppVersion={#AppVersion}
-AppVerName=Open Vanilla {#AppVersion}
-AppPublisher=Open Vanilla
+AppVerName=Leyline Launcher {#AppVersion}
+AppPublisher=Leyline
 AppPublisherURL=https://openvanilla.app
 AppSupportURL=https://openvanilla.app
 AppUpdatesURL=https://openvanilla.app
 DefaultDirName={localappdata}\Programs\OpenVanilla
-DefaultGroupName=Open Vanilla
+DefaultGroupName=Leyline
 DisableProgramGroupPage=yes
 PrivilegesRequired=lowest
 PrivilegesRequiredOverridesAllowed=dialog
@@ -67,6 +67,11 @@ Type: files; Name: "{app}\OpenWoW Launcher.exe"
 Type: files; Name: "{group}\OpenWoW.lnk"
 Type: files; Name: "{group}\OpenWoW folder (addons, realms, screenshots).lnk"
 Type: files; Name: "{group}\Uninstall OpenWoW.lnk"
+; shortcuts from before the Leyline rename (1.57.0; the new ones are made below)
+Type: files; Name: "{group}\Open Vanilla.lnk"
+Type: files; Name: "{group}\Open Vanilla folder (addons, realms, screenshots).lnk"
+Type: files; Name: "{group}\Uninstall Open Vanilla.lnk"
+Type: files; Name: "{autodesktop}\Open Vanilla.lnk"
 Type: files; Name: "{autodesktop}\OpenWoW.lnk"
 Type: filesandordirs; Name: "{app}\_internal"
 Type: files; Name: "{app}\launcher\defaults.json"
@@ -82,20 +87,20 @@ Source: "{#SourceDir}\*"; DestDir: "{app}"; Excludes: "links.txt"; Flags: ignore
 Source: "{#SourceDir}\links.txt"; DestDir: "{app}"; Flags: onlyifdoesntexist skipifsourcedoesntexist
 
 [Icons]
-Name: "{group}\Open Vanilla"; Filename: "{app}\{#LauncherExe}"
-Name: "{group}\Open Vanilla folder (addons, realms, screenshots)"; Filename: "{code:DataDir}"
-Name: "{group}\Uninstall Open Vanilla"; Filename: "{uninstallexe}"
-Name: "{autodesktop}\Open Vanilla"; Filename: "{app}\{#LauncherExe}"; Tasks: desktopicon
+Name: "{group}\Leyline Launcher"; Filename: "{app}\{#LauncherExe}"
+Name: "{group}\Leyline folder (addons, realms, screenshots)"; Filename: "{code:DataDir}"
+Name: "{group}\Uninstall Leyline Launcher"; Filename: "{uninstallexe}"
+Name: "{autodesktop}\Leyline Launcher"; Filename: "{app}\{#LauncherExe}"; Tasks: desktopicon
 
 [Registry]
 ; openvanilla://join/... (friends' invites) and openvanilla://workshop/install/... (the site's Install buttons)
-Root: HKCU; Subkey: "Software\Classes\openvanilla"; ValueType: string; ValueName: ""; ValueData: "URL:Open Vanilla"; Flags: uninsdeletekey
+Root: HKCU; Subkey: "Software\Classes\openvanilla"; ValueType: string; ValueName: ""; ValueData: "URL:Leyline"; Flags: uninsdeletekey
 Root: HKCU; Subkey: "Software\Classes\openvanilla"; ValueType: string; ValueName: "URL Protocol"; ValueData: ""
 Root: HKCU; Subkey: "Software\Classes\openvanilla\DefaultIcon"; ValueType: string; ValueName: ""; ValueData: """{app}\{#LauncherExe}"",0"
 Root: HKCU; Subkey: "Software\Classes\openvanilla\shell\open\command"; ValueType: string; ValueName: ""; ValueData: """{app}\{#LauncherExe}"" ""%1"""
 
 [Run]
-Filename: "{app}\{#LauncherExe}"; Description: "Start Open Vanilla"; Flags: nowait postinstall skipifsilent
+Filename: "{app}\{#LauncherExe}"; Description: "Start Leyline Launcher"; Flags: nowait postinstall skipifsilent
 ; a silent self-update started by the launcher: start it again once the files are in place
 Filename: "{app}\{#LauncherExe}"; Parameters: "--updated"; Flags: nowait; Check: ShouldRelaunch
 
@@ -133,7 +138,7 @@ begin
   begin
     Data := DataDir('');
     if DirExists(Data) and not UninstallSilent() then
-      if MsgBox('Also remove your Open Vanilla data in ' + Data + '?' + #13#10 + #13#10 +
+      if MsgBox('Also remove your Leyline data in ' + Data + '?' + #13#10 + #13#10 +
                 'That is your addons, Play Solo and hosted realms (characters included), screenshots, ' +
                 'logs, backups and settings.' + #13#10 + '(Choose No to keep them for a later reinstall.)',
                 mbConfirmation, MB_YESNO or MB_DEFBUTTON2) = IDYES then

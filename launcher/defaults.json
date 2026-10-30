@@ -13,14 +13,14 @@
   "community": {
     "portal": "https://openvanilla.app/",
     "discord": "https://discord.gg/hVeUxYwbkr",
-    "github": "https://github.com/orionopenwow/OpenVanilla",
-    "bug_reports": "https://github.com/orionopenwow/OpenVanilla/issues"
+    "github": "https://github.com/orionopenwow/Leyline-Launcher",
+    "bug_reports": "https://github.com/orionopenwow/Leyline-Launcher/issues"
   },
   "update_manifest": "https://openvanilla.app/downloads/version.json",
   "clients": [
     {
       "id": "wotlk",
-      "name": "Wrath of the Lich King",
+      "name": "Wrath (3.3.5a)",
       "version": "3.3.5a",
       "type": "exe",
       "exe": "Wow.exe",
@@ -30,7 +30,7 @@
     }
   ],
   "directory_url": "https://openvanilla.app/community/directory.json",
-  "directory_submit_url": "https://github.com/orionopenwow/OpenVanilla/issues",
+  "directory_submit_url": "https://github.com/orionopenwow/Leyline-Launcher/issues",
   "directory": {
     "servers": [
       {
@@ -44,7 +44,7 @@
           "PvE",
           "official"
         ],
-        "description": "The official Open Vanilla realm: Wrath of the Lich King 3.3.5a (build 12340). Bring your own 3.3.5a game files."
+        "description": "The official Leyline realm: Wrath 3.3.5a (build 12340). Bring your own 3.3.5a game files."
       }
     ],
     "mods": [],
@@ -62,8 +62,8 @@
         ],
         "url": "https://github.com/samwhosung/benilla",
         "homepage": "https://openvanilla.app/project.html#benilla",
-        "description": "A complete Vanilla game client written from scratch in Rust and Bevy. The engine Open Vanilla is built on.",
-        "about": "benilla connects to any Vanilla server and reads game data from your own Vanilla install; it ships no Blizzard content. It builds and runs on Windows, macOS and Linux. The Open Vanilla desktop client (OpenVanilla.exe) is a build of benilla.",
+        "description": "A complete Vanilla game client written from scratch in Rust and Bevy. The engine Leyline is built on.",
+        "about": "benilla connects to any Vanilla server and reads game data from your own Vanilla install; it ships no Blizzard content. It builds and runs on Windows, macOS and Linux. The Leyline desktop client (OpenVanilla.exe) is a build of benilla.",
         "credits": [
           "samwhosung and benilla contributors",
           "Vendored: kira audio engine, patched Lua 5.1"
@@ -115,7 +115,7 @@
     },
     {
       "id": "web",
-      "name": "Open Vanilla in Browser",
+      "name": "Leyline in Browser",
       "version": "Web",
       "type": "web",
       "build": 5875

@@ -1,4 +1,4 @@
-"""Open Vanilla Passport & Hero Key v2.
+"""Leyline Passport & Hero Key v2.
 
 Upgrades Hero Keys from a single-realm shared secret (ovk1) to an Ed25519 keypair
 (ovk2) that signs portable character records, logs into any community realm via
@@ -116,9 +116,9 @@ class HeroKeyV2:
     def to_armor(self) -> str:
         """Render a formatted, user-downloadable .ovkey file text."""
         return (
-            f"# Open Vanilla Hero Key\n"
+            f"# Leyline Hero Key\n"
             f"# Keep this file safe. It signs your portable character Passport\n"
-            f"# and lets you sign in on any Open Vanilla realm without a password.\n"
+            f"# and lets you sign in on any Leyline realm without a password.\n"
             f"# Hero ID: {self.hero_id}\n\n"
             f"{ARMOR_BEGIN}\n"
             f"{self.to_string()}\n"

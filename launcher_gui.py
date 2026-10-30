@@ -279,7 +279,7 @@ def soap_command(command, user, password, port=7878):
 class WarcraftLauncher(tk.Tk):
     def __init__(self):
         super().__init__()
-        self.title("Open Vanilla Server Host")
+        self.title("Leyline Server Host")
         self.geometry("1024x700")
         self.minsize(1010, 620)
         self.configure(bg="#0b0c10")
@@ -369,7 +369,7 @@ class WarcraftLauncher(tk.Tk):
                     print(f"Error loading {name}: {e}")
             return None
 
-        # 1. Proportional Authentic Open Vanilla header logo (185x105)
+        # 1. Proportional Authentic Leyline header logo (185x105)
         self.images["logo"] = load_img("openvanilla_logo_proportional.png", (185, 105))
         if not self.images["logo"]:
             self.images["logo"] = load_img("openvanilla_logo_hero.png", (185, 105))
@@ -423,7 +423,7 @@ class WarcraftLauncher(tk.Tk):
             lbl_logo = tk.Label(center_box, image=self.images["logo"], bg="#0b0c10", bd=0)
             lbl_logo.pack(anchor="center")
         else:
-            tk.Label(center_box, text="OPEN VANILLA", fg="#f0c050", bg="#0b0c10", font=(RF, 22, "bold")).pack()
+            tk.Label(center_box, text="LEYLINE", fg="#f0c050", bg="#0b0c10", font=(RF, 22, "bold")).pack()
 
         tk.Label(center_box, text="YOUR OWN VANILLA REALM — BROWSER ENGINE",
                  fg="#c89b3c", bg="#0b0c10", font=(RF, 8, "bold")).pack(pady=(2, 4))
@@ -691,7 +691,7 @@ class WarcraftLauncher(tk.Tk):
 
         self.pill(cmd_bar, "Send", self._send_gm_cmd, width=64, height=26, size=8).pack(side="right")
 
-        self.log("[SERVER] Open Vanilla Launcher initialized. All assets verified.")
+        self.log("[SERVER] Leyline Launcher initialized. All assets verified.")
 
     def copy_share_link(self):
         """Copies the public server join link to clipboard and notifies host."""
@@ -726,7 +726,7 @@ class WarcraftLauncher(tk.Tk):
     def open_host_tutorial(self):
         """Opens the comprehensive host tutorial and guide dialog."""
         w = tk.Toplevel(self)
-        w.title("Open Vanilla — Host Tutorial & Architecture Guide")
+        w.title("Leyline — Host Tutorial & Architecture Guide")
         w.geometry("640x520")
         w.configure(bg="#11131a")
         w.resizable(False, False)
@@ -1477,7 +1477,7 @@ https://{host}:{PUBLIC_HTTPS_PORT} {{
         here = os.path.dirname(os.path.abspath(__file__))
         script = os.path.join(here, "autopilot", "herald_autopilot.py")
         if not os.path.isfile(script):
-            messagebox.showinfo("Herald", "Herald Autopilot isn't in this folder. It comes with Open Vanilla Server 1.18 and later.")
+            messagebox.showinfo("Herald", "Herald Autopilot isn't in this folder. It comes with Leyline Server 1.18 and later.")
             return
         py = sys.executable
         if os.name == "nt" and py.lower().endswith("python.exe") and os.path.isfile(py[:-10] + "pythonw.exe"):
@@ -1523,7 +1523,7 @@ https://{host}:{PUBLIC_HTTPS_PORT} {{
             first = status == "missing"
             ok = messagebox.askokcancel(
                 "Play Solo",
-                ("Play Solo runs your own Open Vanilla world on this PC: the Classic+ content, your addons and\n"
+                ("Play Solo runs your own Leyline world on this PC: the Classic+ content, your addons and\n"
                  "playerbots to group with. No install, no admin rights.\n\n"
                  f"First it downloads the solo server ({size}, once) into the OpenVanilla\\solo folder,\n"
                  "and the first start makes the world's maps from your game client (10-20 minutes).\n\n"
@@ -1617,7 +1617,7 @@ class SoloDialog(solo.Reporter):
     def __init__(self, app, session):
         self.app, self.session = app, session
         w = self.win = tk.Toplevel(app)
-        w.title("Open Vanilla - Play Solo")
+        w.title("Leyline - Play Solo")
         w.geometry("500x250")
         w.configure(bg="#11131a")
         w.resizable(False, False)

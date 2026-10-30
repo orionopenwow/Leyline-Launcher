@@ -3,23 +3,23 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Host Console &amp; Setup · Open Vanilla</title>
+  <title>Host Console &amp; Setup · Leyline</title>
   <!-- Link previews -->
   <meta property="og:type" content="website">
-  <meta property="og:site_name" content="Open Vanilla">
-  <meta property="og:title" content="Host a server · Open Vanilla">
-  <meta property="og:description" content="Classic Vanilla in your browser: free, no download, play in seconds. Open Vanilla is a toolkit, identity, and directory for player-hosted realms.">
+  <meta property="og:site_name" content="Leyline">
+  <meta property="og:title" content="Host a server · Leyline">
+  <meta property="og:description" content="Classic Vanilla in your browser: free, no download, play in seconds. Leyline is a toolkit, identity, and directory for player-hosted realms.">
   <meta property="og:url" content="https://openvanilla.app/host.html">
   <meta property="og:image" content="https://openvanilla.app/assets/og-image.jpg">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
-  <meta property="og:image:alt" content="Open Vanilla: classic Vanilla in your browser. Free, no download, play in seconds.">
+  <meta property="og:image:alt" content="Leyline: classic Vanilla in your browser. Free, no download, play in seconds.">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Host a server · Open Vanilla">
-  <meta name="twitter:description" content="Classic Vanilla in your browser: free, no download, play in seconds. Open Vanilla is a toolkit, identity, and directory for player-hosted realms.">
+  <meta name="twitter:title" content="Host a server · Leyline">
+  <meta name="twitter:description" content="Classic Vanilla in your browser: free, no download, play in seconds. Leyline is a toolkit, identity, and directory for player-hosted realms.">
   <meta name="twitter:image" content="https://openvanilla.app/assets/og-image.jpg">
   <meta name="theme-color" content="#0a0816">
-  <meta name="description" content="Classic Vanilla in your browser: free, no download, play in seconds. Open Vanilla is a toolkit, identity, and directory for player-hosted realms.">
+  <meta name="description" content="Classic Vanilla in your browser: free, no download, play in seconds. Leyline is a toolkit, identity, and directory for player-hosted realms.">
   <link rel="icon" href="favicon.ico">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -114,7 +114,7 @@
 <body>
   <div class="wrap">
     <header>
-      <a class="home" href="index.html">&larr; Open Vanilla</a>
+      <a class="home" href="index.html">&larr; Leyline</a>
       <span style="display:flex;gap:8px;align-items:center;">
         <a class="pill" href="covenant.html" style="text-decoration:none">COVENANT</a>
         <span class="pill">HOST CONSOLE</span>
@@ -220,7 +220,7 @@
             <button class="btn-action btn-gold" id="btnSendGm">Send</button>
           </div>
           <div id="gmOutput" style="background:#070a12;border:1px solid var(--edge);border-radius:4px;padding:8px;font-family:monospace;font-size:0.8rem;color:var(--muted);margin-top:8px;min-height:50px;">
-            Open Vanilla CMaNGOS Classic. Active players: 2 humans, 20 bots. Tick rate: 41.2ms.
+            Leyline CMaNGOS Classic. Active players: 2 humans, 20 bots. Tick rate: 41.2ms.
           </div>
         </div>
       </div>
@@ -333,7 +333,7 @@
       <!-- Tab: Covenant -->
       <div class="pane" id="tabCovenant">
         <div style="font-size:0.9rem;font-weight:700;color:#fff;margin-bottom:8px;">Realm Covenant Status</div>
-        <p style="font-size:0.85rem;color:var(--muted);margin-bottom:12px;">Your realm is in good standing with the Open Vanilla Covenant. Listed in directory as <b style="color:var(--green);">Tier 1 (Verified)</b>.</p>
+        <p style="font-size:0.85rem;color:var(--muted);margin-bottom:12px;">Your realm is in good standing with the Leyline Covenant. Listed in directory as <b style="color:var(--green);">Tier 1 (Verified)</b>.</p>
         <ul style="font-size:0.85rem;color:var(--muted);">
           <li>✓ No commercial items, services or perks sold</li>
           <li>✓ Bring-your-own client data (zero Blizzard assets served)</li>
@@ -356,7 +356,7 @@
     <h2 id="dedicated">Hosting Modes</h2>
     <div class="card">
       <b style="color:var(--gold-bright);">H1: Home Host with Outbound Relay (Recommended)</b>
-      <p style="font-size:0.92rem;color:var(--muted);margin-top:4px;">Run the server on your PC. The Open Vanilla helper connects an outbound tunnel to our verified relay network: no router port forwarding or public IP exposure required.</p>
+      <p style="font-size:0.92rem;color:var(--muted);margin-top:4px;">Run the server on your PC. The Leyline helper connects an outbound tunnel to our verified relay network: no router port forwarding or public IP exposure required.</p>
     </div>
     <div class="card">
       <b style="color:var(--gold-bright);">H2: One-Click Cloud Realm</b>
@@ -369,7 +369,7 @@
 
     <h2>If something goes wrong</h2>
     <table class="fix">
-      <tr><td><strong>Helper not responding</strong></td><td>Ensure Open Vanilla Server or the Launcher helper is running, or launch with <code>python tools/host_api.py</code>.</td></tr>
+      <tr><td><strong>Helper not responding</strong></td><td>Ensure Leyline Server or the Launcher helper is running, or launch with <code>python tools/host_api.py</code>.</td></tr>
       <tr><td><strong>Friends cannot connect</strong></td><td>Ensure the relay connection is active or router ports 3724 &amp; 8085 are forwarded in direct mode.</td></tr>
       <tr><td><strong>Tick time amber/red</strong></td><td>Check companion bot count in the Bots tab or lower active entity caps.</td></tr>
     </table>
@@ -432,7 +432,7 @@
       var cmd = inp.value.trim();
       if (!cmd) return;
       var out = document.getElementById("gmOutput");
-      out.textContent = "> " + cmd + "\n" + (cmd === ".server info" ? "Open Vanilla CMaNGOS Classic. Active players: 2 humans, 20 bots. Tick rate: 41.2ms." : "Executed: " + cmd);
+      out.textContent = "> " + cmd + "\n" + (cmd === ".server info" ? "Leyline CMaNGOS Classic. Active players: 2 humans, 20 bots. Tick rate: 41.2ms." : "Executed: " + cmd);
       inp.value = "";
     });
 

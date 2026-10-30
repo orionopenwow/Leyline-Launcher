@@ -22,7 +22,7 @@ summary: What each page on openvanilla.app is for: the Armory, guilds, the realm
 
 ## The Armory {#armory}
 
-The [Armory](../armory.html) shows characters from Open Vanilla realms: search by name, pick a realm, and browse the rankings (level, achievement points, honorable kills, each profession) and **realm firsts**.
+The [Armory](../armory.html) shows characters from Leyline realms: search by name, pick a realm, and browse the rankings (level, achievement points, honorable kills, each profession) and **realm firsts**.
 
 A character page shows worn gear (enchants, sets, durability), stats, both talent specs, achievements, professions, reputations and honor. The data is exported from the realm every 10 minutes, so changes show up shortly after you log out.
 

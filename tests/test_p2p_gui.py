@@ -307,7 +307,7 @@ class P2PGuiTests(unittest.TestCase):
     def test_direct_notice_can_switch_to_relay(self):
         app = self._host_page("direct")
         dlg = app.host_start()
-        dlg.button_cmds["Use Open Vanilla instead"]()
+        dlg.button_cmds["Use Leyline instead"]()
         self.assertIsNone(app.p2p_host)
         self.assertEqual(app.settings["p2p_host"]["connection"], "relay")
 
@@ -320,7 +320,7 @@ class P2PGuiTests(unittest.TestCase):
         self.assertNotIn("relay", [k for k, _ in app.host_connections()])
         dlg = app.host_start()
         self.assertIsNone(app.p2p_host)
-        self.assertNotIn("Use Open Vanilla instead", dlg.button_cmds)
+        self.assertNotIn("Use Leyline instead", dlg.button_cmds)
         dlg.button_cmds["Local network only"]()
         self.assertEqual(app.settings["p2p_host"]["connection"], "lan")
 

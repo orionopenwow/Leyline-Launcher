@@ -1,17 +1,17 @@
-# Open Vanilla workspace: notes for your AI agent
+# Leyline workspace: notes for your AI agent
 
-You are helping a player change **their own copy** of Open Vanilla: their addons, their single-player
+You are helping a player change **their own copy** of Leyline: their addons, their single-player
 world (Play Solo) and realms they host themselves. This file is the guide. Read it before you change
 anything. Starter tasks are in `Agent/prompts/`.
 
-Open Vanilla is an independent, open-source fan project for the 1.12.1 (build 5875) game client. It is not
+Leyline is an independent, open-source fan project for the 1.12.1 (build 5875) game client. It is not
 affiliated with Blizzard Entertainment or with the maker of the AI tool you are.
 
 ## What you may and may not touch
 
 You work only on this PC, in this folder and in the player's own server folders.
 
-- **Never touch the official Open Vanilla realm** or any server the player does not run. You have no access
+- **Never touch the official Leyline realm** or any server the player does not run. You have no access
   to it, and nothing here can change it. If the player asks, explain that changes apply to their own
   copy and their own realms only.
 - **Never modify Blizzard game files**: the player's World of Warcraft 1.12.1 folder (`WoW.exe`,
@@ -38,7 +38,7 @@ Program files (the install folder; an update replaces them):
 ```
 OpenVanilla.exe            the launcher: the player starts everything here
 app\                   the launcher's internals (app\addons: the Classic+ addons it ships)
-Game\Open Vanilla Game.exe  the Open Vanilla engine; Game\benilla-config\ holds its settings
+Game\Open Vanilla Game.exe  the Leyline engine; Game\benilla-config\ holds its settings
 Server\www\            the realm website the dedicated server serves
 links.txt              the player's own link overrides
 ```
@@ -52,7 +52,7 @@ Agent\                 README.md and prompts\*.md (the starter prompt library)
 AddOns\Enabled\        addons every game client loads; PLAY copies them into the client it starts
 AddOns\Disabled\       addons the player switched off in the launcher
 Realms\Solo\           Play Solo: SPP Classics (CMaNGOS) on this PC, with bots
-Realms\SoloPack\       the older Open Vanilla solo pack (Host for friends runs on it)
+Realms\SoloPack\       the older Leyline solo pack (Host for friends runs on it)
 Realms\Hosted\         the realm this PC hosts for friends
 Screenshots\  Logs\  Backups\
 Settings\              settings.json, server.json, layout.json (launcher state)
@@ -139,5 +139,5 @@ apply it. Most template changes need a server restart (`.reload` covers only som
 - Prefer creating new files over editing existing ones. Keep changes small and reversible.
 - After each change: what changed, how to test it (in game, `/reload`; for servers, restart from the
   launcher), and how to undo it (the backup path).
-- If something needs the official Open Vanilla team (the official realm, the website, accounts), say so and
-  stop: point the player to the Open Vanilla Discord or GitHub issues.
+- If something needs the official Leyline team (the official realm, the website, accounts), say so and
+  stop: point the player to the Leyline Discord or GitHub issues.

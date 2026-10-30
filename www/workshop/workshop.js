@@ -1,5 +1,5 @@
 /*
- * Open Vanilla Workshop — shared code for workshop.html and workshop/{addon,creator,collection}.html.
+ * Leyline Workshop — shared code for workshop.html and workshop/{addon,creator,collection}.html.
  *
  * Static data: community/workshop/index.json and community/workshop/<id>.json (tools/workshop_build.py).
  * Live data: the realm's /api/workshop/* (wenilla-realm patch 0013): ratings, reviews, installs,
@@ -106,7 +106,7 @@
     partly: "Loads; parts use client features the simulator does not model, or later-client code paths.",
     "needs-fixes": "Errors on load or at login in the Vanilla simulator.",
     unknown: "Not scanned (only addons we may host are scanned).",
-    ours: "Made by Open Vanilla for Classic+; ships with the client."
+    ours: "Made by Leyline for Classic+; ships with the client."
   };
   function badge(kind) {
     var b = BADGES[kind] || BADGES.unknown;
@@ -138,7 +138,7 @@
   function signInHref() { return "https://play.openvanilla.app/login"; }
 
   function setMeta(title, desc) {
-    document.title = title + " · Open Vanilla Workshop";
+    document.title = title + " · Leyline Workshop";
     var m = document.querySelector('meta[name="description"]');
     if (m && desc) m.setAttribute("content", desc);
   }

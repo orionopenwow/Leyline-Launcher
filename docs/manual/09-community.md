@@ -5,7 +5,7 @@ summary: The Discord server and its gate, Herald the bot, world chat between Dis
 
 ## The Discord server {#discord}
 
-The Open Vanilla Discord is where the community talks, gets help and hears news first. It's also how you get a realm account: Discord sign-in creates it (see [Getting started](start.html#account)).
+The Leyline Discord is where the community talks, gets help and hears news first. It's also how you get a realm account: Discord sign-in creates it (see [Getting started](start.html#account)).
 
 | Category | Channels |
 | --- | --- |
@@ -38,7 +38,7 @@ New members start as **Outsiders** and see only #welcome. This keeps bots and ra
 
 ## Herald {#herald}
 
-Herald is Open Vanilla's bot. In Discord he runs the gate, #arrivals and the live #server-status message (online or offline and for how long, players online, Adventurers by faction), bridges world chat and passes tickets to staff. In the game he is a character too: **Herald, a Human Hunter**, who signs in to test every update (graphics, art, frame rate, sign-in, vendors, trade) before players see it. He never does PvP, never plays the economy, never races for server firsts.
+Herald is Leyline's bot. In Discord he runs the gate, #arrivals and the live #server-status message (online or offline and for how long, players online, Adventurers by faction), bridges world chat and passes tickets to staff. In the game he is a character too: **Herald, a Human Hunter**, who signs in to test every update (graphics, art, frame rate, sign-in, vendors, trade) before players see it. He never does PvP, never plays the economy, never races for server firsts.
 
 ### Herald's Discord commands {#herald-commands}
 
@@ -92,7 +92,7 @@ Herald sorts reports and suggests an action; **humans decide** (dismiss, warn, m
 
 ## Tips: supporting the realm {#tips}
 
-Open Vanilla is free and run by volunteers. Tips keep it that way.
+Leyline is free and run by volunteers. Tips keep it that way.
 
 - **Where:** [ko-fi.com/orionvanilla](https://ko-fi.com/orionvanilla) (card or PayPal, once or monthly), also linked from **Support the realm** on the site and in the launcher.
 - **Where it goes:** hosting first, then fixes and features, community developers, Herald's test runs and community goals. The site's **Starfall Giving** section shows the buckets and the public receipts.

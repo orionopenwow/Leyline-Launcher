@@ -1,4 +1,4 @@
-// Open Vanilla GM panel: command catalog.
+// Leyline GM panel: command catalog.
 // Every chat command in the CMaNGOS Classic core this server runs (mangos-classic commit
 // 5f8a6557, the hash in mangosd-startup.log), from src/game/Chat/Chat.cpp, with the security
 // level each needs and the syntax/help text from the core's `command` table (sql/base/mangos.sql).

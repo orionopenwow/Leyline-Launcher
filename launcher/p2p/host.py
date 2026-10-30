@@ -1,6 +1,6 @@
 """Host a realm from this PC: the Solo pack's servers in their own host folder, plus the agent
 (openvanilla-node) that lists the realm, lets players in through the relay or a mapped port, signs
-them in with Open Vanilla identity tokens and keeps backups.
+them in with Leyline identity tokens and keeps backups.
 
     cfg = HostConfig(name="Stormwind Nights", type="rp", template="classicplus", max_players=20,
                      bots=40, visibility="private")
@@ -12,7 +12,7 @@ them in with Open Vanilla identity tokens and keeps backups.
     s.stop()
 
 What listens where:
-  gate       0.0.0.0:3724 (127.0.0.1 when relay-only): Open Vanilla sign-in frames, else piped to realmd
+  gate       0.0.0.0:3724 (127.0.0.1 when relay-only): Leyline sign-in frames, else piped to realmd
   realmd     127.0.0.1:<internal port>
   mangosd    0.0.0.0:8085 (127.0.0.1 when relay-only)
   MariaDB    127.0.0.1 only, SOAP 127.0.0.1 only: never mapped, never in a firewall rule.
@@ -56,7 +56,7 @@ class HostConfig:
     max_players: int = 20
     bots: int = 40
     visibility: str = "private"       # private (unlisted, invite links) | public (listed)
-    data_dir: str = None              # default: <Open Vanilla>\host, beside solo\
+    data_dir: str = None              # default: <Leyline>\host, beside solo\
     description: str = ""
     tags: list = dataclasses.field(default_factory=list)
     upnp_consent: bool = False        # map 3724/8085 on the router (asked in the UI first)
@@ -68,7 +68,7 @@ class HostConfig:
     client: str = None                # game client (only for making maps the first time)
     central: str = CENTRAL_URL
     relay: str = RELAY_URL
-    armory: bool = False              # export + upload this realm to the Open Vanilla armory hourly (p2p/armory.py)
+    armory: bool = False              # export + upload this realm to the Leyline armory hourly (p2p/armory.py)
     node_network: bool = False        # live.json flags.nodes: advertise e2e + host key, accept a volunteer node
     allow_nodes: bool = True          # let the directory put this realm on a verified volunteer node
 
@@ -94,7 +94,7 @@ class HostConfig:
 
 
 def relay_available(central=CENTRAL_URL, get=None, timeout=4):
-    """True when Open Vanilla's directory (which hands out relay tokens) answers. Any error -> False."""
+    """True when Leyline's directory (which hands out relay tokens) answers. Any error -> False."""
     import urllib.request
     url = central.rstrip("/") + "/api/directory"
     try:
@@ -110,7 +110,7 @@ def relay_available(central=CENTRAL_URL, get=None, timeout=4):
 
 
 def plan_connection(requested, relay_enabled, probe):
-    """(connection to use, fell_back). "Through Open Vanilla" needs the relay switched on (live.json
+    """(connection to use, fell_back). "Through Leyline" needs the relay switched on (live.json
     flags.relay) and the directory answering; otherwise hosting goes Direct (the launcher shows the
     IP/privacy explainer first) instead of failing. Direct and LAN are used as asked."""
     if requested not in CONNECTIONS:
@@ -149,7 +149,7 @@ def default_host_root():
 
 
 def account_for(sub):
-    """Open Vanilla account id -> local realmd account: OW + base32 of the id (16 characters at most)."""
+    """Leyline account id -> local realmd account: OW + base32 of the id (16 characters at most)."""
     s = str(sub)
     if s.isdigit() and int(s) < 1 << 64:
         n = int(s)
@@ -310,7 +310,7 @@ def tcp_pipe(a, b, meter=None, first=b""):
 
 
 class Gate:
-    """The realm's front door on the auth port: Open Vanilla sign-in frames, everything else to realmd."""
+    """The realm's front door on the auth port: Leyline sign-in frames, everything else to realmd."""
 
     def __init__(self, bind, port, realmd_port, login, meter=None):
         self.bind, self.port, self.realmd_port, self.login, self.meter = bind, port, realmd_port, login, meter
@@ -390,7 +390,7 @@ class RelayAgent:
                  on_state=None, ping_every=RELAY_PING_EVERY, host_key=None, node_id=None):
         self.relay_url, self.host_id, self.token = relay_url.rstrip("/"), host_id, token
         self.host_key = host_key            # Ed25519 seed: answers end-to-end encrypted streams (p2p.e2e)
-        self.node_id = node_id              # set when this is a volunteer node, not Open Vanilla's relay
+        self.node_id = node_id              # set when this is a volunteer node, not Leyline's relay
         self.failures = 0                   # consecutive failed connects (the host falls back after a few)
         self.ports = ports                  # {3724: local gate port, 8085: local world port}
         self.invite_check, self._connect, self.meter = invite_check, connect, meter
@@ -599,7 +599,7 @@ def host_paths(host_root, solo_root, template="classicplus"):
 def host_conf_overrides(cfg, bind, state):
     """bind: the address mangosd listens on (True/False = 0.0.0.0/127.0.0.1)."""
     bind = {True: "0.0.0.0", False: "127.0.0.1"}.get(bind, bind)
-    motd = f"Welcome to {cfg.name}, an Open Vanilla community realm."
+    motd = f"Welcome to {cfg.name}, a Leyline community realm."
     mangosd = [("BindIP", f'"{bind}"'), ("GameType", str(REALM_TYPES[cfg.type])), ("PlayerLimit", str(cfg.max_players)),
                ("Motd", f'"{motd}"'), ("RealmID", "1"), ("SOAP.IP", "127.0.0.1")]
     bots = [("AiPlayerbot.Enabled", "1" if cfg.bots else "0"), ("AiPlayerbot.MinRandomBots", str(cfg.bots)),
@@ -806,7 +806,7 @@ class HostSession:
                 self.firewall_ok = all(res.values())
                 if not self.firewall_ok:
                     r.warn("Couldn't add the Windows Firewall rules (the launcher isn't running as administrator). "
-                           "Windows may ask to allow Open Vanilla the first time a player connects.")
+                           "Windows may ask to allow Leyline the first time a player connects.")
             if cfg.upnp_consent:
                 r.stage("network", "Asking your router to open the game ports…")
                 method, ext = self.mapper.map(game_ports)
@@ -835,7 +835,7 @@ class HostSession:
                 and self.agent is None:   # (the heartbeat may already have put it on a volunteer node)
             self._start_relay()
         elif cfg.use_relay and cfg.connection == "relay" and self.reachability == "none":
-            r.warn("The Open Vanilla directory can't be reached, so players can't join through the relay yet. "
+            r.warn("The Leyline directory can't be reached, so players can't join through the relay yet. "
                    "It will retry every minute.")
         if cfg.connection != "lan":
             self._spawn(self._loop_heartbeat)
@@ -864,7 +864,7 @@ class HostSession:
     def apply_assignment(self, a):
         """The directory's heartbeat answer may put this realm on a verified volunteer node:
         {"url": "ws(s)://…", "ticket": "v4.public…", "node_id": "<16 base32>"}. No (or a bad) assignment
-        while on a node -> back to Open Vanilla's relay."""
+        while on a node -> back to Leyline's relay."""
         if not (self.cfg.node_network and self.cfg.use_relay and self.cfg.connection == "relay") or self.gate is None:
             return
         if self.reachability not in ("none", "relay") or not self.host_id:
@@ -1062,7 +1062,7 @@ class HostSession:
         return reply
 
     def _guest_login(self, req):
-        """A guest invite: no Open Vanilla sign-in, a local account made from the invite."""
+        """A guest invite: no Leyline sign-in, a local account made from the invite."""
         code = str(req.get("guest") or "").upper()
         base = re.sub(r"[^A-Z0-9]", "", str(req.get("name") or "").upper())[:12] or "GUEST"
         if len(base) < 3:
@@ -1085,7 +1085,7 @@ class HostSession:
 
     def _token_login(self, req):
         if self.verifier is None:
-            return {"ok": False, "error": "This realm isn't registered with Open Vanilla yet. Try again in a minute."}
+            return {"ok": False, "error": "This realm isn't registered with Leyline yet. Try again in a minute."}
         try:
             claims = self.verifier.verify(str(req.get("token", "")))
         except paseto.TokenError as e:
@@ -1151,7 +1151,7 @@ class HostSession:
         return key_fingerprint(self.host_key_public())
 
     def guest_invite(self, uses=1, hours=24, address=None):
-        """An invite that needs no Open Vanilla sign-in (works with central offline). Direct/LAN:
+        """An invite that needs no Leyline sign-in (works with central offline). Direct/LAN:
         openvanilla://join/direct/<host>:<port>?g=…&n=…&k=…; relay: openvanilla://join/<host_id>?g=…&k=…"""
         code = self.invites.create(uses, hours)
         fp = self.fingerprint()
@@ -1159,7 +1159,7 @@ class HostSession:
         if self.cfg.connection == "relay" and not address:
             if not self.host_id:
                 self.invites.revoke(code)
-                raise P2PError("Relay invites need the Open Vanilla directory. Switch to Direct or LAN to invite while it is offline.")
+                raise P2PError("Relay invites need the Leyline directory. Switch to Direct or LAN to invite while it is offline.")
             return invites.make_link(self.host_id, None, self.cfg.name, guest=code, fp=fp)
         address = address or (self.lan_ip if self.cfg.connection == "lan" else
                               (self.cfg.public_host or self.external_ip or self.lan_ip))
@@ -1201,7 +1201,7 @@ class HostSession:
         return self.soap().kick(name)
 
     def ban(self, name, reason="Banned by the host"):
-        """Ban the character in game and its Open Vanilla identity from this realm."""
+        """Ban the character in game and its Leyline identity from this realm."""
         reply = self.soap().ban(name, reason)
         if self.db and soap.CHAR_RE.match(name):
             try:
@@ -1321,7 +1321,7 @@ class HostSession:
             "visibility": self.cfg.visibility,
             "last_heartbeat": self.last_heartbeat,
             "relay_connected": bool(self.agent and self.agent.connected),
-            "relay_node": self.agent.node_id if self.agent else None,   # None: Open Vanilla's relay
+            "relay_node": self.agent.node_id if self.agent else None,   # None: Leyline's relay
             "firewall_ok": self.firewall_ok,
             "last_error": self.last_error,
             "uptime": int(time.monotonic() - self.started_at) if self.started_at else 0,

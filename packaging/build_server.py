@@ -4,7 +4,7 @@
     python packaging/build_server.py [--version 1.17.0] [--out release]
 
 Inside, one folder OpenVanilla-Server/:
-  Start Open Vanilla Server.bat      finds Python, installs aiohttp/pillow/psutil/pymysql once, opens the panel
+  Start Leyline Server.bat      finds Python, installs aiohttp/pillow/psutil/pymysql once, opens the panel
   openvanilla_server.py             finds (or asks for) the SPP Classics install, then runs launcher_gui.py
   launcher_gui.py, server_control.py, asset_server.py, studio_server.py, studio/, play_local.py, ...
   launcher/spp.py, fetch.py, defaults.json   the SPP finder and the official realm list
@@ -28,7 +28,7 @@ FILES = ["openvanilla_server.py", "launcher_gui.py", "server_control.py", "asset
          "docs/CLASSIC_PLUS_ARCHITECTURE.md", "bin/caddy.exe", "bin/heraldlite.exe", "Herald Autopilot.bat",
          "launcher/account.py", "launcher/launcher_art.py"]   # launcher_art: the Server Host's buttons
 OPTIONAL = {"bin/caddy.exe", "bin/heraldlite.exe"}   # (no Caddyfile: launcher_gui writes its own, and the local one holds your IP) built by the release workflow; a local build may not have them
-RENAME = {"Host a Realm.bat": "Start Open Vanilla Server.bat"}
+RENAME = {"Host a Realm.bat": "Start Leyline Server.bat"}
 TREES = ["studio", "assets", "realm/classicplus", "www", "autopilot", "launcher/assets/launcher/fonts"]
 SKIP = ["__pycache__", "*.pyc", "*.zip", "*.exe", "*.part", "*.log", "*.db", "*.sqlite*", ".env*", "*.mpq", "*.MPQ",
         "settings.json", "launcher_settings.json", "server_settings.json", "node_modules", ".git*"]
@@ -42,7 +42,7 @@ def skipped(rel):
 
 
 def readme(version):
-    return f"""Open Vanilla Server {version}
+    return f"""Leyline Server {version}
 =====================
 
 Run your own World of Warcraft 1.12.1 realm (Vanilla or Classic+) on a Windows PC: SPP Classics'
@@ -51,15 +51,15 @@ Studio and GM tools, all from one window.
 
 1. Install Python 3 (python.org, tick "Add to PATH").
 2. Have SPP Classics V2: https://github.com/celguar/spp-classics-cmangos/releases
-   (or let the Open Vanilla launcher's Play Solo set it up for you once).
-3. Double-click "Start Open Vanilla Server.bat". The first start installs what it needs and finds your SPP
+   (or let the Leyline Launcher's Play Solo set it up for you once).
+3. Double-click "Start Leyline Server.bat". The first start installs what it needs and finds your SPP
    install (or asks you to pick the SPP_Classics_V2 folder).
 4. Press START, then open http://127.0.0.1:18090/ for the realm website.
 5. Want Herald to play on it? Press HERALD in the server window (or double-click "Herald Autopilot.bat"),
    enter the account he should play (make one with CREATE / UPDATE ACCOUNT) and press START.
    Keep that account out of the game while he plays; watch him from your own account.
 
-Players connect with the Open Vanilla launcher: REALMS -> Add realm, with your PC's address.
+Players connect with the Leyline Launcher: REALMS -> Add realm, with your PC's address.
 The full guide: https://openvanilla.app/guide.html  ·  Hosting help: https://openvanilla.app/host.html
 
 python openvanilla_server.py --spp "D:\\SPP_Classics_V2"   runs a different SPP install
@@ -98,7 +98,7 @@ def main():
         z.writestr(f"{TOP}/README.txt", readme(version).replace("\n", "\r\n"))
         z.writestr(f"{TOP}/requirements.txt", "aiohttp>=3.8\npillow>=9\npsutil>=5.9\npymysql>=1.0\n")
     os.replace(tmp, out)
-    print(f"{out}: {len(entries) + 2} files, {os.path.getsize(out) // (1024 * 1024)} MB (Open Vanilla Server {version})")
+    print(f"{out}: {len(entries) + 2} files, {os.path.getsize(out) // (1024 * 1024)} MB (Leyline Server {version})")
 
 
 if __name__ == "__main__":

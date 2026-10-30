@@ -1,13 +1,13 @@
 slug: host-mac-linux
 title: Host on a Mac or Linux
 kicker: Chapter 12 · Build
-summary: The complete guide to ovhost, the Open Vanilla realm host for macOS and Linux: prepare your computer, set up a realm for yourself, your home or the internet, run it day to day, make GMs, update, back up, move it and fix problems.
+summary: The complete guide to ovhost, the Leyline realm host for macOS and Linux: prepare your computer, set up a realm for yourself, your home or the internet, run it day to day, make GMs, update, back up, move it and fix problems.
 
-This chapter is the full manual for **ovhost**, the tool that runs an Open Vanilla realm on a **Mac** or a **Linux** computer or server. (On Windows, realms run on SPP Classics: see [Host your own realm](hosting.html).) Everything here is also in the tool itself: run `bash host/ovhost help` for the commands, and `bash host/ovhost manual` to read this chapter in your terminal.
+This chapter is the full manual for **ovhost**, the tool that runs a Leyline realm on a **Mac** or a **Linux** computer or server. (On Windows, realms run on SPP Classics: see [Host your own realm](hosting.html).) Everything here is also in the tool itself: run `bash host/ovhost help` for the commands, and `bash host/ovhost manual` to read this chapter in your terminal.
 
 ## What it is {#what}
 
-ovhost runs the same server the official Open Vanilla realm runs, inside **Docker**:
+ovhost runs the same server the official Leyline realm runs, inside **Docker**:
 
 | Part | What it does |
 | --- | --- |
@@ -54,7 +54,7 @@ One script installs it, starts it, updates it, backs it up and stops it. Your pl
 
 ### Check your computer {#doctor}
 
-From the Open Vanilla folder (or wherever you saved `ovhost`):
+From the Leyline folder (or wherever you saved `ovhost`):
 
 ```
 bash host/ovhost doctor
@@ -64,7 +64,7 @@ It checks Docker and its memory, Rosetta or emulation, compose, Python, disk spa
 
 ## Set up your realm {#install}
 
-On a Mac, double-click **Host a Realm.command** in the Open Vanilla folder. Anywhere, in a terminal:
+On a Mac, double-click **Host a Realm.command** in the Leyline folder. Anywhere, in a terminal:
 
 ```
 bash host/ovhost install
@@ -88,7 +88,7 @@ Then it works through eight steps, and you can leave it running:
 | 4 · Realm files | Downloads the realm's files into the realm folder and writes its settings, with random passwords |
 | 5 · Server map data | Builds the server's maps from your game, **once** (the long part) |
 | 6 · Starting the realm | Downloads the server (about 2 GB) and starts it |
-| 7 · Open Vanilla on top | Classic+ addons, races and classes, the Vanilla Remastered changes |
+| 7 · Leyline on top | Classic+ addons, races and classes, the Vanilla Remastered changes |
 | 8 · Network | Firewall and, for the internet, a DNS check |
 
 At the end it prints your realm's address and a **setup token**.
@@ -162,7 +162,7 @@ The first `gm` makes a console account called **OVHOST** for itself, with a rand
 | Home network | Anyone on your Wi-Fi or LAN | Your address, for example `https://192.168.1.20` (they accept the certificate once) |
 | Internet | Anyone | `https://your.domain` (a real certificate, no warning) |
 
-- **Browsers:** Chrome and Edge everywhere; Safari 26 or newer and Firefox 147 or newer on a Mac. On Linux, Chrome has the game's graphics (WebGPU) by default on newer Intel and NVIDIA graphics; for others, turn on `chrome://flags/#enable-unsafe-webgpu`. The Open Vanilla launcher's play window does this for you.
+- **Browsers:** Chrome and Edge everywhere; Safari 26 or newer and Firefox 147 or newer on a Mac. On Linux, Chrome has the game's graphics (WebGPU) by default on newer Intel and NVIDIA graphics; for others, turn on `chrome://flags/#enable-unsafe-webgpu`. The Leyline Launcher's play window does this for you.
 - **Home network from outside:** to let friends in over the internet from home, either use a domain (mode 3) and forward TCP **80** and **443** on your router to this computer, or stay on mode 2 and use a VPN such as Tailscale.
 - **The desktop game:** install with `--native-ports`, then players set `realmlist` to your address. Desktop players on a Mac need a Windows compatibility layer; Linux players can use Wine, Proton or Lutris.
 
@@ -191,7 +191,7 @@ The first `gm` makes a console account called **OVHOST** for itself, with a rand
 bash host/ovhost update
 ```
 
-It downloads the newest realm files and server, then reapplies Open Vanilla on top. Players are disconnected for a minute or two while the world server restarts; characters are saved first. Update when it's quiet, and back up first.
+It downloads the newest realm files and server, then reapplies Leyline on top. Players are disconnected for a minute or two while the world server restarts; characters are saved first. Update when it's quiet, and back up first.
 
 ## Back up and restore {#backup}
 
@@ -235,9 +235,9 @@ Everything lives in the realm folder: `~/OpenVanillaRealm` (or what you gave wit
 | `ovhost.secret` | The OVHOST console account's password (only readable by you) |
 | `openvanilla-realm/.env` | The realm's settings and database passwords. Never share or post it |
 | `openvanilla-realm/compose.host.yaml` | What this computer needs (ports, Intel emulation on ARM) |
-| `openvanilla-realm/compose.override.yaml` | The Open Vanilla server and files |
+| `openvanilla-realm/compose.override.yaml` | The Leyline server and files |
 | `openvanilla-realm/backups/` | Your backups |
-| `classicplus/` | The Open Vanilla files the realm serves |
+| `classicplus/` | The Leyline files the realm serves |
 
 The characters, accounts and maps live in Docker volumes named `openvanilla-realm_db`, `_state` and `_gamedata`, not in the folder.
 
@@ -294,7 +294,7 @@ Run `bash host/ovhost doctor` first: it names most problems and the fix. The mes
 | **DOMAIN points at ..., this server is ...** | Set the domain's A record to the server's address, wait a few minutes, then `bash host/ovhost restart-web` |
 | **the world server isn't running** | `bash host/ovhost status`; if it isn't healthy, `bash host/ovhost logs mangosd` |
 | **no game account named ...** | Use the account name from your realm's account page, not your character's name |
-| **the Open Vanilla step stopped** | The realm itself runs. Read the lines above it, fix that, then run `install` again |
+| **the Leyline step stopped** | The realm itself runs. Read the lines above it, fix that, then run `install` again |
 
 Other problems:
 
@@ -322,6 +322,6 @@ Still stuck? Post the output of `bash host/ovhost doctor` and `bash host/ovhost 
 
 **Why is the browser warning me?** On your own computer or home network nobody can issue your realm a public certificate, so it makes its own. Accept it once. A realm on the internet with a domain gets a real one.
 
-**Is it the same as the official realm?** The same server and the same Open Vanilla changes, without the official realm's Discord sign-in and login queue. You can turn those on with keys of your own in `.env`.
+**Is it the same as the official realm?** The same server and the same Leyline changes, without the official realm's Discord sign-in and login queue. You can turn those on with keys of your own in `.env`.
 
 **Where's the GM console window?** On Mac and Linux it's the terminal: `bash host/ovhost gm "..."`, or GM commands typed in the game.

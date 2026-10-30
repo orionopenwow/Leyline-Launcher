@@ -21,7 +21,7 @@ Where the title comes from:
 How it reaches the game, honestly: the 1.12 client cannot be told anything while it runs, so the
 desktop route is a SavedVariables shim. The launcher rewrites Persona's per-character file
 (`Persona_NowPlaying = {text=, at=}`) in every character folder that already exists:
-    <launcher>/benilla-config/saved/<Realm>-<Character>/Persona.lua          (the Open Vanilla client)
+    <launcher>/benilla-config/saved/<Realm>-<Character>/Persona.lua          (the Leyline client)
     <WoW 1.12 folder>/WTF/Account/<ACC>/<Realm>/<Character>/SavedVariables/Persona.lua
 The client reads it when the character enters the world; Persona shows it for 10 minutes after it
 was written (it cannot be refreshed during the session; /reload re-reads the copy the client saved
@@ -191,7 +191,7 @@ def link_spotify(client_id, open_url, http=None, timeout=300):
             self.send_header("Content-Type", "text/html; charset=utf-8")
             self.end_headers()
             msg = "Spotify linked. You can close this tab." if q.get("code") else "Spotify was not linked."
-            self.wfile.write(f"<!doctype html><title>Open Vanilla</title><p style='font:16px sans-serif'>{msg}</p>".encode())
+            self.wfile.write(f"<!doctype html><title>Leyline</title><p style='font:16px sans-serif'>{msg}</p>".encode())
 
         def log_message(self, *a):
             pass

@@ -1,5 +1,5 @@
 # Source: packaging/workflows/realm-image.yml (Ship.bat and Release.bat copy it into .github/workflows).
-# Builds ghcr.io/orionopenwow/openvanilla-realm: the upstream realm image with Open Vanilla's patches,
+# Builds ghcr.io/orionopenwow/openvanilla-realm: the upstream realm image with Leyline's patches,
 # and ghcr.io/orionopenwow/openvanilla-mangos: the world server with realm/mangos/*.patch.
 # The realm image rebuilds from the exact commit the upstream image was built from (its revision
 # label), so the service and the browser client inside it always match.
@@ -115,7 +115,7 @@ jobs:
             sudo sysctl -w vm.overcommit_memory=1 vm.swappiness=60
           fi
           free -h; df -h / /mnt
-      - name: wenilla at that commit + Open Vanilla patches
+      - name: wenilla at that commit + Leyline patches
         if: steps.same.outputs.hit != 'true'
         run: |
           git clone --filter=blob:none https://github.com/Arnesen/wenilla realm/wenilla
@@ -182,8 +182,8 @@ jobs:
             ghcr.io/orionopenwow/openvanilla-realm:${{ steps.same.outputs.tag }}
           # linked to this repo (its Packages list) and described there
           labels: |
-            org.opencontainers.image.source=https://github.com/orionopenwow/OpenVanilla
-            org.opencontainers.image.description=Open Vanilla realm: the website, browser client and realm service
+            org.opencontainers.image.source=https://github.com/orionopenwow/Leyline-Launcher
+            org.opencontainers.image.description=Leyline realm: the website, browser client and realm service
             org.opencontainers.image.licenses=GPL-2.0
   # The world server with the WNL hook (realm/mangos): mangosd rebuilt at the exact CMaNGOS and
   # PlayerBots commits the upstream image was built from, dropped into that image. Compiled with
@@ -276,8 +276,8 @@ jobs:
             ghcr.io/orionopenwow/openvanilla-mangos:${{ steps.same.outputs.tag }}
           # linked to this repo (its Packages list) and described there
           labels: |
-            org.opencontainers.image.source=https://github.com/orionopenwow/OpenVanilla
-            org.opencontainers.image.description=Open Vanilla world server: CMaNGOS classic with Open Vanilla patches (realm/mangos)
+            org.opencontainers.image.source=https://github.com/orionopenwow/Leyline-Launcher
+            org.opencontainers.image.description=Leyline world server: CMaNGOS classic with Leyline patches (realm/mangos)
             org.opencontainers.image.licenses=GPL-2.0
           cache-from: type=gha,scope=mangos
           cache-to: type=gha,mode=max,scope=mangos

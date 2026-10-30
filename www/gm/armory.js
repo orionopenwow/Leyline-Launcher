@@ -294,7 +294,7 @@ export default async function (gm) {
     for (const b of w.querySelectorAll('.cats button')) b.classList.toggle('on', b.dataset.cat === st.cat && !st.search);
     const g = grid();
     if (!items) {
-      g.innerHTML = `<div class="note">${loadError ? 'Could not load the item list. Run <b>export_items_for_gm_panel.bat</b> in the Open Vanilla folder, then reopen.' : 'Loading every item in the database…'}</div>`;
+      g.innerHTML = `<div class="note">${loadError ? 'Could not load the item list. Run <b>export_items_for_gm_panel.bat</b> in the Leyline folder, then reopen.' : 'Loading every item in the database…'}</div>`;
       await ready;
       if (!items) return refresh();
     }

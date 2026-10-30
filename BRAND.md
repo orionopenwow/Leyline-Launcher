@@ -1,27 +1,32 @@
-# Brand: the project is called **Open Vanilla**
+# Brand: the project is called **Leyline** (formerly Open Vanilla)
 
-Decided 17 October 2026. The project's old name is no longer used for anything a player,
-creator or visitor reads.
+Decided 29 October 2026 ("rename repo to Leyline Launcher"). Before that, from 17 October 2026, the
+project was called Open Vanilla; before that it had an older name. Neither old name is used for
+anything new that a player, creator or visitor reads.
 
 ## The rule
 
-- Everything people see says **Open Vanilla**: the website, the game page, the launcher, the
-  installer, in-game text, Discord, socials, videos, press, creator material, docs and plans.
-- Write it as two words, both capitalised: **Open Vanilla**. Possessive: Open Vanilla's.
-- Don't write it as one word, with a hyphen, or with the old name in anything public. File names
-  are the exception: `OpenVanilla.exe`, `OpenVanilla-Setup-<v>.exe`.
-- Lead with what Open Vanilla is to a player ("classic 1.12 in your browser, free, in seconds"), not
-  with the engine or the stack. The Rust/WebGPU story is for the tech audience.
+- Everything people see says **Leyline**: the website, the game page, the installer, docs and plans.
+  This launcher, the program in this repository, is the **Leyline Launcher**. The newer Leyline
+  launcher (realms and mods for every client) lives in its own repository, `github.com/orionopenwow/Leyline`.
+- Write it as one word, capitalised: **Leyline**, **Leyline Launcher**. Possessive: Leyline's.
+- "Formerly Open Vanilla" is fine where people need to recognise us (the repo description, the 1.57.0
+  bridge card and its release notes). Nowhere else.
+- File names are the exception: `OpenVanilla.exe`, `OpenVanilla-Setup-<v>.exe`, `OpenVanilla_<v>_Win64.zip`
+  keep their names (see below).
+- Never write the game's trademark names in anything people see: say "the game", "1.12.1", "3.3.5a", "Wrath".
 
 ## Where things stand
 
 | What | Now | Notes |
 |---|---|---|
-| Launcher | `OpenVanilla.exe`, "Open Vanilla" shortcuts, window and tray | Bridge releases also ship the old-named twin exe, so launchers from before the rename can update |
-| Engine | `Game\Open Vanilla Game.exe` | The launcher renames the older engine file on update |
-| Downloads | `OpenVanilla-Setup-<v>.exe`, `OpenVanilla_<v>_Win64.zip`, `OpenVanilla-Server.zip` | The release also publishes the server zip under its old name, for old links |
-| Data folder | `%LOCALAPPDATA%\OpenVanilla` (installer), beside the exe (zip) | An existing data folder from before the rename keeps being used, never moved |
-| Repository | `github.com/orionopenwow/OpenVanilla` | The old repository address redirects |
+| Repository | `github.com/orionopenwow/Leyline-Launcher` | Renamed from `OpenVanilla` with `tools/rename/Rename to Leyline Launcher.bat`. GitHub redirects the old address (web, git, API, release downloads) as long as no new repo takes the old name |
+| Launcher | `OpenVanilla.exe`; window, tray, Start menu and desktop shortcuts say "Leyline Launcher" | 1.57.0 removes the old "Open Vanilla" shortcuts and shows one card with a button to the Leyline launcher download |
+| Engine | `Game\Open Vanilla Game.exe` | File name kept: installs and the updater look for it |
+| Downloads | `OpenVanilla-Setup-<v>.exe`, `OpenVanilla_<v>_Win64.zip`, `OpenVanilla-Server.zip` | File names kept, so old links and the updater keep working |
+| Data folder | `%LOCALAPPDATA%\OpenVanilla` (installer), beside the exe (zip) | Never moved |
+| From source | `Play Leyline Launcher.bat` / `.command` | `Play Open Vanilla.bat` / `.command` stay as one-line forwarders for old shortcuts |
+| Server download | `Start Leyline Server.bat` inside `OpenVanilla-Server.zip` | |
 
 ## What keeps the old name for now (and why)
 
@@ -30,20 +35,22 @@ change only with a redirect or migration.
 
 | Kept for now | Example | Why |
 |---|---|---|
-| Domains | `openvanilla.app`, `play.openvanilla.app`, `warfront.openvanilla.app` | Existing links, sign-in redirects, Discord OAuth |
-| GitHub account | `orionopenwow` | Release URLs, raw script URLs in the guides, CI |
-| World server setting keys | the Classic+, Warfront and Transmog keys in the realm's config | Existing realm config files use them; any rename keeps the old keys working |
-| Code and config | `openvanilla_*` scripts and modules, `openvanilla-herald` service, `ow-*` CSS ids, `window.openvanilla*`, `OPENVANILLA_*` environment variables, addon saved-variable names, protocol headers | Internal; renaming has no player benefit and would lose saved data |
-| Old-install names | the pre-rename launcher, engine and data folder names | Only used to find and migrate older installs |
-| Asset files | `assets/openvanilla_logo_*.webp` | File names only; the art already says Open Vanilla |
+| Domains | `openvanilla.app`, `play.openvanilla.app` | Existing links, sign-in redirects, the launcher's update manifest (`openvanilla.app/downloads/version.json`). A new domain comes later |
+| Repo homepage | `https://play.openvanilla.app/wrath/leyline` | Until the new domain |
+| Container images | `ghcr.io/orionopenwow/openvanilla-realm`, `openvanilla-mangos` | Package names; the live realms pull them |
+| Code and config | `openvanilla_*` scripts and modules, `openvanilla://` links, `OPENVANILLA_*` environment variables, settings keys, addon saved-variable names, protocol headers | Internal; renaming has no player benefit and would lose saved data |
+| Hero Key files | `-----BEGIN OPEN VANILLA HERO KEY-----` | Keys players already saved must keep loading |
+| Firewall rules | `Open Vanilla Host TCP <port>` | Hosts' existing rules must still be found and removed |
+| Realm and client names | `Open Vanilla Solo`, `Open Vanilla Classic+` | Saved realm lists and client choices |
+| In-game text | the realm patches (`realm/patches`, `realm/mangos`) and the addons in `Data/` | Changes with the next realm image and addon release |
+| Workshop packages | `www/community/workshop/cp-*` | Rebuilt with the next Workshop build (their old GitHub links redirect) |
+| Asset files | `assets/openvanilla_logo_*.webp` | File names only |
 
 ## Still to do
 
-1. **Socials and Discord:** server name, bot name (Herald stays), channel descriptions, profile
-   names and handles. Claim `openvanilla` handles where free before any outreach.
-2. **Domain:** register an Open Vanilla domain, serve the site there, and redirect `openvanilla.app`
-   permanently (301) so every old link keeps working. Move sign-in redirects and Discord OAuth.
-3. **Bridge:** drop the old-named twin exe once launchers from before the rename have updated.
+1. **Domain:** buy the new domain, serve the site there, and redirect `openvanilla.app` permanently (301).
+   Move sign-in redirects, the update manifest URL and the repo homepage.
+2. **In-game text and Workshop packages:** the next realm image and Workshop build say Leyline.
+3. **Socials and Discord:** names and descriptions (the owner's call).
 
-Check before any public post: `grep -rni "openvanilla" www --include=*.html` should only show the
-domain, file names, settings keys, code samples, comments and the GitHub account.
+Check before any public post: `git grep -n "Open Vanilla" -- www` should only show the kept names above.

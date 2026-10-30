@@ -1,7 +1,7 @@
 slug: index
-title: The Open Vanilla Manual
+title: The Leyline Manual
 kicker: Contents
-summary: Everything Open Vanilla can do, how to use it, and how to make it your own: play, connect an AI, edit your game, and publish to the Workshop.
+summary: Everything Leyline can do, how to use it, and how to make it your own: play, connect an AI, edit your game, and publish to the Workshop.
 
 <div class="paths">
 <a href="start.html"><b>New here</b>Start playing in five minutes, in your browser or with the launcher.</a>

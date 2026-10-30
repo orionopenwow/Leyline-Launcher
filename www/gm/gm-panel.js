@@ -1,4 +1,4 @@
-// Open Vanilla GM panel: a Game Master window over the wenilla (browser benilla) canvas.
+// Leyline GM panel: a Game Master window over the wenilla (browser benilla) canvas.
 //
 // It talks to the game only through the page's JavaScript bridge (../bridge.js, `window.wenilla`):
 //   wenilla.chat('.gm on')  -> sends a dot command exactly as if typed in chat

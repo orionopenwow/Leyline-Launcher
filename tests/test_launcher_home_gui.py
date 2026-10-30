@@ -114,7 +114,7 @@ class HomeGuiTests(unittest.TestCase):
         app._client_line_click()
         self.assertTrue(app.cv.find_withtag("menu"))
         texts = [app.cv.itemcget(i, "text") for i in app.cv.find_withtag("menu") if app.cv.type(i) == "text"]
-        self.assertIn("Wrath of the Lich King", texts)            # WrathUnleashed: the 3.3.5a client is the built-in one
+        self.assertIn("Wrath (3.3.5a)", texts)            # WrathUnleashed: the 3.3.5a client is the built-in one
         self.assertTrue(any(t.startswith("More clients in Workshop") for t in texts))
         app._menu_more()
         self.assertTrue(self.pump(1, until=lambda: app.page == "mods"))
@@ -284,7 +284,7 @@ class HomeGuiTests(unittest.TestCase):
             return out
 
         shown = labels()
-        for name in ("Wrath of the Lich King", "Vanilla (stock client)", "Open Vanilla Classic+", "Live One", "My Test Client"):
+        for name in ("Wrath (3.3.5a)", "Vanilla (stock client)", "Open Vanilla Classic+", "Live One", "My Test Client"):
             self.assertIn(name, shown)
         self.assertIn("COMING SOON", shown)
         self.assertIn("From clients.txt", shown)

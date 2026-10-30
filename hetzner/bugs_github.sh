@@ -7,7 +7,7 @@
 #
 # Make the token first, on github.com signed in as the owner:
 #   Settings > Developer settings > Personal access tokens > Fine-grained tokens > Generate new token
-#   - Repository access: Only select repositories > orionopenwow/OpenVanilla
+#   - Repository access: Only select repositories > orionopenwow/Leyline-Launcher
 #   - Permissions > Repository permissions > Issues: Read and write (nothing else)
 #   - Expiration: 1 year (put a reminder in your calendar to renew it)
 set -euo pipefail

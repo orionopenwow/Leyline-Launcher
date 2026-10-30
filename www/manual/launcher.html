@@ -26,7 +26,7 @@
         <details class="chapters-box" open>
           <summary class="toc-title">Chapters</summary>
           <ol class="chapters">
-          <li><a href="index.html">The Open Vanilla Manual</a>
+          <li><a href="index.html">The Leyline Manual</a>
           </li>
           <li><a href="start.html">Getting started</a>
           </li>
@@ -59,7 +59,7 @@
           </li>
           <li><a href="workshop.html">Publish to the Workshop</a>
           </li>
-          <li><a href="contributing.html">Contribute to Open Vanilla</a>
+          <li><a href="contributing.html">Contribute to Leyline</a>
           </li>
           <li><a href="troubleshooting.html">Troubleshooting</a>
           </li>
@@ -92,13 +92,13 @@
           <p>The launcher's game setup page (it opens when PLAY can't find a client) has two choices:</p>
           <ul><li><strong>Use your own client → Choose its folder:</strong> use the 1.12.1 game client you already have: pick the folder with <code>WoW.exe</code>. The launcher checks it and never changes the game's files.</li><li><strong>Play in your browser:</strong> no client on this PC? Switch to browser play.</li></ul>
           <p>The launcher never downloads a game client.</p>
-          <p>The checker needs build <strong>5875</strong> and the eleven standard archives in <code>Data</code> (dbc, speech, fonts, interface, misc, sound, wmo, terrain, texture, model, patch). If one is missing or damaged it says so ("Missing texture.MPQ", "This is build 4297; Open Vanilla needs the 1.12.1 game client (build 5875)") and offers to pick another folder. When you press PLAY it writes <code>realmlist.wtf</code> for you, keeping a backup of the old one.</p>
+          <p>The checker needs build <strong>5875</strong> and the eleven standard archives in <code>Data</code> (dbc, speech, fonts, interface, misc, sound, wmo, terrain, texture, model, patch). If one is missing or damaged it says so ("Missing texture.MPQ", "This is build 4297; Leyline needs the 1.12.1 game client (build 5875)") and offers to pick another folder. When you press PLAY it writes <code>realmlist.wtf</code> for you, keeping a backup of the old one.</p>
         </section>
         <section class="ch" id="workshop-page">
           <h2>The Workshop page <a class="anchor" href="#workshop-page" aria-label="Link to this">#</a></h2>
           <p>Tabs: <strong>Addons</strong>, <strong>Projects</strong>, <strong>Clients</strong>, <strong>Installed</strong> (and <strong>GitHub</strong> in Advanced mode).</p>
           <ul><li><strong>Addons:</strong> browse and install. Installs go into <code>AddOns\Enabled</code> and are used by every client you play with.</li><li><strong>Projects:</strong> community projects and forks from the directory.</li><li><strong>Clients:</strong> add or remove game clients (<strong>Add to my clients</strong>, <strong>Open clients.txt</strong>).</li><li><strong>Installed:</strong> your addons, with <strong>Enable/Disable</strong> each, <strong>Install from .zip</strong> and <strong>Open folder</strong>.</li></ul>
-          <p>Compatibility labels: <strong>Works</strong>, <strong>Partly</strong>, <strong>Needs fixes</strong>, <strong>Not checked</strong>, and <strong>Ours</strong> for the Open Vanilla addons. Install buttons on the website open the launcher directly (they use <code>openvanilla://workshop/install/...</code> links) and every download is checked against its fingerprint. Full details in <a href="workshop.html#install">Publish to the Workshop</a>.</p>
+          <p>Compatibility labels: <strong>Works</strong>, <strong>Partly</strong>, <strong>Needs fixes</strong>, <strong>Not checked</strong>, and <strong>Ours</strong> for the Leyline addons. Install buttons on the website open the launcher directly (they use <code>openvanilla://workshop/install/...</code> links) and every download is checked against its fingerprint. Full details in <a href="workshop.html#install">Publish to the Workshop</a>.</p>
           <div class="callout "><p><strong>Note:</strong> With the browser client selected, the page tells you the browser manages its own addons.</p></div>
         </section>
         <section class="ch" id="realms-page">
@@ -107,7 +107,7 @@
         </section>
         <section class="ch" id="account-page">
           <h2>Account <a class="anchor" href="#account-page" aria-label="Link to this">#</a></h2>
-          <p><strong>Sign in to Open Vanilla</strong> has two ways in, the same for new and returning players. <strong>Continue with Google</strong> opens Google's page in your browser; the first time, the realm makes your account, and the launcher keeps your <strong>Hero Key</strong>. <strong>Have a Hero Key?</strong> paste the line that starts with <code>ovk1</code> (or <strong>Load the key file</strong>) and press <strong>Sign in</strong>: no browser and no password. The launcher keeps the key encrypted on this PC and uses it whenever you need signing in (PLAY while signed out, an expired sign-in). Signed in, <strong>Your Hero Key</strong> has <strong>Save a copy</strong> and <strong>Copy</strong>; an account that made its key elsewhere can paste it once, or make a new one (the old one stops working). <strong>Forget it on this PC</strong> removes it. Guests and realms with their own passwords: <strong>Guest or a realm password? Sign in another way ›</strong>, with <strong>Remember me on this PC (saved encrypted)</strong>.</p>
+          <p><strong>Sign in to Leyline</strong> has two ways in, the same for new and returning players. <strong>Continue with Google</strong> opens Google's page in your browser; the first time, the realm makes your account, and the launcher keeps your <strong>Hero Key</strong>. <strong>Have a Hero Key?</strong> paste the line that starts with <code>ovk1</code> (or <strong>Load the key file</strong>) and press <strong>Sign in</strong>: no browser and no password. The launcher keeps the key encrypted on this PC and uses it whenever you need signing in (PLAY while signed out, an expired sign-in). Signed in, <strong>Your Hero Key</strong> has <strong>Save a copy</strong> and <strong>Copy</strong>; an account that made its key elsewhere can paste it once, or make a new one (the old one stops working). <strong>Forget it on this PC</strong> removes it. Guests and realms with their own passwords: <strong>Guest or a realm password? Sign in another way ›</strong>, with <strong>Remember me on this PC (saved encrypted)</strong>.</p>
         </section>
         <section class="ch" id="settings">
           <h2>Settings <a class="anchor" href="#settings" aria-label="Link to this">#</a></h2>
@@ -116,7 +116,7 @@
         </section>
         <section class="ch" id="updates">
           <h2>Updates <a class="anchor" href="#updates" aria-label="Link to this">#</a></h2>
-          <p>The launcher checks for updates by itself and ignores anything that isn't signed by Open Vanilla's release key or is older than what you have. Updates download quietly in the background ("Downloading update 42%"), are checked against their fingerprint, and then a gold <strong>UPDATE READY · RESTART</strong> button appears above PLAY. Updating replaces only program files: your addons, settings, realms and screenshots are never touched. If an update fails, it says so and tries again next time (details in <code>Logs\update.log</code>).</p>
+          <p>The launcher checks for updates by itself and ignores anything that isn't signed by Leyline's release key or is older than what you have. Updates download quietly in the background ("Downloading update 42%"), are checked against their fingerprint, and then a gold <strong>UPDATE READY · RESTART</strong> button appears above PLAY. Updating replaces only program files: your addons, settings, realms and screenshots are never touched. If an update fails, it says so and tries again next time (details in <code>Logs\update.log</code>).</p>
         </section>
         <section class="ch" id="folders">
           <h2>Where your files live <a class="anchor" href="#folders" aria-label="Link to this">#</a></h2>

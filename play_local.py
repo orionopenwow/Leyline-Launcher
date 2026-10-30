@@ -1,4 +1,4 @@
-"""Open Vanilla local play: PLAY SOLO, and the local test realm for hosts.
+"""Leyline local play: PLAY SOLO, and the local test realm for hosts.
 
     py -3 play_local.py                  Play Solo: your own offline world on this PC (the launcher's
     py -3 play_local.py solo             PLAY SOLO button runs exactly this). First run downloads the
@@ -6,7 +6,7 @@
                                          client; after that it starts the servers in the background,
                                          signs you in and stops everything when the game closes.
         --mmaps                          also generate movement maps (optional, an hour or more)
-        --client PATH                    the game to start: WoW.exe, the Open Vanilla engine or the client folder
+        --client PATH                    the game to start: WoW.exe, the Leyline engine or the client folder
         --data PATH                      the client folder whose Data the game and the solo server use
                                          (Vanilla Forge's test copy of the game)
         --no-play                        start the solo servers and leave them running (stop: solo-stop)
@@ -93,7 +93,7 @@ class Cancelled(SoloError):
 # ---------------------------------------------------------------- small helpers
 
 def app_dir():
-    """The Open Vanilla folder: beside the frozen launcher, or this checkout."""
+    """The Leyline folder: beside the frozen launcher, or this checkout."""
     return os.path.dirname(os.path.abspath(sys.executable)) if getattr(sys, "frozen", False) else HERE
 
 
@@ -110,7 +110,7 @@ def _writable(folder):
 
 
 def default_solo_root():
-    """OpenVanilla\\solo, or %LOCALAPPDATA%\\OpenVanilla\\solo when the Open Vanilla folder is read-only."""
+    """OpenVanilla\\solo, or %LOCALAPPDATA%\\OpenVanilla\\solo when the Leyline folder is read-only."""
     env = os.environ.get("OPENVANILLA_SOLO_DIR")
     if env:
         return os.path.abspath(env)
@@ -282,7 +282,7 @@ class SoloPaths:
         self.gamedata = j("gamedata")
         self.etc = j("etc")
         self.custom = j("custom")
-        # Open Vanilla Forge's Test & Play drops a pack's dev SQL here (forge_dev_<pack>.sql); it
+        # Leyline Forge's Test & Play drops a pack's dev SQL here (forge_dev_<pack>.sql); it
         # runs like the Classic+ files, after them
         self.forge_dev = j("forge-dev")
         self.logs = j("logs")
@@ -332,7 +332,7 @@ def fetch_json(url, timeout=10, opener=None):
 def validate_manifest(m):
     """The launcher's view of the pack (www/downloads/solo.json, written by tools/build_solo_pack.py)."""
     if not isinstance(m, dict) or m.get("format") != PACK_FORMAT:
-        raise SoloError("The solo pack information online is from a newer launcher. Update Open Vanilla first.")
+        raise SoloError("The solo pack information online is from a newer launcher. Update Leyline first.")
     for key in ("version", "url", "sha256", "size"):
         if not m.get(key):
             raise SoloError(f"The solo pack information online is incomplete (no {key}).")
@@ -665,7 +665,7 @@ def has_mmaps(folder):
 
 def gamedata_candidates(paths, client_dir=None, extra=()):
     """Map data the player may already have: solo\\gamedata, OPENVANILLA_GAMEDATA, the client folder
-    (CMaNGOS's extractors write next to themselves), a local Open Vanilla server, an SPP install."""
+    (CMaNGOS's extractors write next to themselves), a local Leyline server, an SPP install."""
     out = [paths.gamedata]
     if os.environ.get("OPENVANILLA_GAMEDATA"):
         out.append(os.environ["OPENVANILLA_GAMEDATA"])
@@ -1162,7 +1162,7 @@ def order_sql(files):
     for n in ["classicplus_races.sql"] + names:
         if n in files and not n.startswith("forge_dev_"):
             visit(n)
-    for n in names:   # packs being tested in Forge go on top of Open Vanilla's own content
+    for n in names:   # packs being tested in Forge go on top of Leyline's own content
         if n.startswith("forge_dev_"):
             visit(n)
     return out
@@ -1216,12 +1216,12 @@ def applied_markers(db):
     return out
 
 
-LEGACY_PREFIX = "openwow"   # the project's name before Open Vanilla; tables made under it are renamed once
+LEGACY_PREFIX = "openwow"   # the project's name before Leyline; tables made under it are renamed once
 
 
 def rename_legacy_tables(db):
     """Solo databases set up before the rename keep their data: each table named with the old prefix
-    (and the old marker database's tables) moves to the Open Vanilla name, unless that name is taken."""
+    (and the old marker database's tables) moves to the Leyline name, unless that name is taken."""
     old = LEGACY_PREFIX
     rows = db.query("SELECT table_schema, table_name FROM information_schema.tables "
                     f"WHERE table_name LIKE '{old}\\_%' OR table_schema = '{old}_solo';")
@@ -1247,7 +1247,7 @@ def apply_sql_updates(db, paths, reporter=None, cancel=None):
     its SHA-256 in openvanilla_solo.sql_applied). The files are idempotent, as on the live realm."""
     reporter = reporter or Reporter()
     if rename_legacy_tables(db):
-        reporter.info("Moved this solo world's tables to the Open Vanilla names")
+        reporter.info("Moved this solo world's tables to the Leyline names")
     cands = sql_candidates(paths)
     files = {n: ps[0] for n, ps in cands.items()}
     done = applied_markers(db)
@@ -1590,8 +1590,8 @@ STOCK_NAMES = ("WoW.exe", "Wow.exe", "wow.exe")
 
 
 def find_client(explicit=None, settings=None):
-    """(kind, exe, data_folder): 'engine' = the Open Vanilla engine (signs in by itself), 'exe' = a stock client.
-    explicit may be an exe or a folder; otherwise the launcher's settings and the Open Vanilla folder."""
+    """(kind, exe, data_folder): 'engine' = the Leyline engine (signs in by itself), 'exe' = a stock client.
+    explicit may be an exe or a folder; otherwise the launcher's settings and the Leyline folder."""
     settings = settings if settings is not None else launcher_settings()
     wow = settings.get("wow_folder") or ""
     tries = []
@@ -1660,7 +1660,7 @@ def point_client_at_solo(client_folder, state):
 
 
 def client_env(state, data_folder):
-    """The Open Vanilla engine signs in by itself with WOW_HOST/WOW_USER/WOW_PASS (and picks the realm by WOW_REALM)."""
+    """The Leyline engine signs in by itself with WOW_HOST/WOW_USER/WOW_PASS (and picks the realm by WOW_REALM)."""
     p = state["ports"]
     env = dict(os.environ)
     env["WOW_HOST"] = "127.0.0.1" if int(p["realm"]) == 3724 else f"127.0.0.1:{p['realm']}"
@@ -1821,7 +1821,7 @@ class SoloSession:
         except urllib.error.HTTPError as e:
             if e.code == 404 and not self.paths.pack_installed():
                 raise SoloError("Play Solo isn't published yet: the solo server pack isn't on the download site. "
-                                "Check back after the next Open Vanilla update.")
+                                "Check back after the next Leyline update.")
         except (urllib.error.URLError, OSError, ValueError):
             pass
         except SoloError:
@@ -1906,7 +1906,7 @@ class SoloSession:
             if self.data_hint:
                 data = self.data_hint
             if self.play and not exe:
-                raise SoloError("No game client found. Set your World of Warcraft 1.12.1 folder (or the Open Vanilla engine) "
+                raise SoloError("No game client found. Set your World of Warcraft 1.12.1 folder (or the Leyline engine) "
                                 "in the launcher's Settings and press Play Solo again.")
             self.ensure_gamedata(data)
             configs = write_configs(p, self.state)
@@ -1976,7 +1976,7 @@ class SoloSession:
             if self.data_hint:
                 data = self.data_hint
             if not exe:
-                raise SoloError("No game client found. Set your World of Warcraft 1.12.1 folder (or the Open Vanilla engine) "
+                raise SoloError("No game client found. Set your World of Warcraft 1.12.1 folder (or the Leyline engine) "
                                 "in the launcher's Settings and press Play Solo again.")
             restore = self._play_game(kind, exe, data)
         finally:
@@ -2108,7 +2108,7 @@ def host_main(args):
         host = server_control.sql_value(args[1])
     else:
         host = lan_ip() if mode == "lan" else "127.0.0.1"
-    print(f"=== Open Vanilla local test realm on {host} ===")
+    print(f"=== Leyline local test realm on {host} ===")
     if not server_control.start_all():
         print("\nThe server did not start. Check SPP_ROOT in server_control.py points at your SPP Classics install.")
         return 1

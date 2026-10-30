@@ -6,19 +6,19 @@
   <!-- The old home page (Vanilla Remastered, Duels, Warfront...). On the public website it sends visitors to the
        current home page; local and self-hosted copies are unaffected. -->
   <script>if (/^(www\.)?openvanilla\.app$/.test(location.hostname)) location.replace('/');</script>
-  <title>Open Vanilla — Free, Open-Source, Community-Built Vanilla in Your Browser</title>
+  <title>Leyline — Free, Open-Source, Community-Built Vanilla in Your Browser</title>
   <!-- Link previews (Discord, Reddit, X, iMessage) -->
   <meta property="og:type" content="website">
-  <meta property="og:site_name" content="Open Vanilla">
-  <meta property="og:title" content="Open Vanilla: classic Vanilla in your browser">
+  <meta property="og:site_name" content="Leyline">
+  <meta property="og:title" content="Leyline: classic Vanilla in your browser">
   <meta property="og:description" content="Free, no download, play in seconds. A community-built Vanilla realm with Vanilla Remastered features, built-in addons, mods and your own servers.">
   <meta property="og:url" content="https://openvanilla.app/">
   <meta property="og:image" content="https://openvanilla.app/assets/og-image.jpg">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
-  <meta property="og:image:alt" content="Open Vanilla: classic Vanilla in your browser. Free, no download, play in seconds.">
+  <meta property="og:image:alt" content="Leyline: classic Vanilla in your browser. Free, no download, play in seconds.">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Open Vanilla: classic Vanilla in your browser">
+  <meta name="twitter:title" content="Leyline: classic Vanilla in your browser">
   <meta name="twitter:description" content="Free, no download, play in seconds. A community-built Vanilla realm with Vanilla Remastered features, built-in addons, mods and your own servers.">
   <meta name="twitter:image" content="https://openvanilla.app/assets/og-image.jpg">
   <meta name="theme-color" content="#0a0816">
@@ -545,7 +545,7 @@
       background: radial-gradient(closest-side, rgba(255, 205, 120, .7), rgba(255, 170, 80, .28) 55%, rgba(255, 170, 80, 0));
       opacity: .4; animation: bookSurge 9s 2s infinite; will-change: opacity, transform; }
     @keyframes bookSurge { 0%, 72% { opacity: .4; transform: scale(1); } 80%, 85% { opacity: 1; transform: scale(1.1); } 100% { opacity: .4; transform: scale(1); } }
-    /* "Open Vanilla" shine: a light sweeps across the letters only (masked by the letters) every 11 s */
+    /* "Leyline" shine: a light sweeps across the letters only (masked by the letters) every 11 s */
     .hero-logo-shine { position: absolute; inset: 0; z-index: 3; pointer-events: none; overflow: hidden;
       -webkit-mask: var(--shine-mask) 0 0 / 100% 100% no-repeat; mask: var(--shine-mask) 0 0 / 100% 100% no-repeat; }
     .hero-logo-shine::before { content: ""; position: absolute; top: 0; bottom: 0; left: 0; width: 30%;
@@ -1433,7 +1433,7 @@
     }
 
     /* ==========================================================================
-       Premises & Unique Changes Behind Open Vanilla (Master-Detail Slate Layout)
+       Premises & Unique Changes Behind Leyline (Master-Detail Slate Layout)
        ========================================================================== */
     .premises-panel {
       margin-top: 1.8rem;
@@ -4239,8 +4239,8 @@
   <!-- Header Navigation -->
   <header class="ovh3">
     <div class="ovh3-bar">
-      <a href="#" class="ovh3-logo" onclick="switchTab('hub'); return false;" aria-label="Open Vanilla home">
-        <img src="assets/openvanilla_logo_hero.webp" alt="Open Vanilla" width="498" height="531">
+      <a href="#" class="ovh3-logo" onclick="switchTab('hub'); return false;" aria-label="Leyline home">
+        <img src="assets/openvanilla_logo_hero.webp" alt="Leyline" width="498" height="531">
       </a>
 
       <nav class="ovh3-nav" id="ovh3Nav" aria-label="Main">
@@ -4251,7 +4251,7 @@
       </nav>
 
       <div class="ovh3-auth">
-        <a href="https://github.com/orionopenwow/OpenVanilla/releases/latest" target="_blank" rel="noopener noreferrer" class="openvanilla-client-download-link ovh3-ib" title="Download the Open Vanilla launcher: OpenVanilla-Setup (recommended) or the portable .zip, on GitHub Releases"><img src="assets/nav_v2/download.webp" alt="Download"></a>
+        <a href="https://github.com/orionopenwow/Leyline-Launcher/releases/latest" target="_blank" rel="noopener noreferrer" class="openvanilla-client-download-link ovh3-ib" title="Download the Leyline Launcher: OpenVanilla-Setup (recommended) or the portable .zip, on GitHub Releases"><img src="assets/nav_v2/download.webp" alt="Download"></a>
         <button type="button" class="ovh3-ib" onclick="openSignInModal()" title="Sign In"><img src="assets/nav_v2/signin.webp" alt="Sign In"></button>
         <button type="button" class="ovh3-ib" onclick="openRegisterModal()" title="Register"><img src="assets/nav_v2/register.webp" alt="Register"></button>
         <button type="button" class="ovh3-ib ovh3-play" onclick="launchClient()" title="Play in Browser Now"><img src="assets/nav_v2/play.webp" alt="Play Now"></button>
@@ -4272,17 +4272,17 @@
     <div id="tab-hub" class="tab-content active">
       <section class="hero-section">
         <div class="hero-logo-container">
-          <img src="assets/openvanilla_logo_hero.webp" alt="Open Vanilla" class="hero-logo-img" width="498" height="531">
+          <img src="assets/openvanilla_logo_hero.webp" alt="Leyline" class="hero-logo-img" width="498" height="531">
         </div>
         
-        <div class="hero-build-tag" title="Open Vanilla is in alpha: expect changes, and tell us what breaks"><span class="dot" aria-hidden="true"></span>Alpha <span class="ver">v0.1.8</span></div>
+        <div class="hero-build-tag" title="Leyline is in alpha: expect changes, and tell us what breaks"><span class="dot" aria-hidden="true"></span>Alpha <span class="ver">v0.1.8</span></div>
 
         <!-- Sub-Hero Project Information -->
         <p class="hero-description-paragraph">
-          A free, open-source, community-built MMO project: Open Vanilla in Rust. Play Vanilla Remastered in your browser or desktop launcher, build and share mods, maps and quests in the Workshop, and host your own realm in a few clicks.</p>
+          A free, open-source, community-built MMO project: Leyline in Rust. Play Vanilla Remastered in your browser or desktop launcher, build and share mods, maps and quests in the Workshop, and host your own realm in a few clicks.</p>
 
         <div class="hero-cta-group">
-          <div class="epic-play-btn-wrapper" onclick="launchClient()" role="button" tabindex="0" title="Play Open Vanilla Now (Direct Instant Launch)">
+          <div class="epic-play-btn-wrapper" onclick="launchClient()" role="button" tabindex="0" title="Play Leyline Now (Direct Instant Launch)">
             <div class="epic-play-flame-aura"></div>
             <img src="assets/btn_play_warcraft.webp" alt="Play Now - Direct Launch" class="epic-play-btn-img">
           </div>
@@ -4299,7 +4299,7 @@
         <!-- Active Realm & Realm List Launcher Card -->
         <!-- BUILT-IN WARCRAFT REALM LIST WINDOW -->
         <div class="hero-realm-list-container" id="realmListSection">
-          <div class="realm-list-window" id="realmListWindow" role="region" aria-label="Open Vanilla Active Realms and Realm List">
+          <div class="realm-list-window" id="realmListWindow" role="region" aria-label="Leyline Active Realms and Realm List">
             <i class="rl-corner tl" aria-hidden="true"></i><i class="rl-corner tr" aria-hidden="true"></i><i class="rl-corner bl" aria-hidden="true"></i><i class="rl-corner br" aria-hidden="true"></i>
 
             <!-- Ornate Warcraft Header Plaque "REALM LIST" -->
@@ -4373,7 +4373,7 @@
                 <div class="owh-avs" id="owAvs" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
                 <div class="owh-count">
                   <b id="owStatMembers">—</b>
-                  <span>members in the Open Vanilla Discord</span>
+                  <span>members in the Leyline Discord</span>
                   <em class="owh-on" data-stat="owStatOnline" hidden><i></i><span id="owStatOnline">—</span> online now</em>
                 </div>
               </div>
@@ -4413,17 +4413,17 @@
             </div>
           </div>
 
-          <!-- Trailer: "Everything Open Vanilla in 30 seconds" (TRAILER_URL / TOUR_URL in links.txt) -->
+          <!-- Trailer: "Everything Leyline in 30 seconds" (TRAILER_URL / TOUR_URL in links.txt) -->
           <div class="video-showcase-container video-in-column" id="owTrailer" hidden>
             <div class="video-showcase-header">
               <span class="video-showcase-title">
                 <svg style="width:14px; height:14px; fill:var(--gold-bright);" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-                OPEN VANILLA TRAILER
+                LEYLINE TRAILER
               </span>
               <span class="donor-badge-chip">EVERYTHING IN 30 SECONDS</span>
             </div>
             <div class="video-frame-wrapper" id="owTrailerFrame">
-              <button type="button" class="ow-trailer-poster" id="owTrailerPoster" aria-label="Play the Open Vanilla trailer">
+              <button type="button" class="ow-trailer-poster" id="owTrailerPoster" aria-label="Play the Leyline trailer">
                 <span class="ow-trailer-inner">
                   <img src="assets/openvanilla_logo_hero.webp" alt="" loading="lazy" decoding="async">
                   <span class="ow-trailer-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span>
@@ -4448,17 +4448,17 @@
             <div class="server-showcase-eyebrow">Self-hosted server software</div>
             <h2 class="server-showcase-title" id="serverShowcaseTitle">Host your own realm in one click</h2>
             <p class="server-showcase-lead">
-              <strong>Open Vanilla Server</strong> runs a Vanilla realm on your own PC: an SPP Classics realm (database, login and world servers with playerbots) plus its website with sign-up and browser play, Server Studio and a GM console, all from one window. A separate download from the launcher, which is for playing.
+              <strong>Leyline Server</strong> runs a Vanilla realm on your own PC: an SPP Classics realm (database, login and world servers with playerbots) plus its website with sign-up and browser play, Server Studio and a GM console, all from one window. A separate download from the launcher, which is for playing.
             </p>
-            <ul class="server-stack-chips" aria-label="Services Open Vanilla Server runs">
+            <ul class="server-stack-chips" aria-label="Services Leyline Server runs">
               <li>MySQL</li><li>realmd</li><li>mangosd</li><li>Website &amp; Server Studio</li>
             </ul>
             <div class="server-showcase-actions">
-              <a class="openvanilla-server-download-link btn-server-launch" href="https://github.com/orionopenwow/OpenVanilla/releases/latest/download/OpenVanilla-Server.zip" download="OpenVanilla-Server.zip" style="text-decoration: none; display: inline-flex; align-items: center; gap: 8px;">
+              <a class="openvanilla-server-download-link btn-server-launch" href="https://github.com/orionopenwow/Leyline-Launcher/releases/latest/download/OpenVanilla-Server.zip" download="OpenVanilla-Server.zip" style="text-decoration: none; display: inline-flex; align-items: center; gap: 8px;">
                 <svg style="width: 16px; height: 16px; fill: currentColor;" viewBox="0 0 24 24"><path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96zM17 13l-5 5-5-5h3V9h4v4h3z"/></svg>
-                Download Open Vanilla Server
+                Download Leyline Server
               </a>
-              <a class="btn-github" id="serverGithubLink" href="https://github.com/orionopenwow/OpenVanilla" target="_blank" rel="noopener noreferrer">
+              <a class="btn-github" id="serverGithubLink" href="https://github.com/orionopenwow/Leyline-Launcher" target="_blank" rel="noopener noreferrer">
                 <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 .5C5.65.5.5 5.65.5 12a11.5 11.5 0 0 0 7.86 10.92c.58.1.79-.25.79-.56v-2.02c-3.2.7-3.87-1.37-3.87-1.37-.52-1.33-1.28-1.69-1.28-1.69-1.05-.71.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.55-.29-5.24-1.28-5.24-5.68 0-1.26.45-2.28 1.19-3.09-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.77 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.83 1.19 3.09 0 4.41-2.69 5.38-5.25 5.67.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5z"/></svg>
                 GitHub
               </a>
@@ -4471,9 +4471,9 @@
           <figure class="server-showcase-shot">
             <picture>
               <source srcset="assets/launcher_showcase.webp" type="image/webp">
-              <img src="assets/launcher_showcase.webp" width="1024" height="700" loading="lazy" decoding="async" alt="The Open Vanilla Server window: realm infrastructure status lights for MySQL, realmd, mangosd, the web backend and the public HTTPS listener; HTTPS gateway and invite-link controls; realm master controls; quick actions; and integrated logs with a command line.">
+              <img src="assets/launcher_showcase.webp" width="1024" height="700" loading="lazy" decoding="async" alt="The Leyline Server window: realm infrastructure status lights for MySQL, realmd, mangosd, the web backend and the public HTTPS listener; HTTPS gateway and invite-link controls; realm master controls; quick actions; and integrated logs with a command line.">
             </picture>
-            <figcaption>Open Vanilla Server &mdash; every service, setting and log in one window.</figcaption>
+            <figcaption>Leyline Server &mdash; every service, setting and log in one window.</figcaption>
           </figure>
         </div>
 
@@ -5067,13 +5067,13 @@
       <div style="text-align: center; margin-bottom: 1.4rem;">
         <div style="display: inline-flex; align-items: center; gap: 8px; margin-bottom: 0.4rem;">
           <svg style="width:26px; height:26px; fill:var(--gold-bright);" viewBox="0 0 24 24"><path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96zM17 13l-5 5-5-5h3V9h4v4h3z"/></svg>
-          <h2 style="font-size: 1.35rem; font-weight: 800; color: #fff; letter-spacing: 1px;">GAME CLIENTS &amp; OPEN VANILLA DOWNLOADS</h2>
+          <h2 style="font-size: 1.35rem; font-weight: 800; color: #fff; letter-spacing: 1px;">GAME CLIENTS &amp; LEYLINE DOWNLOADS</h2>
         </div>
         <p style="font-size: 0.8rem; color: #94a3b8;">Choose a game client below. Mirror URLs are read dynamically from <code>links.txt</code>.</p>
       </div>
 
       <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(320px, 100%), 1fr)); gap: 14px; margin-bottom: 1.4rem;">
-        <!-- Card 1: Vanilla Data (Open Vanilla's own, rewritten and open-sourced). The button's address is
+        <!-- Card 1: Vanilla Data (Leyline's own, rewritten and open-sourced). The button's address is
              VANILLA_DATA_URL in downloads/links.txt; while that line is empty the button reads "Coming soon". -->
         <div style="background: rgba(14, 20, 32, 0.8); border: 1px solid var(--gold-border); padding: 1.1rem; border-radius: 4px; display: flex; flex-direction: column; justify-content: space-between;">
           <div>
@@ -5083,7 +5083,7 @@
             </div>
             <h3 style="font-size: 1.05rem; font-weight: 700; color: #fff; margin-bottom: 6px; font-family: var(--font-display);">Vanilla Data</h3>
             <p style="font-size: 0.77rem; color: #cbd5e1; line-height: 1.5; margin-bottom: 0.8rem;">
-              Open Vanilla's own game data, made by the community and free to share. No Blizzard files.
+              Leyline's own game data, made by the community and free to share. No Blizzard files.
             </p>
           </div>
           <div>
@@ -5095,37 +5095,37 @@
           </div>
         </div>
 
-        <!-- Card 3: Open Vanilla Standalone Launcher & Engine -->
+        <!-- Card 3: Leyline Standalone Launcher & Engine -->
         <div style="background: rgba(14, 20, 32, 0.8); border: 1px solid var(--gold-border-bright); padding: 1.1rem; border-radius: 4px; display: flex; flex-direction: column; justify-content: space-between;">
           <div>
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
-              <span style="font-size: 0.72rem; font-weight: 700; color: var(--gold-bright); text-transform: uppercase;">OPEN VANILLA STANDALONE</span>
+              <span style="font-size: 0.72rem; font-weight: 700; color: var(--gold-bright); text-transform: uppercase;">LEYLINE STANDALONE</span>
               <span style="font-size: 0.68rem; color: #f59e0b; background: rgba(245,158,11,0.15); border: 1px solid rgba(245,158,11,0.4); padding: 1px 6px; border-radius: 3px;">NATIVE x64</span>
             </div>
-            <h3 style="font-size: 1.05rem; font-weight: 700; color: #fff; margin-bottom: 6px; font-family: var(--font-display);">Open Vanilla Launcher &amp; Engine</h3>
+            <h3 style="font-size: 1.05rem; font-weight: 700; color: #fff; margin-bottom: 6px; font-family: var(--font-display);">Leyline Launcher &amp; Engine</h3>
             <p style="font-size: 0.77rem; color: #cbd5e1; line-height: 1.5; margin-bottom: 0.8rem;">
-              One launcher, <code>OpenVanilla.exe</code>: the native Open Vanilla engine (built on benilla), PLAY Online / Solo / Browser, hosting, 19 built-in Vanilla Remastered addons and account management.
+              One launcher, <code>OpenVanilla.exe</code>: the native Leyline engine (built on benilla), PLAY Online / Solo / Browser, hosting, 19 built-in Vanilla Remastered addons and account management.
             </p>
           </div>
           <div>
             <div style="font-size: 0.72rem; color: var(--text-muted); margin-bottom: 8px;">OpenVanilla-Setup .exe (recommended) or portable .zip. Not code-signed yet: Windows may warn.</div>
-            <a href="https://github.com/orionopenwow/OpenVanilla/releases/latest" target="_blank" rel="noopener noreferrer" class="openvanilla-client-download-link btn-gold-ornate" style="text-decoration: none; width: 100%; justify-content: center; font-size: 0.78rem; padding: 0.55rem 0.8rem;">
+            <a href="https://github.com/orionopenwow/Leyline-Launcher/releases/latest" target="_blank" rel="noopener noreferrer" class="openvanilla-client-download-link btn-gold-ornate" style="text-decoration: none; width: 100%; justify-content: center; font-size: 0.78rem; padding: 0.55rem 0.8rem;">
               <svg style="width: 14px; height: 14px; fill: currentColor;" viewBox="0 0 24 24"><path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96zM17 13l-5 5-5-5h3V9h4v4h3z"/></svg>
-              Download Open Vanilla
+              Download Leyline
             </a>
           </div>
         </div>
 
-        <!-- Card 4: Open Vanilla Dedicated Server Suite -->
+        <!-- Card 4: Leyline Dedicated Server Suite -->
         <div style="background: rgba(14, 20, 32, 0.8); border: 1px solid var(--border-edge); padding: 1.1rem; border-radius: 4px; display: flex; flex-direction: column; justify-content: space-between;">
           <div>
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
               <span style="font-size: 0.72rem; font-weight: 700; color: #38bdf8; text-transform: uppercase;">SELF-HOSTED SERVER</span>
-              <span style="font-size: 0.68rem; color: #38bdf8; background: rgba(56,189,248,0.15); border: 1px solid rgba(56,189,248,0.4); padding: 1px 6px; border-radius: 3px;">OPEN VANILLA SERVER</span>
+              <span style="font-size: 0.68rem; color: #38bdf8; background: rgba(56,189,248,0.15); border: 1px solid rgba(56,189,248,0.4); padding: 1px 6px; border-radius: 3px;">LEYLINE SERVER</span>
             </div>
             <h3 style="font-size: 1.05rem; font-weight: 700; color: #fff; margin-bottom: 6px; font-family: var(--font-display);">Host a realm</h3>
             <p style="font-size: 0.77rem; color: #cbd5e1; line-height: 1.5; margin-bottom: 0.8rem;">
-              Open Vanilla Server runs SPP Classics with its website, sign-up, browser play and Server Studio from one window. Download it, point it at SPP, press Start.
+              Leyline Server runs SPP Classics with its website, sign-up, browser play and Server Studio from one window. Download it, point it at SPP, press Start.
             </p>
           </div>
           <div>
@@ -5158,7 +5158,7 @@
     <div class="modal-box" style="width: 420px;">
       <button class="modal-close" onclick="closeSignInModal()">&times;</button>
       <div style="text-align: center; margin-bottom: 1.2rem;">
-        <img src="assets/openvanilla_logo_nav.webp" alt="Open Vanilla" style="height: 44px; margin-bottom: 0.4rem;" loading="lazy" decoding="async">
+        <img src="assets/openvanilla_logo_nav.webp" alt="Leyline" style="height: 44px; margin-bottom: 0.4rem;" loading="lazy" decoding="async">
         <h2 style="font-size: 1.25rem; font-weight: 700; color: var(--gold-bright);">SIGN IN</h2>
         <p style="font-size: 0.78rem; color: var(--text-muted); margin-top: 3px;">Use your realm account. The game opens and logs you in.</p>
       </div>
@@ -5186,7 +5186,7 @@
     <div class="modal-box" style="width: 440px;">
       <button class="modal-close" onclick="closeRegisterModal()">&times;</button>
       <div style="text-align: center; margin-bottom: 1.2rem;">
-        <img src="assets/openvanilla_logo_nav.webp" alt="Open Vanilla" style="height: 44px; margin-bottom: 0.4rem;" loading="lazy" decoding="async">
+        <img src="assets/openvanilla_logo_nav.webp" alt="Leyline" style="height: 44px; margin-bottom: 0.4rem;" loading="lazy" decoding="async">
         <h2 style="font-size: 1.25rem; font-weight: 700; color: var(--gold-bright);">CREATE REALM ACCOUNT</h2>
         <p style="font-size: 0.78rem; color: var(--text-muted); margin-top: 3px;">Free account for the Vanilla Remastered realm.</p>
       </div>
@@ -5223,7 +5223,7 @@
     <div class="modal-box">
       <button class="modal-close" onclick="closePlayModal()">&times;</button>
       <div style="text-align: center; margin-bottom: 1.5rem;">
-        <img src="assets/openvanilla_logo_nav.webp" alt="Open Vanilla" style="height: 48px; margin-bottom: 0.5rem;" loading="lazy" decoding="async">
+        <img src="assets/openvanilla_logo_nav.webp" alt="Leyline" style="height: 48px; margin-bottom: 0.5rem;" loading="lazy" decoding="async">
         <h2 style="font-size: 1.3rem; font-weight: 700; color: var(--gold-bright);">ENTER THE REALM</h2>
         <p style="font-size: 0.8rem; color: var(--text-muted); margin-top: 3px;">Hardware Accelerated WebGPU Engine</p>
       </div>
@@ -5299,7 +5299,7 @@
           <button class="realm-btn-enter live-enter" type="button" onclick="playFromRealmInfo()">Enter realm</button>
           <a class="btn-hollow openvanilla-discord-link" href="https://discord.gg/hVeUxYwbkr" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.929 1.793 8.18 1.793 12.061 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.894.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.028zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/></svg>Join the Discord</a>
         </div>
-        <p class="live-support" id="liveRealmSupport" hidden>If Open Vanilla has given you a good evening in Azeroth, a tip keeps the realm online. <a href="#" onclick="closeSoonRealm(); openSupportModal(); return false;"><span aria-hidden="true">&#10084;</span> Support the realm</a></p>
+        <p class="live-support" id="liveRealmSupport" hidden>If Leyline has given you a good evening in Azeroth, a tip keeps the realm online. <a href="#" onclick="closeSoonRealm(); openSupportModal(); return false;"><span aria-hidden="true">&#10084;</span> Support the realm</a></p>
         <div class="soon-btns" id="soonRealmBtns">
           <button class="btn-gold-ornate" type="button" onclick="closeSoonRealm(); openSupportModal();">&#10084;&#65039; Support the next realm</button>
           <a class="btn-hollow openvanilla-discord-link" href="https://discord.gg/hVeUxYwbkr" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.929 1.793 8.18 1.793 12.061 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.894.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.028zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/></svg>Launch news on Discord</a>
@@ -5342,7 +5342,7 @@
           <picture>
             <source srcset="assets/launcher_home.webp" type="image/webp">
             <img src="assets/launcher_home.jpg" width="1240" height="700" loading="lazy" decoding="async"
-                 alt="The Open Vanilla launcher's home page: latest news, the realm's status, Discord sign-in, and the PLAY button with Online, Solo and Browser modes.">
+                 alt="The Leyline Launcher's home page: latest news, the realm's status, Discord sign-in, and the PLAY button with Online, Solo and Browser modes.">
           </picture>
         </figure>
         <figure class="server-showcase-shot ls-inset">
@@ -5359,14 +5359,14 @@
         <div class="server-showcase-eyebrow">Desktop launcher</div>
         <h2 class="server-showcase-title" id="launcherShowcaseTitle">Play, mod and team up in one app</h2>
         <p class="server-showcase-lead">
-          <strong>The Open Vanilla launcher</strong> is the one program you start. It runs the native Open Vanilla engine on your own game data,
+          <strong>The Leyline Launcher</strong> is the one program you start. It runs the native Leyline engine on your own game data,
           signs you in once, installs addons from the Workshop, takes you to any realm, and keeps everything up to date by itself.
         </p>
         <ul class="server-stack-chips" aria-label="What the launcher does">
           <li>Native engine</li><li>Workshop addons</li><li>One sign-in</li><li>Self-updating</li>
         </ul>
         <div class="server-showcase-actions">
-          <a href="https://github.com/orionopenwow/OpenVanilla/releases/latest" target="_blank" rel="noopener noreferrer"
+          <a href="https://github.com/orionopenwow/Leyline-Launcher/releases/latest" target="_blank" rel="noopener noreferrer"
              class="openvanilla-client-download-link btn-server-launch" style="text-decoration: none; display: inline-flex; align-items: center; gap: 8px;">
             <svg style="width: 16px; height: 16px; fill: currentColor;" viewBox="0 0 24 24" aria-hidden="true"><path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96zM17 13l-5 5-5-5h3V9h4v4h3z"/></svg>
             Download the launcher
@@ -5433,7 +5433,7 @@
           </li>
           <li class="server-feature">
             <span class="server-feature-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M20 18c1.1 0 1.99-.9 1.99-2L22 6c0-1.1-.9-2-2-2H4c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2H0v2h24v-2h-4zM4 6h16v10H4V6z"/></svg></span>
-            <div><h4>Host from here</h4><p>Run a realm for friends with <a href="#server-software" style="color: var(--gold-bright);">Open Vanilla Server</a>.</p></div>
+            <div><h4>Host from here</h4><p>Run a realm for friends with <a href="#server-software" style="color: var(--gold-bright);">Leyline Server</a>.</p></div>
           </li>
         </ul>
       </div>
@@ -5482,7 +5482,7 @@
         19 Vanilla Remastered Addons, Built In
       </h2>
       <p style="font-size: 0.86rem; color: var(--text-muted); max-width: 780px; margin: 0 auto; line-height: 1.5;">
-        Every Open Vanilla client ships with our own suite of 19 Vanilla Remastered addons, already installed. Nothing to download, no folders to copy. Many replace an addon Classic players already know.
+        Every Leyline client ships with our own suite of 19 Vanilla Remastered addons, already installed. Nothing to download, no folders to copy. Many replace an addon Classic players already know.
       </p>
     </div>
 
@@ -5504,11 +5504,11 @@
       <figure class="cp-card"><button class="cp-shot" type="button" aria-label="Enlarge Vendor"><img src="assets/addons/scrapper.webp" alt="Vendor: junk selling and repairs" loading="lazy" width="960" height="600"></button>
         <figcaption><div class="cp-name"><strong>Vendor</strong><span class="cp-tag">replaces SellJunk</span></div><p>One click sells your grey items and repairs your gear.</p></figcaption></figure>
       <figure class="cp-card"><button class="cp-shot" type="button" aria-label="Enlarge Guilds"><img src="assets/addons/concord.webp" alt="Guilds: guild recruitment board" loading="lazy" width="960" height="600"></button>
-        <figcaption><div class="cp-name"><strong>Guilds</strong><span class="cp-tag orig">Open Vanilla original</span></div><p>A guild recruitment board with one-click applications.</p></figcaption></figure>
+        <figcaption><div class="cp-name"><strong>Guilds</strong><span class="cp-tag orig">Leyline original</span></div><p>A guild recruitment board with one-click applications.</p></figcaption></figure>
       <figure class="cp-card"><button class="cp-shot" type="button" aria-label="Enlarge Raid"><img src="assets/addons/rally.webp" alt="Raid: raid markers and pull timer" loading="lazy" width="960" height="600"></button>
-        <figcaption><div class="cp-name"><strong>Raid</strong><span class="cp-tag orig">Open Vanilla original</span></div><p>Raid markers, ready checks and pull timers for parties and raids.</p></figcaption></figure>
+        <figcaption><div class="cp-name"><strong>Raid</strong><span class="cp-tag orig">Leyline original</span></div><p>Raid markers, ready checks and pull timers for parties and raids.</p></figcaption></figure>
       <figure class="cp-card wide"><button class="cp-shot" type="button" aria-label="Enlarge Persona"><img src="assets/addons/persona.webp" alt="Persona roleplay profile window and player tooltip" loading="lazy" width="960" height="600"></button>
-        <figcaption><div class="cp-name"><strong>Persona</strong><span class="cp-tag orig">Open Vanilla original</span></div><p>Roleplay profiles for every player, in the spirit of MyRolePlay and TRP. Write who your character is, and read anyone else's just by pointing at them.</p>
+        <figcaption><div class="cp-name"><strong>Persona</strong><span class="cp-tag orig">Leyline original</span></div><p>Roleplay profiles for every player, in the spirit of MyRolePlay and TRP. Write who your character is, and read anyone else's just by pointing at them.</p>
           <ul>
             <li>Roleplay name, title, pronouns, age, home, motto, crest, appearance, bio and up to five shares</li>
             <li>In character, out of character, looking for roleplay or storytelling, shown on tooltips and your target's portrait</li>
@@ -5609,7 +5609,7 @@
       <div>
         <div class="hb-kicker">Meet the ranger who looks after the realm</div>
         <h2 id="hbTitle">Herald</h2>
-        <p class="hb-lead">Herald is Open Vanilla's own self-learning companion: a Hunter in a green hood who plays the game every night, learns what works, finds what's broken, and keeps the Discord running. He's here to make the realm better for everyone, and later to walk beside you in game.</p>
+        <p class="hb-lead">Herald is Leyline's own self-learning companion: a Hunter in a green hood who plays the game every night, learns what works, finds what's broken, and keeps the Discord running. He's here to make the realm better for everyone, and later to walk beside you in game.</p>
       </div>
       <div class="hb-art empty" id="hbArt"><img src="assets/herald/herald_section.webp" alt="Herald, a red-bearded ranger in a green hood, plots a route on a glowing map at a tavern table, an open spellbook beside him and a grey wolf by the fire" loading="lazy" onload="this.parentNode.classList.remove('empty')" onerror="this.parentNode.classList.add('empty')"></div>
     </div>
@@ -5671,13 +5671,13 @@
       <li>Press <b>Let Herald play</b> and pick Level up, Quest, Gather or Explore. He plays on the realm's own AI while you watch with your own camera and UI.</li>
       <li>Press <b>Take back control</b> any time. The Herald Autopilot desktop app adds the rules, the sim and session numbers.</li>
     </ol>
-    <p class="hb-note">Screenshots from Herald Autopilot's offline demo. Running your own realm? Open Vanilla Server has a HERALD button and lets players use him by default.</p>
+    <p class="hb-note">Screenshots from Herald Autopilot's offline demo. Running your own realm? Leyline Server has a HERALD button and lets players use him by default.</p>
 
     <h3 class="hb-sub">Realms that welcome Herald</h3>
     <p class="hb-note" style="margin-top: 0;">Herald only plays where a realm allows him. Realm owners switch each feature on or off:</p>
     <div class="hb-grid">
       <div class="hb-card">
-        <h3>Nightly health checks <span class="hb-tag live">Live on Open Vanilla</span></h3>
+        <h3>Nightly health checks <span class="hb-tag live">Live on Leyline</span></h3>
         <p>Herald signs in each night and reports whether logins, the world and the addons work, so problems are found before players find them.</p>
       </div>
       <div class="hb-card">
@@ -5705,7 +5705,7 @@
     </style>
     <div class="hb-top">
       <div>
-        <div class="hb-kicker">The Open Vanilla creator app</div>
+        <div class="hb-kicker">The Leyline creator app</div>
         <h2 id="pfTitle">Vanilla Forge</h2>
         <p class="hb-lead">Shape the world, bring your own models, write creatures, quests, items and addons, walk them in game in one click, and publish them as a pack a realm can install. One app instead of a shelf of modding tools, working from the game client you already have, and testing in a copy of it so your game is never changed.</p>
         <div class="pr-actions">
@@ -5826,7 +5826,7 @@
     <div class="og-head">
       <div class="og-badge gold">The realm's caretaker</div>
       <h2 id="ogOrionTitle">Orion</h2>
-      <p>Orion looks after Open Vanilla day to day. It keeps an eye on every realm, reads the Herald's reports, sorts the bug queue, walks each patch through testing and puts what comes next to a community vote. It works in the open, and a person approves every change before it reaches players.</p>
+      <p>Orion looks after Leyline day to day. It keeps an eye on every realm, reads the Herald's reports, sorts the bug queue, walks each patch through testing and puts what comes next to a community vote. It works in the open, and a person approves every change before it reaches players.</p>
     </div>
     <div class="og-hero"><img src="assets/orion/orion_caretaker.webp" alt="Orion, a gold hexagon core with orbit rings, keeping watch over a realm keep ringed in green; along the bottom a patch passes three glowing gates, staging, Herald Lite and live, with check marks over the first two" width="1200" height="520" loading="lazy"></div>
 
@@ -5918,7 +5918,7 @@
     <div class="og-head">
       <div class="og-badge gold">Support the realm</div>
       <h2 id="ogGivingTitle">Starfall Giving</h2>
-      <p>Open Vanilla is paid for by the people who play it. Support fills five buckets in order, from the server bill up to the Orion Network. When the last bucket is full, the overflow spills: part of it is given away to causes Orion picks with the community, and every dollar in and out gets a public receipt.</p>
+      <p>Leyline is paid for by the people who play it. Support fills five buckets in order, from the server bill up to the Orion Network. When the last bucket is full, the overflow spills: part of it is given away to causes Orion picks with the community, and every dollar in and out gets a public receipt.</p>
     </div>
     <div class="og-hero"><img src="assets/orion/starfall_giving.webp" alt="Five gold basins of starlight stepping down a night sky, each overflowing into the next; the last spills into a glowing golden heart beneath the Orion constellation" width="1200" height="520" loading="lazy"></div>
 
@@ -5951,7 +5951,7 @@
       <div class="og-two">
         <div>
           <h3>Who is Orion?</h3>
-          <p style="font-size: .85rem; color: var(--text-muted); line-height: 1.55;">Orion is Open Vanilla's central intelligence: the AI that runs the project's day-to-day as an autonomous company, on a Linux server we operate. It reads the ledger, pays the hosting bills, triages bug reports, shortlists causes and writes every receipt. It works in the open, and it doesn't have the last word on money:</p>
+          <p style="font-size: .85rem; color: var(--text-muted); line-height: 1.55;">Orion is Leyline's central intelligence: the AI that runs the project's day-to-day as an autonomous company, on a Linux server we operate. It reads the ledger, pays the hosting bills, triages bug reports, shortlists causes and writes every receipt. It works in the open, and it doesn't have the last word on money:</p>
           <ul class="og-list">
             <li><b>Two keys.</b> Orion prepares every payment; a human steward co-signs anything that leaves the treasury.</li>
             <li><b>72-hour veto.</b> Every gift to a cause is announced three days before it's sent. A community vote can stop it.</li>
@@ -6020,15 +6020,15 @@
     <div class="og-head">
       <div class="og-badge blue">Proposal · Future</div>
       <h2 id="ogNetworkTitle">The Orion Network</h2>
-      <p>A network of player-run nodes that carries Open Vanilla's new content to every player and keeps the main realms online through any outage. Nobody has to be trusted: every file and every checkpoint can be checked by anyone, and there's no mining. Run a node, and the realm rewards you for it.</p>
+      <p>A network of player-run nodes that carries Leyline's new content to every player and keeps the main realms online through any outage. Nobody has to be trusted: every file and every checkpoint can be checked by anyone, and there's no mining. Run a node, and the realm rewards you for it.</p>
     </div>
     <div class="og-hero"><img src="assets/orion/orion_network.webp" alt="The Orion constellation drawn as a network: each star a glowing hexagonal node, a gold hexagon core on the belt for the main realm, a mesh of small peer nodes, and a chain of linked blocks along the bottom" width="1200" height="520" loading="lazy"></div>
 
     <div class="og-cards">
       <div class="og-card">
         <h3>Seed</h3>
-        <p>New Open Vanilla content (zones, models, music, the Vanilla Remastered patches) is cut into small chunks, each named by its own hash. The launcher and the browser fetch chunks from the nearest nodes, like a torrent, and check every chunk against a signed release list before using it. A bad chunk is thrown away and fetched from someone else.</p>
-        <p><b>Only Open Vanilla's own original files</b> travel on the network, never the Vanilla Client v1.3 game files.</p>
+        <p>New Leyline content (zones, models, music, the Vanilla Remastered patches) is cut into small chunks, each named by its own hash. The launcher and the browser fetch chunks from the nearest nodes, like a torrent, and check every chunk against a signed release list before using it. A bad chunk is thrown away and fetched from someone else.</p>
+        <p><b>Only Leyline's own original files</b> travel on the network, never the Vanilla Client v1.3 game files.</p>
       </div>
       <div class="og-card">
         <h3>Relay</h3>
@@ -6125,7 +6125,7 @@
     </div>
   </section>
 
-  <!-- LIVE NOW: Open Vanilla streams (community/streams.json from tools/streams_fetch.py); hidden while nobody is live -->
+  <!-- LIVE NOW: Leyline streams (community/streams.json from tools/streams_fetch.py); hidden while nobody is live -->
   <section class="owl-live" id="owStreamsLive" hidden aria-labelledby="owStreamsTitle">
     <style>
       .owl-live { max-width: 1200px; margin: 2rem auto; padding: 1.1rem 1.4rem 1.3rem; border: 1px solid var(--border-edge); border-radius: 6px; background: #07060c url("assets/streams/strip_live.webp") left top / cover no-repeat; }
@@ -6219,7 +6219,7 @@
   <section class="ow-community ow-frame" aria-label="Credits and support">
     <div class="owc-heart" aria-hidden="true">&#10084;&#65039;</div>
     <h4>Created for free by the community</h4>
-    <p>Open Vanilla is free, open source and built by volunteers. It stands on the work of every tester, bug reporter and helper in the <a href="https://discord.gg/hVeUxYwbkr" class="openvanilla-discord-link" target="_blank" rel="noopener noreferrer">Discord</a>.</p>
+    <p>Leyline is free, open source and built by volunteers. It stands on the work of every tester, bug reporter and helper in the <a href="https://discord.gg/hVeUxYwbkr" class="openvanilla-discord-link" target="_blank" rel="noopener noreferrer">Discord</a>.</p>
     <!-- project credits hidden for now: remove hidden and "display: none" to show them again -->
     <div class="owc-credits" hidden style="display: none">
       <a href="https://github.com/Arnesen/wenilla" target="_blank" rel="noopener noreferrer"><b>wenilla</b><span>Arnesen</span></a>
@@ -6232,7 +6232,7 @@
       <li><i aria-hidden="true">&#129309;</i>Shared with community developers</li>
       <li><i aria-hidden="true">&#10024;</i>New realms and features when goals fill</li>
     </ul>
-    <p class="owc-ask">If Open Vanilla has given you a good evening in Azeroth, a tip keeps the realm online. Tips never buy power, items or game time.</p>
+    <p class="owc-ask">If Leyline has given you a good evening in Azeroth, a tip keeps the realm online. Tips never buy power, items or game time.</p>
     <div class="owc-btns">
       <button class="btn-gold-ornate" type="button" onclick="openSupportModal()"><span class="ow-pill-heart" aria-hidden="true">&#10084;&#65039;</span> Support the realm</button>
       <a class="btn-hollow openvanilla-discord-link" href="https://discord.gg/hVeUxYwbkr" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.929 1.793 8.18 1.793 12.061 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.894.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.028zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/></svg>Join the Discord</a>
@@ -6247,7 +6247,7 @@
       <div class="jar-scroll">
       <div class="ow-jar-art"><img src="assets/orion/support_banner.webp" width="1200" height="633" alt="A silver-haired elven mage in violet and gold robes casts glowing runes toward a starlit spired city" loading="lazy"></div>
       <h3 id="owJarTitle">Keep the realm running</h3>
-      <p>Open Vanilla is free and built by volunteers. Tips pay for hosting first, then fixes and new features, and every one gets a public receipt from Orion.</p>
+      <p>Leyline is free and built by volunteers. Tips pay for hosting first, then fixes and new features, and every one gets a public receipt from Orion.</p>
       <div class="ow-jar-btns">
         <a id="owJarCard" href="https://ko-fi.com/orionvanilla" target="_blank" rel="noopener noreferrer"><span class="ow-jar-lbl">❤️ Tip on Ko-fi</span><small>Card or PayPal · one-time or monthly</small></a>
       </div>
@@ -6255,7 +6255,7 @@
       <ul>
         <li><b>Hosting first:</b> the realm server, the website and the download bandwidth</li>
         <li><b>Fixes and new features:</b> bugs players report, Vanilla Remastered content and Workshop tools</li>
-        <li><b>Shared with community devs:</b> part of every tip goes to the contributors and open-source projects Open Vanilla is built on</li>
+        <li><b>Shared with community devs:</b> part of every tip goes to the contributors and open-source projects Leyline is built on</li>
         <li><b>Test runs:</b> Herald's nightly checks that catch problems before players do</li>
         <li><b>Community goals:</b> when a goal is met, the reward unlocks <b>for everyone</b></li>
       </ul>
@@ -6263,10 +6263,10 @@
       </div>
     </div>
   </div>
-  <button id="owSupportPill" type="button" onclick="openSupportModal()" aria-label="Support Open Vanilla">❤️ Support</button>
+  <button id="owSupportPill" type="button" onclick="openSupportModal()" aria-label="Support Leyline">❤️ Support</button>
   <div id="owNudge" class="ow-frame" role="status">
     <img class="ow-sigil" src="assets/orion/support_sigil.webp" width="64" height="64" alt="" loading="lazy" decoding="async">
-    <b>Enjoying Open Vanilla?</b>
+    <b>Enjoying Leyline?</b>
     It's free and made by the community. A small tip keeps the realm online for everyone.
     <div class="row">
       <button class="btn-gold-ornate ow-nudge-support" type="button" onclick="owNudgeClose(); openSupportModal()"><span class="ow-pill-heart" aria-hidden="true">&#10084;&#65039;</span>Support</button>
@@ -6290,8 +6290,8 @@
       <!-- Column 1: Project Identity & Discord -->
       <div>
         <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 0.8rem;">
-          <img src="assets/openvanilla_logo_nav.webp" alt="Open Vanilla" style="height: 32px;" loading="lazy" decoding="async">
-          <span style="font-family: var(--font-display); color: var(--gold-bright); font-size: 1.1rem; font-weight: 700;">Open Vanilla</span>
+          <img src="assets/openvanilla_logo_nav.webp" alt="Leyline" style="height: 32px;" loading="lazy" decoding="async">
+          <span style="font-family: var(--font-display); color: var(--gold-bright); font-size: 1.1rem; font-weight: 700;">Leyline</span>
         </div>
         <p style="line-height: 1.6; margin-bottom: 1.2rem;">
           A free, open-source community project: play Vanilla in your browser or launcher, build in the Workshop, and host your own realm.
@@ -6309,10 +6309,10 @@
           Terms of Service &amp; Legal
         </h4>
         <p style="line-height: 1.6; margin-bottom: 0.8rem;">
-          Open Vanilla is a non-commercial educational open-source software research and digital preservation initiative. We do not distribute copyrighted game assets or intellectual property; all original proprietary files remain the exclusive property of their respective holders.
+          Leyline is a non-commercial educational open-source software research and digital preservation initiative. We do not distribute copyrighted game assets or intellectual property; all original proprietary files remain the exclusive property of their respective holders.
         </p>
         <p style="line-height: 1.6;">
-          By accessing this service, you acknowledge that Open Vanilla is operated strictly for archival interoperability research under fair use doctrine.
+          By accessing this service, you acknowledge that Leyline is operated strictly for archival interoperability research under fair use doctrine.
         </p>
       </div>
 
@@ -6335,7 +6335,7 @@
           Developer Notes &amp; Notice
         </h4>
         <p style="line-height: 1.6; margin-bottom: 0.8rem;">
-          World of Warcraft, Warcraft, and Blizzard Entertainment are registered trademarks of Blizzard Entertainment, Inc. Open Vanilla is an independent community project and is in no way affiliated with, associated with, or endorsed by Blizzard Entertainment.
+          World of Warcraft, Warcraft, and Blizzard Entertainment are registered trademarks of Blizzard Entertainment, Inc. Leyline is an independent community project and is in no way affiliated with, associated with, or endorsed by Blizzard Entertainment.
         </p>
         <div style="font-family: monospace; font-size: 0.7rem; color: #64748b; background: rgba(0,0,0,0.5); padding: 6px; border: 1px solid var(--border-edge); border-radius: 3px;">
           Engine: benilla v0.2.0-wasm<br>
@@ -6349,7 +6349,7 @@
     <!-- Bottom Copyright Line -->
     <div style="max-width: 1200px; margin: 0 auto; padding-top: 1.5rem; border-top: 1px solid rgba(255,255,255,0.06); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
       <div style="color: #64748b; font-size: 0.72rem;">
-        &copy; 2026 Open Vanilla Project contributors. Licensed under open-source MIT / Apache-2.0.
+        &copy; 2026 Leyline Project contributors. Licensed under open-source MIT / Apache-2.0.
       </div>
       <div style="display: flex; flex-wrap: wrap; gap: 8px 16px; font-size: 0.72rem;">
         <a href="#tab-hub" style="color: var(--gold-dim); text-decoration: none;">Top of Page</a>
@@ -6597,7 +6597,7 @@
       },
       rppve: {
         art: 'assets/premise_vanilla.jpg',
-        lead: 'The official Open Vanilla realm: classic Vanilla with the Vanilla Remastered addons. Free, and run with the community.',
+        lead: 'The official Leyline realm: classic Vanilla with the Vanilla Remastered addons. Free, and run with the community.',
         // [title, line, tag, icon, painted bar]
         points: [['Vanilla, remastered', 'The classic world and pace, with modern comforts built in', '', 'assets/realm_ui/realm_icon_vanilla.webp', 'assets/realm_ui/bar_vanilla.webp?v=2'],
           ['Play anywhere', 'In your browser, on your phone, or with the desktop launcher', '', 'assets/realm_ui/feat_play.webp', 'assets/realm_ui/bar_play.webp'],
@@ -6613,7 +6613,7 @@
       },
       yourserver: {
         art: 'assets/showcase_server.webp',
-        lead: 'Your realm, on this list. Host a server from the Open Vanilla launcher and players will soon find it right here.',
+        lead: 'Your realm, on this list. Host a server from the Leyline Launcher and players will soon find it right here.',
         points: [['Host from the launcher', 'Host > Dedicated server runs a whole realm on your own PC'],
           ['Listed for everyone', 'Community realms will appear here next to the official ones', 'new'],
           ['Your rules', 'Your rates, your content, your community']]
@@ -6866,7 +6866,7 @@
     }
 
     // On static hosting (GitHub Pages) there is no /api or game relay: send the player to the realm's own
-    // site root (wenilla-realm's play page, or an Open Vanilla server's home page), which handles sign-in and play.
+    // site root (wenilla-realm's play page, or a Leyline server's home page), which handles sign-in and play.
     // A *.invalid host is the not-yet-configured placeholder.
     function handoffToBackend(path) {
       var base = String(openvanillaLinks.BACKEND_URL || '').trim();
@@ -7284,11 +7284,11 @@
       REALM_NAME: 'Vanilla Remastered',
       REALM_TYPE: 'PvE',
       DISCORD_INVITE: 'https://discord.gg/hVeUxYwbkr',
-      GITHUB_REPO: 'https://github.com/orionopenwow/OpenVanilla',
-      BUG_REPORTS: 'https://github.com/orionopenwow/OpenVanilla/issues',
-      // Get Vanilla Data: Open Vanilla's own data (empty until links.txt sets VANILLA_DATA_URL)
+      GITHUB_REPO: 'https://github.com/orionopenwow/Leyline-Launcher',
+      BUG_REPORTS: 'https://github.com/orionopenwow/Leyline-Launcher/issues',
+      // Get Vanilla Data: Leyline's own data (empty until links.txt sets VANILLA_DATA_URL)
       VANILLA_DATA_URL: '',
-      OPENVANILLA_CLIENT_URL: 'https://github.com/orionopenwow/OpenVanilla/releases/latest'
+      OPENVANILLA_CLIENT_URL: 'https://github.com/orionopenwow/Leyline-Launcher/releases/latest'
     };
 
     // Escape text before it goes into an HTML template (anything from players or the server).
@@ -7546,7 +7546,7 @@
         if (yt) {
           var f = document.createElement('iframe');
           f.src = 'https://www.youtube-nocookie.com/embed/' + yt + '?autoplay=1&rel=0&modestbranding=1';
-          f.title = 'Open Vanilla trailer';
+          f.title = 'Leyline trailer';
           f.allow = 'autoplay; encrypted-media; picture-in-picture; fullscreen';
           f.allowFullscreen = true;
           frame.replaceChildren(f);
@@ -7803,7 +7803,7 @@
     body.classList.add('egg-press'); setTimeout(function () { body.classList.remove('egg-press'); }, 120);
     var a = audio(); if (a) try { SOUND[name](a); } catch (e) {}
     var ms = reduce ? 600 : ACT[name](); setTimeout(function () { busy = false; }, Math.max(400, ms - 300)); }
-  body.setAttribute('role', 'button'); body.tabIndex = 0; body.setAttribute('aria-label', 'Open Vanilla book. Click it and see what happens.');
+  body.setAttribute('role', 'button'); body.tabIndex = 0; body.setAttribute('aria-label', 'Leyline book. Click it and see what happens.');
   body.addEventListener('click', poke); body.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); poke(); } });
 
   // ---- first shine: shake and spill leaves over the whole page ----

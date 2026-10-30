@@ -1,6 +1,6 @@
 # Herald
 
-Herald is Open Vanilla's bot. On the website he's presented as "a self-learning AI that tests the game
+Herald is Leyline's bot. On the website he's presented as "a self-learning AI that tests the game
 and plays on allowed realms" (`www/herald.html`). This page ties the pieces together and keeps the
 claims honest: what runs today, and what is still coming.
 

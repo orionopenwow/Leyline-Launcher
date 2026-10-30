@@ -3,27 +3,27 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Nodes · Open Vanilla</title>
+  <title>Nodes · Leyline</title>
   <!-- Link previews (Discord, Reddit, X, iMessage) -->
   <meta property="og:type" content="website">
-  <meta property="og:site_name" content="Open Vanilla">
-  <meta property="og:title" content="Nodes · Open Vanilla">
-  <meta property="og:description" content="Open Vanilla&#x27;s node network: volunteers who relay encrypted game traffic and seed Open Vanilla&#x27;s downloads, the three tiers, the supporter leaderboard and how to become a node.">
+  <meta property="og:site_name" content="Leyline">
+  <meta property="og:title" content="Nodes · Leyline">
+  <meta property="og:description" content="Leyline&#x27;s node network: volunteers who relay encrypted game traffic and seed Leyline&#x27;s downloads, the three tiers, the supporter leaderboard and how to become a node.">
   <meta property="og:url" content="https://openvanilla.app/nodes.html">
   <meta property="og:image" content="https://openvanilla.app/assets/og-image.jpg">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
-  <meta property="og:image:alt" content="Open Vanilla: classic Vanilla in your browser. Free, no download, play in seconds.">
+  <meta property="og:image:alt" content="Leyline: classic Vanilla in your browser. Free, no download, play in seconds.">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Nodes · Open Vanilla">
-  <meta name="twitter:description" content="Open Vanilla&#x27;s node network: volunteers who relay encrypted game traffic and seed Open Vanilla&#x27;s downloads, the three tiers, the supporter leaderboard and how to become a node.">
+  <meta name="twitter:title" content="Nodes · Leyline">
+  <meta name="twitter:description" content="Leyline&#x27;s node network: volunteers who relay encrypted game traffic and seed Leyline&#x27;s downloads, the three tiers, the supporter leaderboard and how to become a node.">
   <meta name="twitter:image" content="https://openvanilla.app/assets/og-image.jpg">
   <meta name="theme-color" content="#0a0816">
-  <meta name="description" content="Open Vanilla's node network: volunteers who relay encrypted game traffic and seed Open Vanilla's downloads, the three tiers, the supporter leaderboard and how to become a node.">
+  <meta name="description" content="Leyline's node network: volunteers who relay encrypted game traffic and seed Leyline's downloads, the three tiers, the supporter leaderboard and how to become a node.">
   <meta property="og:type" content="website">
-  <meta property="og:site_name" content="Open Vanilla">
-  <meta property="og:title" content="Nodes · Open Vanilla">
-  <meta property="og:description" content="Volunteer relays and seeders who keep Open Vanilla's community realms reachable. Opt-in, encrypted, privacy-first.">
+  <meta property="og:site_name" content="Leyline">
+  <meta property="og:title" content="Nodes · Leyline">
+  <meta property="og:description" content="Volunteer relays and seeders who keep Leyline's community realms reachable. Opt-in, encrypted, privacy-first.">
   <link rel="icon" href="favicon.ico">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -95,13 +95,13 @@
 <body>
   <div class="wrap">
     <header>
-      <a class="home" href="index.html">&larr; Open Vanilla</a>
-      <span style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;justify-content:flex-end"><a class="pill manual-link" href="manual/realms.html#nodes" style="text-decoration:none" title="Read about this in the Open Vanilla Manual">MANUAL</a><span class="pill">NODES</span></span>
+      <a class="home" href="index.html">&larr; Leyline</a>
+      <span style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;justify-content:flex-end"><a class="pill manual-link" href="manual/realms.html#nodes" style="text-decoration:none" title="Read about this in the Leyline Manual">MANUAL</a><span class="pill">NODES</span></span>
     </header>
 
     <h1>The node network</h1>
-    <p class="lead">Nodes are volunteers' PCs and small servers that relay players' connections to community realms. Hosts don't open router ports, nobody's home address is shown to strangers, and more players can connect at once. Seeders share Open Vanilla's own downloads. Everything here is opt-in and off by default.</p>
-    <div class="banner" id="status"><b>Test round.</b> Open Vanilla's own relay comes first; volunteer nodes open after it. Watch the launcher's Home page for the announcement.</div>
+    <p class="lead">Nodes are volunteers' PCs and small servers that relay players' connections to community realms. Hosts don't open router ports, nobody's home address is shown to strangers, and more players can connect at once. Seeders share Leyline's own downloads. Everything here is opt-in and off by default.</p>
+    <div class="banner" id="status"><b>Test round.</b> Leyline's own relay comes first; volunteer nodes open after it. Watch the launcher's Home page for the announcement.</div>
 
     <h2>Three tiers</h2>
     <div class="grid" id="tiers"></div>
@@ -118,7 +118,7 @@
       <div class="card">
         <h3>Turn it on</h3>
         <ol class="steps">
-          <li>When node sign-ups open, the Open Vanilla launcher shows where to switch it on (in game: <b>Esc &gt; Become a Node</b> explains it too).</li>
+          <li>When node sign-ups open, the Leyline Launcher shows where to switch it on (in game: <b>Esc &gt; Become a Node</b> explains it too).</li>
           <li>Set your caps: bandwidth (KB/s) and a daily limit (GB). At the daily cap the node pauses until midnight UTC.</li>
           <li>Tell it how players reach you: let it ask your router (UPnP), or enter the address you forwarded the node port (TCP 3728) to. Behind carrier-grade NAT a home PC can't be a node; a small VPS can.</li>
           <li>Read what is shared and the rules, then click <b>Turn on my node</b>. It is checked for a few days; the maintainer then approves it and it gets the <span class="chip node" style="margin:0">NODE</span> badge.</li>
@@ -138,7 +138,7 @@
         <h3>Shared</h3>
         <ul>
           <li>Only other players' game traffic, <b>end-to-end encrypted</b> between the player's launcher and the realm's host. A node passes sealed bytes along; it can't read chat, names or sign-ins.</li>
-          <li>Never Blizzard's game files, your WoW folder, your characters or anything else on your PC. (Seeding, a separate switch, shares only Open Vanilla's own signed downloads.)</li>
+          <li>Never Blizzard's game files, your WoW folder, your characters or anything else on your PC. (Seeding, a separate switch, shares only Leyline's own signed downloads.)</li>
         </ul>
       </div>
       <div class="card">
@@ -146,16 +146,16 @@
         <ul>
           <li><b>Players and hosts</b> who connect through a node see the node's IP address, as with seeding a torrent. They never see each other's.</li>
           <li><b>The node operator</b> sees which addresses connect, which realm id a stream is for, when it starts and ends, and how many bytes flow. Not what is said or done in game. The node writes no logs.</li>
-          <li><b>Open Vanilla</b> sees each node's address (to send players to it), its caps and its counters. The public list never shows addresses.</li>
+          <li><b>Leyline</b> sees each node's address (to send players to it), its caps and its counters. The public list never shows addresses.</li>
         </ul>
       </div>
     </div>
-    <p class="muted" style="margin-top:10px">Node rules: don't record addresses; don't inspect, alter, throttle by realm or sell traffic; keep the launcher up to date. Breaking a rule gets a node revoked. What nodes can and can't do for capacity: <a href="https://github.com/orionopenwow/OpenVanilla/blob/stable/docs/NODE_NETWORK.md">docs/NODE_NETWORK.md</a>.</p>
+    <p class="muted" style="margin-top:10px">Node rules: don't record addresses; don't inspect, alter, throttle by realm or sell traffic; keep the launcher up to date. Breaking a rule gets a node revoked. What nodes can and can't do for capacity: <a href="https://github.com/orionopenwow/Leyline-Launcher/blob/stable/docs/NODE_NETWORK.md">docs/NODE_NETWORK.md</a>.</p>
 
     <footer>
       <a href="index.html">Home</a> · <a href="realms.html">Realms</a> · <a href="host.html">Host a server</a> · <a href="solo.html">Play Solo</a> ·
       <a href="privacy.html">Privacy</a> · <a href="terms.html">Terms</a> · <a href="security.html">Security</a> ·
-      World of Warcraft is a trademark of Blizzard Entertainment, Inc. Open Vanilla is an independent fan project, not affiliated with or endorsed by Blizzard Entertainment.
+      World of Warcraft is a trademark of Blizzard Entertainment, Inc. Leyline is an independent fan project, not affiliated with or endorsed by Blizzard Entertainment.
     </footer>
   </div>
   <script>
@@ -163,7 +163,7 @@
     // defines the shape). Everything is written with textContent, never as HTML.
     (function () {
       var FALLBACK_TIERS = [
-        { key: "verified", label: "Verified realms", badge: "VERIFIED", color: "#e8b64c", short: "Run by Open Vanilla, or a community realm the maintainer has vetted.", criteria: [] },
+        { key: "verified", label: "Verified realms", badge: "VERIFIED", color: "#e8b64c", short: "Run by Leyline, or a community realm the maintainer has vetted.", criteria: [] },
         { key: "community", label: "Community P2P realms", badge: "COMMUNITY", color: "#9aa0a6", short: "Hosted by players from their own PCs. Listed after an automatic reachability check.", criteria: [] },
         { key: "node", label: "Verified P2P nodes", badge: "NODE", color: "#4fc3b0", short: "Volunteers' relays that passed the checks and were approved by the maintainer.", criteria: [] }
       ];

@@ -200,7 +200,7 @@ class SignInGuiTests(unittest.TestCase):
         self.assertNotIn("CONTINUE WITH DISCORD", home.upper())
         app.show_page("account", animate=False)
         page = self.texts()
-        self.assertIn("SIGN IN TO OPEN VANILLA", page)
+        self.assertIn("SIGN IN TO LEYLINE", page)
         self.assertIn("HAVE A HERO KEY?", page)
         self.assertNotIn("Discord", page)
         # the buttons are images; their labels live in the button cache keys

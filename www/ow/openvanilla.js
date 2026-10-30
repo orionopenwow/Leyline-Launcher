@@ -1,4 +1,4 @@
-// ow/openvanilla.js — Open Vanilla's page layer, loaded by bridge.js on the realm and by game.html locally.
+// ow/openvanilla.js — Leyline's page layer, loaded by bridge.js on the realm and by game.html locally.
 //
 // Everything here is page-side, so it ships WITHOUT rebuilding the realm image or restarting
 // anything: on the realm it lives in /opt/openvanilla-classicplus/www, bind-mounted at /app/www/ow,
@@ -6,7 +6,7 @@
 //
 //   * Account dock: the page's account links (admin, password, bell, full screen, sign out) fold
 //     into a small handle at the top centre, so nothing sits on the minimap. Click to open.
-//   * Boot screen: the pre-login loading overlay shows the Open Vanilla art and loop instead of black.
+//   * Boot screen: the pre-login loading overlay shows the Leyline art and loop instead of black.
 //   * window.owdiag: the self-test kit (owdiag.js), loaded on first use or with ?diag=1.
 //
 // Never load-bearing: any failure here leaves the game exactly as it was.
@@ -40,7 +40,7 @@ function style() {
       margin: 0 !important; border-radius: 4px; }
     #ow-dock-panel a:hover, #ow-dock-panel button:hover { background: rgba(201,162,39,.18) !important; }
 
-    /* The pre-login loading overlay (web/boot.js #wenilla-boot): Open Vanilla art instead of black. */
+    /* The pre-login loading overlay (web/boot.js #wenilla-boot): Leyline art instead of black. */
     #wenilla-boot { background: #05040c url("${BASE}login-backdrop.webp") center / cover no-repeat !important; }
     #wenilla-boot > video.ow-boot-video { position: absolute; inset: 0; width: 100%; height: 100%;
       object-fit: cover; z-index: -1; pointer-events: none; }

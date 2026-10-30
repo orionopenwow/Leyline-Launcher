@@ -1,5 +1,12 @@
-# Open Vanilla changelog
+# Leyline Launcher changelog (formerly Open Vanilla)
 (build_repack.py turns the newest sections into the launcher's patch notes: "## Section" headers, "- item" lines.)
+
+## New in 1.57.0 (Open Vanilla is now Leyline)
+- TODO(owner): the opening line for players, in your words.
+- Open Vanilla is now called Leyline, and this launcher is the Leyline Launcher. On start it shows one card with a button to the new Leyline launcher download (github.com/orionopenwow/Leyline). This launcher, your addons, realms and settings keep working and keep updating; nothing is removed.
+- The GitHub repo is now github.com/orionopenwow/Leyline-Launcher. Old links still work (GitHub forwards them).
+- Website, launcher, installer and docs say Leyline. File names stay the same (OpenVanilla.exe, OpenVanilla-Setup, your data folder), so nothing moves.
+- "Play Open Vanilla.bat" is now "Play Leyline Launcher.bat"; the old name still works.
 
 ## New in 1.56.0
 - New.

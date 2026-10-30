@@ -15,7 +15,7 @@ really is one click and the caps are enforced right here. The load is small: 1.1
 (relay.openvanilla.app) stays Rust.
 
 What differs from the official relay:
-  * agents authenticate with a node ticket (PASETO v4.public signed by Open Vanilla's directory key,
+  * agents authenticate with a node ticket (PASETO v4.public signed by Leyline's directory key,
     aud = this node, sub = the host id, 10-minute life, refreshed over the control socket), checked
     offline with the published keys; a volunteer never holds a shared secret;
   * players must ask for end-to-end encrypted streams (?e2e=1, p2p.e2e): a node never carries
@@ -72,7 +72,7 @@ CONSENT_TEXT = (
     "• Only other players' game traffic, end-to-end encrypted between the player and the realm's host: "
     "your node passes sealed bytes along and can't read them.\n"
     "• Never Blizzard's game files, your WoW folder, your characters or anything else on this PC. "
-    "(Seeding, a separate switch, shares only Open Vanilla's own signed downloads.)\n\n"
+    "(Seeding, a separate switch, shares only Leyline's own signed downloads.)\n\n"
     "BANDWIDTH\n"
     "• Capped at {kbps} KB/s and {daily_gb} GB per day (change both below). At the daily cap the node "
     "pauses until midnight UTC. Up to {max_hosts} realms and {max_streams} connections at once.\n\n"
@@ -749,7 +749,7 @@ class NodeService:
     def enable(self):
         """The volunteer clicked Become a node: show CONSENT_TEXT next."""
         if not self.relay_enabled:
-            raise NodeError("The node network isn't open yet: the test round starts with Open Vanilla's own relay. "
+            raise NodeError("The node network isn't open yet: the test round starts with Leyline's own relay. "
                             "Watch the news on the Home page.")
         if self.machine.state == "off":
             self.machine.fire("enable")
@@ -870,7 +870,7 @@ class NodeService:
         try:
             status, data = self.http(self.central + "/api/nodes/heartbeat", "POST", self.heartbeat_payload(), headers)
         except OSError as e:
-            self.last_error = f"Open Vanilla can't be reached ({e}). The node keeps relaying for realms it already carries."
+            self.last_error = f"Leyline can't be reached ({e}). The node keeps relaying for realms it already carries."
             self.on_status(self.status())
             return False
         data = data if isinstance(data, dict) else {}
@@ -885,7 +885,7 @@ class NodeService:
             return True
         if status == 403 and headers:
             write_json(self._token_path(), {})
-        self.last_error = f"Open Vanilla answered {status}: {data.get('error', '')}".strip()
+        self.last_error = f"Leyline answered {status}: {data.get('error', '')}".strip()
         self.on_status(self.status())
         return False
 
@@ -978,7 +978,7 @@ def game_status_lua(status, now=None):
               ("daily_gb", str(float(status.get("daily_gb") or 0))), ("kbps", str(int(status.get("kbps") or 0))),
               ("hosts", str(int(status.get("hosts_now") or 0))), ("updated", _lua_str(when)), ("source", '"launcher"')]
     body = ",\n".join(f"    {k} = {v}" for k, v in fields)
-    return ("-- Written by the Open Vanilla launcher (launcher/p2p/node.py) when the node changes state.\n"
+    return ("-- Written by the Leyline Launcher (launcher/p2p/node.py) when the node changes state.\n"
             "-- A snapshot for the Become a Node window; the game can't switch the node itself.\n"
             "OpenVanillaNode_Status = {\n" + body + ",\n}\n")
 

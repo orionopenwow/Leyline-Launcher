@@ -92,7 +92,7 @@ def stage(manifest, lay, mode=None, progress=None, cancel=None, opener=None):
     mode = mode or lay.mode
     pick = pick_asset(manifest, mode)
     if not pick:
-        raise UpdateError("This copy of Open Vanilla can't update itself (run from source). Download the new version instead.")
+        raise UpdateError("This copy of Leyline can't update itself (run from source). Download the new version instead.")
     kind, entry = pick
     url, sha = entry.get("url"), (entry.get("sha256") or "").lower()
     if not url or len(sha) != 64:
@@ -235,7 +235,7 @@ def apply_staged(staged, target, wait_pid=None, log=None, sleep=time.sleep, aliv
     t0 = time.monotonic()
     while wait_pid and alive(wait_pid):
         if time.monotonic() - t0 > timeout:
-            raise UpdateError("Open Vanilla is still running; close it and start the update again.")
+            raise UpdateError("Leyline is still running; close it and start the update again.")
         sleep(0.25)
     if not launcher_in(staged):
         raise UpdateError(f"{staged} has no {L.LAUNCHER_EXE}.")
@@ -288,7 +288,7 @@ def _silent_remove(p):
 
 
 def main_apply(argv, popen=subprocess.Popen):
-    """`--apply-update <staged> --target <dir> --wait-pid <pid>`: finish a zip update, then start Open Vanilla."""
+    """`--apply-update <staged> --target <dir> --wait-pid <pid>`: finish a zip update, then start Leyline."""
     def arg(flag):
         return argv[argv.index(flag) + 1] if flag in argv and argv.index(flag) + 1 < len(argv) else None
 

@@ -282,7 +282,7 @@ function launcherLine() {
 // the place in line in this tab is kept. Page-side only: ships with the page layer, no image rebuild.
 
 const QUEUE_EXTRAS = [
-  { t: 'Play now, no line', d: 'The free desktop app: your own world with bots, or this realm when there\u2019s room.', href: 'https://github.com/orionopenwow/OpenVanilla/releases/latest', cta: 'Download' },
+  { t: 'Play now, no line', d: 'The free desktop app: your own world with bots, or this realm when there\u2019s room.', href: 'https://github.com/orionopenwow/Leyline-Launcher/releases/latest', cta: 'Download' },
   { t: 'Join the Discord', d: 'Chat in #world: it\u2019s the game\u2019s World chat, so you can talk to players already in.', href: 'https://discord.gg/hVeUxYwbkr', cta: 'Open Discord' },
   { t: 'Vanilla Agents', d: 'Your Claude Code sessions as heroes in a vanilla inn.', href: 'https://openvanilla.app/agents.html', cta: 'Take a look' },
   { t: 'Vanilla Forge', d: 'Make your own zones, quests and creatures.', href: 'https://openvanilla.app/forge.html', cta: 'Coming soon', soon: true },
