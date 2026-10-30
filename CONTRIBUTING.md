@@ -1,20 +1,20 @@
 # Contributing to Leyline
 
-Thanks for helping. Leyline is a classic realm you can play in a browser tab, with a desktop
-launcher, server patches and creator tools, all open source.
+Thanks for helping. This repository is the classic Leyline Launcher, Leyline Server and the Leyline
+website. Leyline's new launcher, host kit and relay are in
+[orionopenwow/Leyline](https://github.com/orionopenwow/Leyline); contribute there for those.
 
 ## Where things live
 
 | Folder | What it is |
 |---|---|
-| `launcher/` | The desktop launcher (Python, Tk) |
-| `www/` | The website, openvanilla.app |
-| `labs/openvanilla-realm/realm/patches/` | Patches to the browser client and realm service (wenilla) |
-| `labs/openvanilla-realm/realm/mangos/` | Patches to the world server (CMaNGOS and PlayerBots) |
-| `realm/classicplus/`, `Data/Interface/AddOns/` | Realm SQL and the in-game addons |
-| `labs/openvanilla-realm/hetzner/` | Server setup and admin scripts |
-| `forge/` | Vanilla Forge, the map and content tool |
-| `devkit/` | Fast checks, the addon simulator, SQL tests, a local proxy, a test bot |
+| `launcher/` | The classic launcher (Python, Tk); `launcher/p2p` is hosting |
+| `www/` | The website, openvanilla.app (GitHub Pages) |
+| `packaging/` | Release builds and the source of every workflow |
+| `Data/Interface/AddOns/`, `realm/classicplus/` | The addon suite the launcher ships, and the Classic+ SQL Play Solo and Leyline Server apply |
+| `workshop/` | The Workshop catalogue behind the website's mods hub |
+| `devkit/` | Fast checks, the addon simulator, SQL tests, Herald Lite |
+| `labs/` | Earlier tools and experiments, kept for later: the frozen 1.12 realm, Herald, the old relay, Vanilla Forge (`labs/README.md`) |
 
 ## Before you open a pull request
 
@@ -28,9 +28,9 @@ launcher, server patches and creator tools, all open source.
 
 ## Rules that keep the project safe
 
-- **No Blizzard game data, ever:** no MPQs other than our own `patch-Z`, no maps, models, textures,
+- **No game data from the original game, ever:** no MPQs other than our own `patch-Z`, no maps, models, textures,
   tables or client files. Players bring their own data. `devkit/check.py` refuses them.
-- **No code from closed or leaked sources**, and none built on decompiled Blizzard clients.
+- **No code from closed or leaked sources**, and none built on decompiled original clients.
 - **Credit prior art.** If your change builds on another project, link it in the description.
   Fixes that belong upstream (CMaNGOS, PlayerBots, wenilla, benilla) go there too.
 

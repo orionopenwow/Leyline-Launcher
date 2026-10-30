@@ -3,7 +3,7 @@
 The creator app for Open Vanilla: make addons, art and content packs, check them, and build them
 into a patch a realm can load.
 
-> **Run it:** double-click **`Vanilla Forge.bat`** in the Open Vanilla folder (it fetches the portable
+> **Run it:** double-click **`Vanilla Forge.bat`** in this folder (`labs/forge`) (it fetches the portable
 > Forge the first time), or download the portable zip (`VanillaForge-<version>-Windows.zip`: unzip, run
 > `Vanilla Forge.exe`) or the installer from <https://openvanilla.app/forge.html>. From source:
 > `cargo run --release -p openvanilla-forge` in this folder. Windows 10/11 and your own Vanilla game client. **Early access, 0.9.0.** Its page is <https://openvanilla.app/forge.html>
