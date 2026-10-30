@@ -2155,7 +2155,7 @@ class Launcher(tk.Tk):
         h = 94
         c = self.card(x, y, cw, h, "notes", "notes")
         clickable(c, lambda: self.show_page("notes"))
-        th = self.cv.create_image(x + 13, y + 13, anchor="nw", image=self.img("th_notes", art.thumb(frame0, 74, 68, (0.47, 0.45))), tags="page")
+        th = self.cv.create_image(x + 13, y + 13, anchor="nw", image=self.img("th_notes", art.thumb(frame0, 74, 68, (0.63, 0.44))), tags="page")
         clickable(th, lambda: self.show_page("notes"))
         notes = self.patch_notes or {}
         ver = notes.get("version") or self.version
@@ -2179,7 +2179,7 @@ class Launcher(tk.Tk):
         # selected server
         h = 90
         self.card(x, y, cw, h, "status", "status")
-        self.cv.create_image(x + 13, y + 11, anchor="nw", image=self.img("th_status", art.thumb(frame1, 74, 68, (0.78, 0.30))), tags="page")
+        self.cv.create_image(x + 13, y + 11, anchor="nw", image=self.img("th_status", art.thumb(frame1, 74, 68, (0.63, 0.44))), tags="page")
         self.shadow_text(x + 100, y + 20, "SERVER", 9, GOLD)
         self.status_items = {
             "name": self.cv.create_text(x + 100, y + 40, anchor="w", text="", fill=TEXT, font=font(9, "bold"), tags="page"),

@@ -41,9 +41,9 @@ function style() {
       margin: 0 !important; border-radius: 4px; }
     #ow-dock-panel a:hover, #ow-dock-panel button:hover { background: rgba(201,162,39,.18) !important; }
 
-    /* The pre-login loading overlay (web/boot.js #wenilla-boot): the login art instead of black.
+    /* The pre-login loading overlay (web/boot.js #wenilla-boot): the flat login backdrop (the mark) instead of black.
        Not on the flat Leyline overlay (www/boot.js, class ly-flat), which shows the spinning mark. */
-    #wenilla-boot:not(.ly-flat) { background: #05040c url("${BASE}login-backdrop.webp") center / cover no-repeat !important; }
+    #wenilla-boot:not(.ly-flat) { background: #080a14 url("${BASE}login-backdrop.webp") center / cover no-repeat !important; }
     #wenilla-boot > video.ow-boot-video { position: absolute; inset: 0; width: 100%; height: 100%;
       object-fit: cover; z-index: -1; pointer-events: none; }
     #wenilla-boot { isolation: isolate; }

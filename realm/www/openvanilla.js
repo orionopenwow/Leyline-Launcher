@@ -76,21 +76,22 @@ function style() {
     #ow-launcher-line b { color: #f0c058; font-weight: 600; }
     #ow-launcher-line.on { opacity: 1; }
     /* "Signing in": over the client's login form while it signs in with the page's login. The
-       art is the "Signing In" loop (ow-signin.mp4 or its VP9 copy, about 0.3 MB): its 33 KB poster paints
-       first, and the video is fetched only when this screen actually shows. */
+       art is the flat Leyline mark with "Signing in" under it: a 7-second loop where the swirl turns and
+       the crystal stays upright (ow-signin.mp4 or its VP9 copy, about 70 KB, from tools/make_leyline_backdrops.py).
+       Its 8 KB poster paints first, and the video is fetched only when this screen actually shows. */
     #ow-signin { position: fixed; inset: 0; z-index: 25; overflow: hidden;
-      background: #05040c url("${BASE}ow-signin.webp") center / cover no-repeat; transition: opacity .35s; }
+      background: #080a14 url("${BASE}ow-signin.webp") center / cover no-repeat; transition: opacity .35s; }
     #ow-signin.off { opacity: 0; pointer-events: none; }
     #ow-signin video { width: 100%; height: 100%; object-fit: cover; display: block; }
-    /* Portrait phones: the frame at 225% of the width, so its "Signing In" panel (37% of the
-       frame) fills about 84% of the screen and is never cropped; night sky above and below. */
+    /* Portrait phones: the frame at 225% of the width, so the mark and its line (about 38% of the
+       frame) fill most of the screen and are never cropped; the same flat dark above and below. */
     @media (max-aspect-ratio: 1/1) {
-      #ow-signin { background: radial-gradient(120% 60% at 50% 50%, #241a4a 0%, #0b0820 55%, #05040c 100%); }
+      #ow-signin { background: #080a14; }
       #ow-signin video { position: absolute; top: 50%; left: 50%; width: 225vw; height: auto; transform: translate(-50%, -50%); }
     }
     #ow-signin .ow-signin-text { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
-    /* The pre-login loading overlay (web/boot.js #wenilla-boot): Open Vanilla art instead of black. */
-    #wenilla-boot { background: #05040c url("${BASE}login-backdrop.webp") center / cover no-repeat !important; }
+    /* The pre-login loading overlay (web/boot.js #wenilla-boot): the flat Leyline backdrop (the mark) instead of black. */
+    #wenilla-boot { background: #080a14 url("${BASE}login-backdrop.webp") center / cover no-repeat !important; }
     #wenilla-boot > video.ow-boot-video { position: absolute; inset: 0; width: 100%; height: 100%;
       object-fit: cover; z-index: -1; pointer-events: none; }
     #wenilla-boot { isolation: isolate; }

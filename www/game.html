@@ -153,9 +153,10 @@
         bell.classList.toggle('on', on);
         bell.title = on ? 'Notifications on — click to turn off.' : offTitle;
       });
-      // Leyline: the animated login backdrop behind the canvas (login-backdrop.js).
+      // Leyline: the login backdrop behind the canvas (login-backdrop.js): flat, with the spinning mark.
       import('./login-backdrop.js')
-        .then(({ installLoginBackdrop }) => installLoginBackdrop(wenilla))
+        .then(({ installLoginBackdrop }) => installLoginBackdrop(wenilla, {
+          spin: { swirl: 'assets/leyline/swirl-512.webp', crystal: 'assets/leyline/crystal-512.webp' } }))
         .catch((e) => console.warn('login-backdrop.js:', e));
       // Leyline page layer (www/ow): the account dock off the minimap, boot-screen art, owdiag.
       import('./ow/openvanilla.js?v=' + Math.floor(Date.now() / 36e5))
