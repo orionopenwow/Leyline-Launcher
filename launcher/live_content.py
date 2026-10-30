@@ -52,7 +52,7 @@ DEFAULT_FLAGS = {
 # live content: they come only from links.txt shipped inside the signed release, so a change on main
 # (live content is signed from main) can never point launchers at a new program.
 LINK_KEYS = ("SPP_PAGE", "DISCORD_INVITE", "PORTAL_URL", "BACKEND_URL",
-             "BUG_REPORTS", "DONATE_CRYPTO_URL", "DONATE_CARD_URL", "CLIENT_112_URL", "PATCH_NOTES_URL",
+             "BUG_REPORTS", "DONATE_CRYPTO_URL", "DONATE_CARD_URL", "PATCH_NOTES_URL",
              "SERVER_STUDIO_URL", "HOST_GUIDE_URL")
 MAX = {"news": 6, "featured": 4, "realms": 8, "clients": 12}
 CLIENT_TYPES = ("exe", "engine", "web")

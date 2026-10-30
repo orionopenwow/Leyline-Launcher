@@ -12,7 +12,9 @@ For every downloadable entry in each manifest ({"url", "size", "sha256"} at the 
 "setup"/"zip") whose file is in --dir (or beside the manifest), this writes <file>.torrent next to it
 and adds to the entry:
     "torrent": {"url", "info_hash", "name", "files": [{"path", "size", "sha256"}], "web_seeds", "trackers"}
---patchz also writes patchz.json for patch-Z.MPQ (the only MPQ that may ever be shared).
+--patchz also writes patchz.json for patch-Z.MPQ (the only MPQ that may ever be shared, and only when
+it holds no client table: a patch-Z built with --dbc-dir carries tables made from the creator's own
+files and is refused).
 
 Each manifest is rewritten and re-signed: <manifest>.sig = hex Ed25519 over its exact bytes, with the
 seed in OPENVANILLA_MANIFEST_KEY (as packaging/release_manifest.py). The info-hashes are appended to
@@ -59,6 +61,20 @@ def game_data_reason(name, head):
         return f"'{os.path.splitext(base)[1]}' is a game data file type"
     if head[:4] in FORBIDDEN_MAGIC:
         return f"starts with the {head[:4]!r} game file signature"
+    return None
+
+
+def patchz_reason(path):
+    """Why this patch-Z may not be shared (None: Interface/models only)."""
+    sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+    from modelport import mpq
+    try:
+        names = mpq.Archive(path).names()
+    except Exception as e:  # noqa: BLE001
+        return f"not a readable MPQ ({e})"
+    tables = [n for n in names if n.lower().startswith("dbfilesclient\\") or n.lower().endswith(".dbc")]
+    if tables:
+        return f"holds client tables ({', '.join(tables[:3])}); share a patch-Z built without --dbc-dir"
     return None
 
 
@@ -161,6 +177,9 @@ def main(argv=None):
         if a.patchz:
             if os.path.basename(a.patchz).lower() != PATCHZ:
                 raise RefuseError("--patchz must be patch-Z.MPQ")
+            why = patchz_reason(a.patchz)
+            if why:
+                raise RefuseError(f"patch-Z.MPQ: {why}")
             url = a.patchz_url or f"{base}/patch-Z.MPQ"
             t, digest = torrent_entry(a.patchz, url, base, trackers, a.mirror, a.dir)
             m = {"version": a.patchz_version, "url": url, "size": os.path.getsize(a.patchz), "sha256": digest, "torrent": t}

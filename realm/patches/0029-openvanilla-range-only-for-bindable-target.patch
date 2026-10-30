@@ -28,7 +28,7 @@ index c6215e5c..12eebcea 100644
          // The caster's and the target's reach and motion, which the range compare reads.
          crate::spell::RangeUnits,
 +        // Open Vanilla: the creature-type cache and the group roster, for the range answer's bind
-+        // test (`CanTargetUnit 0x6e4440`).
++        // test (the 1.12 game binds the selection first).
 +        Option<Res<crate::names::NameCache>>,
 +        Option<Res<crate::spell::group_relation::GroupRoster>>,
 +        Option<Res<crate::net::SelfGuid>>,
@@ -94,7 +94,7 @@ index c6215e5c..12eebcea 100644
          );
      }
  
-+    /// Open Vanilla: `CanTargetUnit 0x6e4440` binds the selection before the range test, so a
++    /// Open Vanilla: the 1.12 game binds the selection before the range test, so a
 +    /// buff (implicit target 21, the assist bit) with a far enemy selected answers nil, not red,
 +    /// while a bolt (implicit target 6, the enemy bit) at the same enemy answers its distance.
 +    #[test]

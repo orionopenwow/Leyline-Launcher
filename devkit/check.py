@@ -6,15 +6,18 @@
 
 Checks:
   addons      every .toc lists files that exist; the Lua parses (needs luac5.1 or luac)
-  patchz      realm/classicplus/patch-Z.MPQ holds exactly the suite addons and ClassicPlus art in
-              Data/Interface (pure Python reader, no StormLib) -> fix with tools/sync_patchz.py
+  patchz      Warfront's patch-Z (made from the same sources as Classic+'s) holds exactly the suite addons
+              and ClassicPlus art in Data/Interface, and no MPQ in git holds a client table (DBFilesClient);
+              Classic+'s own patch-Z is built locally (tools/sync_patchz.py --dbc-dir DIR), never committed
   json/yaml   every JSON file we publish parses; workflow sources parse (if PyYAML is installed)
   js          node --check on the page layer, bridge, loader and tools (needs node)
   shell       bash -n on the server scripts (needs bash)
   python      every tracked .py compiles
   realm_up    openvanilla_realm_up.sh downloads every file in realm/www and the SQL it runs
   version     launcher/version.json matches the client zip the website links
-  game data   no Blizzard game files are about to be committed (MPQs other than patch-Z, maps, models)
+  citations   no stock-client addresses or internal symbols in what we write (devkit/citations.py)
+  game data   no Blizzard game files are about to be committed (MPQs other than our Interface-only patch-Zs,
+              maps, models, DBC tables)
 Exit 0 = all passed.
 """
 import glob
@@ -34,9 +37,10 @@ ADDONS = os.path.join(ROOT, "Data", "Interface", "AddOns")
 results = []
 
 
-# Open Vanilla's own MPQs: patch-Z, Warfront's copy of it without the client tables (tools/warfront/make_patch_w.py),
-# and Duels' copy of Warfront's with the Duels addon (tools/duels/make_patch_d.py)
-OWN_MPQS = ("realm/classicplus/patch-Z.MPQ", "realm/warfront/patch-Z.MPQ", "realm/duels/patch-Z.MPQ")
+# Open Vanilla's own MPQs in git, Interface only: Warfront's patch-Z (patch-Z's sources without client tables,
+# tools/warfront/make_patch_w.py) and Duels' copy of Warfront's with the Duels addon (tools/duels/make_patch_d.py).
+# Classic+'s patch-Z holds client tables made from the creator's own files, so it is built locally, never committed.
+OWN_MPQS = ("realm/warfront/patch-Z.MPQ", "realm/duels/patch-Z.MPQ")
 
 
 def report(name, ok, detail=""):
@@ -107,9 +111,15 @@ def lf(path):
 
 def check_patchz():
     from mpqread import MPQ
-    path = os.path.join(ROOT, "realm", "classicplus", "patch-Z.MPQ")
+    tables = []
+    for rel_path in OWN_MPQS:
+        p = os.path.join(ROOT, *rel_path.split("/"))
+        if os.path.isfile(p):
+            tables += [f"{rel_path}: {n}" for n in MPQ(p).names() if n.lower().startswith("dbfilesclient\\")]
+    report("no client tables (DBFilesClient) in the MPQs in git", not tables, ", ".join(tables[:4]))
+    path = os.path.join(ROOT, "realm", "warfront", "patch-Z.MPQ")
     if not os.path.isfile(path):
-        return report("patch-Z matches Data/Interface", False, "no realm/classicplus/patch-Z.MPQ")
+        return report("patch-Z matches Data/Interface", False, "no realm/warfront/patch-Z.MPQ")
     m = MPQ(path)
     have = {n.lower(): n for n in m.names()}
     want = {}
@@ -133,7 +143,7 @@ def check_patchz():
                 or k.startswith("interface\\glues\\loadingscreens\\")) and k not in want:
             diffs.append("extra " + k)
     report(f"patch-Z matches Data/Interface ({len(want)} files)", not diffs,
-           (", ".join(diffs[:6]) + (" ..." if len(diffs) > 6 else "") + " -> run tools/sync_patchz.py") if diffs else "")
+           (", ".join(diffs[:6]) + (" ..." if len(diffs) > 6 else "") + " -> run tools/prepush.py") if diffs else "")
 
 
 def check_json_yaml():
@@ -220,7 +230,7 @@ def check_realm_up():
     missing = [f for f in www if f not in s]
     report(f"realm_up downloads every page file ({len(www)})", not missing, "not downloaded: " + ", ".join(missing))
     sql = re.findall(r'"\$CP/(classicplus_\w+\.sql)"', s)
-    lst = re.search(r"for f in (patch-Z\.MPQ[^;]*);", s)
+    lst = re.search(r"for f in (bridge\.js [^;]*);", s)   # the Classic+ file list (patch-Z is built on the realm)
     listed = lst.group(1).split() if lst else []
     miss = [f for f in sql if f not in listed]
     gone = [f for f in listed if not os.path.isfile(os.path.join(ROOT, "realm", "classicplus", f))]
@@ -247,11 +257,11 @@ GAME_EXT = (".mpq", ".adt", ".wdt", ".wdl", ".m2", ".wmo", ".skin", ".anim", ".m
 
 def check_game_data():
     git = tool("git")
-    if not git or not os.path.isdir(os.path.join(ROOT, ".git")):
+    if not git or not os.path.exists(os.path.join(ROOT, ".git")):   # a worktree's .git is a file
         return skip("no game data staged for git", "not a git checkout")
     p = subprocess.run([git, "-C", ROOT, "ls-files", "--cached", "--others", "--exclude-standard"], capture_output=True, text=True)
     bad = [f for f in p.stdout.splitlines()
-           if f.lower().endswith(GAME_EXT) and f.replace("\\", "/") not in OWN_MPQS
+           if f.lower().endswith(GAME_EXT + (".dbc",)) and f.replace("\\", "/") not in OWN_MPQS
            or re.search(r"(^|/)(maps|vmaps|mmaps|dbc)/", f, re.I) and not f.startswith("devkit/db/")]
     report("no game data staged for git", not bad, ", ".join(bad[:8]))
 
@@ -281,9 +291,36 @@ def check_generated():
            "; ".join(stale) + " (run: python tools/prepush.py)" if stale else (r.stderr.strip()[-300:] or "prepush failed"))
 
 
+# Copies of upstream wenilla files (their text is upstream's, kept as is; listed for the owner, not edited).
+UPSTREAM_COPIES = {"www/GameMenuAdapters_wasm.xml", "www/extracted_addonlist.lua"}
+CITE_SKIP = ("forge/app/ui/vendor/", "devkit/citations.py", "tests/test_citations.py")   # the pattern, its tests
+
+
+def check_citations():
+    """No original-binary citations (stock-client addresses, internal symbols, reference-client wording) in what
+    we write; in a .patch only the lines it adds are ours (devkit/citations.py)."""
+    import citations
+    git = tool("git")
+    if not git or not os.path.exists(os.path.join(ROOT, ".git")):
+        return skip("no original-binary citations", "not a git checkout")
+    files = subprocess.run([git, "-C", ROOT, "ls-files"], capture_output=True, text=True).stdout.splitlines()
+    bad = []
+    for f in files:
+        if f in UPSTREAM_COPIES or f.startswith(CITE_SKIP) or f.endswith(".lock"):
+            continue
+        try:
+            with open(os.path.join(ROOT, f), encoding="utf-8") as fh:
+                text = fh.read()
+        except (OSError, UnicodeDecodeError):
+            continue
+        bad += [f"{f}:{n} {m}" for n, m, _ in citations.hits(f, text)]
+    report("no original-binary citations (addresses, client symbols)", not bad,
+           ", ".join(bad[:6]) + (" ..." if len(bad) > 6 else ""))
+
+
 def main():
     for fn in (check_addons, check_patchz, check_json_yaml, check_js, check_shell, check_python,
-               check_realm_up, check_version, check_game_data, check_windows_names, check_generated):
+               check_realm_up, check_version, check_game_data, check_windows_names, check_citations, check_generated):
         try:
             fn()
         except Exception as e:

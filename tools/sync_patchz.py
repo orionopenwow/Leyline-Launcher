@@ -1,24 +1,28 @@
 #!/usr/bin/env python3
-"""Rebuild realm/classicplus/patch-Z.MPQ so it matches the source folders exactly.
+"""Build realm/classicplus/patch-Z.MPQ from its sources. The archive is NOT in git (.gitignore): it is
+made on the creator's PC or on the realm, from our files plus the creator's own game tables.
 
-    STORMLIB=/path/to/libstorm.so python3 tools/sync_patchz.py          rebuild
-    STORMLIB=/path/to/libstorm.so python3 tools/sync_patchz.py --check  only report differences
+    python3 tools/sync_patchz.py --dbc-dir DIR    build it, with the Classic+ client tables
+    python3 tools/sync_patchz.py                  build it without client tables (Interface only)
+    python3 tools/sync_patchz.py --check [--dbc-dir DIR]   only report differences from the built file
+    --out PATH                                    write somewhere else (default realm/classicplus/patch-Z.MPQ)
+    PATCHZ_DBC_DIR=DIR                            same as --dbc-dir
 
-Sources of truth:
+Sources:
   Data/Interface/AddOns/<suite addon>/**   every folder whose .toc has "## X-ClassicPlus"
                                            (plus !Compat_112), as Interface\\AddOns\\...
   Data/Interface/ClassicPlus/*.blp         as Interface\\ClassicPlus\\...
   Data/Interface/ClassicPlus/LoadingScreens/*.blp   Open Vanilla's loading screens, as
                                            Interface\\Glues\\LoadingScreens\\... (tools/png_to_blp_dxt1.py)
-  Data/Creature/OpenVanilla/**                 ported models (tools/modelport), as Creature\\OpenVanilla\\...
-  Data/ClassicPlusDBC/{CreatureModelData,CreatureDisplayInfo,Spell}.dbc   their table rows
-Everything else already in the archive (DBFilesClient\\*.dbc, Interface\\Glues\\...) is kept as is.
+  Data/Interface/ClassicPlus/Glues/**      Open Vanilla's glue art (the corner logo), as Interface\\Glues\\...
+  Data/Creature/OpenVanilla/**             ported models (tools/modelport), as Creature\\OpenVanilla\\...
+  --dbc-dir DIR                            DBFilesClient\\CharBaseInfo.dbc and SkillRaceClassInfo.dbc, made
+                                           from the stock files in DIR (your own 1.12.1 client's, or the
+                                           realm's <gamedata>/dbc) plus our row deltas (tools/classicplus_dbc.py)
+Uses the model porter's pure-Python MPQ writer (no StormLib needed).
 """
 import os
-import shutil
-import subprocess
 import sys
-import tempfile
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 MPQ = os.path.join(ROOT, "realm", "classicplus", "patch-Z.MPQ")
@@ -78,6 +82,13 @@ def wanted():
         if n.lower().endswith(".blp"):
             arc = "Interface\\ClassicPlus\\" + n
             w[arc.lower()] = (arc, os.path.join(CPART, n))
+    glues = os.path.join(CPART, "Glues")
+    for r, _, names in os.walk(glues):
+        for n in sorted(names):
+            if n.lower().endswith(".blp"):
+                full = os.path.join(r, n)
+                arc = "Interface\\Glues\\" + os.path.relpath(full, glues).replace(os.sep, "\\")
+                w[arc.lower()] = (arc, full)
     screens = os.path.join(CPART, "LoadingScreens")
     if os.path.isdir(screens):
         for n in sorted(os.listdir(screens)):
@@ -87,97 +98,57 @@ def wanted():
     return w
 
 
+def arg(name):
+    if name in sys.argv:
+        i = sys.argv.index(name)
+        if i + 1 < len(sys.argv):
+            return sys.argv[i + 1]
+    return None
+
+
+def build_files(dbc_dir=None):
+    """{archive name: bytes} for patch-Z: the sources, plus the client tables when dbc_dir is given."""
+    files = {arc: source_bytes(full) for arc, full in wanted().values()}
+    if dbc_dir:
+        sys.path.insert(0, TOOLS)
+        import classicplus_dbc
+        for name, data in classicplus_dbc.build(dbc_dir).items():
+            files["DBFilesClient\\" + name] = data
+    return files
+
+
 def main():
     check = "--check" in sys.argv
+    dbc_dir = arg("--dbc-dir") or os.environ.get("PATCHZ_DBC_DIR") or None
+    out = arg("--out") or MPQ
     sys.path.insert(0, TOOLS)
-    from modelport import content
+    from modelport import mpq
     try:
-        import ctypes
-        ctypes.CDLL(os.environ.get("STORMLIB", "libstorm.so"))
-    except OSError:
-        # No StormLib (always the case on Windows): the porter's pure-Python MPQ does the same job.
-        return pure_python(check)
-    tmp = tempfile.mkdtemp(prefix="patchz-")
-    try:
-        src = os.path.join(tmp, "src")
-        subprocess.run([sys.executable, os.path.join(TOOLS, "mpq_extract.py"), MPQ, src],
-                       check=True, stdout=subprocess.DEVNULL)
-        have = {}
-        for r, _, names in os.walk(src):
-            for n in names:
-                full = os.path.join(r, n)
-                arc = os.path.relpath(full, src).replace(os.sep, "\\")
-                have[arc.lower()] = (arc, full)
-        w = wanted()
-        changes = []
-        for k, (arc, full) in sorted(w.items()):
-            if k not in have:
-                changes.append(("add", arc))
-            elif source_bytes(full) != open(have[k][1], "rb").read():
-                changes.append(("update", arc))
-        for k, (arc, full) in sorted(have.items()):
-            managed = (k.startswith("interface\\addons\\") or k.startswith("interface\\classicplus\\")
-                       or content.is_model_managed(k))
-            if managed and k not in w:
-                changes.append(("remove", arc))
-        for c in changes:
-            print(f"  {c[0]:7} {c[1]}")
-        if not changes:
-            print("patch-Z.MPQ matches Data/Interface (nothing to do)")
-            return 0
-        if check:
-            print(f"{len(changes)} difference(s); run without --check to rebuild")
-            return 1
-        for kind, arc in changes:
-            path = os.path.join(src, arc.replace("\\", os.sep))
-            if kind == "remove":
-                os.remove(path)
-            else:
-                os.makedirs(os.path.dirname(path), exist_ok=True)
-                with open(path, "wb") as fh:
-                    fh.write(source_bytes(w[arc.lower()][1]))
-        out = os.path.join(tmp, "patch-Z.MPQ")
-        subprocess.run([sys.executable, os.path.join(TOOLS, "build_mpq.py"), src, out],
-                       check=True, stdout=subprocess.DEVNULL)
-        shutil.copyfile(out, MPQ)
-        print(f"patch-Z.MPQ rebuilt: {len(changes)} change(s), {os.path.getsize(MPQ)} bytes")
-        return 0
-    finally:
-        shutil.rmtree(tmp, ignore_errors=True)
-
-
-def pure_python(check):
-    from modelport import content, mpq
-    a = mpq.Archive(MPQ)
-    have = {n.lower(): n for n in a.names()}
-    w = wanted()
-    files = {}
-    changes = []
-    for k, n in have.items():
-        managed = (k.startswith("interface\\addons\\") or k.startswith("interface\\classicplus\\")
-                   or k.startswith("interface\\glues\\loadingscreens\\") or content.is_model_managed(k))
-        if managed and k not in w:
-            changes.append(("remove", n))
-            continue
-        files[n] = a.read(n)
-    for k, (arc, full) in sorted(w.items()):
-        data = source_bytes(full)
-        if k not in have:
-            changes.append(("add", arc))
-        elif files.get(have[k]) != data:
-            changes.append(("update", arc))
-        files.pop(have.get(k, arc), None)
-        files[arc] = data
-    for c in changes:
-        print(f"  {c[0]:7} {c[1]}")
-    if not changes:
-        print("patch-Z.MPQ matches the source folders (nothing to do)")
-        return 0
+        files = build_files(dbc_dir)
+    except FileNotFoundError as e:
+        print(e)
+        return 2
     if check:
-        print(f"{len(changes)} difference(s); run without --check to rebuild")
+        if not os.path.isfile(out):
+            print(f"{os.path.relpath(out, ROOT)} isn't built yet (run tools/sync_patchz.py --dbc-dir DIR)")
+            return 1
+        a = mpq.Archive(out)
+        have = {n: a.read(n) for n in a.names()}
+        if not dbc_dir:   # without the creator's tables, compare everything else
+            have = {n: d for n, d in have.items() if not n.lower().startswith("dbfilesclient\\")}
+        diffs = sorted({n for n in set(have) | set(files) if have.get(n) != files.get(n)}, key=str.lower)
+        for n in diffs:
+            print(f"  {'add' if n not in have else 'remove' if n not in files else 'update':7} {n}")
+        if not diffs:
+            print("patch-Z.MPQ matches the source folders (nothing to do)")
+            return 0
+        print(f"{len(diffs)} difference(s); run without --check to rebuild")
         return 1
-    size = mpq.write(MPQ, files)
-    print(f"patch-Z.MPQ rebuilt: {len(changes)} change(s), {size} bytes")
+    os.makedirs(os.path.dirname(os.path.abspath(out)), exist_ok=True)
+    size = mpq.write(out, files)
+    tables = sum(1 for n in files if n.lower().startswith("dbfilesclient\\"))
+    print(f"patch-Z.MPQ built: {len(files)} files ({tables} client tables), {size} bytes -> {out}"
+          + ("" if dbc_dir else "\n  (no --dbc-dir: built without the Classic+ client tables)"))
     return 0
 
 

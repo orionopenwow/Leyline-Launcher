@@ -33,8 +33,8 @@ index b4422bf6..5a00b6fa 100644
  enum CreateAction {
      Race(u8),
      Gender(u8),
--    /// OpenVanilla: an index into [`ALL_CLASSES`], one fixed slot per class (the reference listed only
-+    /// Open Vanilla: an index into [`ALL_CLASSES`], one fixed slot per class (the reference listed only
+-    /// OpenVanilla: an index into [`ALL_CLASSES`], one fixed slot per class (the stock grid listed only
++    /// Open Vanilla: an index into [`ALL_CLASSES`], one fixed slot per class (the stock grid listed only
      /// the race's valid classes, so its slots shifted per race).
      ClassSlot(u8),
      /// Dial index 0..5, direction ±1.
@@ -117,8 +117,8 @@ index 67e2b905..24489d80 100644
          }
      }
  
--    // OpenVanilla: one slot per class, all shown (the reference filled the valid classes into the
-+    // Open Vanilla: one slot per class, all shown (the reference filled the valid classes into the
+-    // OpenVanilla: one slot per class, all shown (the stock grid filled the valid classes into the
++    // Open Vanilla: one slot per class, all shown (the stock grid filled the valid classes into the
      // first buttons and hid the rest).
      for (action, mut node) in &mut slots {
          if let CreateAction::ClassSlot(i) = action {
@@ -156,14 +156,14 @@ index 5c249e22..41398199 100644
  /// `s` at `a = 1`, the 4:3 box this draws into: the text's scale and also its wrap width
  /// (`0x406e18` passes `s` for both). Not a FrameXML length: `0x41ae40` divides `G44` back out, so
  /// the FrameXML-unit helper would be off by 1.25 at 4:3.
--#[allow(dead_code)] // OpenVanilla: the reference's placement, no longer drawn (see `OW_TIP_TOP`)
-+#[allow(dead_code)] // Open Vanilla: the reference's placement, no longer drawn (see `OW_TIP_TOP`)
+-#[allow(dead_code)] // OpenVanilla: the stock placement, no longer drawn (see `OW_TIP_TOP`)
++#[allow(dead_code)] // Open Vanilla: the stock placement, no longer drawn (see `OW_TIP_TOP`)
  const TIP_SCALE: f32 = 515.0 / 1024.0;
  
  /// The baseline from the bottom of the `[0,1]` ortho. `0x4066ee` builds it as `0.05·0.5 + 0.075`,
  /// the progress bar's top edge, so the block sits on the bar.
--#[allow(dead_code)] // OpenVanilla: the reference's placement, no longer drawn (see `OW_TIP_TOP`)
-+#[allow(dead_code)] // Open Vanilla: the reference's placement, no longer drawn (see `OW_TIP_TOP`)
+-#[allow(dead_code)] // OpenVanilla: the stock placement, no longer drawn (see `OW_TIP_TOP`)
++#[allow(dead_code)] // Open Vanilla: the stock placement, no longer drawn (see `OW_TIP_TOP`)
  const TIP_BOTTOM: f32 = 0.1;
  
  /// The font height as a fraction of the viewport height. In `0x406659`'s `0.018 · [0x832a48]` the
@@ -205,8 +205,8 @@ index 5c249e22..41398199 100644
  
  /// `(left, bottom, width)` as percentages of the 4:3 content box, so a mid-load resize cannot
  /// strand a node laid out once per raise.
--#[allow(dead_code)] // OpenVanilla: the reference's placement, no longer drawn (see `OW_TIP_TOP`)
-+#[allow(dead_code)] // Open Vanilla: the reference's placement, no longer drawn (see `OW_TIP_TOP`)
+-#[allow(dead_code)] // OpenVanilla: the stock placement, no longer drawn (see `OW_TIP_TOP`)
++#[allow(dead_code)] // Open Vanilla: the stock placement, no longer drawn (see `OW_TIP_TOP`)
  pub(crate) const fn geometry() -> (f32, f32, f32) {
      (
          (0.5 - TIP_SCALE * 0.5) * 100.0,
@@ -232,8 +232,8 @@ index 5c249e22..41398199 100644
      // The 4:3 content box is `100vh` tall, so the window height is the box height.
      let height = windows.iter().next().map_or(768.0, |w| w.height());
      let l = layout(height * 4.0 / 3.0, height);
--    // OpenVanilla: under the bar, centred (the reference's `geometry()` puts it above, left-aligned).
-+    // Open Vanilla: under the bar, centred (the reference's `geometry()` puts it above, left-aligned).
+-    // OpenVanilla: under the bar, centred (the stock `geometry()` puts it above, left-aligned).
++    // Open Vanilla: under the bar, centred (the stock `geometry()` puts it above, left-aligned).
      n.left = Val::Percent(OW_TIP_LEFT);
      n.top = Val::Percent(OW_TIP_TOP);
      n.bottom = Val::Auto;

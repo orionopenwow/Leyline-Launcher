@@ -56,7 +56,7 @@ def solo_step(state, have_client, running=False, size=None):
                 "solo_vanilla")
     if state == "ready" and not have_client:
         return (False, "SOLO · CHOOSE YOUR GAME'S DATA FOLDER",
-                "Solo plays with your own Vanilla Client v1.3. Press PLAY to pick its Data folder.", "amber", "choose_install")
+                "Solo plays with your own 1.12.1 game client. Press PLAY to pick its Data folder.", "amber", "choose_install")
     if state == "ready":
         return (True, "READY · SOLO ON THIS PC", "Your own world with playerbots. Log in as SOLO / SOLO.", "blue",
                 "solo_play")
@@ -92,11 +92,6 @@ def update_pill(update_info, update_ready, download, can_stage, auto_update=True
     return None, None
 
 
-# Hidden for now (owner, 2026-10-19): HOME's "GET VANILLA CLIENT V1.3" button. A player without a client
-# still gets set up through PLAY and the install page. Set to False to bring the button back.
-HIDE_GET_VANILLA_CLIENT = True
-
-
 def client_button(ctype, installed, has_download, busy=False, build=5875):
     """(label, style, action) for HOME's client button, in the left column under the account card.
     action: install (the game setup page), get (get_client: download, pick a folder or the setup page),
@@ -108,9 +103,7 @@ def client_button(ctype, installed, has_download, busy=False, build=5875):
     if ctype == "exe" and not installed:
         if int(build or 0) != 5875:
             return "SET UP CLIENT", "gold", "get"
-        if has_download and HIDE_GET_VANILLA_CLIENT:
-            return None
-        return ("GET VANILLA CLIENT V1.3", "gold", "install") if has_download else ("CHOOSE GAME DATA FOLDER", "gold", "install")
+        return "CHOOSE GAME DATA FOLDER", "gold", "install"   # the player's own client: never a download
     if installed:
         return ("CHANGE WOW FOLDER", "ghost", "get") if ctype == "exe" else ("CLIENT DOWNLOAD", "ghost", "get")
     return ("GET CLIENT", "gold", "get") if has_download else ("SET UP CLIENT", "gold", "get")

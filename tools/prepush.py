@@ -5,8 +5,8 @@
     python tools/prepush.py --check   only say what is out of date (exit 1 if anything is)
 
 In order (each step reads the one before it):
-  1. realm/classicplus/patch-Z.MPQ   from Data/Interface (tools/sync_patchz.py)
-  2. realm/warfront/patch-Z.MPQ      Classic+ patch-Z without client tables (tools/warfront/make_patch_w.py)
+  1. realm/classicplus/patch-Z.MPQ   not in git any more: built locally (tools/sync_patchz.py --dbc-dir DIR)
+  2. realm/warfront/patch-Z.MPQ      patch-Z's sources without client tables (tools/warfront/make_patch_w.py)
   3. realm/duels/patch-Z.MPQ         Warfront's plus the Duels addon (tools/duels/make_patch_d.py)
   4. realm/www/manifests/_ui.json    the browser client's prefetch list (tools/gen_ui_manifest.py)
   5. www/community/workshop          our own addons' Workshop packages (cp-*), when the addon changed
@@ -45,18 +45,10 @@ def run(*args):
 
 
 def classicplus():
-    r = run(os.path.join("tools", "sync_patchz.py"), "--check")
-    if r.returncode == 0:
-        say("Classic+ patch-Z: up to date")
-        return False
-    if CHECK:
-        say("Classic+ patch-Z: OUT OF DATE")
-        return True
-    r = run(os.path.join("tools", "sync_patchz.py"))
-    if r.returncode != 0:
-        raise SystemExit("prepush: tools/sync_patchz.py failed")
-    say("Classic+ patch-Z: rebuilt")
-    return True
+    """Classic+ patch-Z is not in git: it is built on the creator's PC or the realm with
+    tools/sync_patchz.py --dbc-dir DIR (its client tables come from the creator's own files)."""
+    say("Classic+ patch-Z: not in git (tools/sync_patchz.py --dbc-dir DIR builds it)")
+    return False
 
 
 def derived(name, module, rel_out):

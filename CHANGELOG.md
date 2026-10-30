@@ -1,6 +1,12 @@
 # Open Vanilla changelog
 (build_repack.py turns the newest sections into the launcher's patch notes: "## Section" headers, "- item" lines.)
 
+## New in 1.55.1
+- Launcher: the game setup page uses the 1.12.1 game client you already have (choose its folder) or plays in your browser; the launcher no longer downloads or links a game client (defaults.json, links.txt and live content carry no client download links).
+- Realm kit: wenilla_up.sh uses the Data folder of your own 1.12.1 client copied to /srv/client/Data; it no longer downloads one.
+- Classic+ patch-Z is no longer in the repo: tools/sync_patchz.py --dbc-dir DIR builds it from our files plus the race/class tables made from your own client's DBCs and our row deltas (realm/classicplus/dbc_deltas); the realm builds its own (hetzner/openvanilla_build_patchz.sh). Release torrents refuse a patch-Z that holds client tables.
+- Browser client patches (realm/patches): our comments describe behaviour in plain words; devkit/check.py refuses stock-client addresses and symbols in what we write (devkit/citations.py).
+
 ## New in 1.55.0
 - A.
 

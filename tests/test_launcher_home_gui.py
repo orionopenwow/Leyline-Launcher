@@ -244,10 +244,6 @@ class HomeGuiTests(unittest.TestCase):
         self.assertEqual(app._client_btn_label, "SET UP CLIENT")  # 3.3.5a, no folder yet: the player picks their own
         app.workshop_add_client({e["id"]: e for e in app.client_catalog()}["vanilla"], select=True)   # parked 1.12.1
         app.show_page("play", animate=False)
-        self.assertFalse(app.cv.find_withtag("clientbtn"))      # GET VANILLA CLIENT V1.3 is hidden for now
-        self.assertEqual(app._client_btn_label, "")
-        self.addCleanup(setattr, L.home_logic, "HIDE_GET_VANILLA_CLIENT", True)
-        L.home_logic.HIDE_GET_VANILLA_CLIENT = False            # the layout checks below, with it shown
         for session in ({}, {"user": "TESTER", "display": "Tester", "password": "pw"}):
             app.session = session
             app.show_page("play", animate=False)
@@ -255,7 +251,7 @@ class HomeGuiTests(unittest.TestCase):
             self.assertNotIn("WELCOME TO OPEN VANILLA", texts)
             self.assertNotIn("MEET HERALD", texts)
             self.assertTrue(app.cv.find_withtag("clientbtn"))
-            self.assertEqual(app._client_btn_label, "GET VANILLA CLIENT V1.3")     # Vanilla, not installed yet
+            self.assertEqual(app._client_btn_label, "CHOOSE GAME DATA FOLDER")     # Vanilla, not set up yet: their own folder
             self.assertEqual(self._overlaps(app, "clientbtn"), [], session)
             x1, y1, x2, y2 = app.cv.bbox("clientbtn")
             self.assertLessEqual(y2, L.WIN_H - L.BOT)
@@ -323,10 +319,20 @@ class HomeGuiTests(unittest.TestCase):
         plain = entries()
         app.settings["advanced"] = True
         app.show_page("settings", animate=False)
-        self.assertGreater(entries(), plain)                       # the client download link field
+        self.assertEqual(entries(), plain)                         # a game client (3.3.5a) never gets a download link field
         names = [n for n, _, _ in app.folder_shortcuts()]
         self.assertEqual(names[:4], ["AddOns", "Screenshots", "Logs", "Realms"])
         self.assertEqual(app.folder_shortcuts()[0][1], self.L.ADDONS_DIR)
+
+    def test_install_page_offers_own_folder_and_browser_only(self):
+        app = self.start()
+        app.show_page("install", animate=False)
+        texts = " ".join(app.cv.itemcget(i, "text") for i in app.cv.find_withtag("page") if app.cv.type(i) == "text")
+        self.assertIn("already have", texts)
+        self.assertNotIn("Internet " + "Archive", texts)
+        self.assertIsNone(app.client_download(dict(app.client(), type="exe", download_url="https://example.org/c.zip")))
+        app._install_browser()
+        self.assertEqual(app.play_mode(), "browser")
 
     def test_solo_is_windows_only(self):
         self.L.SOLO_ON_THIS_OS = False

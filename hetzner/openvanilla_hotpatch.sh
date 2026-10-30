@@ -19,7 +19,8 @@
 #   1  web service restart, ~5 s — the world server keeps running, nobody loses progress, but
 #        players in the browser reconnect; done straight away when nobody is online, otherwise
 #        at the next empty moment (the script waits up to 30 min) or with --force-web
-#        realm/classicplus/patch-Z.MPQ  client data (the realm opens the archive chain at startup)
+#        patch-Z.MPQ client data (the realm opens the archive chain at startup): built here by
+#        openvanilla_build_patchz.sh when Data/Interface, its tools or realm/classicplus/dbc_deltas change
 #        a new ghcr.io/orionopenwow/openvanilla-realm image (engine patches)
 #   2  world restart — only for data the world server reads once at boot
 #        classicplus_races.sql / _weapons.sql (playercreateinfo), server DBC files
@@ -67,7 +68,7 @@ if [ ! -d "$REPO_DIR/.git" ]; then
 fi
 # a checkout made before the repo moved still points at the old address: always the current one
 git -C "$REPO_DIR" remote set-url origin "$REPO_URL"
-git -C "$REPO_DIR" sparse-checkout set realm/classicplus realm/www hetzner devkit/staging devkit/heraldlite
+git -C "$REPO_DIR" sparse-checkout set realm/classicplus realm/www hetzner devkit/staging devkit/heraldlite Data/Interface tools
 # the live realm follows the stable branch (Release.bat moves it); main is work in progress
 # by name: a --depth clone tracks only the default branch, so a bare "fetch origin stable" never
 # creates origin/stable
@@ -76,14 +77,15 @@ git -C "$REPO_DIR" reset -q --hard "${TO:-origin/stable}"
 HEAD=$(git -C "$REPO_DIR" rev-parse HEAD)
 LAST=$(cat "$STATE" 2>/dev/null || true)
 if [ -n "$LAST" ] && git -C "$REPO_DIR" cat-file -e "$LAST" 2>/dev/null; then
-  CHANGED=$(git -C "$REPO_DIR" diff --name-only "$LAST" "$HEAD" -- realm/classicplus realm/www)
+  CHANGED=$(git -C "$REPO_DIR" diff --name-only "$LAST" "$HEAD" -- realm/classicplus realm/www Data/Interface \
+            tools/sync_patchz.py tools/classicplus_dbc.py tools/modelport)
 else
-  CHANGED=$(cd "$REPO_DIR" && find realm/classicplus realm/www -type f | sort)   # first run: everything
+  CHANGED=$(cd "$REPO_DIR" && find realm/classicplus realm/www -type f | sort; echo Data/Interface)   # first run: everything
 fi
 say "Open Vanilla hot update ${LAST:0:8} -> ${HEAD:0:8}"
 [ -n "$CHANGED" ] && printf '  %s\n' $CHANGED || echo "  (no file changes)"
 
-T1=0 T2=0
+T1=0 T2=0 PATCHZ=0
 SQL_RELOAD=()
 # A SQL file is tier 0 when every table it writes has a CMaNGOS .reload command; any other table
 # (playercreateinfo, creature_template, ...) is read at world start, so it is tier 2.
@@ -119,6 +121,9 @@ in_place() {  # in_place SRC DST: rewrite DST's bytes, keeping its inode (single
 
 for f in $CHANGED; do
   src="$REPO_DIR/$f"; base=$(basename "$f")
+  case "$f" in Data/Interface*|tools/*|realm/classicplus/dbc_deltas/*|realm/classicplus/fix_skillraceclassinfo.py|realm/classicplus/classicplus_weapons.sql)
+    PATCHZ=1 ;; esac   # patch-Z's sources: it is built once, after this loop
+  case "$f" in Data/Interface*|tools/*|realm/classicplus/dbc_deltas/*) continue ;; esac
   [ -e "$src" ] || { echo "  - $f deleted upstream; left in place"; continue; }
   case "$f" in
     realm/www/*)
@@ -128,10 +133,6 @@ for f in $CHANGED; do
     realm/classicplus/bridge.js*|realm/classicplus/addons-loader.js)
       echo "  [0] page  $base"
       [ $DRY = 1 ] || in_place "$src" "$CP/$base" ;;
-    realm/classicplus/patch-Z.MPQ)
-      echo "  [1] client data patch-Z.MPQ (web service restart)"
-      T1=1
-      [ $DRY = 1 ] || { cp "$src" "$CLIENT_DATA/patch-Z.MPQ.new"; cp "$src" "$CP/patch-Z.MPQ"; } ;;
     realm/classicplus/*.sql)
       cp "$src" "$CP/$base"
       mapfile -t R < <(sql_reloads "$src")
@@ -149,6 +150,16 @@ for f in $CHANGED; do
       [ $DRY = 1 ] || cp "$src" "$CP/$base" ;;
   esac
 done
+
+# Client patch-Z: built here from its sources and this realm's own DBC files (never downloaded).
+if [ $PATCHZ = 1 ]; then
+  echo "  [1] client data patch-Z.MPQ, built on this server (web service restart)"
+  T1=1
+  if [ $DRY = 0 ]; then
+    bash "$REPO_DIR/hetzner/openvanilla_build_patchz.sh" --no-sync   # uses OW_REALM_DIR/OW_CP -> $CP/patch-Z.MPQ
+    cp "$CP/patch-Z.MPQ" "$CLIENT_DATA/patch-Z.MPQ.new"
+  fi
+fi
 
 # Server DBC: weapon skills for the new race/class pairs (idempotent; restart only if it changed).
 if printf '%s\n' $CHANGED | grep -q 'fix_skillraceclassinfo.py\|classicplus_weapons.sql\|classicplus_races.sql'; then

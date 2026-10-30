@@ -35,7 +35,7 @@ index 0f9e6de7..b4422bf6 100644
      Gender(u8),
 -    /// An index into the race's valid classes: the reference lists only those, so the slot's class
 -    /// shifts per race.
-+    /// OpenVanilla: an index into [`ALL_CLASSES`], one fixed slot per class (the reference listed only
++    /// OpenVanilla: an index into [`ALL_CLASSES`], one fixed slot per class (the stock grid listed only
 +    /// the race's valid classes, so its slots shifted per race).
      ClassSlot(u8),
      /// Dial index 0..5, direction ±1.
@@ -391,7 +391,7 @@ index 212404b3..67e2b905 100644
      }
  
 -    // The reference fills the valid classes into the first buttons and hides the rest.
-+    // OpenVanilla: one slot per class, all shown (the reference filled the valid classes into the
++    // OpenVanilla: one slot per class, all shown (the stock grid filled the valid classes into the
 +    // first buttons and hid the rest).
      for (action, mut node) in &mut slots {
          if let CreateAction::ClassSlot(i) = action {

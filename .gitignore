@@ -16,6 +16,11 @@ CaddyData/
 release/OpenVanilla_Client_Win64/
 
 # Blizzard game data never goes in the repo: only Open Vanilla's own addons and art under Data/
+# Classic+'s patch-Z holds client tables made from the creator's own files: built locally, never committed
+# (tools/sync_patchz.py --dbc-dir DIR, hetzner/openvanilla_build_patchz.sh on the realm)
+realm/classicplus/patch-Z.MPQ
+realm/classicplus/patch-Z.MPQ.*
+*.dbc
 Data/*
 !Data/Interface/
 Data/Interface/*

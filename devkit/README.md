@@ -41,5 +41,6 @@ dev proxy: live realm + your files        nightly: full Herald in a real browser
 ## Rules
 
 - No Blizzard game data in git: the sim and SQL tests use none, and check.py refuses map, model and
-  MPQ files (patch-Z, our own, is the one exception).
+  MPQ files (Warfront's and Duels' Interface-only patch-Z are the exception; Classic+'s patch-Z is built locally
+  with `tools/sync_patchz.py --dbc-dir DIR` and never committed).
 - Tools here are for building and testing; nothing in `devkit/` ships to players.

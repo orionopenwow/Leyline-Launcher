@@ -96,7 +96,7 @@
  },
  "launcher#client-setup": {
   "url": "manual/launcher.html#client-setup",
-  "title": "Set up Vanilla Client v1.3",
+  "title": "Set up the 1.12.1 game",
   "chapter": "The launcher"
  },
  "launcher#workshop-page": {
@@ -981,7 +981,7 @@
  },
  "faq#own-client": {
   "url": "manual/faq.html#own-client",
-  "title": "Why do I need my own Vanilla Client v1.3?",
+  "title": "Why do I need my own 1.12.1 game client?",
   "chapter": "Questions and words"
  },
  "faq#characters": {

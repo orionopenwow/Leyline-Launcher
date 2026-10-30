@@ -251,7 +251,8 @@ class ToolTests(unittest.TestCase):
         json.dump({"format": 1, "version": "1.15.0", "url": f"{base}/OpenVanilla-Solo-1.15.0.zip", "size": 1,
                    "sha256": hashlib.sha256(open(self.solo, "rb").read()).hexdigest(), "sql": []}, open(self.sj, "w"))
         self.patchz = os.path.join(self.tmp, "patch-Z.MPQ")
-        open(self.patchz, "wb").write(b"MPQ\x1a" + os.urandom(1000))
+        from modelport import mpq as pympq
+        pympq.write(self.patchz, {"Interface\\AddOns\\X\\X.toc": b"## Title: X\n"})
         os.environ["OPENVANILLA_MANIFEST_KEY"] = F.SEED.hex()
         self.addCleanup(os.environ.pop, "OPENVANILLA_MANIFEST_KEY", None)
 
@@ -300,6 +301,15 @@ class ToolTests(unittest.TestCase):
         for name, head in (("x.dbc", b""), ("y.bin", b"WDBC"), ("z.blp", b"")):
             self.assertIsNotNone(MRT.game_data_reason(name, head))
         self.assertIsNone(MRT.game_data_reason("Data/patch-Z.MPQ", b"MPQ\x1a"))
+
+    def test_refuses_a_patchz_with_client_tables(self):
+        from modelport import mpq as pympq   # a patch-Z with client tables is never shared
+        with_tables = os.path.join(self.tmp, "t", "patch-Z.MPQ")
+        os.makedirs(os.path.dirname(with_tables))
+        pympq.write(with_tables, {"DBFilesClient\\CharBaseInfo.dbc": b"WDBC", "Interface\\AddOns\\X\\X.toc": b"x"})
+        code, out = self.run_tool("--patchz", with_tables)
+        self.assertEqual(code, 1)
+        self.assertIn("client tables", out)
 
     def test_sha_mismatch_refused(self):
         json.dump(dict(json.load(open(self.sj)), sha256="0" * 64), open(self.sj, "w"))

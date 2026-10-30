@@ -99,12 +99,8 @@ class ClientButtonTests(unittest.TestCase):
     """HOME's client button (left column, under the account card), as it was before the redesign."""
 
     def test_stock_1121_client(self):
-        self.assertIsNone(H.client_button("exe", False, True))      # hidden for now (HIDE_GET_VANILLA_CLIENT)
-        try:
-            H.HIDE_GET_VANILLA_CLIENT = False
-            self.assertEqual(H.client_button("exe", False, True), ("GET VANILLA CLIENT V1.3", "gold", "install"))
-        finally:
-            H.HIDE_GET_VANILLA_CLIENT = True
+        # the player's own client: choose its folder, even when a download link is set (never downloaded)
+        self.assertEqual(H.client_button("exe", False, True), ("CHOOSE GAME DATA FOLDER", "gold", "install"))
         self.assertEqual(H.client_button("exe", False, False), ("CHOOSE GAME DATA FOLDER", "gold", "install"))
         self.assertEqual(H.client_button("exe", True, True), ("CHANGE WOW FOLDER", "ghost", "get"))
         self.assertEqual(H.client_button("exe", False, True, build=12340), ("SET UP CLIENT", "gold", "get"))

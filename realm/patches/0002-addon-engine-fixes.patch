@@ -250,7 +250,7 @@ index b6aa2d0..ad6693b 100644
 +/// Deviation (G3, the web build only): a page can close without a `/logout`, so the shutdown tail
 +/// never runs and the session's saved variables, flat saved file and enable state would be lost.
 +/// Every [`WEB_AUTOSAVE_SECS`] in the world the same writes run, without `PLAYER_LOGOUT` (an
-+/// addon's last-chance handler still fires once, at a real logout). Native keeps the reference's
++/// addon's last-chance handler still fires once, at a real logout). Native keeps the stock game's
 +/// no-autosave behaviour.
 +pub(crate) fn web_autosave(world: &mut World) {
 +    if !cfg!(target_arch = "wasm32") {
@@ -495,7 +495,7 @@ index 8ce2847..401edb3 100644
  
 +impl super::UiScript {
 +    /// The host's IME input language changed (G5): `GetInputLanguage` answers `language` from now
-+    /// on, and every frame with an `OnInputLanguageChanged` handler runs it, as the reference does
++    /// on, and every frame with an `OnInputLanguageChanged` handler runs it, as the 1.12 game does
 +    /// on the OS's input-language message. Reporting the current language again fires nothing.
 +    pub fn set_input_language(&self, language: &str) {
 +        let ids: Vec<u32> = {

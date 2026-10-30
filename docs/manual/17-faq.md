@@ -11,8 +11,8 @@ No. Open Vanilla is a free fan project, not affiliated with or endorsed by Blizz
 ### Does it cost anything? {#cost}
 No. Tips are optional and never buy power, items or game time ([Tips](community.html#tips)).
 
-### Why do I need my own Vanilla Client v1.3? {#own-client}
-Open Vanilla never distributes Blizzard's files. The launcher can fetch a client from the download site for you, or use one you have.
+### Why do I need my own 1.12.1 game client? {#own-client}
+Open Vanilla never distributes the game's files and never downloads a client. Use the 1.12.1 client you already have, or play in your browser.
 
 ### Will I lose my characters? {#characters}
 No: characters live on the realm. Guests keep theirs by linking Discord. Solo characters live on your PC. Alpha realms may be reset; that's announced first.

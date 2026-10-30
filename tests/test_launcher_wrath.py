@@ -53,6 +53,21 @@ class LiveRealmTests(unittest.TestCase):
         self.assertEqual([c["id"] for c in defaults["clients"]], ["wotlk"])
         self.assertIn("vanilla", [c["id"] for c in defaults["clients_parked"]])
         self.assertFalse(any("download_url" in c for c in defaults["clients"]))    # players bring their own 3.3.5a
+        # no game client is ever downloaded: stock (exe) clients have no download link, parked ones included
+        self.assertFalse(any("download_url" in c for c in defaults["clients_parked"] if c.get("type") == "exe"))
+
+    def test_no_client_download_anywhere_in_the_launcher(self):
+        """The launcher never downloads or links a game client (no download-site flow, no client-link overrides).
+        The site names are split so the history scrub (tools/history-scrub) leaves this file as it is."""
+        import re
+        for name in os.listdir(os.path.join(ROOT, "launcher")):
+            if name.endswith((".py", ".json", ".txt")):
+                with open(os.path.join(ROOT, "launcher", name), encoding="utf-8") as f:
+                    text = f.read()
+                self.assertIsNone(re.search("arch" + r"ive\.org|nostalrius|Internet " + "Archive|CLIENT_(112|335)_URL|install_classic",
+                                            text, re.I), name)
+        import home_logic
+        self.assertEqual(home_logic.client_button("exe", False, True)[2], "install")   # choose a folder, never a download
         src = read_json(os.path.join(ROOT, "www", "downloads", "live.src.json"))
         hosts = [r["host"] for r in src["realms"]]
         self.assertEqual(hosts, ["play.openvanilla.app"])

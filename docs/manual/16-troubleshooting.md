@@ -11,9 +11,9 @@ Launcher: **Settings → Folders → Open logs**. The files that matter are `lau
 
 | Message | Fix |
 | --- | --- |
-| **CHOOSE YOUR GAME'S DATA FOLDER** | Press PLAY and pick your game's `Data` folder (or the folder with `WoW.exe`), or let it download a client |
-| **Missing X.MPQ** / **X is damaged** | That client is incomplete: pick another folder or **Download & install** |
-| **This is build N; Open Vanilla needs Vanilla Client v1.3 (build 5875)** | Wrong version: Open Vanilla needs Vanilla Client v1.3 (English, build 5875) |
+| **CHOOSE YOUR GAME'S DATA FOLDER** | Press PLAY and pick your game's `Data` folder (or the folder with `WoW.exe`), or play in your browser |
+| **Missing X.MPQ** / **X is damaged** | That client is incomplete: pick another folder |
+| **This is build N; Open Vanilla needs the 1.12.1 game client (build 5875)** | Wrong version: Open Vanilla needs Vanilla Client v1.3 (English, build 5875) |
 | **Wow.exe wasn't found there** | Pick the folder that contains `WoW.exe`, not its parent |
 | **SERVER OFFLINE** | The realm is down; check #server-status on Discord, or [Play Solo](solo.html) |
 | **This realm doesn't let the desktop game in yet** | The realm takes the browser client only for now: switch to **Browser** |

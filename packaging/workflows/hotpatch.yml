@@ -10,7 +10,7 @@ name: hotpatch
 on:
   push:
     branches: [stable]   # the live realm follows stable (Release.bat), never work in progress on main
-    paths: ["realm/classicplus/**", "realm/www/**", "hetzner/openvanilla_hotpatch.sh", "hetzner/openvanilla_server_dbc.sh", "devkit/staging/**", "devkit/heraldlite/scenarios/**"]
+    paths: ["realm/classicplus/**", "realm/www/**", "hetzner/openvanilla_hotpatch.sh", "hetzner/openvanilla_server_dbc.sh", "hetzner/openvanilla_build_patchz.sh", "Data/Interface/**", "tools/sync_patchz.py", "tools/classicplus_dbc.py", "devkit/staging/**", "devkit/heraldlite/scenarios/**"]
   workflow_dispatch:
     inputs:
       mode:

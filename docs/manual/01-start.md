@@ -14,7 +14,7 @@ Open Vanilla is a free, community-run home for classic Vanilla. You can play on 
 | Way | Best for | Needs |
 | --- | --- | --- |
 | **Browser** | Trying it right now, phones and tablets, any PC | A browser with WebGPU; nothing to install |
-| **Launcher** (Windows) | The full experience, your own addons, Solo and hosting | Windows 10/11 64-bit and Vanilla Client v1.3 (the launcher can fetch it) |
+| **Launcher** (Windows) | The full experience, your own addons, Solo and hosting | Windows 10/11 64-bit and your own 1.12.1 game client |
 | **Play Solo** | Offline play with bots, no other players | The launcher, a few GB of disk, 8 GB+ RAM recommended |
 
 ## Quick start: browser {#quick-browser}
@@ -28,7 +28,7 @@ Details: [Playing in the browser](browser.html).
 ## Quick start: launcher {#quick-launcher}
 
 1. Download the launcher from the [home page](../index.html) (**Desktop Client**): `OpenVanilla-Setup-<version>.exe` is the recommended installer, or the zip for a portable copy.
-2. Start it. On **Home**, the bar above **PLAY** says what's missing; pressing PLAY fixes it: it downloads Vanilla Client v1.3 or lets you pick the folder you already have.
+2. Start it. On **Home**, the bar above **PLAY** says what's missing; pressing PLAY fixes it: it lets you pick the folder of the 1.12.1 client you already have, or play in your browser.
 3. Press **PLAY**. The first time, it signs you in with Discord.
 
 Details: [The launcher](launcher.html).
@@ -44,7 +44,7 @@ Details: [The launcher](launcher.html).
 
 ## What you need: Vanilla Client v1.3 {#client}
 
-The desktop game needs your own copy of **Vanilla Client v1.3** (English, build 5875). The launcher's game setup page either downloads one (**Download & install**, a few GB, resumable) or checks a folder you already have (**Select existing folder**). It never changes the game's files. More on [clients.html](../clients.html) and in [The launcher](launcher.html#client-setup).
+The desktop game needs your own copy of **Vanilla Client v1.3** (English, build 5875). The launcher's game setup page checks the folder of the client you already have (**Choose its folder**), or switches you to browser play. It never downloads a client. It never changes the game's files. More on [clients.html](../clients.html) and in [The launcher](launcher.html#client-setup).
 
 ## Where to go next {#next}
 

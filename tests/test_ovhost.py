@@ -391,6 +391,8 @@ class RealmUpCommunity(OvhostCase):
         with open(envf, "w") as f:
             f.writelines(lines + ["CLIENT_DATA='%s'\n" % self.data, "COMPOSE_FILE=compose.yaml:compose.override.yaml\n"])
         write(os.path.join(self.bin, "curl"), '#!/bin/sh\nwhile [ $# -gt 0 ]; do [ "$1" = -o ] && { echo "# stub" > "$2"; exit 0; }; shift; done\nexit 0\n')
+        os.makedirs(cp, exist_ok=True)   # patch-Z is built on the realm (openvanilla_build_patchz.sh, stubbed here)
+        write(os.path.join(cp, "patch-Z.MPQ"), "# stub patch-Z")
         script = os.path.join(ROOT, "hetzner", "openvanilla_realm_up.sh")
         r = subprocess.run(["bash", script], cwd=self.tmp, capture_output=True, text=True, stdin=subprocess.DEVNULL, timeout=120,
                            env=self.env(OW_REALM_DIR=realm, OW_CP=cp, OW_COMMUNITY=1, OW_WARN_MIN=0))

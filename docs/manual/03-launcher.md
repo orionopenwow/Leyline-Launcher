@@ -26,14 +26,16 @@ Browser realms such as Vanilla Remastered (`play.openvanilla.app`) open no game 
 
 The bar above PLAY says what's ready or missing, for example **READY TO PLAY**, **CHOOSE YOUR GAME'S DATA FOLDER**, **YOUR WOW FOLDER NEEDS A FIX** or **SERVER OFFLINE**. Pressing PLAY fixes what it can. In Online mode the **▾** menu next to the client picks which client to use, and ends with **More clients in Workshop ›**. News, Discord and Support buttons sit around it.
 
-## Set up Vanilla Client v1.3 {#client-setup}
+## Set up the 1.12.1 game {#client-setup}
 
 The launcher's game setup page (it opens when PLAY can't find a client) has two choices:
 
-- **Install a fresh copy → Download & install:** downloads Vanilla Client v1.3 from the download site (a few GB; it resumes if interrupted). Open Vanilla doesn't host Blizzard's files.
-- **I already have it → Select existing folder:** pick the folder with `WoW.exe`. The launcher checks it and never changes the game's files.
+- **Use your own client → Choose its folder:** use the 1.12.1 game client you already have: pick the folder with `WoW.exe`. The launcher checks it and never changes the game's files.
+- **Play in your browser:** no client on this PC? Switch to browser play.
 
-The checker needs build **5875** and the eleven standard archives in `Data` (dbc, speech, fonts, interface, misc, sound, wmo, terrain, texture, model, patch). If one is missing or damaged it says so ("Missing texture.MPQ", "This is build 4297; Open Vanilla needs Vanilla Client v1.3 (build 5875)") and offers to pick another folder. When you press PLAY it writes `realmlist.wtf` for you, keeping a backup of the old one.
+The launcher never downloads a game client.
+
+The checker needs build **5875** and the eleven standard archives in `Data` (dbc, speech, fonts, interface, misc, sound, wmo, terrain, texture, model, patch). If one is missing or damaged it says so ("Missing texture.MPQ", "This is build 4297; Open Vanilla needs the 1.12.1 game client (build 5875)") and offers to pick another folder. When you press PLAY it writes `realmlist.wtf` for you, keeping a backup of the old one.
 
 ## The Workshop page {#workshop-page}
 
@@ -41,7 +43,7 @@ Tabs: **Addons**, **Projects**, **Clients**, **Installed** (and **GitHub** in Ad
 
 - **Addons:** browse and install. Installs go into `AddOns\Enabled` and are used by every client you play with.
 - **Projects:** community projects and forks from the directory.
-- **Clients:** add or remove game clients (**Add to my clients**, **Download**, **Open clients.txt**).
+- **Clients:** add or remove game clients (**Add to my clients**, **Open clients.txt**).
 - **Installed:** your addons, with **Enable/Disable** each, **Install from .zip** and **Open folder**.
 
 Compatibility labels: **Works**, **Partly**, **Needs fixes**, **Not checked**, and **Ours** for the Open Vanilla addons. Install buttons on the website open the launcher directly (they use `openvanilla://workshop/install/...` links) and every download is checked against its fingerprint. Full details in [Publish to the Workshop](workshop.html#install).
@@ -68,7 +70,7 @@ Compatibility labels: **Works**, **Partly**, **Needs fixes**, **Not checked**, a
 | Privacy | Share what you're listening to (off by default) |
 | AI (optional) | Set up an AI workspace: see [Connect an AI](ai.html#setup) |
 
-**Advanced** (off by default) shows client download links, GitHub search and torrent seeding. **Clear all local data…** resets the launcher. The launcher sends no analytics or crash reports.
+**Advanced** (off by default) shows the engine's download link, GitHub search and torrent seeding. **Clear all local data…** resets the launcher. The launcher sends no analytics or crash reports.
 
 ## Updates {#updates}
 

@@ -109,7 +109,7 @@ index 0cbbd5b1..d255bb36 100644
 +/// The settle hold covers logins and teleports, but a walk can reach a tile whose terrain or
 +/// colliders are still arriving (a tile border on a slow load, a weak machine). There the mover
 +/// finds no floor, elects a fall, and the body drops through the world ("made an orc, walked five
-+/// steps, fell through the world"). The reference client never shows unloaded ground; this one
++/// steps, fell through the world"). The 1.12 game never shows unloaded ground; this one
 +/// streams it, so the guard stands in: when the ground under the body is not fully in and there is
 +/// no floor below the body or a step ahead of it, the body is held (gravity off) until its tile's
 +/// colliders arrive. Real ledges over loaded ground are untouched: the guard only acts while the

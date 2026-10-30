@@ -20,7 +20,6 @@ Layout of a repack folder (see packaging/build_repack.py):
     launcher/patch_notes.json   bundled patch notes
     launcher/version.json       this build's version
 """
-import hashlib
 import json
 import math
 import os
@@ -260,30 +259,6 @@ BROWSER_UA = ("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHT
               "Chrome/124.0 Safari/537.36 OpenVanilla-Launcher")
 
 
-def download_mirrors(url):
-    """The URL plus, for download site links, the item's direct storage servers (removed.invalid's
-    /download/ redirector sometimes answers 5xx for big files while the servers themselves are fine)."""
-    out = [url]
-    m = re.match(r"https?://(?:www\.)?removed\.invalid/download/([^/]+)/(.+)$", url or "")
-    if not m:
-        return out, None
-    item, path = m.groups()
-    try:
-        meta = http_json(f"https://removed.invalid/metadata/{item}", timeout=15)
-    except Exception:
-        return out, None
-    seen = set()
-    hosts = [(meta.get(k), meta.get("dir")) for k in ("d1", "d2", "server")]
-    for alt in meta.get("alternate_locations", {}).get("workable", []) or []:
-        hosts.append((alt.get("server"), alt.get("dir")))
-    for host, d in hosts:
-        if host and d and host not in seen:
-            seen.add(host)
-            out.insert(len(out) - 1, f"https://{host}{d}/{path}")
-    md5 = next((f.get("md5") for f in meta.get("files", []) if f.get("name") == urllib.parse.unquote(path)), None)
-    return out, md5
-
-
 LOCAL_HOSTS = ("127.0.0.1", "localhost", "::1")
 HOST_RE = re.compile(r"(?=.{1,253}$)([A-Za-z0-9]([A-Za-z0-9-]{0,61}[A-Za-z0-9])?\.)*[A-Za-z0-9]([A-Za-z0-9-]{0,61}[A-Za-z0-9])?|\[?[0-9A-Fa-f:.]+\]?")
 
@@ -354,39 +329,16 @@ def check_cancel(job):
         raise Cancelled()
 
 
-CLIENT_LINK_MODES = ("TEMP", "PACKED")
-
-
-def resolve_client_links(links):
-    """CLIENT_DOWNLOADS = TEMP | PACKED picks CLIENT_112_URL / CLIENT_335_URL from the
-    matching *_TEMP or *_PACKED line, so the stock-client downloads can be parked and packed
-    back in by changing one word in links.txt. A plain CLIENT_112_URL line still wins when no
-    switch is set (older links.txt files keep working)."""
-    mode = (links.get("CLIENT_DOWNLOADS") or "").strip().upper()
-    if mode not in CLIENT_LINK_MODES:
-        return links
-    for ver in ("112", "335"):
-        url = links.get(f"CLIENT_{ver}_URL_{mode}")
-        if url:
-            links[f"CLIENT_{ver}_URL"] = url
-    return links
-
-
 def apply_links_overrides(defaults, overrides):
     """Apply overrides from links.txt to the defaults dict."""
     if not overrides:
         return defaults
-    overrides = resolve_client_links(dict(overrides))
-    # Client download links
+    # The launcher's own engine download (our build). Game clients have no download link: players use
+    # the client they already have.
     clients = defaults.setdefault("clients", [])
     for c in clients:
-        cid = c.get("id")
-        if cid in ("openvanilla", "engine") and "OPENVANILLA_CLIENT_URL" in overrides:
+        if c.get("id") in ("openvanilla", "engine") and "OPENVANILLA_CLIENT_URL" in overrides:
             c["download_url"] = overrides["OPENVANILLA_CLIENT_URL"]
-        elif cid == "vanilla" and "CLIENT_112_URL" in overrides:
-            c["download_url"] = overrides["CLIENT_112_URL"]
-        elif cid == "wotlk" and "CLIENT_335_URL" in overrides:
-            c["download_url"] = overrides["CLIENT_335_URL"]
 
     if overrides.get("DISCORD_LOGIN_URL"):
         defaults["discord_login_url"] = overrides["DISCORD_LOGIN_URL"]
@@ -1745,7 +1697,11 @@ class Launcher(tk.Tk):
         return None
 
     def client_download(self, c=None):
+        """The engine's download (our build). A stock game client never has one: the player
+        chooses the folder of the client they already have."""
         c = c or self.client()
+        if c.get("type") == "exe":
+            return None
         if c.get("download_url"):
             return c["download_url"]
         if c["type"] == "engine" and self.update_info and self.update_info.get("url"):
@@ -2605,7 +2561,7 @@ class Launcher(tk.Tk):
             else:
                 self.wbutton(row, "Add to my clients", lambda e=e: self.workshop_add_client(e),
                              primary=not soon).pack(side="right", padx=(4, 12))
-            if e.get("url") and not soon and e.get("type") != "web":
+            if e.get("url") and not soon and e.get("type") == "engine":   # our engine only: never a game client
                 self.wbutton(row, "Download" if is_file_link(e["url"]) else "Get",
                              lambda e=e: self.workshop_get_client(e)).pack(side="right", padx=(0, 4))
             if e.get("page"):
@@ -2696,9 +2652,9 @@ class Launcher(tk.Tk):
             url = it.get("url")
             if url and kind == "mods":
                 self.wbutton(row, "Install", lambda u=url, n=it.get("name", "mod"): self.install_from_url(u, n), primary=True).pack(side="right", padx=12)
-            elif url:
-                label = "GitHub" if "github.com/" in url and not is_file_link(url) else "Download"
-                self.wbutton(row, label, lambda u=url, n=it.get("name", "repack"): self.fetch_or_open(u, n), primary=True).pack(side="right", padx=12)
+            elif url and not is_file_link(url):   # projects open their page; the launcher downloads no repack or client
+                label = "GitHub" if "github.com/" in url else "Open"
+                self.wbutton(row, label, lambda u=url: safe_open(u), primary=True).pack(side="right", padx=12)
             if it.get("homepage"):
                 self.wbutton(row, "Page", lambda u=it["homepage"]: safe_open(u)).pack(side="right", padx=(0, 4))
         submit = self.defaults.get("directory_submit_url") or self.community_links().get("portal")
@@ -2930,68 +2886,45 @@ class Launcher(tk.Tk):
 
     # ----- Host
 
-    def classic_target(self):
-        """Where a fresh 1.12.1 install goes (changeable on the setup page)."""
-        return self.settings.get("classic_target") or os.path.join(os.path.expanduser("~"), "Games", "WoW-1.12.1")
-
-    def _pick_classic_target(self):
-        start = os.path.dirname(self.classic_target())
-        parent = filedialog.askdirectory(parent=self, initialdir=start if os.path.isdir(start) else os.path.expanduser("~"),
-                                         title="Choose where to put Vanilla Client v1.3 (a new game folder is made inside)")
-        if parent:
-            self.settings["classic_target"] = os.path.join(os.path.normpath(parent), "WoW-1.12.1")
-            self.save_settings()
-            self.show_page("install", animate=False)
-
-    def _classic_part(self, c):
-        url = self.client_download(c) or ""
-        name = os.path.basename(urllib.parse.urlsplit(url).path)
-        part = os.path.join(os.path.dirname(self.classic_target()), name + ".part") if name else ""
-        return part if part and os.path.isfile(part) else None
-
-    def _discard_part(self, part):
-        if messagebox.askyesno("Discard download?", "Delete the partly downloaded game? The next install starts from zero.", parent=self):
-            try:
-                os.remove(part)
-            except OSError as e:
-                self.notice(f"Couldn't delete it: {e}"[:110], RED, 5)
-            self.show_page("install", animate=False)
-
     def page_install(self):
-        """Set up the 1.12.1 game: install a fresh copy into a new folder, or use one already on this PC."""
+        """Set up the 1.12.1 game: choose the folder of the client the player already has, or play in the browser.
+        The launcher never downloads a game client."""
         c = next((k for k in list(self.clients) + self.client_catalog() if k.get("type") == "exe"
                   and int(k.get("build", 0) or 0) == wow_import.BUILD), self.client())   # the 1.12.1 one (Solo), even when parked
-        x, y, w, h = self.big_panel("SET UP VANILLA CLIENT V1.3", "download", "Open Vanilla needs the classic Vanilla game (build 5875)")
+        x, y, w, h = self.big_panel("SET UP THE 1.12.1 GAME", "folder", "Use the 1.12.1 game client you already have")
         cw, ch = (w - 20) // 2, 250
-        url = self.client_download(c)
-        # get the game: the client's own page opens in the browser (no download inside the launcher)
-        self.card(x, y, cw, ch, "new", "inst_new")
-        self.shadow_text(x + 22, y + 26, "GET THE GAME", 11, GOLD)
+        # your own client: choose its folder
+        self.card(x, y, cw, ch, "have", "inst_have")
+        self.shadow_text(x + 22, y + 26, "USE YOUR OWN CLIENT", 11, GOLD)
         self.cv.create_text(x + 22, y + 50, anchor="nw", fill=TEXT, font=font(9), width=cw - 44, tags="page",
-                            text="Don't have it yet? This opens Vanilla Client v1.3's page on the download site "
-                                 "in your browser. Download it there, unzip it anywhere (for example C:\\Games\\Vanilla), "
-                                 "then come back and pick its Data folder.")
-        if not url:
-            self.cv.create_text(x + 22, y + ch - 42, anchor="w", text="No download page is set (links.txt: CLIENT_112_URL_TEMP).",
-                                fill=AMBER, font=font(9), tags="page")
-        else:
-            self.pill_button(x + 22, y + ch - 60, cw - 44, 38, "OPEN THE DOWNLOAD PAGE", lambda: self.open_client_page(c),
-                             style="gold", size=10, icon="download")
-        # existing folder
-        x2 = x + cw + 20
-        self.card(x2, y, cw, ch, "have", "inst_have")
-        self.shadow_text(x2 + 22, y + 26, "I ALREADY HAVE IT", 11, GOLD)
-        self.cv.create_text(x2 + 22, y + 50, anchor="nw", fill=TEXT, font=font(9), width=cw - 44, tags="page",
-                            text="Pick your game's Data folder on this PC (or the folder with WoW.exe in it). "
+                            text="Use the 1.12.1 game client you already have: choose its folder (or its Data folder). "
                                  "The launcher checks it's the right version and remembers it. Your game files are never changed.")
         cur = self.settings.get("wow_folder")
         if cur and os.path.isdir(cur):
-            self.cv.create_text(x2 + 22, y + 128, anchor="nw", text="CURRENT FOLDER", fill=MUTED, font=font(8, "bold"), tags="page")
-            self.cv.create_text(x2 + 22, y + 148, anchor="nw", text=cur, fill=TEXT, font=font(9), width=cw - 44, tags="page")
-        self.pill_button(x2 + 22, y + ch - 60, cw - 44, 38, "SELECT EXISTING FOLDER", lambda: self.choose_install(c),
-                         style="ghost", size=10, icon="folder")
-        self.cv.create_text(x + w // 2, y + ch + 30, anchor="n", fill=MUTED, font=font(8), width=w - 40, justify="center", tags="page",
-                            text="The game comes from the download site. Open Vanilla doesn't host Blizzard's game files.")
+            self.cv.create_text(x + 22, y + 128, anchor="nw", text="CURRENT FOLDER", fill=MUTED, font=font(8, "bold"), tags="page")
+            self.cv.create_text(x + 22, y + 148, anchor="nw", text=cur, fill=TEXT, font=font(9), width=cw - 44, tags="page")
+        self.pill_button(x + 22, y + ch - 60, cw - 44, 38, "CHOOSE ITS FOLDER", lambda: self.choose_install(c),
+                         style="gold", size=10, icon="folder")
+        # or play in the browser
+        x2 = x + cw + 20
+        self.card(x2, y, cw, ch, "new", "inst_new")
+        self.shadow_text(x2 + 22, y + 26, "PLAY IN YOUR BROWSER", 11, GOLD)
+        self.cv.create_text(x2 + 22, y + 50, anchor="nw", fill=TEXT, font=font(9), width=cw - 44, tags="page",
+                            text="No client on this PC? Play the realm in your web browser instead.")
+        if self.web_url():
+            self.pill_button(x2 + 22, y + ch - 60, cw - 44, 38, "PLAY IN BROWSER", self._install_browser,
+                             style="ghost", size=10, icon="web")
+        else:
+            self.cv.create_text(x2 + 22, y + ch - 42, anchor="w", text="This server has no browser play.",
+                                fill=MUTED, font=font(9), tags="page")
+
+    def _install_browser(self):
+        """The install page's browser option: switch to BROWSER play when the launcher offers it, else open it."""
+        if "browser" in [k for k, _ in self.play_modes()]:
+            self.set_play_mode("browser")
+            self.show_page("play", animate=False)
+        else:
+            self.play_web()
 
     # ----- HOST > Dedicated server (launcher/server_host.py: SPP's services, the website and Studio, from here)
 
@@ -5840,7 +5773,7 @@ class Launcher(tk.Tk):
             tk.Label(line, text="Location", bg="#17121c", fg=MUTED, font=font(8), width=10, anchor="w").pack(side="left")
             tk.Label(line, text=where, bg="#17121c", fg=TEXT if exe else MUTED, font=font(8), anchor="w").pack(side="left", fill="x", expand=True)
             self.wbutton(line, "Browse…", lambda c=c: self.pick_client_path(c)).pack(side="right")
-            if not adv:   # the download link is a developer control (Advanced)
+            if not adv or c["type"] == "exe":   # the download link is a developer control (Advanced), never for a game client
                 tk.Frame(row, bg="#17121c", height=8).pack()
                 continue
             line2 = tk.Frame(row, bg="#17121c")
@@ -5854,14 +5787,14 @@ class Launcher(tk.Tk):
             e.bind("<Return>", lambda ev, c=c, e=e: self.set_client_link(c, e.get()))
             self.wbutton(line2, "Save", lambda c=c, e=e: self.set_client_link(c, e.get())).pack(side="left", padx=6)
 
-        section("VANILLA CLIENT V1.3 GAME DATA  (for the Open Vanilla desktop client)")
+        section("1.12.1 GAME DATA  (for the Open Vanilla desktop client)")
         wow = self.settings.get("wow_folder", "")
         data = wow_data_dir(wow)
         line = tk.Frame(inner, bg=bgc)
         line.pack(fill="x")
         tk.Label(line, text=wow or "Not set", bg=bgc, fg=TEXT if data else RED, font=font(9), anchor="w").pack(side="left", fill="x", expand=True)
         self.wbutton(line, "Browse…", self.pick_wow_folder).pack(side="right")
-        tk.Label(inner, text="Your own English Vanilla Client v1.3 (build 5875). Open Vanilla reads its Data folder and never writes to it."
+        tk.Label(inner, text="Your own English 1.12.1 game client (build 5875). Open Vanilla reads its Data folder and never writes to it."
                              + ("" if not wow or data else "  ⚠ no .MPQ files found there"),
                  bg=bgc, fg=MUTED, font=font(8)).pack(anchor="w")
 
@@ -5914,8 +5847,8 @@ class Launcher(tk.Tk):
             tk.Label(row, text=what, bg=bgc, fg=MUTED, font=font(8)).pack(side="left", padx=8)
 
         section("DOWNLOADS")
-        note("Vanilla Client v1.3 isn't downloaded inside the launcher: GET THE GAME opens its page in your browser. "
-             "Other downloads can be cancelled from the loading bar and resume where they stopped.")
+        note("The launcher never downloads a game client: use the one you already have, or play in your browser. "
+             "Other downloads can be cancelled from the loading bar.")
 
         section("ACCOUNT & SECURITY")
         toggle("Remember my password on this PC (encrypted for your Windows account)", "remember")
@@ -6004,6 +5937,8 @@ class Launcher(tk.Tk):
         self.save_settings()
 
     def set_client_link(self, c, url):
+        if c.get("type") == "exe":
+            return   # game clients have no download link
         url = url.strip()
         if url == (c.get("download_url") or ""):
             return
@@ -6226,13 +6161,11 @@ class Launcher(tk.Tk):
         if not self.client_exe(c):
             url = self.client_download(c)
             if url:
-                if c["type"] == "exe":  # a stock client: the player points us at their own install
-                    return False, f"SET UP {name}", "Press PLAY to get Vanilla Client v1.3 or pick your game's Data folder.", "amber", "choose_install"
                 if is_file_link(url):
                     return False, f"GET {name}", "Click here to download it, or set its folder in Settings → Game clients.", "amber", "download_client"
                 return False, f"SET UP {name}", "Click here for how to get it, or set its folder in Settings → Game clients.", "amber", "download_client"
             if c["type"] == "exe":
-                return False, f"SET UP {name}", "Press PLAY to get Vanilla Client v1.3 or pick your game's Data folder.", "amber", "choose_install"
+                return False, f"SET UP {name}", "Press PLAY to choose the folder of your 1.12.1 game client.", "amber", "choose_install"
             label = f"{name} · COMING SOON" if c.get("coming_soon") else f"SET UP {name}"
             return False, label, "Add its download link or install folder in Settings → Game clients.", "amber", "settings"
         if c["type"] == "engine" and not wow_data_dir(self.settings.get("wow_folder", "")):
@@ -7058,7 +6991,7 @@ class Launcher(tk.Tk):
         self.settings["wow_folder"] = root
         self._wow_issues = []
         self._client_override(c, "path", root)  # saves settings
-        self.notice("Vanilla Client v1.3 found. You're ready to play.", GREEN, 5)
+        self.notice("1.12.1 game client found. You're ready to play.", GREEN, 5)
         self.update_status()
         if self.page in ("play", "settings", "install"):
             self.show_page("play" if self.page == "install" else self.page, animate=False)
@@ -7068,7 +7001,7 @@ class Launcher(tk.Tk):
         if self.own_folder_client():   # 3.3.5a: the player's own folder, never a download
             self.choose_install()
             return
-        if self.client()["type"] == "exe":  # stock clients: install a fresh copy or pick the player's own
+        if self.client()["type"] == "exe":  # stock clients: the setup page (choose your own folder, or play in the browser)
             self.show_page("install")
             return
         url = self.client_download()
@@ -7077,218 +7010,6 @@ class Launcher(tk.Tk):
             self.show_page("settings")
             return
         self.fetch_or_open(url, self.client()["name"])
-
-    def open_client_page(self, c=None):
-        """The 1.12.1 client is never downloaded inside the launcher: open its page in the player's browser."""
-        url = self.client_download(c or self.client())
-        if not url:
-            self.notice("No download page set for this client yet (Settings → Game clients).", AMBER, 5)
-            return
-        safe_open(url)
-        self.notice("Opened in your browser. When it's unzipped, press SELECT EXISTING FOLDER.", GREEN, 8)
-
-    def install_classic(self, c=None, target=None):
-        """Download the 1.12.1 client zip into a new folder on the energy bar, extract it, check it, lock it in.
-        A stopped download resumes from its .part file the next time."""
-        c = c or self.client()
-        url = self.client_download(c)
-        if not url:
-            return
-        self.download_unpack(url, "VANILLA CLIENT V1.3", target or self.classic_target(), "wow.exe",
-                             lambda job: self._classic_done(c, job), "Vanilla Client v1.3")
-
-    def download_unpack(self, url, label, target, marker, on_done, what):
-        """Download a zip on the energy bar (resumable, mirrors, checksum when known), unpack it into target and
-        hand on_done the job; job["root"] = the unpacked folder that holds `marker`."""
-        if not is_file_link(url):
-            safe_open(url)
-            self.notice(f"Opened the {what} download page in your browser")
-            return
-        if self.job and not self.job.get("done"):
-            self.notice("Another download is still running.", AMBER)
-            return
-        parent = os.path.dirname(target)
-        if os.path.isdir(target) and os.listdir(target) and not any(
-                f.lower().endswith(".part") or f.lower().endswith(".zip") for f in os.listdir(parent) if os.path.isfile(os.path.join(parent, f))):
-            if not messagebox.askyesno("Folder isn't empty", f"{target} already has files in it.\n\nInstall into it anyway?", parent=self):
-                return
-        if not self.confirm_download(url, what, target):
-            return
-        fresh = not (os.path.isdir(target) and os.listdir(target))
-        try:
-            os.makedirs(target, exist_ok=True)
-        except OSError as e:
-            self.notice(f"Can't create {target}: {e}"[:110], RED, 6)
-            return
-        name = os.path.basename(urllib.parse.urlsplit(url).path) or "download.zip"
-        zpath = os.path.join(parent, name)
-        part = zpath + ".part"
-        job = self.job = dict(label=label, verb="DOWNLOADING", progress=0.0, received=0, total=0, speed=0, path=zpath)
-
-        def download():
-            if os.path.isfile(zpath) and zipfile.is_zipfile(zpath):
-                return  # already downloaded earlier (e.g. the extract was interrupted)
-            mirrors, job["md5"] = download_mirrors(url)
-            total, last = 0, None
-            for attempt in range(len(mirrors) * 3):
-                src = mirrors[attempt % len(mirrors)]
-                if attempt >= len(mirrors):
-                    job.update(detail=f"Server busy, retrying ({attempt + 1})…")
-                    time.sleep(min(30, 3 * attempt))
-                try:
-                    total = self._fetch_into(src, part, parent, job)
-                    last = None
-                    break
-                except Cancelled:
-                    raise
-                except urllib.error.HTTPError as e:
-                    if e.code == 416 and os.path.isfile(part):  # nothing left to fetch: the .part is complete
-                        last = None
-                        break
-                    last = e
-                    if e.code in (401, 403, 404):
-                        continue  # try the next mirror straight away
-                except (urllib.error.URLError, OSError, TimeoutError) as e:
-                    if isinstance(e, OSError) and str(e).startswith("Not enough disk space"):
-                        raise
-                    last = e
-            if last:
-                raise OSError(f"Couldn't download it ({last}). Press the download button again to resume.")
-            if total and os.path.getsize(part) < total:
-                raise OSError("The download stopped early. Press the download button again to resume.")
-            job.pop("detail", None)
-            if job.get("md5"):
-                job.update(verb="VERIFYING", progress=0.0, received=0, speed=0, detail="Checking the download…")
-                h, done, size = hashlib.md5(), 0, os.path.getsize(part)  # nosec B324 - removed.invalid publishes md5; this checks for corruption
-                job["total"] = size
-                with open(part, "rb") as f:
-                    for chunk in iter(lambda: f.read(4 * 1024 * 1024), b""):
-                        check_cancel(job)
-                        h.update(chunk)
-                        done += len(chunk)
-                        job.update(received=done, progress=done / size)
-                if h.hexdigest().lower() != job["md5"].lower():
-                    os.remove(part)  # corrupt: never resume from it
-                    raise OSError("The download was corrupted (checksum mismatch). Press the download button to try again.")
-            os.replace(part, zpath)
-
-        def extract():
-            job.update(verb="EXTRACTING", progress=0.0, received=0, speed=0, detail="Unpacking…")
-            root_real = os.path.realpath(target)
-            with zipfile.ZipFile(zpath) as z:
-                infos = [i for i in z.infolist() if not i.is_dir()]
-                total = sum(i.file_size for i in infos) or 1
-                job["total"] = total
-                done = 0
-                for i in infos:
-                    check_cancel(job)
-                    dest = os.path.realpath(os.path.join(target, i.filename))
-                    if not dest.startswith(root_real + os.sep):
-                        continue  # never write outside the target folder
-                    os.makedirs(os.path.dirname(dest), exist_ok=True)
-                    with z.open(i) as src, open(dest, "wb") as out:
-                        shutil.copyfileobj(src, out, 1024 * 1024)
-                    done += i.file_size
-                    job.update(received=done, progress=done / total, detail=f"{fmt_size(done)} of {fmt_size(total)}")
-            found = find_marker()
-            if found:
-                return found
-            # some zips (the removed.invalid 1.12.1 one) hold the Windows installer instead of the game folder
-            setup = next((os.path.join(d, f) for d, _ds, fs in os.walk(target) for f in fs
-                          if f.lower().endswith(".exe") and "setup" in f.lower()), None)
-            if setup and sys.platform == "win32":
-                job.update(verb="INSTALLING", progress=0.5, received=0, total=0, speed=0,
-                           detail="Running the game installer (its window shows the progress)…")
-                game = os.path.join(target, "World of Warcraft")
-                subprocess.run([setup, "/SILENT", "/SUPPRESSMSGBOXES", "/NORESTART", "/NOICONS", f"/DIR={game}"],
-                               check=False)  # nosec B603 - the installer the player chose to download
-                found = find_marker()
-                if found:
-                    shutil.rmtree(os.path.dirname(setup), ignore_errors=True)  # installer files no longer needed
-                    return found
-            raise OSError(f"The zip didn't contain {marker}.")
-
-        def find_marker():
-            """The folder holding the marker file (zips usually wrap everything in one top folder)."""
-            for dirpath, _dirs, files in os.walk(target):
-                if any(f.lower() == marker for f in files):
-                    return dirpath
-            return None
-
-        def work():
-            try:
-                download()
-                job["root"] = extract()
-                try:
-                    os.remove(zpath)  # the game is unpacked; the zip is no longer needed
-                except OSError:
-                    pass
-                job.update(done=True, progress=1.0)
-            except Cancelled:
-                job.update(done=True, cancelled=True)
-                if job.get("verb") == "EXTRACTING" and fresh:
-                    shutil.rmtree(target, ignore_errors=True)  # half-unpacked: the next install starts clean
-            except Exception as e:
-                job.update(done=True, error=str(e))
-            self.after(0, on_done, job)
-
-        threading.Thread(target=work, daemon=True).start()
-        self.notice(f"Downloading {what}. You can keep using the launcher.", GOLD, 5)
-        self.show_page("play", animate=False)
-        self.update_status()
-
-    @staticmethod
-    def _fetch_into(src, part, parent, job):
-        """Append src to the .part file (resuming with a Range request). Returns the full file size."""
-        if not src.lower().startswith(("https://", "http://")):
-            raise OSError("not a web download link")
-        have = os.path.getsize(part) if os.path.isfile(part) else 0
-        headers = {"User-Agent": BROWSER_UA, "Accept": "*/*"}
-        if have:
-            headers["Range"] = f"bytes={have}-"
-        with urllib.request.urlopen(urllib.request.Request(src, headers=headers), timeout=45) as r:
-            if have and r.status != 206:
-                have = 0  # the server ignored the resume: start over
-            total = int(r.headers.get("Content-Length") or 0) + have
-            free = shutil.disk_usage(parent).free
-            if total and free < (total - have) + total * 1.1 + 200e6:
-                raise OSError(f"Not enough disk space: need about {fmt_size((total - have) + total * 1.1)}, "
-                              f"{fmt_size(free)} free on that drive.")
-            job["total"] = total
-            job.pop("detail", None)
-            t0, got = time.time(), have
-            with open(part, "ab" if have else "wb") as out:
-                while True:
-                    check_cancel(job)
-                    chunk = r.read(512 * 1024)
-                    if not chunk:
-                        break
-                    out.write(chunk)
-                    got += len(chunk)
-                    job.update(received=got, progress=(got / total) if total else 0,
-                               speed=(got - have) / max(0.001, time.time() - t0))
-        if total and got < total:
-            raise OSError("connection dropped")
-        return total
-
-    def _classic_done(self, c, job):
-        self.job = None
-        if job.get("cancelled"):
-            part = job["path"] + ".part"
-            got = os.path.getsize(part) if os.path.isfile(part) else 0
-            self.notice(f"Download paused at {fmt_size(got)}. Press DOWNLOAD & INSTALL to resume." if got
-                        else "Install cancelled.", AMBER, 8)
-        elif job.get("error"):
-            self.notice(f"Install failed: {job['error']}"[:110], RED, 8)
-        else:
-            root = job["root"]
-            issues = wow_problems(root)
-            if issues:
-                self.notice(f"Installed to {root}, but: {issues[0]}"[:110], AMBER, 8)
-            else:
-                self._lock_in(c, root)
-                self.notice(f"Vanilla Client v1.3 installed to {root}. Ready to play.", GREEN, 8)
-        self.update_status()
 
     def get_server(self):
         """The server software is built in (HOST > Dedicated server); there is nothing to download."""

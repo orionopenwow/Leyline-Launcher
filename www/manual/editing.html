@@ -160,7 +160,7 @@ end)</code></pre>
         </section>
         <section class="ch" id="patch-z">
           <h2>The client patch (patch-Z) <a class="anchor" href="#patch-z" aria-label="Link to this">#</a></h2>
-          <p>The Vanilla Remastered addons, art, loading screens, custom models and a few data tables ship to clients in one small archive, <code>patch-Z.MPQ</code>, the only archive in the repo. Rebuild it after changing those: <code>python3 tools/sync_patchz.py</code> (with StormLib), or <strong>Rebuild patch-Z</strong> in the devkit. <code>--check</code> only reports what would change.</p>
+          <p>The Vanilla Remastered addons, art, loading screens, custom models and two race/class tables ship to clients in one small archive, <code>patch-Z.MPQ</code>. It isn't in the repo: build it with <code>python3 tools/sync_patchz.py --dbc-dir DIR</code>, where <code>DIR</code> holds your own 1.12.1 client's <code>CharBaseInfo.dbc</code> and <code>SkillRaceClassInfo.dbc</code> (the repo keeps only our changes to them, in <code>realm/classicplus/dbc_deltas/</code>). Without <code>--dbc-dir</code> it builds the archive without those tables. The realm builds its own (<code>hetzner/openvanilla_build_patchz.sh</code>). <code>--check</code> only reports what would change.</p>
         </section>
         <section class="ch" id="share">
           <h2>Share what you made <a class="anchor" href="#share" aria-label="Link to this">#</a></h2>

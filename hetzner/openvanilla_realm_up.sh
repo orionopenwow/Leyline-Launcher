@@ -62,7 +62,7 @@ PY
 
 say "1/6 Downloading the Open Vanilla files"
 mkdir -p "$CP"
-for f in patch-Z.MPQ bridge.js bridge.js.br bridge.js.gz addons-loader.js classicplus_races.sql classicplus_weapons.sql classicplus_starpouch.sql classicplus_retired_vendor_cleanup.sql classicplus_combo_census.sql classicplus_characters.sql classicplus_classquests.sql classicplus_starpouch_money.sql classicplus_xp_rollback.sql classicplus_trainers.sql classicplus_achievements.sql classicplus_pace.sql classicplus_bugs.sql classicplus_herald_ai.sql classicplus_herald_rotations.sql classicplus_world.sql classicplus_world_models.sql classicplus_world_models.json apply_models_dbc.py openvanilla_gameplay_conf.sh gen_outfits.py fix_skillraceclassinfo.py; do
+for f in bridge.js bridge.js.br bridge.js.gz addons-loader.js classicplus_races.sql classicplus_weapons.sql classicplus_starpouch.sql classicplus_retired_vendor_cleanup.sql classicplus_combo_census.sql classicplus_characters.sql classicplus_classquests.sql classicplus_starpouch_money.sql classicplus_xp_rollback.sql classicplus_trainers.sql classicplus_achievements.sql classicplus_pace.sql classicplus_bugs.sql classicplus_herald_ai.sql classicplus_herald_rotations.sql classicplus_world.sql classicplus_world_models.sql classicplus_world_models.json apply_models_dbc.py openvanilla_gameplay_conf.sh gen_outfits.py fix_skillraceclassinfo.py; do
   curl -fsSL "$RAW/realm/classicplus/$f" -o "$CP/$f.new" && mv "$CP/$f.new" "$CP/$f"
 done
 # page layer (account dock, login backdrop, owdiag), bind-mounted into the realm at /app/www/ow
@@ -79,12 +79,14 @@ if curl -fsSL "$RAW/realm/www/manifests/index.json" -o "$CP/www/manifests/index.
 fi
 find "$CP/www" -type f -exec chmod 644 {} +; find "$CP/www" -type d -exec chmod 755 {} +
 # helper scripts: server weapon-skill DBC fix and push-to-deploy hot updates
-for f in openvanilla_server_dbc.sh openvanilla_server_models.sh openvanilla_hotpatch.sh openvanilla_rename_tables.sh ov_gm.sh; do
+for f in openvanilla_build_patchz.sh openvanilla_server_dbc.sh openvanilla_server_models.sh openvanilla_hotpatch.sh openvanilla_rename_tables.sh ov_gm.sh; do
   curl -fsSL "$RAW/hetzner/$f" -o "$CP/$f.new" && mv "$CP/$f.new" "$CP/$f"
 done
 find "$CP" -maxdepth 1 -type f -exec chmod 644 {} +; chmod 755 "$CP"/*.sh; ls -la "$CP"
 
 say "2/6 Classic+ client files (addons, art, modern race/class combos)"
+# patch-Z is built here (not downloaded): our files plus client tables made from this realm's own DBCs
+bash "$CP/openvanilla_build_patchz.sh"
 # copy then rename: a staging stack hard-links the live client data, so never write into the old file
 cp "$CP/patch-Z.MPQ" "$CLIENT_DATA/patch-Z.MPQ.new" && mv -f "$CLIENT_DATA/patch-Z.MPQ.new" "$CLIENT_DATA/patch-Z.MPQ"
 ls -la "$CLIENT_DATA" | grep -i patch

@@ -403,7 +403,7 @@
           <p>On a fresh Ubuntu 22.04/24.04 server, with your domain's A record pointing at it, run as root:</p>
           <pre><code>curl -fsSL https://raw.githubusercontent.com/orionopenwow/OpenVanilla/stable/hetzner/wenilla_up.sh -o wenilla_up.sh
 bash wenilla_up.sh your.domain.name</code></pre>
-          <p>It installs Docker, locks the firewall down to 22/80/443, fetches the Vanilla Client v1.3 data onto the server and starts the realm (CMaNGOS classic, the browser client and HTTPS). Then add the Open Vanilla extras (the Vanilla Remastered addons, Discord sign-in, the sign-up feed) with:</p>
+          <p>It installs Docker, locks the firewall down to 22/80/443, checks the Data folder of your own 1.12.1 client that you copied to <code>/srv/client/Data</code> (it never downloads a client) and starts the realm (CMaNGOS classic, the browser client and HTTPS). Then add the Open Vanilla extras (the Vanilla Remastered addons, Discord sign-in, the sign-up feed) with:</p>
           <pre><code>curl -fsSL https://raw.githubusercontent.com/orionopenwow/OpenVanilla/stable/hetzner/openvanilla_realm_up.sh -o openvanilla_realm_up.sh
 bash openvanilla_realm_up.sh</code></pre>
           <p>Both are safe to run again.</p>

@@ -72,7 +72,7 @@ index af38230e..b11c542a 100644
 +/// splines while the player watches with hands off the keys. With only raw input stamping the
 +/// clock, the 5-minute leg sat Herald down and marked the player AFK, and the 30-minute leg asked
 +/// for a logout mid-session (a player's report, 2026-10-21). A taxi flight is not presence: it
-+/// keeps the reference's timer, so a long flight still goes AFK as it does in 1.12. A charge or a
++/// keeps the stock idle timer, so a long flight still goes AFK as it does in 1.12. A charge or a
 +/// fear is a server ride too, too short to matter either way.
 +pub(crate) fn ride_is_presence(riding: bool, on_taxi: bool) -> bool {
 +    riding && !on_taxi
@@ -108,7 +108,7 @@ index af38230e..b11c542a 100644
 +    #[test]
 +    fn a_server_ride_is_presence_but_a_taxi_flight_is_not() {
 +        assert!(ride_is_presence(true, false), "Herald walking the player resets the timer");
-+        assert!(!ride_is_presence(true, true), "a flight keeps the reference's auto-AFK");
++        assert!(!ride_is_presence(true, true), "a flight keeps the stock auto-AFK");
 +        assert!(!ride_is_presence(false, false), "standing still is idle");
 +    }
 +

@@ -164,7 +164,7 @@ The Vanilla Remastered windows, icons and frames are drawn by scripts in `tools/
 
 ## The client patch (patch-Z) {#patch-z}
 
-The Vanilla Remastered addons, art, loading screens, custom models and a few data tables ship to clients in one small archive, `patch-Z.MPQ`, the only archive in the repo. Rebuild it after changing those: `python3 tools/sync_patchz.py` (with StormLib), or **Rebuild patch-Z** in the devkit. `--check` only reports what would change.
+The Vanilla Remastered addons, art, loading screens, custom models and two race/class tables ship to clients in one small archive, `patch-Z.MPQ`. It isn't in the repo: build it with `python3 tools/sync_patchz.py --dbc-dir DIR`, where `DIR` holds your own 1.12.1 client's `CharBaseInfo.dbc` and `SkillRaceClassInfo.dbc` (the repo keeps only our changes to them, in `realm/classicplus/dbc_deltas/`). Without `--dbc-dir` it builds the archive without those tables. The realm builds its own (`hetzner/openvanilla_build_patchz.sh`). `--check` only reports what would change.
 
 ## Share what you made {#share}
 

@@ -102,8 +102,7 @@
       "type": "exe",
       "exe": "WoW.exe",
       "build": 5875,
-      "realmlist": "realmlist.wtf",
-      "download_url": "https://removed.invalid/"
+      "realmlist": "realmlist.wtf"
     },
     {
       "id": "openvanilla",
@@ -122,5 +121,5 @@
       "build": 5875
     }
   ],
-  "_note_clients": "WrathUnleashed (3.3.5a) is the only realm: the HOME dropdown offers the player's own 3.3.5a client, which they point at their own game folder (never downloaded). The Vanilla 1.12.1 stock client and the engine are parked: Workshop > CLIENTS still lists them. Move entries between clients and clients_parked to change that."
+  "_note_clients": "WrathUnleashed (3.3.5a) is the only realm: the HOME dropdown offers the player's own 3.3.5a client, which they point at their own game folder (never downloaded). Game clients never have a download link: players choose the folder of the client they already have, or play in the browser. The Vanilla 1.12.1 stock client and the engine are parked: Workshop > CLIENTS still lists them. Move entries between clients and clients_parked to change that."
 }
