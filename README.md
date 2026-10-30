@@ -150,26 +150,38 @@ Every address the website and launcher use lives in `links.txt`, a plain text fi
 ## Repository layout
 
 ```
-Data/Interface/   the Vanilla Remastered addon suite (and the in-game Herald addon) and its art, packed into realm/classicplus/patch-Z.MPQ
-launcher/         desktop launcher (Python, frozen to an .exe by packaging/build_repack.py)
-autopilot/        Herald Autopilot, the desktop app: goals, rules, sim, learning (Herald Autopilot.bat runs it)
-www/              website, browser client page and downloads (published to GitHub Pages)
-realm/            the live realm: wenilla-realm and CMaNGOS patches, Vanilla Remastered SQL, patch-Z
-hetzner/          server scripts (realm up, hotpatch, Herald, Herald self-bot, backups) run on the Linux host
-bot/              Herald (the Discord bot and the autopilot/learning API) and the one-time Discord setup scripts
-studio/           Server Studio, the realm admin web app (studio_server.py runs it)
-solo/             the offline single-player realm (play_local.py runs it)
+What the launcher and the website need
+launcher/         desktop launcher (Python, frozen to an .exe by packaging/build_repack.py); its art in launcher/assets
 packaging/        release builds: build_repack.py, build_server.py, the installer (installer/OpenVanilla.iss), the signed
-                  update manifest (release_manifest.py) and every GitHub workflow (workflows/)
-forge/            Vanilla Forge, the creator app (Rust + Tauri): forge/README.md; Vanilla Forge.bat runs it
-devkit/           tests (lua sim, heraldlite, staging), audit.py and repo tools
-tools/            art generators and content tools (tools/autopilot plans Herald's routes)
-docs/             architecture notes, the addon report, plans
-Play Leyline Launcher.bat  opens the launcher from source;  Play Solo.bat  offline world;  Host a Realm.bat  Leyline Server;
-Vanilla Forge.bat  opens Vanilla Forge (the creator app)
+                  update manifest (release_manifest.py, live_content.py) and the source of every GitHub workflow (workflows/)
+www/              the website (GitHub Pages): pages, browser client page, Workshop JSON, manual, downloads
+Data/Interface/   the Vanilla Remastered addon suite the launcher ships (app/addons), and its own art
+workshop/         the Workshop catalogue (one .yml per addon) that tools/workshop_build.py turns into www/community/workshop
+agent/            the AI starter kit the launcher copies (Settings > AI)
+solo/             Play Solo's config templates and server patches (play_local.py runs it, frozen into the launcher)
+studio/           Server Studio, the realm admin web app (frozen into the launcher, studio_server.py runs it)
+autopilot/        Herald Autopilot, the desktop app (Herald Autopilot.bat; shipped in the Server zip)
+assets/           the Leyline logo sources (assets/branding) and the Server Host's logo and gems
+asset_server.py, server_control.py, launcher_gui.py, play_local.py, set_realm.py, authcheck.py, studio_server.py,
+openvanilla_server.py
+                  the host / solo server set, which import each other from the root (the launcher freezes some in;
+                  packaging/build_server.py zips the rest as OpenVanilla-Server.zip)
 links.txt         every website, realm and download address
-asset_server.py, server_control.py, launcher_gui.py, play_local.py, set_realm.py, authcheck.py, studio_server.py
-                  the host / solo server set, which import each other from the root
+tests/            the test suite (python3 -m pytest -q tests; the GUI tests under xvfb-run)
+
+The live realm and the other apps (not part of the launcher build)
+realm/            the live realm: wenilla-realm and CMaNGOS patches, Vanilla Remastered SQL, Warfront/Duels patch-Z
+hetzner/, host/   server scripts run on the Linux host, and the cloud-init / ovhost installers
+bot/, relay/      Herald (the Discord bot and autopilot API) and the relay service the realm runs
+legend/           signed character records (Legend v1), issued by the Duels realm
+forge/            Vanilla Forge, the creator app (Rust + Tauri): forge/README.md; Vanilla Forge.bat runs it
+devkit/           checks (check.py), the Lua sim, heraldlite, staging, load lab, UI Studio
+tools/            art generators and content tools (each art script writes Data/Interface's textures)
+art/              the owner's UI kit and art sources the generators read
+docs/             architecture notes, the player manual's source (docs/manual), plans
+
+Play Leyline Launcher.bat  opens the launcher from source;  Play Solo.bat  offline world;  Host a Realm.bat  Leyline Server;
+Vanilla Forge.bat  opens Vanilla Forge (the creator app);  Model_Porter.bat  the model porter
 ```
 
 `_local/` (ignored) holds old builds, database dumps, logs and caches; it is never committed.
