@@ -103,7 +103,7 @@ Your Claude Code helpers as heroes in a vanilla inn. You walk the inn as your ow
 | **From this folder** | Double-click **`Vanilla Forge.bat`**. The first time it downloads the portable Forge into `forge\bin` (checked by its SHA-256); after that it opens straight away. `Vanilla Forge.bat --update` gets the newest. |
 | **Portable zip** | Download `VanillaForge-<version>-Windows.zip` from the [Forge page](https://openvanilla.app/forge.html) or the [`forge-v*` releases](https://github.com/orionopenwow/Leyline-Launcher/releases), unzip it anywhere and run **`Vanilla Forge.exe`**. Nothing to install. |
 | **Installer** | `VanillaForge-Setup-<version>.exe` from the same places; then Vanilla Forge is in the Start menu. |
-| **From source** | With Rust installed: `cd forge` then `cargo run --release -p openvanilla-forge` (or `cargo run -p forge-cli -- serve` for the app in your browser). See [forge/README.md](forge/README.md). |
+| **From source** | With Rust installed: `cd forge` then `cargo run --release -p openvanilla-forge` (or `cargo run -p forge-cli -- serve` for the app in your browser). See [labs/forge/README.md](labs/forge/README.md). |
 
 Forge isn't code-signed yet, so Windows SmartScreen may ask once ("More info", then "Run anyway"). It reads your game and never changes it: every test runs in a copy.
 
@@ -174,7 +174,7 @@ realm/            the live realm: wenilla-realm and CMaNGOS patches, Vanilla Rem
 labs/openvanilla-realm/hetzner/, host/   server scripts run on the Linux host, and the cloud-init / ovhost installers
 labs/herald/, labs/relay/      Herald (the Discord bot and autopilot API) and the relay service the realm runs
 legend/           signed character records (Legend v1), issued by the Duels realm
-forge/            Vanilla Forge, the creator app (Rust + Tauri): forge/README.md; Vanilla Forge.bat runs it
+forge/            Vanilla Forge, the creator app (Rust + Tauri): labs/forge/README.md; Vanilla Forge.bat runs it
 devkit/           checks (check.py), the Lua sim, heraldlite, staging, load lab, UI Studio
 tools/            art generators and content tools (each art script writes Data/Interface's textures)
 art/              the owner's UI kit and art sources the generators read

@@ -24,7 +24,7 @@ sys.path.insert(0, os.path.join(HERE, "..", "launcher"))
 import ed25519  # noqa: E402
 
 SIGNED_PREFIX = b"openvanilla-forge-pack/1\n"
-SCHEMA = os.path.join(HERE, "..", "forge", "crates", "forge-core", "schemas", "world.json")
+SCHEMA = os.path.join(HERE, "..", "labs", "forge", "crates", "forge-core", "schemas", "world.json")
 ROOTS = {"interface", "textures", "creature", "item", "character", "world", "sound", "spells",
          "environments", "particles", "fonts"}
 FORBIDDEN = re.compile(r"\b(outfile|dumpfile|load_file|load\s+data|sleep|benchmark|grant|revoke|alter|truncate|"

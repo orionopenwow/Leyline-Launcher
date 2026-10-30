@@ -382,11 +382,11 @@ class Browser(unittest.TestCase):
 class SchemaInStep(unittest.TestCase):
     def test_lite_schema_matches_forge(self):
         root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-        forge = os.path.join(root, "forge", "crates", "forge-core", "schemas", "world.json")
+        forge = os.path.join(root, "labs", "forge", "crates", "forge-core", "schemas", "world.json")
         if not os.path.isfile(forge):
             self.skipTest("no forge checkout")
         with open(forge, "rb") as a, open(os.path.join(root, "www", "forge", "lite", "world.json"), "rb") as b:
-            self.assertEqual(a.read(), b.read(), "copy forge/crates/forge-core/schemas/world.json to www/forge/lite/world.json")
+            self.assertEqual(a.read(), b.read(), "copy labs/forge/crates/forge-core/schemas/world.json to www/forge/lite/world.json")
 
 
 if __name__ == "__main__":

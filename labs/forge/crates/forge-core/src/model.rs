@@ -28,19 +28,19 @@ use std::path::{Path, PathBuf};
 use std::process::Command;
 
 const PORTER: &[(&str, &str)] = &[
-    ("__init__.py", include_str!("../../../../tools/modelport/__init__.py")),
-    ("__main__.py", include_str!("../../../../tools/modelport/__main__.py")),
-    ("animdata.py", include_str!("../../../../tools/modelport/animdata.py")),
-    ("blp.py", include_str!("../../../../tools/modelport/blp.py")),
-    ("content.py", include_str!("../../../../tools/modelport/content.py")),
-    ("gltf.py", include_str!("../../../../tools/modelport/gltf.py")),
-    ("m2.py", include_str!("../../../../tools/modelport/m2.py")),
-    ("m2modern.py", include_str!("../../../../tools/modelport/m2modern.py")),
-    ("m2read.py", include_str!("../../../../tools/modelport/m2read.py")),
-    ("mpq.py", include_str!("../../../../tools/modelport/mpq.py")),
-    ("names.py", include_str!("../../../../tools/modelport/names.py")),
-    ("port.py", include_str!("../../../../tools/modelport/port.py")),
-    ("server.py", include_str!("../../../../tools/modelport/server.py")),
+    ("__init__.py", include_str!("../../../../../tools/modelport/__init__.py")),
+    ("__main__.py", include_str!("../../../../../tools/modelport/__main__.py")),
+    ("animdata.py", include_str!("../../../../../tools/modelport/animdata.py")),
+    ("blp.py", include_str!("../../../../../tools/modelport/blp.py")),
+    ("content.py", include_str!("../../../../../tools/modelport/content.py")),
+    ("gltf.py", include_str!("../../../../../tools/modelport/gltf.py")),
+    ("m2.py", include_str!("../../../../../tools/modelport/m2.py")),
+    ("m2modern.py", include_str!("../../../../../tools/modelport/m2modern.py")),
+    ("m2read.py", include_str!("../../../../../tools/modelport/m2read.py")),
+    ("mpq.py", include_str!("../../../../../tools/modelport/mpq.py")),
+    ("names.py", include_str!("../../../../../tools/modelport/names.py")),
+    ("port.py", include_str!("../../../../../tools/modelport/port.py")),
+    ("server.py", include_str!("../../../../../tools/modelport/server.py")),
 ];
 
 /// The stock creature a new creature row copies (faction, flags, AI ...): the same donor the
@@ -561,7 +561,7 @@ mod tests {
 
     #[test]
     fn the_porter_list_matches_the_repo() {
-        let here = Path::new(env!("CARGO_MANIFEST_DIR")).join("../../../tools/modelport");
+        let here = Path::new(env!("CARGO_MANIFEST_DIR")).join("../../../../tools/modelport");
         let mut want: Vec<String> = std::fs::read_dir(here).unwrap().map(|e| e.unwrap().file_name().to_string_lossy().to_string()).filter(|n| n.ends_with(".py")).collect();
         want.sort();
         let have: Vec<String> = PORTER.iter().map(|(n, _)| n.to_string()).collect();
@@ -585,8 +585,8 @@ mod tests {
         let dir = tempfile::tempdir().unwrap();
         // the porter's own test model
         let glb = dir.path().join("tail.glb");
-        let tests = Path::new(env!("CARGO_MANIFEST_DIR")).join("../../../tests");
-        let tools = Path::new(env!("CARGO_MANIFEST_DIR")).join("../../../tools");
+        let tests = Path::new(env!("CARGO_MANIFEST_DIR")).join("../../../../tests");
+        let tools = Path::new(env!("CARGO_MANIFEST_DIR")).join("../../../../tools");
         let ok = Command::new(&py[0])
             .args(&py[1..])
             .arg("-c")

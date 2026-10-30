@@ -19,20 +19,20 @@ use std::path::{Path, PathBuf};
 
 /// The sim kit, as it is in the repo.
 const KIT: &[(&str, &str)] = &[
-    ("wow_api.lua", include_str!("../../../../devkit/sim/wow_api.lua")),
-    ("lua50_guard.lua", include_str!("../../../../devkit/sim/lua50_guard.lua")),
-    ("ext/combatlog.lua", include_str!("../../../../devkit/sim/ext/combatlog.lua")),
-    ("ext/guildhub.lua", include_str!("../../../../devkit/sim/ext/guildhub.lua")),
-    ("ext/loot_aoe.lua", include_str!("../../../../devkit/sim/ext/loot_aoe.lua")),
-    ("ext/mail_loot_talents.lua", include_str!("../../../../devkit/sim/ext/mail_loot_talents.lua")),
-    ("ext/plates_pos.lua", include_str!("../../../../devkit/sim/ext/plates_pos.lua")),
-    ("ext/quests.lua", include_str!("../../../../devkit/sim/ext/quests.lua")),
-    ("ext/social.lua", include_str!("../../../../devkit/sim/ext/social.lua")),
-    ("ext/units_actions.lua", include_str!("../../../../devkit/sim/ext/units_actions.lua")),
-    ("ext/world.lua", include_str!("../../../../devkit/sim/ext/world.lua")),
-    ("data/events_112.txt", include_str!("../../../../devkit/sim/data/events_112.txt")),
-    ("data/globals_112.tsv", include_str!("../../../../devkit/sim/data/globals_112.tsv")),
-    ("data/widget_methods_112.txt", include_str!("../../../../devkit/sim/data/widget_methods_112.txt")),
+    ("wow_api.lua", include_str!("../../../../../devkit/sim/wow_api.lua")),
+    ("lua50_guard.lua", include_str!("../../../../../devkit/sim/lua50_guard.lua")),
+    ("ext/combatlog.lua", include_str!("../../../../../devkit/sim/ext/combatlog.lua")),
+    ("ext/guildhub.lua", include_str!("../../../../../devkit/sim/ext/guildhub.lua")),
+    ("ext/loot_aoe.lua", include_str!("../../../../../devkit/sim/ext/loot_aoe.lua")),
+    ("ext/mail_loot_talents.lua", include_str!("../../../../../devkit/sim/ext/mail_loot_talents.lua")),
+    ("ext/plates_pos.lua", include_str!("../../../../../devkit/sim/ext/plates_pos.lua")),
+    ("ext/quests.lua", include_str!("../../../../../devkit/sim/ext/quests.lua")),
+    ("ext/social.lua", include_str!("../../../../../devkit/sim/ext/social.lua")),
+    ("ext/units_actions.lua", include_str!("../../../../../devkit/sim/ext/units_actions.lua")),
+    ("ext/world.lua", include_str!("../../../../../devkit/sim/ext/world.lua")),
+    ("data/events_112.txt", include_str!("../../../../../devkit/sim/data/events_112.txt")),
+    ("data/globals_112.tsv", include_str!("../../../../../devkit/sim/data/globals_112.tsv")),
+    ("data/widget_methods_112.txt", include_str!("../../../../../devkit/sim/data/widget_methods_112.txt")),
 ];
 
 /// The kit written out (once per kit version) under Forge's config folder; returns its folder.
@@ -419,7 +419,7 @@ mod tests {
 
     #[test]
     fn the_kit_list_matches_the_repo() {
-        let here = Path::new(env!("CARGO_MANIFEST_DIR")).join("../../../devkit/sim");
+        let here = Path::new(env!("CARGO_MANIFEST_DIR")).join("../../../../devkit/sim");
         let mut want: Vec<String> = ["wow_api.lua", "lua50_guard.lua"].iter().map(|s| s.to_string()).collect();
         for sub in ["ext", "data"] {
             for e in std::fs::read_dir(here.join(sub)).unwrap() {

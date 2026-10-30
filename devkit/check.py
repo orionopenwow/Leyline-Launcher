@@ -298,7 +298,7 @@ def check_generated():
 
 # Copies of upstream files whose text is upstream's (kept as is; none left: the wasm dumps were removed).
 UPSTREAM_COPIES = set()
-CITE_SKIP = ("forge/app/ui/vendor/", "devkit/citations.py", "tests/test_citations.py")   # the pattern, its tests
+CITE_SKIP = ("labs/forge/app/ui/vendor/", "devkit/citations.py", "tests/test_citations.py")   # the pattern, its tests
 
 
 def check_citations():
