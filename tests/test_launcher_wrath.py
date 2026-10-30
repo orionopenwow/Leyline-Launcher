@@ -195,7 +195,7 @@ class WrathLauncherTests(unittest.TestCase):
         L.messagebox.askretrycancel = lambda title, msg, **k: retries.append(msg) or True
         app._status_click()                                    # PLAY's bar: the folder picker, not the 1.12.1 page
         self.assertEqual(app.page, "play")
-        self.assertTrue(retries and "Wow.exe" in retries[0] and "common.MPQ" in retries[0])
+        self.assertTrue(retries and "game .exe" in retries[0] and "common.MPQ" in retries[0])
         self.assertEqual(app.client()["path"], root)
         self.assertEqual(app.settings["clients"]["wotlk"]["path"], root)
         self.assertNotEqual(app.settings.get("wow_folder"), root)   # the 1.12.1 folder (Solo) is left alone
