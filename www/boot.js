@@ -186,62 +186,49 @@ function createCornerLine() {
 function createBootUi() {
   const root = document.createElement('div');
   root.id = 'wenilla-boot';
+  root.className = 'ly-flat';
   root.innerHTML = `
     <style>
       #wenilla-boot {
         position: fixed; inset: 0; z-index: 9999; display: flex; flex-direction: column;
         justify-content: space-between; align-items: center;
-        background: #05060a url('assets/loading/background_clean.jpg') no-repeat center center;
-        background-size: cover; color: #f0e6d2; font-family: 'Friz Quadrata', 'Cinzel', serif, system-ui;
-        box-shadow: inset 0 0 160px rgba(0,0,0,0.85); transition: opacity .6s cubic-bezier(0.16, 1, 0.3, 1);
+        background: radial-gradient(ellipse 70% 55% at 50% 35%, rgba(90,105,224,.16), rgba(123,92,214,.06) 45%, transparent 75%), #080a14;
+        color: #e8ecff; font-family: 'Nunito', 'Albert Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
+        transition: opacity .6s cubic-bezier(0.16, 1, 0.3, 1);
         user-select: none; padding: 2.5rem 1.5rem 3.5rem;
       }
       #wenilla-boot.gone { opacity: 0; pointer-events: none; }
       #wenilla-boot .brand-header {
-        display: flex; flex-direction: column; align-items: center; margin-top: 1rem;
+        flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1rem;
       }
-      #wenilla-boot .brand-logo {
-        max-width: 440px; width: 85vw; height: auto;
-        filter: drop-shadow(0 0 35px rgba(50, 140, 255, 0.55)) drop-shadow(0 10px 30px rgba(0,0,0,0.95));
-        animation: ow-logo-float 4s ease-in-out infinite alternate;
-      }
-      @keyframes ow-logo-float {
-        0% { transform: translateY(0); filter: drop-shadow(0 0 25px rgba(50, 140, 255, 0.4)); }
-        100% { transform: translateY(-6px); filter: drop-shadow(0 0 45px rgba(90, 180, 255, 0.7)); }
-      }
+      /* the Leyline spinner: the swirl turns, the crystal stays upright (same as assets/leyline/leyline.css) */
+      #wenilla-boot .ly-spin { position: relative; width: min(200px, 40vw); height: min(200px, 40vw);
+        filter: drop-shadow(0 0 40px rgba(90, 105, 224, .35)); }
+      #wenilla-boot .ly-spin > img { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+      #wenilla-boot .ly-spin > .ly-swirl { animation: ly-swirl 2.4s linear infinite; }
+      @keyframes ly-swirl { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+      @media (prefers-reduced-motion: reduce) { #wenilla-boot .ly-spin > .ly-swirl { animation: none; } }
+      #wenilla-boot .ly-word { font-weight: 800; font-size: clamp(2rem, 5vw, 3rem); line-height: 1; letter-spacing: .01em; }
       #wenilla-boot .bottom-dock {
         width: min(840px, 94vw); display: flex; flex-direction: column; align-items: center;
       }
       #wenilla-boot .game-tip {
-        font-size: 13.5px; color: #dfcaa2; text-shadow: 0 2px 4px #000, 0 0 8px rgba(0,0,0,0.9);
+        font-size: 13.5px; color: #9aa3c7;
         text-align: center; margin-bottom: 0.85rem; font-style: italic; max-width: 680px;
         line-height: 1.4;
       }
-      #wenilla-boot .game-tip b { color: #ffd100; font-style: normal; }
+      #wenilla-boot .game-tip b { color: #e8ecff; font-style: normal; }
       #wenilla-boot .bar-container {
         position: relative; width: 100%; max-width: 720px; display: flex; align-items: center; justify-content: center;
       }
-      #wenilla-boot .dragon-endcap {
-        width: 62px; height: 46px; flex-shrink: 0;
-        filter: drop-shadow(0 4px 10px rgba(0,0,0,0.9));
-        z-index: 2; pointer-events: none;
-      }
-      #wenilla-boot .dragon-endcap.left {
-        margin-right: -14px;
-      }
-      #wenilla-boot .dragon-endcap.right {
-        margin-left: -14px;
-      }
       #wenilla-boot .bar-frame {
-        position: relative; flex: 1; height: 22px;
-        background: #060912; border: 2px solid #b8913c;
-        box-shadow: 0 0 16px rgba(0,0,0,0.9), inset 0 2px 6px rgba(0,0,0,0.95);
-        overflow: hidden; display: flex; align-items: center; border-radius: 2px;
+        position: relative; flex: 1; height: 8px;
+        background: #0e1222; border: 1px solid rgba(120, 132, 230, .22);
+        overflow: hidden; display: flex; align-items: center; border-radius: 999px;
       }
       #wenilla-boot .bar-fill {
         height: 100%; width: 0%;
-        background: linear-gradient(90deg, #1b5cb8 0%, #298bf0 60%, #76d3ff 100%);
-        box-shadow: 0 0 16px #3ca2f5, inset 0 1px 3px rgba(255,255,255,0.7);
+        background: linear-gradient(90deg, #5a7be0, #7b5cd6); border-radius: 999px;
         transition: width .2s ease-out;
       }
       #wenilla-boot .bar-frame.pulse .bar-fill {
@@ -250,31 +237,24 @@ function createBootUi() {
       @keyframes ow-bar-pulse {
         0% { margin-left: -5%; } 50% { margin-left: 70%; } 100% { margin-left: -5%; }
       }
-      #wenilla-boot .bar-glow {
-        position: absolute; inset: 0; pointer-events: none;
-        border: 1px solid rgba(255, 215, 0, 0.35);
-      }
       #wenilla-boot .status-row {
         width: 100%; display: flex; justify-content: space-between; align-items: center;
-        margin-top: 0.55rem; padding: 0 0.5rem; font-size: 12.5px; color: #a8b2c1;
-        text-shadow: 0 1px 3px #000;
+        margin-top: 0.55rem; padding: 0 0.5rem; font-size: 12.5px; color: #9aa3c7;
       }
-      #wenilla-boot .stage-text { color: #e5c158; font-weight: 600; letter-spacing: 0.5px; }
-      #wenilla-boot .file-counter { color: #8faec9; font-family: monospace; font-size: 12px; }
+      #wenilla-boot .stage-text { color: #e8ecff; font-weight: 700; letter-spacing: 0.3px; }
+      #wenilla-boot .file-counter { color: #9aa3c7; font-family: monospace; font-size: 12px; }
       #wenilla-boot .err { color: #ff5555; text-shadow: 0 0 8px rgba(255,0,0,0.6); }
     </style>
     <div class="brand-header">
-      <img src="assets/openvanilla_logo.png" class="brand-logo" alt="Leyline Browser RPG" />
+      <span class="ly-spin" role="img" aria-label="Leyline is loading"><img class="ly-swirl" src="assets/leyline/swirl-512.webp" alt="" /><img class="ly-crystal" src="assets/leyline/crystal-512.webp" alt="" /></span>
+      <div class="ly-word">Leyline</div>
     </div>
     <div class="bottom-dock">
       <div class="game-tip"><b>Tip:</b> Seek out the Ley-Architect's shrines throughout Azeroth to unlock Classic+ class enhancements and ancient boons.</div>
       <div class="bar-container">
-        <img src="assets/loading/dragon_head_left.png" class="dragon-endcap left" alt="" />
         <div class="bar-frame">
           <div class="bar-fill"></div>
-          <div class="bar-glow"></div>
         </div>
-        <img src="assets/loading/dragon_head_right.png" class="dragon-endcap right" alt="" />
       </div>
       <div class="status-row">
         <span class="stage-text">Initializing client…</span>
@@ -324,6 +304,8 @@ function createBootUi() {
     fail(text) {
       clearTimeout(timeout);
       barFrame.remove();
+      const swirl = root.querySelector('.ly-swirl');
+      if (swirl) swirl.style.animationPlayState = 'paused';  // stopped: nothing is loading any more
       stageEl.className = 'err';
       stageEl.textContent = text;
       fileCounter.textContent = 'Halted';

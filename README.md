@@ -198,7 +198,7 @@ World of Warcraft and Blizzard Entertainment are trademarks or registered tradem
 <br>
 
 <p align="center">
-  <img src="docs/img/orion.gif" width="360" alt="Orion, a blue-skinned elf with long silver hair, happily eating a cookie">
+  <img src="assets/branding/leyline-mark-512.png" width="160" alt="The Leyline mark: a blue crystal in a blue and violet swirl">
   <br>
   <sub>Made by Orion ❤️</sub>
 </p>

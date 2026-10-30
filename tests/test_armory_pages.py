@@ -102,7 +102,7 @@ class ArmoryPages(unittest.TestCase):
 
     def test_character_paper_doll_and_tooltips(self):
         p = self.page("armory/character.html?r=classicplus&n=Aldric")
-        self.assertEqual(p.title(), "Aldric · Open Vanilla Armory")
+        self.assertEqual(p.title(), "Aldric · Leyline Armory")
         self.assertEqual(p.locator(".slot:not(.empty)").count(), 4)
         head = p.locator('.slot[aria-label^="Head:"]')
         head.hover()

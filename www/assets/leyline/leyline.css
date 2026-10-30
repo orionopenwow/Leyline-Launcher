@@ -1,0 +1,34 @@
+/* Leyline brand basics: the mark as a spinner, and the wordmark.
+
+   The spinner is the logo: the swirl turns continuously while the crystal stays upright.
+     <span class="ly-spin" role="img" aria-label="Leyline">
+       <img class="ly-swirl" src="assets/leyline/swirl-256.webp" alt="">
+       <img class="ly-crystal" src="assets/leyline/crystal-256.webp" alt="">
+     </span>
+   Size it with --ly-size (default 64px). Add .ly-fast for a loading state (one turn in 2.4 s). */
+:root {
+  --ly-bg: #080a14;
+  --ly-panel: #0e1222;
+  --ly-line: rgba(120, 132, 230, .22);
+  --ly-blue: #5a7be0;
+  --ly-violet: #7b5cd6;
+  --ly-text: #e8ecff;
+  --ly-muted: #9aa3c7;
+  --ly-sans: 'Nunito', 'Albert Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+.ly-spin { position: relative; display: inline-block; flex: none; vertical-align: middle; line-height: 0;
+  width: var(--ly-size, 64px); height: var(--ly-size, 64px); }
+.ly-spin > img { position: absolute !important; inset: 0; width: 100% !important; height: 100% !important; max-width: none !important;
+  display: block !important; margin: 0 !important; padding: 0 !important; border: 0 !important; filter: none !important;
+  pointer-events: none; user-select: none; -webkit-user-drag: none; }
+.ly-spin > .ly-swirl { animation: ly-swirl 7s linear infinite; will-change: transform; transform-origin: 50% 50%; }
+.ly-spin.ly-fast > .ly-swirl { animation-duration: 2.4s; }
+@keyframes ly-swirl { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+@media (prefers-reduced-motion: reduce) {
+  .ly-spin > .ly-swirl { animation: none; }
+}
+.ly-word { font-family: var(--ly-sans); font-weight: 800; letter-spacing: .01em; color: var(--ly-text); line-height: 1; }
+.ly-brand { display: inline-flex; align-items: center; gap: .55em; text-decoration: none; }
+/* a loading placeholder: the spinner above its line of text */
+.ly-loading { display: flex; flex-direction: column; align-items: center; gap: .6rem; text-align: center; }
+.ly-loading .ly-spin { --ly-size: 56px; }

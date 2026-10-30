@@ -13,7 +13,7 @@
   <meta property="og:image" content="https://openvanilla.app/assets/og-image.jpg">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
-  <meta property="og:image:alt" content="Leyline: classic Vanilla in your browser. Free, no download, play in seconds.">
+  <meta property="og:image:alt" content="The Leyline mark, a blue crystal in a blue and violet swirl, beside the name Leyline">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Beacons · Leyline">
   <meta name="twitter:description" content="Beacons: every Leyline realm with its own page, how to connect, and live status from the realm's own server.">
@@ -157,6 +157,7 @@
     }
   </style>
   <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/leyline/leyline.css">
 </head>
 <body>
   <div class="wrap">
@@ -172,7 +173,7 @@
     <h1>Beacons</h1>
     <p class="lead">Every realm has a beacon: its own page with how to connect, its rules and whether it is up. Status and population come from each realm's own server, with bots counted separately.</p>
     <h2>Official realms</h2>
-    <div class="beacons" id="beaconList"><div class="empty"><b>Loading realms…</b></div></div>
+    <div class="beacons" id="beaconList"><div class="empty ly-loading"><span class="ly-spin ly-fast" aria-hidden="true"><img class="ly-swirl" src="assets/leyline/swirl-128.webp" alt=""><img class="ly-crystal" src="assets/leyline/crystal-128.webp" alt=""></span><b>Loading realms…</b></div></div>
 
     <h2>Launcher-hosted realms</h2>
     <p class="lead">Realms in the launcher's live directory, in three tiers: <b>Verified realms</b> (Leyline's own, and community realms the maintainer has vetted), <b>Community P2P realms</b> (hosted by players, checked automatically, not vetted), and the <a href="nodes.html">Verified P2P nodes</a> that carry them. To play, open a realm in the Leyline Launcher (Realms tab) and press Join.</p>

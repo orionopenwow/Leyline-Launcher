@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Build the Open Vanilla Manual: docs/manual/*.md  ->  www/manual/*.html
+"""Build the Leyline Manual: docs/manual/*.md  ->  www/manual/*.html
 
     python tools/build_manual.py          build every chapter
     python tools/build_manual.py --check  build, then fail if any manual link or anchor is broken
@@ -158,20 +158,21 @@ PAGE = """<!DOCTYPE html>
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>{title} · Open Vanilla Manual</title>
+  <title>{title} · Leyline Manual</title>
   <meta name="description" content="{summary}">
-  <meta property="og:title" content="{title} · Open Vanilla Manual">
+  <meta property="og:title" content="{title} · Leyline Manual">
   <meta property="og:description" content="{summary}">
   <link rel="icon" href="../favicon.ico">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Albert+Sans:wght@400;600;700&family=Belgrano&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Albert+Sans:wght@400;600;700&family=Nunito:wght@700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/leyline/leyline.css">
   <link rel="stylesheet" href="manual.css">
 </head>
 <body>
   <div class="wrap">
     <header class="top">
-      <a class="home" href="../index.html"><img src="../assets/openvanilla_logo_nav.png" alt="" class="mark">Open Vanilla</a>
+      <a class="home" href="../index.html"><span class="ly-spin mark" aria-hidden="true"><img class="ly-swirl" src="../assets/leyline/swirl-128.webp" alt=""><img class="ly-crystal" src="../assets/leyline/crystal-128.webp" alt=""></span>Leyline</a>
       <a class="pill" href="index.html">THE MANUAL</a>
     </header>
     <div class="layout">

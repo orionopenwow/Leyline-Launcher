@@ -27,6 +27,7 @@ anything new that a player, creator or visitor reads.
 | Data folder | `%LOCALAPPDATA%\OpenVanilla` (installer), beside the exe (zip) | Never moved |
 | From source | `Play Leyline Launcher.bat` / `.command` | `Play Open Vanilla.bat` / `.command` stay as one-line forwarders for old shortcuts |
 | Server download | `Start Leyline Server.bat` inside `OpenVanilla-Server.zip` | |
+| Logo | The Leyline mark: a blue crystal in a blue/violet swirl, flat on dark, with the name in a rounded sans (Nunito ExtraBold) | Sources in `assets/branding/leyline-{swirl,crystal,mark,app-icon}-512.png`; `tools/make_leyline_logos.py` writes every copy. Wherever it moves (the site's header and hero, every loading screen, the launcher's corner) the swirl turns and the crystal stays upright: `.ly-spin` in `www/assets/leyline/leyline.css` |
 
 ## What keeps the old name for now (and why)
 
@@ -44,7 +45,6 @@ change only with a redirect or migration.
 | Realm and client names | `Open Vanilla Solo`, `Open Vanilla Classic+` | Saved realm lists and client choices |
 | In-game text | the realm patches (`realm/patches`, `realm/mangos`) and the addons in `Data/` | Changes with the next realm image and addon release |
 | Workshop packages | `www/community/workshop/cp-*` | Rebuilt with the next Workshop build (their old GitHub links redirect) |
-| Asset files | `assets/openvanilla_logo_*.webp` | File names only |
 
 ## Still to do
 

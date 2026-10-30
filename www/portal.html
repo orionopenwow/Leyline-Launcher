@@ -16,7 +16,7 @@
   <meta property="og:image" content="https://openvanilla.app/assets/og-image.jpg">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
-  <meta property="og:image:alt" content="Leyline: classic Vanilla in your browser. Free, no download, play in seconds.">
+  <meta property="og:image:alt" content="The Leyline mark, a blue crystal in a blue and violet swirl, beside the name Leyline">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Leyline: classic Vanilla in your browser">
   <meta name="twitter:description" content="Free, no download, play in seconds. A community-built Vanilla realm with Vanilla Remastered features, built-in addons, mods and your own servers.">
@@ -565,7 +565,6 @@
     .egg-gem { border-radius: 50%; transform: translate(-50%, -50%) scale(.4); opacity: 0; mix-blend-mode: screen; }
     .egg-rune { transform: translate(-50%, -50%); opacity: 0; filter: drop-shadow(0 0 3px rgba(120, 230, 255, .95)) drop-shadow(0 0 7px rgba(80, 200, 255, .7)); }
     @media (prefers-reduced-motion: reduce) { .hero-logo-glow, .hero-logo-fx-wrap, .hero-logo-body { animation: none; } .hero-logo-body { --lift: 0px !important; --sc: 1 !important; } .hero-logo-shine::before { display: none; } }
-    #tab-hub { --shine-mask: url('assets/openvanilla_logo_hero_shine.webp'); }
     /* ---- hero ambience (layer added inside #heroBackdrop by the script at the end of the page) ---- */
   /* Hero ambience: valley mist, falling leaves, tower fires, twinkling stars and a rare shooting star.
      Everything sits in .hero-ambience, a layer over the hero background and under the hero content. */
@@ -3953,7 +3952,7 @@
     #owNudge .later { background: none; border: 1px solid var(--border-edge); color: var(--text-muted); }
     @keyframes owNudgeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
   
-    /* ===== Tip jar art and realm goals (apply_support_art.py) ===== */
+    /* ===== Tip jar art and realm goals ===== */
     .ow-jar { padding-top: 0; overflow: hidden; max-height: calc(100vh - 32px); overflow-y: auto; }
     .ow-jar-art { margin: 0 -1.5rem 1rem; height: 150px; background: #12142a; border-bottom: 1px solid #5e431a; }
     .ow-jar-art img { width: 100%; height: 100%; object-fit: cover; object-position: 62% 50%; display: block; }
@@ -3968,13 +3967,13 @@
     .ow-goal b { color: #fff; font-weight: 700; }
     .ow-goal small { display: block; color: var(--text-muted); font-size: .68rem; }
     .ow-goal em { font-style: normal; color: var(--gold-bright); font-weight: 700; white-space: nowrap; }
-    .ow-community { position: relative; border-top: 0; background: linear-gradient(180deg, rgba(11,15,23,.55), rgba(11,15,23,.8)), url("assets/orion/support_strip.webp") center / cover no-repeat;
+    .ow-community { position: relative; border-top: 0; background: linear-gradient(180deg, rgba(11,15,23,.55), rgba(11,15,23,.8));
       border: 1px solid var(--border-edge); border-left: 0; border-right: 0; padding: 1.8rem 1.5rem; }
     .ow-community h4 { text-shadow: 0 2px 10px #000; }
     .ow-community p { color: #cbd5e1; text-shadow: 0 1px 6px #000; }
     /* ===== Community credits strip, dressed up ===== */
     .ow-community { max-width: 1200px; padding: 2.1rem 1.8rem 2rem; border: 1px solid var(--gold-border); border-radius: 6px;
-      background: linear-gradient(180deg, rgba(14,18,30,.45), rgba(11,15,23,.72)), url("assets/orion/support_strip.webp") center / cover no-repeat;
+      background: linear-gradient(180deg, rgba(14,18,30,.45), rgba(11,15,23,.72));
       box-shadow: 0 10px 40px rgba(0,0,0,.6), inset 0 0 60px rgba(240,192,88,.06); }
     .ow-community .owc-heart { font-size: 1.9rem; line-height: 1; margin-bottom: .35rem; filter: drop-shadow(0 0 12px rgba(255,80,90,.55)); animation: owcBeat 2.4s ease-in-out infinite; }
     @keyframes owcBeat { 0%, 100% { transform: scale(1); } 12% { transform: scale(1.14); } 24% { transform: scale(1); } 36% { transform: scale(1.09); } }
@@ -4001,15 +4000,13 @@
     .ow-community .owc-btns .btn-hollow { display: inline-flex; align-items: center; font-size: .82rem; padding: .62rem 1.2rem; border-radius: 8px; text-decoration: none; }
     #owNudge { padding-left: 4.9rem; min-height: 92px; }
     #owNudge .ow-sigil { position: absolute; left: .55rem; top: .7rem; width: 64px; height: 64px; }
-      /* ===== Tip jar frame and rounded type (apply_support_v2.py) ===== */
+      /* ===== Tip jar frame and rounded type ===== */
     .ow-jar, #owNudge, .ow-community, #owSupportPill { font-family: 'Nunito', 'Arial Rounded MT Bold', Arial, sans-serif; }
     .ow-jar h3, .ow-goals h5, #owNudge b, .ow-community h4 { font-family: 'Nunito', 'Arial Rounded MT Bold', Arial, sans-serif; font-weight: 900; letter-spacing: .2px; }
     .ow-jar h3 { font-size: 1.45rem; }
     .ow-jar p, .ow-jar ul { font-size: .9rem; }
     .ow-jar { border-radius: 14px; box-shadow: inset 0 0 0 1px #966f2c, 0 20px 60px rgba(0,0,0,.8); }
     .ow-jar-art { height: 128px; border-radius: 12px 12px 0 0; overflow: hidden; border-bottom: 0; position: relative; }
-    .ow-jar-art::after { content: ''; position: absolute; left: 0; right: 0; bottom: -2px; height: 21px;
-      background: url('assets/orion/support_divider.png') center / auto 100% no-repeat; }
     .ow-jar-btns a, .ow-goals { border-radius: 10px; }
     .ow-jar-btns a { font-weight: 800; }
     #owNudge { border-radius: 14px; }
@@ -4030,12 +4027,12 @@
     #owNudge b { padding-right: 18px; }
     .ow-jar .ow-x { z-index: 5; top: .85rem; right: 1.05rem; width: 30px; height: 30px; border-radius: 50%; background: rgba(5,8,14,.7); line-height: 1; }
     .ow-goal small { font-size: .74rem; }
-    .ow-jar .ow-fine { border-top: 0; padding-top: 1.1rem; background: url('assets/orion/support_divider.png') top center / 80% auto no-repeat; }
-    /* ===== Tip jar v2: painted frame, rune edges, Ko-fi bar and star bullets (assets/orion/jar) ===== */
+    .ow-jar .ow-fine { border-top: 0; padding-top: 1.1rem; }
+    /* ===== Tip jar v2: painted frame, rune edges, Ko-fi bar and star bullets ===== */
     body:has(#owTipJar.open) #owSupportPill { display: none !important; }
-    /* the floating Support button: the painted plaque (assets/orion/support_btn.webp); the text stays for screen readers */
+    /* the floating Support button: the painted plaque; the text stays for screen readers */
     #owSupportPill { width: 150px; height: 49px; padding: 0 !important; border: 0 !important; border-radius: 0 !important;
-      background: url('assets/orion/support_btn.webp') center / contain no-repeat !important; box-shadow: none !important;
+      background: none !important; box-shadow: none !important;
       font-size: 0 !important; color: transparent !important; cursor: pointer; left: 10px; bottom: 10px;
       filter: drop-shadow(0 4px 10px rgba(0, 0, 0, .65)); transition: filter .15s ease, transform .15s ease; }
     #owSupportPill:hover, #owSupportPill:focus-visible { filter: brightness(1.12) drop-shadow(0 0 12px rgba(255, 110, 120, .45)); transform: translateY(-1px); }
@@ -4062,19 +4059,19 @@
     /* rune strips: one thickness all round, centred on the window's edge and running into the
        corners, which sit on top and cap their ends (no blunt strip ends showing) */
     .jar-v2 .jf { opacity: .9; }
-    .jar-v2 .jf.t, .jar-v2 .jf.b { left: 22px; right: 22px; height: 16px; background: url('assets/orion/jar/rune_h.webp') left center / auto 100% repeat-x; }
+    .jar-v2 .jf.t, .jar-v2 .jf.b { left: 22px; right: 22px; height: 16px; }
     .jar-v2 .jf.t { top: -8px; }
     .jar-v2 .jf.b { bottom: -8px; transform: scaleY(-1); }
-    .jar-v2 .jf.l, .jar-v2 .jf.r { top: 22px; bottom: 22px; width: 16px; background: url('assets/orion/jar/rune_v.webp') center top / 100% auto repeat-y; }
+    .jar-v2 .jf.l, .jar-v2 .jf.r { top: 22px; bottom: 22px; width: 16px; }
     .jar-v2 .jf.l { left: -8px; }
     .jar-v2 .jf.r { right: -8px; transform: scaleX(-1); }
     .jar-v2 .jc { z-index: 5; width: 62px; height: 62px; background: center / contain no-repeat; filter: drop-shadow(0 2px 4px rgba(0, 0, 0, .7)); }
-    .jar-v2 .jc.tl { top: -13px; left: -13px; background-image: url('assets/orion/jar/corner_tl.webp'); }
-    .jar-v2 .jc.tr { top: -13px; right: -13px; background-image: url('assets/orion/jar/corner_tr.webp'); }
-    .jar-v2 .jc.bl { bottom: -13px; left: -13px; background-image: url('assets/orion/jar/corner_bl.webp'); }
-    .jar-v2 .jc.br { bottom: -13px; right: -13px; background-image: url('assets/orion/jar/corner_br.webp'); }
+    .jar-v2 .jc.tl { top: -13px; left: -13px; }
+    .jar-v2 .jc.tr { top: -13px; right: -13px; }
+    .jar-v2 .jc.bl { bottom: -13px; left: -13px; }
+    .jar-v2 .jc.br { bottom: -13px; right: -13px; }
     #owTipJar .jar-v2 .ow-x { top: -18px !important; right: -18px !important; width: 46px !important; height: 46px !important; z-index: 7 !important;
-      background: url('assets/orion/jar/close.webp') center / contain no-repeat !important; border: 0 !important; border-radius: 50% !important;
+      background: rgba(5, 8, 14, .8) !important; border: 0 !important; border-radius: 50% !important;
       font-size: 0 !important; color: transparent !important; text-shadow: none !important; cursor: pointer;
       filter: drop-shadow(0 3px 6px rgba(0, 0, 0, .7)); transition: filter .15s ease, transform .15s ease; }
     #owTipJar .jar-v2 .ow-x:hover { filter: brightness(1.2) drop-shadow(0 0 10px rgba(190, 130, 255, .6)); transform: rotate(8deg); }
@@ -4082,7 +4079,7 @@
     .jar-v2 > .jar-scroll > p { color: #cfc8dd; }
     .jar-v2 .ow-jar-btns a { position: relative; min-height: 56px; padding: 0 !important; background: none !important; border-radius: 0 !important;
       border-style: solid !important; border-color: transparent !important; border-width: 0 48px !important;
-      border-image: url('assets/orion/jar/btn_kofi.webp') 0 64 fill / 0 48px stretch !important;
+      
       display: flex; align-items: center; justify-content: space-between; gap: 8px; color: #fff3dd !important;
       filter: drop-shadow(0 4px 10px rgba(0, 0, 0, .55)); transition: filter .15s ease, transform .15s ease; }
     .jar-v2 .ow-jar-btns a .ow-jar-lbl { font-size: 1.08rem; font-weight: 900; text-shadow: 0 1px 3px rgba(0, 0, 0, .8); }
@@ -4092,11 +4089,9 @@
     .jar-v2 ul { list-style: none; padding-left: 0 !important; margin-bottom: .4rem !important; }
     .jar-v2 ul li { position: relative; padding-left: 27px; margin: .32rem 0; color: #e4ddf0; }
     .jar-v2 ul li::before { content: ''; position: absolute; left: 0; top: .12em; width: 19px; height: 19px;
-      background: url('assets/orion/jar/star_blue.webp') center / contain no-repeat; }
-    .jar-v2 ul li:nth-child(even)::before { background-image: url('assets/orion/jar/star_purple.webp'); }
+      background: radial-gradient(circle, #6f8cf0 0 35%, transparent 40%); }
     .jar-v2 ul li b { color: #f6d488; }
-    .jar-v2 .ow-fine { text-align: center; font-style: italic; color: #a59fb8 !important; padding-top: 2.6rem !important; margin-top: .2rem !important;
-      background: url('assets/orion/jar/divider.webp') top center / min(320px, 92%) auto no-repeat !important; }
+    .jar-v2 .ow-fine { text-align: center; font-style: italic; color: #a59fb8 !important; padding-top: 2.6rem !important; margin-top: .2rem !important; }
     @media (max-width: 600px) {
       .jar-v2 .jar-scroll { padding: 0 1.15rem 1rem; max-height: calc(100vh - 40px); }
       .jar-v2 .ow-jar-art { margin: 0 -1.15rem .8rem !important; height: 118px !important; }
@@ -4232,6 +4227,10 @@
 <!-- Support / tips are hidden on the owner's request (2026-10-29) until he brings them back: delete this block. -->
 <style id="ly-support-off">.rl-support,#liveRealmSupport,#owSupportPill,.og-cta,.owc-ask,.owc-where,[onclick*="openSupportModal"],a[href*="ko-fi.com"]{display:none!important}</style>
 <script id="ly-support-off-js">document.addEventListener("DOMContentLoaded",function(){window.openSupportModal=function(){};});</script>
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="apple-touch-icon" href="assets/leyline/apple-touch-icon.png">
+<link rel="stylesheet" href="assets/leyline/leyline.css">
+<link rel="stylesheet" href="assets/leyline/site-flat.css">
 </head>
 <body>
 
@@ -4243,25 +4242,25 @@
   <header class="ovh3">
     <div class="ovh3-bar">
       <a href="#" class="ovh3-logo" onclick="switchTab('hub'); return false;" aria-label="Leyline home">
-        <img src="assets/openvanilla_logo_hero.webp" alt="Leyline" width="498" height="531">
+        <span class="ly-spin" aria-hidden="true"><img class="ly-swirl" src="assets/leyline/swirl-256.webp" alt=""><img class="ly-crystal" src="assets/leyline/crystal-256.webp" alt=""></span><span class="ly-word">Leyline</span>
       </a>
 
       <nav class="ovh3-nav" id="ovh3Nav" aria-label="Main">
-        <button class="ovh3-ib ovh3-tab active" onclick="switchTab('hub')" title="Hub"><img src="assets/nav_v2/hub.webp" alt="Hub"></button>
-        <button class="ovh3-ib ovh3-tab" onclick="openRealmListModal()" title="Realms"><img src="assets/nav_v2/realms.webp" alt="Realms"></button>
-        <button class="ovh3-ib ovh3-tab" onclick="switchTab('mods')" title="Mods"><img src="assets/nav_v2/mods.webp" alt="Mods"></button>
-        <button class="ovh3-ib ovh3-tab" onclick="goToServerSection()" title="Host your own realm"><img src="assets/nav_v2/server.webp" alt="Server"></button>
+        <button class="ovh3-ib ovh3-tab active" onclick="switchTab('hub')" title="Hub">Hub</button>
+        <button class="ovh3-ib ovh3-tab" onclick="openRealmListModal()" title="Realms">Realms</button>
+        <button class="ovh3-ib ovh3-tab" onclick="switchTab('mods')" title="Mods">Mods</button>
+        <button class="ovh3-ib ovh3-tab" onclick="goToServerSection()" title="Host your own realm">Server</button>
       </nav>
 
       <div class="ovh3-auth">
-        <a href="https://github.com/orionopenwow/Leyline-Launcher/releases/latest" target="_blank" rel="noopener noreferrer" class="openvanilla-client-download-link ovh3-ib" title="Download the Leyline Launcher: OpenVanilla-Setup (recommended) or the portable .zip, on GitHub Releases"><img src="assets/nav_v2/download.webp" alt="Download"></a>
-        <button type="button" class="ovh3-ib" onclick="openSignInModal()" title="Sign In"><img src="assets/nav_v2/signin.webp" alt="Sign In"></button>
-        <button type="button" class="ovh3-ib" onclick="openRegisterModal()" title="Register"><img src="assets/nav_v2/register.webp" alt="Register"></button>
-        <button type="button" class="ovh3-ib ovh3-play" onclick="launchClient()" title="Play in Browser Now"><img src="assets/nav_v2/play.webp" alt="Play Now"></button>
+        <a href="https://github.com/orionopenwow/Leyline-Launcher/releases/latest" target="_blank" rel="noopener noreferrer" class="openvanilla-client-download-link ovh3-ib" title="Download the Leyline Launcher: OpenVanilla-Setup (recommended) or the portable .zip, on GitHub Releases">Download</a>
+        <button type="button" class="ovh3-ib" onclick="openSignInModal()" title="Sign In">Sign In</button>
+        <button type="button" class="ovh3-ib" onclick="openRegisterModal()" title="Register">Register</button>
+        <button type="button" class="ovh3-ib ovh3-play" onclick="launchClient()" title="Play in Browser Now">Play Now</button>
       </div>
 
       <div class="ovh3-m">
-        <button type="button" class="ovh3-ib ovh3-play ovh3-mplay" onclick="launchClient()" title="Play in Browser Now"><img src="assets/nav_v2/play.webp" alt="Play Now"></button>
+        <button type="button" class="ovh3-ib ovh3-play ovh3-mplay" onclick="launchClient()" title="Play in Browser Now">Play Now</button>
         <button type="button" class="ovh3-mic" onclick="openSignInModal()" title="Sign in" aria-label="Sign in"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8.5" r="3.6"/><path d="M4.8 19.5c1.3-3.4 4-5 7.2-5s5.9 1.6 7.2 5"/></svg></button>
         <button type="button" class="ovh3-mic ovh3-mburger" id="ovh3Burger" aria-label="Menu" aria-expanded="false" aria-controls="ovh3Nav"><svg viewBox="0 0 24 24" aria-hidden="true"><path class="l" d="M5 7h14M5 12h14M5 17h14"/><path class="x" d="M6.5 6.5l11 11M17.5 6.5l-11 11"/></svg></button>
       </div>
@@ -4275,7 +4274,8 @@
     <div id="tab-hub" class="tab-content active">
       <section class="hero-section">
         <div class="hero-logo-container">
-          <img src="assets/openvanilla_logo_hero.webp" alt="Leyline" class="hero-logo-img" width="498" height="531">
+          <span class="ly-spin" aria-hidden="true"><img class="ly-swirl" src="assets/leyline/swirl-512.webp" alt=""><img class="ly-crystal" src="assets/leyline/crystal-512.webp" alt=""></span>
+          <h1 class="ly-word">Leyline</h1>
         </div>
         
         <div class="hero-build-tag" title="Leyline is in alpha: expect changes, and tell us what breaks"><span class="dot" aria-hidden="true"></span>Alpha <span class="ver">v0.1.8</span></div>
@@ -4287,15 +4287,15 @@
         <div class="hero-cta-group">
           <div class="epic-play-btn-wrapper" onclick="launchClient()" role="button" tabindex="0" title="Play Leyline Now (Direct Instant Launch)">
             <div class="epic-play-flame-aura"></div>
-            <img src="assets/btn_play_warcraft.webp" alt="Play Now - Direct Launch" class="epic-play-btn-img">
+            <span class="ly-cta ly-primary">Play now</span>
           </div>
           <a href="#desktop-launcher" class="epic-play-btn-wrapper" role="button" tabindex="0" title="Download Desktop Client Launcher">
             <div class="epic-portal-flame-aura" style="background: radial-gradient(circle, rgba(56, 189, 248, 0.45) 0%, transparent 70%);"></div>
-            <img src="assets/btn_desktop_client.webp?v=2" alt="Download Desktop App" class="epic-play-btn-img">
+            <span class="ly-cta">Desktop app</span>
           </a>
           <a href="#server-software" class="epic-play-btn-wrapper epic-host-btn-wrapper" role="button" tabindex="0" title="Host Your Own Realm">
             <div class="epic-portal-flame-aura"></div>
-            <img src="assets/btn_host_realm.webp" alt="Host Your Own Realm" class="epic-play-btn-img">
+            <span class="ly-cta">Host your own realm</span>
           </a>
         </div>
 
@@ -4428,7 +4428,7 @@
             <div class="video-frame-wrapper" id="owTrailerFrame">
               <button type="button" class="ow-trailer-poster" id="owTrailerPoster" aria-label="Play the Leyline trailer">
                 <span class="ow-trailer-inner">
-                  <img src="assets/openvanilla_logo_hero.webp" alt="" loading="lazy" decoding="async">
+                  <span class="ly-spin" aria-hidden="true"><img class="ly-swirl" src="assets/leyline/swirl-256.webp" alt="" loading="lazy" decoding="async"><img class="ly-crystal" src="assets/leyline/crystal-256.webp" alt="" loading="lazy" decoding="async"></span>
                   <span class="ow-trailer-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span>
                   <span class="ow-trailer-label" id="owTrailerLabel">Watch the trailer</span>
                 </span>
@@ -5161,7 +5161,7 @@
     <div class="modal-box" style="width: 420px;">
       <button class="modal-close" onclick="closeSignInModal()">&times;</button>
       <div style="text-align: center; margin-bottom: 1.2rem;">
-        <img src="assets/openvanilla_logo_nav.webp" alt="Leyline" style="height: 44px; margin-bottom: 0.4rem;" loading="lazy" decoding="async">
+        <div class="ly-modal-mark"><span class="ly-spin" role="img" aria-label="Leyline"><img class="ly-swirl" src="assets/leyline/swirl-256.webp" alt="" loading="lazy" decoding="async"><img class="ly-crystal" src="assets/leyline/crystal-256.webp" alt="" loading="lazy" decoding="async"></span></div>
         <h2 style="font-size: 1.25rem; font-weight: 700; color: var(--gold-bright);">SIGN IN</h2>
         <p style="font-size: 0.78rem; color: var(--text-muted); margin-top: 3px;">Use your realm account. The game opens and logs you in.</p>
       </div>
@@ -5189,7 +5189,7 @@
     <div class="modal-box" style="width: 440px;">
       <button class="modal-close" onclick="closeRegisterModal()">&times;</button>
       <div style="text-align: center; margin-bottom: 1.2rem;">
-        <img src="assets/openvanilla_logo_nav.webp" alt="Leyline" style="height: 44px; margin-bottom: 0.4rem;" loading="lazy" decoding="async">
+        <div class="ly-modal-mark"><span class="ly-spin" role="img" aria-label="Leyline"><img class="ly-swirl" src="assets/leyline/swirl-256.webp" alt="" loading="lazy" decoding="async"><img class="ly-crystal" src="assets/leyline/crystal-256.webp" alt="" loading="lazy" decoding="async"></span></div>
         <h2 style="font-size: 1.25rem; font-weight: 700; color: var(--gold-bright);">CREATE REALM ACCOUNT</h2>
         <p style="font-size: 0.78rem; color: var(--text-muted); margin-top: 3px;">Free account for the Vanilla Remastered realm.</p>
       </div>
@@ -5226,7 +5226,7 @@
     <div class="modal-box">
       <button class="modal-close" onclick="closePlayModal()">&times;</button>
       <div style="text-align: center; margin-bottom: 1.5rem;">
-        <img src="assets/openvanilla_logo_nav.webp" alt="Leyline" style="height: 48px; margin-bottom: 0.5rem;" loading="lazy" decoding="async">
+        <div class="ly-modal-mark"><span class="ly-spin" role="img" aria-label="Leyline"><img class="ly-swirl" src="assets/leyline/swirl-256.webp" alt="" loading="lazy" decoding="async"><img class="ly-crystal" src="assets/leyline/crystal-256.webp" alt="" loading="lazy" decoding="async"></span></div>
         <h2 style="font-size: 1.3rem; font-weight: 700; color: var(--gold-bright);">ENTER THE REALM</h2>
         <p style="font-size: 0.8rem; color: var(--text-muted); margin-top: 3px;">Hardware Accelerated WebGPU Engine</p>
       </div>
@@ -5291,7 +5291,6 @@
         <p class="soon-lead" id="soonRealmLead"></p>
         <ul class="soon-points" id="soonRealmPoints"></ul>
         <div class="soon-fund" id="soonRealmFund">
-          <img src="assets/orion/support_sigil.webp" alt="" loading="lazy">
           <div>
             <h4>How new realms launch</h4>
             <p>Every realm runs on its own server, so it opens when support can pay for one. Launch news lands in Discord first.</p>
@@ -5752,7 +5751,7 @@
   </section>
 
 <!-- ORION (the realm's caretaker), STARFALL GIVING (hidden) and THE ORION NETWORK (hidden proposal).
-       Art: tools/gen_orion_caretaker_art.py and tools/gen_orion_art.py -> assets/orion/. Numbers tagged "sample" or "preview" are placeholders. -->
+       Numbers tagged "sample" or "preview" are placeholders. -->
   <style>
     .og-wrap { max-width: 1200px; margin: 2rem auto; padding: 2rem; background: rgba(12, 17, 26, 0.94); border: 1px solid var(--border-edge); border-radius: 6px; }
     .og-head { text-align: center; margin-bottom: 1.6rem; }
@@ -5831,7 +5830,6 @@
       <h2 id="ogOrionTitle">Orion</h2>
       <p>Orion looks after Leyline day to day. It keeps an eye on every realm, reads the Herald's reports, sorts the bug queue, walks each patch through testing and puts what comes next to a community vote. It works in the open, and a person approves every change before it reaches players.</p>
     </div>
-    <div class="og-hero"><img src="assets/orion/orion_caretaker.webp" alt="Orion, a gold hexagon core with orbit rings, keeping watch over a realm keep ringed in green; along the bottom a patch passes three glowing gates, staging, Herald Lite and live, with check marks over the first two" width="1200" height="520" loading="lazy"></div>
 
     <div class="og-cards">
       <div class="og-card">
@@ -5923,7 +5921,6 @@
       <h2 id="ogGivingTitle">Starfall Giving</h2>
       <p>Leyline is paid for by the people who play it. Support fills five buckets in order, from the server bill up to the Orion Network. When the last bucket is full, the overflow spills: part of it is given away to causes Orion picks with the community, and every dollar in and out gets a public receipt.</p>
     </div>
-    <div class="og-hero"><img src="assets/orion/starfall_giving.webp" alt="Five gold basins of starlight stepping down a night sky, each overflowing into the next; the last spills into a glowing golden heart beneath the Orion constellation" width="1200" height="520" loading="lazy"></div>
 
     <div class="og-cards">
       <div class="og-card">
@@ -6025,7 +6022,6 @@
       <h2 id="ogNetworkTitle">The Orion Network</h2>
       <p>A network of player-run nodes that carries Leyline's new content to every player and keeps the main realms online through any outage. Nobody has to be trusted: every file and every checkpoint can be checked by anyone, and there's no mining. Run a node, and the realm rewards you for it.</p>
     </div>
-    <div class="og-hero"><img src="assets/orion/orion_network.webp" alt="The Orion constellation drawn as a network: each star a glowing hexagonal node, a gold hexagon core on the belt for the main realm, a mesh of small peer nodes, and a chain of linked blocks along the bottom" width="1200" height="520" loading="lazy"></div>
 
     <div class="og-cards">
       <div class="og-card">
@@ -6069,7 +6065,7 @@
     </div>
 
     <div class="og-panel">
-      <div class="og-node"><img src="assets/orion/orion_node.webp" alt="" width="64" height="64" loading="lazy" decoding="async"><div><h3 style="margin: 0;">Rewards for running a node</h3><p style="font-size: .82rem; color: var(--text-muted); margin: .2rem 0 0;">A node is one Docker command on a Linux box, a home server or a spare PC with a decent upload. Rewards are counted only for work the spot checks have verified.</p></div></div>
+      <div class="og-node"><div><h3 style="margin: 0;">Rewards for running a node</h3><p style="font-size: .82rem; color: var(--text-muted); margin: .2rem 0 0;">A node is one Docker command on a Linux box, a home server or a spare PC with a decent upload. Rewards are counted only for work the spot checks have verified.</p></div></div>
       <table class="og-table">
         <thead><tr><th>Role</th><th>Earns</th><th>Needs</th></tr></thead>
         <tbody>
@@ -6117,7 +6113,7 @@
       </div>
       <div class="og-card">
         <h3>Host a realm from a template <span class="og-badge blue">Planned</span></h3>
-        <p>Pick a template, name your realm and leave the Orion app running. Hosts who sign the Host Agreement show up in everyone's realm list, and nobody on either side sees an IP address.</p>
+        <p>Pick a template, name your realm and leave the Leyline app running. Hosts who sign the Host Agreement show up in everyone's realm list, and nobody on either side sees an IP address.</p>
         <ul>
           <li><b>Templates:</b> Vanilla Experience, Vanilla Remastered, Speedrun, Arena, Builder, Hardcore, Seasonal, Roleplay, Friends and Guild</li>
           <li><b>Ranked by reliability:</b> signed uptime receipts, not the host's word</li>
@@ -6248,7 +6244,6 @@
       <i class="jc tl" aria-hidden="true"></i><i class="jc tr" aria-hidden="true"></i><i class="jc bl" aria-hidden="true"></i><i class="jc br" aria-hidden="true"></i>
       <button class="ow-x" type="button" aria-label="Close" onclick="closeSupportModal()">×</button>
       <div class="jar-scroll">
-      <div class="ow-jar-art"><img src="assets/orion/support_banner.webp" width="1200" height="633" alt="A silver-haired elven mage in violet and gold robes casts glowing runes toward a starlit spired city" loading="lazy"></div>
       <h3 id="owJarTitle">Keep the realm running</h3>
       <p>Leyline is free and built by volunteers. Tips pay for hosting first, then fixes and new features, and every one gets a public receipt from Orion.</p>
       <div class="ow-jar-btns">
@@ -6268,7 +6263,6 @@
   </div>
   <button id="owSupportPill" type="button" onclick="openSupportModal()" aria-label="Support Leyline">❤️ Support</button>
   <div id="owNudge" class="ow-frame" role="status">
-    <img class="ow-sigil" src="assets/orion/support_sigil.webp" width="64" height="64" alt="" loading="lazy" decoding="async">
     <b>Enjoying Leyline?</b>
     It's free and made by the community. A small tip keeps the realm online for everyone.
     <div class="row">
@@ -6278,14 +6272,7 @@
   </div>
 
   <footer style="background: #04060a; border-top: 1px solid var(--border-edge); padding: 3rem 1.5rem 2rem; color: #94a3b8; font-size: 0.78rem;">
-    <!-- Made by Orion (the framed sprite: assets/orion/orion_cookie.webp, .gif for old browsers) -->
     <div style="max-width: 1200px; margin: -1rem auto 2.4rem; display: flex; flex-direction: column; align-items: center; gap: 0.55rem;">
-      <picture>
-        <source srcset="assets/orion/orion_cookie.webp" type="image/webp">
-        <img src="assets/orion/orion_cookie.gif" width="239" height="162" loading="lazy" decoding="async"
-             alt="Orion, a blue-skinned elf with long silver hair, happily eating a cookie"
-             style="display: block; image-rendering: pixelated; border-radius: 3px; box-shadow: 0 0 0 1px rgba(212,167,66,0.25), 0 10px 30px rgba(0,0,0,0.6), 0 0 26px rgba(212,167,66,0.12);">
-      </picture>
       <div style="color: var(--gold-dim); font-size: 0.74rem; letter-spacing: 0.04em;">Made by Orion <span aria-label="with love">&#10084;&#65039;</span></div>
     </div>
     <div style="max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(260px, 100%), 1fr)); gap: 2rem; margin-bottom: 2.5rem;">
@@ -6293,7 +6280,7 @@
       <!-- Column 1: Project Identity & Discord -->
       <div>
         <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 0.8rem;">
-          <img src="assets/openvanilla_logo_nav.webp" alt="Leyline" style="height: 32px;" loading="lazy" decoding="async">
+          <span class="ly-foot-mark"><span class="ly-spin" aria-hidden="true"><img class="ly-swirl" src="assets/leyline/swirl-256.webp" alt="" loading="lazy" decoding="async"><img class="ly-crystal" src="assets/leyline/crystal-256.webp" alt="" loading="lazy" decoding="async"></span></span>
           <span style="font-family: var(--font-display); color: var(--gold-bright); font-size: 1.1rem; font-weight: 700;">Leyline</span>
         </div>
         <p style="line-height: 1.6; margin-bottom: 1.2rem;">
@@ -7754,88 +7741,6 @@
   if ('IntersectionObserver' in window) new IntersectionObserver(function (e) { seen = e[0].isIntersecting; go(); }).observe(host);
   document.addEventListener('visibilitychange', function () { on = !document.hidden; go(); });
   go();
-})();
-</script>
-<script>
-/* Hero book. Builds: wrap > glow + body(img, easter-egg parts, shine). Glow surges every 9 s and the
-   letters shine every 11 s (CSS). On the first shine the book shakes and leaves spill over the page.
-   Hovering lifts the book a little. Clicking it alternates two little mechanisms, each with a
-   synthesized sound (no audio files): the corner gems flash elemental colours, the spine's runes light up. */
-(function () {
-  var img = document.querySelector('#tab-hub .hero-logo-img'); if (!img) return;
-  var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var LW = 498, LH = 531; // assets/openvanilla_logo_hero.webp; the positions below are in its pixels
-  var GEMS = [[85.3, 58.4], [430.3, 58.3], [121.6, 93.9], [394.2, 93.5], [90.9, 415.3], [433.5, 422.6]],
-      RUNES = [[28, 92], [28, 124], [28, 163], [28, 197], [28, 367], [28, 404], [28, 439]];
-  function el(tag, cls, parent) { var e = document.createElement(tag); e.className = cls; e.setAttribute('aria-hidden', 'true'); if (parent) parent.appendChild(e); return e; }
-  var wrap = el('span', 'hero-logo-fx-wrap'); wrap.removeAttribute('aria-hidden'); img.parentNode.insertBefore(wrap, img);
-  el('span', 'hero-logo-glow', wrap);
-  var body = el('span', 'hero-logo-body', wrap); body.removeAttribute('aria-hidden'); body.appendChild(img);
-  function at(e, x, y, w, h) { e.style.left = (x / LW * 100) + '%'; e.style.top = (y / LH * 100) + '%'; if (w != null) { e.style.width = (w / LW * 100) + '%'; e.style.height = (h / LH * 100) + '%'; } }
-  var gems = GEMS.map(function (g) { var e = el('span', 'egg-part egg-gem', body); at(e, g[0], g[1], 30, 30 * LW / LH); return e; });
-  var RUNE_PATHS = ['M6 1v12M6 1l4 3', 'M2 13L6 1l4 12M3.5 8h5', 'M6 1v12M2 4l8 6', 'M6 1l4 6-4 6-4-6z', 'M2 1v12M2 7l7-6M2 7l7 6', 'M6 1v12M2 1l4 5 4-5', 'M2 13V1l8 6-8 6'];
-  var runes = RUNES.map(function (r, i) { var e = el('span', 'egg-part egg-rune', body); at(e, r[0], r[1], 16, 16 * LW / LH);
-    e.innerHTML = '<svg viewBox="0 0 12 14" width="100%" height="100%"><path d="' + RUNE_PATHS[i % RUNE_PATHS.length] + '" fill="none" stroke="#bff4ff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>'; return e; });
-  el('span', 'hero-logo-shine', body);
-
-  // ---- sound: tiny Web Audio synths, made on the first click ----
-  var ac = null; function audio() { if (!ac) { try { ac = new (window.AudioContext || window.webkitAudioContext)(); } catch (e) { ac = false; } } if (ac && ac.state === 'suspended') ac.resume(); return ac; }
-  function env(a, g, t, peak, dur) { g.gain.setValueAtTime(0.0001, t); g.gain.exponentialRampToValueAtTime(peak, t + .005); g.gain.exponentialRampToValueAtTime(0.0001, t + dur); }
-  function tone(a, out, t, f, dur, peak, type) { var o = a.createOscillator(), g = a.createGain(); o.type = type || 'sine'; o.frequency.value = f; env(a, g, t, peak, dur); o.connect(g); g.connect(out); o.start(t); o.stop(t + dur + .05); }
-  function master(a) { var m = a.createGain(); m.gain.value = .35; m.connect(a.destination); return m; }
-  var SOUND = {
-    gems: function (a) { var m = master(a), t = a.currentTime + .02; [659.3, 784, 987.8, 1318.5].forEach(function (f, i) { tone(a, m, t + i * .12, f, .7, .22); tone(a, m, t + i * .12, f * 2.01, .4, .06, 'triangle'); }); },
-    runes: function (a) { var m = master(a), t = a.currentTime + .02, o = a.createOscillator(), lp = a.createBiquadFilter(), g = a.createGain();
-      o.type = 'sawtooth'; o.frequency.value = 98; lp.type = 'lowpass'; lp.frequency.setValueAtTime(250, t); lp.frequency.exponentialRampToValueAtTime(1400, t + 1); lp.frequency.exponentialRampToValueAtTime(300, t + 1.8);
-      g.gain.setValueAtTime(.0001, t); g.gain.exponentialRampToValueAtTime(.18, t + .5); g.gain.exponentialRampToValueAtTime(.0001, t + 1.9); o.connect(lp); lp.connect(g); g.connect(m); o.start(t); o.stop(t + 2);
-      RUNES.forEach(function (_, i) { tone(a, m, t + .1 + i * .13, 520 + i * 40, .25, .07); }); }
-  };
-
-  // ---- the three mechanisms ----
-  var ELEMENTS = [['255,90,40', '255,180,60'], ['90,190,255', '200,240,255'], ['90,230,110', '200,255,150'], ['190,110,255', '240,190,255']];
-  var ACT = {
-    gems: function () { gems.forEach(function (g, i) { var seq = []; ELEMENTS.forEach(function (c, j) {
-        var o = j / ELEMENTS.length; seq.push({ offset: o, opacity: 0, transform: 'translate(-50%,-50%) scale(.4)', background: 'radial-gradient(closest-side, rgba(' + c[1] + ',1), rgba(' + c[0] + ',.85) 45%, rgba(' + c[0] + ',0))' });
-        seq.push({ offset: o + .1, opacity: 1, transform: 'translate(-50%,-50%) scale(1.25)' }); seq.push({ offset: o + .22, opacity: .15, transform: 'translate(-50%,-50%) scale(.8)' }); });
-        seq.push({ offset: 1, opacity: 0, transform: 'translate(-50%,-50%) scale(.4)' });
-        g.animate(seq, { duration: 1500, delay: i * 40, easing: 'ease-out' }); }); return 1600; },
-    runes: function () { runes.forEach(function (r, i) { r.animate([{ opacity: 0 }, { opacity: 1, offset: .2 }, { opacity: .85, offset: .7 }, { opacity: 0 }], { duration: 1500, delay: 100 + i * 130, easing: 'ease-in-out' }); }); return 100 + runes.length * 130 + 1500; }
-  };
-  var ORDER = ['gems', 'runes'], idx = 0, busy = false;
-  function poke() { if (busy) return; busy = true; var name = ORDER[idx++ % ORDER.length];
-    body.classList.add('egg-press'); setTimeout(function () { body.classList.remove('egg-press'); }, 120);
-    var a = audio(); if (a) try { SOUND[name](a); } catch (e) {}
-    var ms = reduce ? 600 : ACT[name](); setTimeout(function () { busy = false; }, Math.max(400, ms - 300)); }
-  body.setAttribute('role', 'button'); body.tabIndex = 0; body.setAttribute('aria-label', 'Leyline book. Click it and see what happens.');
-  body.addEventListener('click', poke); body.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); poke(); } });
-
-  // ---- first shine: shake and spill leaves over the whole page ----
-  if (reduce) return;
-  var shine = body.querySelector('.hero-logo-shine'), spilled = false;
-  function spill() {
-    var r = img.getBoundingClientRect(); if (r.bottom < 0 || r.top > innerHeight) return;
-    body.classList.remove('book-shake-once'); void body.offsetWidth; body.classList.add('book-shake-once');
-    var cv = el('canvas', 'leaf-spill', document.body), ctx = cv.getContext('2d'), dpr = Math.min(2, devicePixelRatio || 1), W = innerWidth, H = innerHeight;
-    cv.width = W * dpr; cv.height = H * dpr; ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-    var COLORS = ['217,138,43', '168,71,31', '224,166,58', '190,98,36', '201,120,40'], leaves = [], n = W < 600 ? 16 : 28, k = Math.max(.8, Math.min(1.3, W / 1500));
-    for (var i = 0; i < n; i++) { var side = Math.random() < .5 ? -1 : 1;
-      leaves.push({ x: r.left + r.width * (side < 0 ? .1 + Math.random() * .15 : .75 + Math.random() * .15), y: r.top + r.height * (.1 + Math.random() * .5),
-        vx: side * (160 + Math.random() * 260), vy: -(80 + Math.random() * 160), delay: .1 + Math.random() * .8,
-        sw: 18 + Math.random() * 28, sf: .7 + Math.random() * .9, ph: Math.random() * 6.28, rot: Math.random() * 6.28, vr: (Math.random() - .5) * 3,
-        sz: (9 + Math.random() * 6) * k, col: COLORS[Math.floor(Math.random() * COLORS.length)], t: 0, fall: 70 + Math.random() * 50 }); }
-    var last = 0;
-    function draw(l, x, y, a) { ctx.save(); ctx.translate(x, y); ctx.rotate(l.rot); ctx.scale(1, Math.cos(l.t * l.sf * 3 + l.ph) * .7 + .3); var s = l.sz;
-      ctx.fillStyle = 'rgba(' + l.col + ',' + a + ')'; ctx.beginPath(); ctx.moveTo(-s, 0); ctx.quadraticCurveTo(0, -s * .62, s, 0); ctx.quadraticCurveTo(0, s * .62, -s, 0); ctx.fill();
-      ctx.strokeStyle = 'rgba(90,40,15,' + a * .5 + ')'; ctx.lineWidth = .7; ctx.beginPath(); ctx.moveTo(-s * .9, 0); ctx.lineTo(s * .9, 0); ctx.stroke(); ctx.restore(); }
-    function frame(now) { var dt = Math.min(.05, (now - (last || now)) / 1000); last = now; ctx.clearRect(0, 0, W, H);
-      for (var i = leaves.length - 1; i >= 0; i--) { var l = leaves[i]; if (l.delay > 0) { l.delay -= dt; continue; } l.t += dt;
-        var drag = Math.exp(-1.6 * dt); l.vx *= drag; l.vy = l.vy * drag + (l.fall - l.vy * drag) * (1 - drag); l.x += l.vx * dt; l.y += l.vy * dt; l.rot += l.vr * dt;
-        var x = l.x + Math.sin(l.t * l.sf * 2 + l.ph) * l.sw, a = Math.min(1, l.t / .35, (H - l.y) / (H * .12));
-        if (l.y > H + 20 || (a <= 0 && l.t > 1)) { leaves.splice(i, 1); continue; } draw(l, x, l.y, Math.max(0, a) * .95); }
-      if (leaves.length) requestAnimationFrame(frame); else cv.remove(); }
-    requestAnimationFrame(frame);
-  }
-  // no leaf spill on the first shine (Oct 23): the book only shines
 })();
 </script>
 <script>

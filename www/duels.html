@@ -159,6 +159,7 @@
       .stat b { font-size: 1.5rem; }
     }
   </style>
+  <link rel="stylesheet" href="assets/leyline/leyline.css">
 </head>
 <body>
 <div class="wrap">
@@ -218,7 +219,7 @@
         <button class="tab on" data-t="ladder" type="button">Ladder</button><button class="tab" data-t="class" type="button">By class</button><button class="tab" data-t="streaks" type="button">Streaks</button><button class="tab" data-t="matchups" type="button">Matchups</button><button class="tab" data-t="gold" type="button">Duel Gold</button>
         <select id="classPick" hidden aria-label="Class"><option>Warrior</option><option>Paladin</option><option>Hunter</option><option>Rogue</option><option>Priest</option><option>Shaman</option><option>Mage</option><option>Warlock</option><option>Druid</option></select>
       </div>
-      <div id="board"><p class="empty">Loading…</p></div>
+      <div id="board"><p class="empty ly-loading"><span class="ly-spin ly-fast" aria-hidden="true"><img class="ly-swirl" src="assets/leyline/swirl-128.webp" alt=""><img class="ly-crystal" src="assets/leyline/crystal-128.webp" alt=""></span>Loading…</p></div>
       <p class="updated" id="boardNote">Rated 1v1 on the official realm only, on Glicko-2. Realm bots never appear here. Duel Points (DP) are earned only.</p>
     </div>
     <div>

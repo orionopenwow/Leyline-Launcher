@@ -3,27 +3,27 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Character · Open Vanilla Armory</title>
+  <title>Character · Leyline Armory</title>
   <!-- Link previews (Discord, Reddit, X, iMessage) -->
   <meta property="og:type" content="website">
-  <meta property="og:site_name" content="Open Vanilla">
-  <meta property="og:title" content="Character · Open Vanilla Armory">
-  <meta property="og:description" content="An Open Vanilla character: gear, talents, achievements, professions and reputations.">
+  <meta property="og:site_name" content="Leyline">
+  <meta property="og:title" content="Character · Leyline Armory">
+  <meta property="og:description" content="An Leyline character: gear, talents, achievements, professions and reputations.">
   <meta property="og:url" content="https://openvanilla.app/armory/character.html">
   <meta property="og:image" content="https://openvanilla.app/assets/og-image.jpg">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
-  <meta property="og:image:alt" content="Open Vanilla: classic Vanilla in your browser. Free, no download, play in seconds.">
+  <meta property="og:image:alt" content="The Leyline mark, a blue crystal in a blue and violet swirl, beside the name Leyline">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Character · Open Vanilla Armory">
-  <meta name="twitter:description" content="An Open Vanilla character: gear, talents, achievements, professions and reputations.">
+  <meta name="twitter:title" content="Character · Leyline Armory">
+  <meta name="twitter:description" content="An Leyline character: gear, talents, achievements, professions and reputations.">
   <meta name="twitter:image" content="https://openvanilla.app/assets/og-image.jpg">
   <meta name="theme-color" content="#0a0816">
-  <meta name="description" content="An Open Vanilla character: gear, talents, achievements, professions and reputations.">
+  <meta name="description" content="An Leyline character: gear, talents, achievements, professions and reputations.">
   <meta name="robots" content="noindex">
   <meta property="og:type" content="profile">
-  <meta property="og:site_name" content="Open Vanilla">
-  <meta property="og:title" content="Character · Open Vanilla Armory">
+  <meta property="og:site_name" content="Leyline">
+  <meta property="og:title" content="Character · Leyline Armory">
   <link rel="icon" href="../favicon.ico">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -133,6 +133,7 @@
       .hero img { width: 48px; height: 72px; }
     }
   </style>
+  <link rel="stylesheet" href="../assets/leyline/leyline.css">
 </head>
 <body>
   <div class="wrap">
@@ -140,7 +141,7 @@
       <a class="home" href="../armory.html" id="back">&larr; Armory</a>
       <span class="pill">CHARACTER</span>
     </header>
-    <main id="main"><div class="empty"><b>Loading…</b>Reading the armory.</div></main>
+    <main id="main"><div class="empty ly-loading"><span class="ly-spin ly-fast" aria-hidden="true"><img class="ly-swirl" src="../assets/leyline/swirl-128.webp" alt=""><img class="ly-crystal" src="../assets/leyline/crystal-128.webp" alt=""></span><b>Loading…</b>Reading the armory.</div></main>
     <footer>
       <a href="../index.html">Home</a> · <a href="../armory.html">Armory</a> · <a href="../guilds.html">Guilds</a> · <a href="../privacy.html">Privacy</a> · <a href="../terms.html">Terms</a> ·
       World of Warcraft is a trademark of Blizzard Entertainment, Inc. Open Vanilla is an independent fan project, not affiliated with or endorsed by Blizzard Entertainment.
@@ -300,7 +301,7 @@
         main.textContent = "";
         var cls = CLASSES[d.class] ? d.class : "WARRIOR";
         var nm = str(d.name, 24) || name;
-        document.title = nm + " · Open Vanilla Armory";
+        document.title = nm + " · Leyline Armory";
         if (d.privacy === "friends") main.appendChild(el("div", "private", "Friends-only: you can see this because someone shared its link with you. It is not listed in search or rankings."));
 
         var hero = el("div", "hero");

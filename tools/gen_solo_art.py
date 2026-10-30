@@ -14,7 +14,7 @@ Writes into www/assets/solo/ (or out_dir):
     solo_og.webp          1200x630  social preview (og:image / twitter:image)
     solo_og.jpg           1200x630  the same, as JPEG for crawlers that skip WebP
 
-Procedural, painterly PIL art in the style of www/assets/orion (night sky,
+Procedural, painterly PIL art (night sky,
 violet nebula, gold rims, white four-point stars). Everything is drawn from shapes; no game art.
 Deterministic: the same seeds draw the same pictures.
 """
@@ -512,10 +512,10 @@ def og_image():
     lay = Image.new("RGBA", img.size, (4, 5, 12, 0))
     lay.putalpha(shade)
     img.alpha_composite(lay)
-    logo_path = os.path.join(ROOT, "www", "assets", "openvanilla_logo_hero.png")
+    logo_path = os.path.join(ROOT, "www", "assets", "leyline", "mark-512.png")
     if os.path.exists(logo_path):
         logo = Image.open(logo_path).convert("RGBA")
-        lw = 300 * S
+        lw = 160 * S
         logo = logo.resize((lw, int(logo.height * lw / logo.width)), Image.LANCZOS)
         img.alpha_composite(logo, (60 * S, 50 * S))
         ty = 50 * S + logo.height + 10 * S
