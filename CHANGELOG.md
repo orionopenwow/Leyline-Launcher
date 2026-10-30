@@ -1,6 +1,10 @@
 # Open Vanilla changelog
 (build_repack.py turns the newest sections into the launcher's patch notes: "## Section" headers, "- item" lines.)
 
+## New in 1.56.0
+- New.
+- A.
+
 ## New in 1.55.1
 - Launcher: the game setup page uses the 1.12.1 game client you already have (choose its folder) or plays in your browser; the launcher no longer downloads or links a game client (defaults.json, links.txt and live content carry no client download links).
 - Realm kit: wenilla_up.sh uses the Data folder of your own 1.12.1 client copied to /srv/client/Data; it no longer downloads one.
