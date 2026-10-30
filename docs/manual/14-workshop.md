@@ -134,7 +134,7 @@ To be listed, [open an issue](https://github.com/orionopenwow/Leyline-Launcher/i
 
 1. **Fork the repo** on GitHub ([orionopenwow/Leyline-Launcher](https://github.com/orionopenwow/Leyline-Launcher)) or clone it to another host.
 2. **Keep the credits.** Leyline is built on **benilla** (MIT / Apache-2.0); keep its licence files and credit line.
-3. **Keep Blizzard's files out.** The repo's checks refuse them, and so should your fork: players bring their own Vanilla Client v1.3.
+3. **Keep the game's own files out.** The repo's checks refuse them, and so should your fork: players bring their own Vanilla Client v1.3.
 4. **Rename it.** Use your own name and art; don't present your fork as the official Leyline.
 5. **Point it at your own realm.** Realm addresses live in the launcher's defaults and the site's config; your fork's players should never sign in to a realm you don't run.
 6. **List it** in the [Projects directory](#directory) so players can find it.

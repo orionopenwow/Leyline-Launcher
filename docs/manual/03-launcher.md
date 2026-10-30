@@ -30,7 +30,7 @@ The bar above PLAY says what's ready or missing, for example **READY TO PLAY**, 
 
 The launcher's game setup page (it opens when PLAY can't find a client) has two choices:
 
-- **Use your own client → Choose its folder:** use the 1.12.1 game client you already have: pick the folder with `WoW.exe`. The launcher checks it and never changes the game's files.
+- **Use your own client → Choose its folder:** use the 1.12.1 game client you already have: pick the folder with the game's `.exe`. The launcher checks it and never changes the game's files.
 - **Play in your browser:** no client on this PC? Switch to browser play.
 
 The launcher never downloads a game client.

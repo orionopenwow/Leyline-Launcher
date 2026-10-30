@@ -192,7 +192,7 @@ def _node_modules():
     n.LEADERBOARD_CHOICES = (("off", "Don't list me"), ("anonymous", "List me as \"Anonymous node\""),
                              ("named", "List me with a display name"))
     n.RULES = "Node rules v1: no logging of addresses."
-    n.consent_text = lambda cfg: (f"WHAT IS SHARED: only end-to-end encrypted game traffic, never Blizzard's game files. "
+    n.consent_text = lambda cfg: (f"WHAT IS SHARED: only end-to-end encrypted game traffic, never the game's own files. "
                                   f"Capped at {cfg.get('kbps')} KB/s and {cfg.get('daily_gb')} GB per day. "
                                   "Players can see your IP address. One click: Host > Become a node > TURN OFF.")
 

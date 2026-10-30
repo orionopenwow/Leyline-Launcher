@@ -58,6 +58,6 @@ A release is playtested on staging, gets a `## New in X.Y.Z` section in `CHANGEL
 
 ## Rules for contributions {#rules}
 
-- No Blizzard files, ever: checks refuse MPQs, DBCs and stock interface files.
+- No game files, ever: checks refuse MPQs, DBCs and stock interface files.
 - No secrets in commits: tokens, keys and passwords stay in `.env` files that git ignores.
 - Keep it free: nothing that sells power, items or game time.

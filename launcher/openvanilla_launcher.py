@@ -491,7 +491,7 @@ def exe_command(exe):
     if sys.platform != "win32" and str(exe).lower().endswith(".exe"):
         wine = os.environ.get("WINE") or shutil.which("wine") or shutil.which("wine64")
         if not wine:
-            raise OSError("WoW.exe is a Windows program: install Wine (for example sudo apt install wine) "
+            raise OSError("The game is a Windows program: install Wine (for example sudo apt install wine) "
                           "to run it here, or play in the browser.")
         return [wine, str(exe)]
     return [exe]
@@ -4644,7 +4644,7 @@ class Launcher(tk.Tk):
         text = ("Seeding means the launcher uploads pieces of Leyline downloads you already have to other players, "
                 "so updates reach everyone faster and Leyline's servers cost less.\n\n"
                 "• Only Leyline's own files are shared: the launcher, the Leyline client and our patch files. Never "
-                "Blizzard's game files, your WoW folder, characters, or anything else on your PC.\n\n"
+                "the game's own files, your game folder, characters, or anything else on your PC.\n\n"
                 f"• Upload is capped at {limit} KB/s (change it under Upload limit). Other players can see your "
                 "IP address while you seed, as with any torrent.\n\n"
                 "• Stop any time: Host → Downloads → STOP SEEDING. Seeding also stops when the launcher closes.")
@@ -4772,7 +4772,7 @@ class Launcher(tk.Tk):
             self._badge(head, "NODE", "shield", "#10282a", "#4fc3b0", PANEL)
         intro = ("Relay other players' encrypted game traffic so community realms need no open ports and nobody's "
                  "home address is shown. More nodes = more players can connect at once. A node never shares "
-                 "Blizzard's files or anything on your PC, and it doesn't make any one world bigger.")
+                 "the game's own files or anything on your PC, and it doesn't make any one world bigger.")
         tk.Label(f, text=intro, bg=PANEL, fg=TEXT, font=font(9), wraplength=560, justify="left").pack(
             anchor="w", pady=(8, 4))
         tiers_line = "Tiers: VERIFIED realms (official or vetted)  ·  COMMUNITY P2P realms  ·  verified P2P NODES (you, once checked)"
@@ -5961,12 +5961,12 @@ class Launcher(tk.Tk):
         if c["type"] == "engine":
             path = filedialog.askopenfilename(parent=self, title="Choose the Leyline engine (Open Vanilla Game.exe)", filetypes=[("Programs", "*.exe"), ("All files", "*.*")])
         else:
-            path = filedialog.askdirectory(parent=self, title=f"Choose the {c['name']} folder (the one with Wow.exe)")
+            path = filedialog.askdirectory(parent=self, title=f"Choose the {c['name']} folder (the one with the game's .exe)")
         if not path:
             return
         self._client_override(c, "path", path)
         if not self.client_exe(c):
-            messagebox.showwarning("Game client", f"{c.get('exe', 'Wow.exe')} wasn't found there. Pick the folder that contains it.", parent=self)
+            messagebox.showwarning("Game client", "The game's .exe wasn't found there. Pick the folder that contains it.", parent=self)
         self.update_status()
         self.show_page("settings", animate=False)
 
@@ -6165,7 +6165,7 @@ class Launcher(tk.Tk):
             return True, "READY · PLAYS IN YOUR BROWSER", f"{realm.get('name')} · {self.web_url()}", "blue", None
         if not self.client_exe(c) and self.own_folder_client(c):   # 3.3.5a: the player's own game folder, nothing to get
             ver = c.get("version") or BUILD_NAMES.get(int(c.get("build", 0) or 0), "")
-            return False, f"SET UP {name}", f"Press PLAY to pick your own {ver} game folder (the one with Wow.exe).", "amber", "choose_install"
+            return False, f"SET UP {name}", f"Press PLAY to pick your own {ver} game folder (the one with the game's .exe).", "amber", "choose_install"
         if not self.client_exe(c):
             url = self.client_download(c)
             if url:
@@ -6944,13 +6944,13 @@ class Launcher(tk.Tk):
         want = int(c.get("build", 0) or 0)
         ver = c.get("version") or BUILD_NAMES.get(want, str(want))
         while True:
-            path = filedialog.askdirectory(parent=self, title=f"Choose your {ver} game folder (the one with Wow.exe)")
+            path = filedialog.askdirectory(parent=self, title=f"Choose your {ver} game folder (the one with the game's .exe)")
             if not path:
                 return False
             root = os.path.dirname(path) if os.path.basename(path).lower() == "data" else path
             issues = []
             if not self.client_exe(dict(c, path=root)):
-                issues.append(f"There's no {c.get('exe', 'Wow.exe')} in that folder.")
+                issues.append("There's no game .exe in that folder.")
             data = next((os.path.join(root, d) for d in (os.listdir(root) if os.path.isdir(root) else [])
                          if d.lower() == "data" and os.path.isdir(os.path.join(root, d))), None)
             if not data or not any(f.lower() == "common.mpq" for f in os.listdir(data)):

@@ -108,7 +108,7 @@ def ensure_wow_data(parent=None):
     messagebox.showinfo(
         "Find your game folder",
         "Leyline uses the game files from your own 1.12.1 game client.\n\n"
-        "Pick your Vanilla game folder (the one with WoW.exe or the Data folder). "
+        "Pick your Vanilla game folder (the one with the game's .exe or the Data folder). "
         "You only need to do this once.",
         parent=parent,
     )

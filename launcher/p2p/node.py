@@ -71,7 +71,7 @@ CONSENT_TEXT = (
     "WHAT IS SHARED\n"
     "• Only other players' game traffic, end-to-end encrypted between the player and the realm's host: "
     "your node passes sealed bytes along and can't read them.\n"
-    "• Never Blizzard's game files, your WoW folder, your characters or anything else on this PC. "
+    "• Never the game's own files, your game folder, your characters or anything else on this PC. "
     "(Seeding, a separate switch, shares only Leyline's own signed downloads.)\n\n"
     "BANDWIDTH\n"
     "• Capped at {kbps} KB/s and {daily_gb} GB per day (change both below). At the daily cap the node "

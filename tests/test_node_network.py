@@ -607,7 +607,7 @@ class NodeServiceTests(unittest.TestCase):
         self.assertFalse(s.resume(), "nothing starts unless the volunteer turned it on")
         text = s.enable()
         self.assertEqual(s.machine.state, "consent")
-        for phrase in ("Never Blizzard's game files", "end-to-end encrypted", "512 KB/s", "10 GB per day",
+        for phrase in ("Never the game's own files", "end-to-end encrypted", "512 KB/s", "10 GB per day",
                        "can see your IP address", "never see each other's", "writes no logs", "One click",
                        "Behind carrier-grade NAT"):
             self.assertIn(phrase, text)

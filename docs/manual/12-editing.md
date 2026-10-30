@@ -3,7 +3,7 @@ title: Edit your own game
 kicker: Chapter 13 · Build
 summary: Make addons and UI changes for the Vanilla client, test them with the Lua sim, change your realm's rules, port models and mounts, and rebuild the patch, without ever touching Blizzard's files.
 
-> **Never:** Never modify, extract, copy or share Blizzard's files (`WoW.exe`, `Data\*.MPQ`, `Interface\FrameXML`, `Interface\GlueXML`, `Blizzard_*` addons). Everything here works alongside them. Make backups before changing anything.
+> **Never:** Never modify, extract, copy or share the game's own files (its `.exe`, `Data\*.MPQ`, `Interface\FrameXML`, `Interface\GlueXML`, `Blizzard_*` addons). Everything here works alongside them. Make backups before changing anything.
 
 ## What you can change, and where {#map}
 
@@ -116,7 +116,7 @@ The scanner loads the addon in the sim, logs in, runs it for two seconds, and re
 
 | Option | What it does |
 | --- | --- |
-| Quick checks | `py -3 devkit\check.py`: repo sanity, including refusing Blizzard files |
+| Quick checks | `py -3 devkit\check.py`: repo sanity, including refusing game files |
 | Addon tests | The Lua sim |
 | SQL tests | Realm database changes, in Docker or locally |
 | Dev proxy | `http://localhost:8080` is the live realm, but the page scripts and Vanilla Remastered addons come from **your** folder. Nothing is pushed. |
