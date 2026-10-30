@@ -46,7 +46,8 @@ The classic launcher, Leyline Server and the website (what the build, the releas
 launcher/         the launcher (Python + Tk), frozen to OpenVanilla.exe by packaging/build_repack.py; launcher/p2p is hosting
 packaging/        build_repack.py (launcher zip + installer layout), build_server.py (Leyline Server zip), installer/,
                   release_manifest.py and live_content.py (signing), workflows/ (the source of .github/workflows)
-www/              the website (GitHub Pages): pages, Workshop JSON, the manual, downloads/ (version.json, live content)
+www/              the website (GitHub Pages): the Leyline home page, Workshop, the manual, downloads/ (version.json, live
+                  content); the earlier realm's pages are "moved" pages pointing at the Leyline hub
 Data/Interface/   our addon suite, shipped in the launcher (app/addons), and its art
 workshop/         the Workshop catalogue (one .yml per addon); tools/workshop_build.py turns it into www/community/workshop
 agent/            the AI starter kit the launcher copies (Settings > AI)
@@ -59,7 +60,6 @@ art/              art masters the generators in tools/ read
 *.py (root)       play_local.py, server_control.py, asset_server.py, authcheck.py, launcher_gui.py, studio_server.py,
                   openvanilla_server.py, set_realm.py: the Solo and server modules (frozen into the launcher or zipped
                   into Leyline Server; they import each other from the root)
-host/ovhost       macOS/Linux hosting for Leyline Server (Host a Realm.command)
 links.txt, VERSION every address the launcher and site use; the release version
 devkit/           check.py (repo checks), the Lua addon sim, citations, heraldlite (built into Leyline Server), db tests,
                   UI Studio, audit.py, Dev.bat
@@ -69,7 +69,8 @@ tests/            tests for all of the above
 docs/             launcher and network notes, and the player manual's source (docs/manual -> www/manual)
 
 labs/             earlier tools and experiments, kept for later (labs/README.md)
-  openvanilla-realm/   the frozen 1.12 realm: patches, page layer, server scripts, realm tools, parked workflows
+  openvanilla-realm/   the frozen 1.12 realm: patches, page layer, its website's pages, server scripts, realm tools,
+                       parked workflows, and the switch that turns its server jobs off
   herald/              Herald, the realm's Discord bot and autopilot API
   relay/               the Rust relay the classic launcher was built for (superseded)
   forge/               Vanilla Forge, the creator app (still built by forge.yml)
@@ -78,7 +79,7 @@ labs/             earlier tools and experiments, kept for later (labs/README.md)
 ```
 
 Files players double-click: `Play Leyline Launcher.bat` / `.command` (the launcher from source; `Play Open Vanilla.*`
-forward to them for old shortcuts), `Play Solo.bat`, `Host a Realm.bat` / `.command`, `Herald Autopilot.bat`.
+forward to them for old shortcuts), `Play Solo.bat`, `Host a Realm.bat`, `Herald Autopilot.bat`.
 Creators: `labs/forge/Vanilla Forge.bat` and `tools/modelport/Model_Porter.bat`.
 
 ## Run it from source

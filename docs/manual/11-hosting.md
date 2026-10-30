@@ -1,74 +1,31 @@
 slug: hosting
 title: Host your own realm
 kicker: Chapter 11 · Build
-summary: Run a realm for friends with Leyline Server: what you need, the first ten minutes, GM accounts, letting friends in, and Server Studio. The Host Guidebook has every detail.
+summary: Host a realm in one click, from the browser or the Leyline launcher, and put it on the Leyline realm list.
 
-This chapter is the overview. The **[Host Guidebook](../guide.html)** is the full reference, and each section here links to its chapter.
+Leyline is a mod launcher and a peer-to-peer realm network: anyone can host a realm in one click, and players find it on the shared realm list. Your realm runs on your own computer; the Leyline network carries players to it, so you don't open ports and nobody sees your address.
 
-## What you need {#needs}
+## From the browser {#browser}
 
-- Windows 10 or 11, 64-bit, about 15 GB free (an SSD helps), and Python 3 on your PATH.
-- **On a Mac or Linux** (a laptop, a home server or a rented server), the realm runs in Docker instead: see [Host on a Mac or Linux](host-mac-linux.html), the full manual for that tool.
-- The SPP Classics server (the launcher's Solo setup installs it, or get it by hand).
-- Your own Vanilla Client v1.3 files.
+1. Open **[play.openvanilla.app/wrath/host](https://play.openvanilla.app/wrath/host)** and sign in.
+2. Name your realm and press **Start**. The page gives you a small starter file for Windows, or for Mac and Linux.
+3. Run it on the computer that will host. It sets everything up and connects your realm to the network.
 
-Guidebook: [Before you start](../guide.html#before), [Install](../guide.html#install).
+## From the Leyline launcher {#launcher}
 
-## Your first realm {#first-realm}
+1. Get the Leyline launcher from **[github.com/orionopenwow/Leyline](https://github.com/orionopenwow/Leyline/releases/latest)**.
+2. Open its **Host** page and follow it: the launcher sets up your realm and connects it to the network.
 
-1. Install SPP: set up [Play Solo](solo.html#setup) once, or by hand (`Server_Update.bat`, then `Launcher.bat`: type 1, then 0).
-2. Download **Leyline Server** from the [host page](../host.html), unzip it, and run `Start Leyline Server.bat`.
-3. Press **START / RESTART ALL SERVICES**. It starts the database (port 3310), login (3724), world (8085) and the realm's website (18090, at `http://127.0.0.1:18090/`).
-4. Make yourself a GM account: **Player & GM Admin Manager**, or in the server console `account create NAME PASSWORD` then `account set gmlevel NAME 3`.
-5. In the launcher, **Realms → Add a server** with `127.0.0.1`, and play.
+## The realm list {#list}
 
-Guidebook: [Your first realm in ten minutes](../guide.html#first-realm), [The server window, part by part](../guide.html#panel).
+Public realms appear on **[the realm list](https://play.openvanilla.app/wrath/leyline-preview/realms)** by themselves while they're online. Private realms are only reachable with your invite link.
 
-## Accounts, GMs and rules {#accounts-rules}
+## Mods {#mods}
 
-- Account levels: 0 Player, 1 Moderator, 2 Game Master, 3 Administrator. [Accounts and roles](../guide.html#accounts).
-- In the browser client a GM opens the **GM panel** with the **GM** button or **Ctrl+Shift+G**: toggles, kits, item and NPC browsers and the full command catalogue. [Game Master tools](../guide.html#gm).
-- Rates and rules live in `mangosd.conf`; the **Live Config Editor** edits them. [Rates and rules](../guide.html#rates). The Vanilla Remastered switches (auto-learn, free respec, dual spec, AoE loot, instant mail) are covered in [Edit your own game](editing.html#realm-rules).
+Mods for your realm are on the [Leyline hub](https://play.openvanilla.app/wrath/leyline) and in this site's [Workshop](../workshop.html).
 
-## Letting friends in {#friends}
+## Try it first {#try}
 
-- **Same network:** friends add your LAN IP.
-- **Over the internet:** forward TCP **3724** and **8085** to your PC.
-- **A public website** with HTTPS (needed for Discord sign-in and browser play): **Get Caddy → Public HTTPS address → Allow web ports**.
+Not sure yet? Play on the **Dalaran Hangout**, Leyline's sample realm, at [play.openvanilla.app/wrath](https://play.openvanilla.app/wrath).
 
-> **Never:** Never expose port 3310 (the database) or 18090 (the local admin site) to the internet.
-
-Guidebook: [Name and address](../guide.html#identity), [Letting friends in](../guide.html#friends), [Keeping it safe](../guide.html#security).
-
-## How many players can you host? {#capacity}
-
-The world runs on your PC, so your PC sets the limit. Upload is rarely the problem (about 5 KB/s per player, double in cities); processor time for **playerbots** and memory for the database are. Rough guides until we publish measured ones:
-
-| Host | Real players | Notes |
-| --- | --- | --- |
-| 4 cores, 8 GB, SSD | 20–40 | Keep bots few |
-| 8 cores, 16 GB, SSD | 50–100 | A modest bot population |
-| Rented server with dedicated cores | 100–300+ | Moving to a Linux server: [Guidebook](../guide.html#vps) |
-
-Bots cost the most: if the realm lags, lower the random bot count first. The server's own advice for busy realms is one map-update thread per spare core (`MapUpdate.Threads` in `mangosd.conf`).
-
-## Growing your realm {#grow}
-
-1. **Community:** list it in the realm directory (when it opens); it shows greyed, "play at your own risk", until it has a track record.
-2. **Verified:** steady uptime and a staff-approved owner get it the gold badge, and an optional Armory listing.
-3. **Adopted:** when a realm outgrows your PC, export it with the backup tools and move it to a datacenter server, still run by you and your community.
-
-Your players connect through Leyline's relay or volunteer nodes, so they never see your home address and you don't need to open router ports. See [How the player network works](realms.html#p2p).
-
-## Server Studio {#studio}
-
-**Server Studio** is a local admin web app for your realm: dashboard, players, messages, backups, realm settings, logs and a history with undo. Sign in with a GM level 3 account; it only answers on the host PC (use an SSH tunnel for a VPS). Guidebook: [Server Studio](../guide.html#studio).
-
-## Backups and moving to Linux {#backups-vps}
-
-- **World Database Backups & Toolset** in the server window, or **Host → Backup** in the launcher. [Backups and restore](../guide.html#backups).
-- Outgrowing your PC? A small Linux VPS runs the same realm with two scripts. [Moving to a Linux server](../guide.html#vps).
-
-## List your realm {#list}
-
-Community realms can be listed in the realm directory and, if you choose, in the Armory ("Show this realm in the Leyline armory"). Ask in the Discord's help forum, or see [Projects](workshop.html#directory) for listing a whole project.
+> **Note:** The older ways of hosting from this site (the Leyline Server download and the self-host scripts) are retired. Use one-click hosting above.

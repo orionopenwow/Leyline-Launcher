@@ -44,6 +44,9 @@ ADDON_SRC = os.path.join(HERE, "Data", "Interface", "AddOns")
 LAUNCHER_SRC = os.path.join(HERE, "launcher")
 RELEASE = os.path.join(HERE, "release")
 WWW_DOWNLOADS = os.path.join(HERE, "www", "downloads")
+# The 1.12 realm site's own pages (home, play, host guide, armory ...): the public website replaced them with
+# "moved" pages, but the dedicated server's web backend (Server/www) still serves its realm's full site.
+REALM_SITE = os.path.join(HERE, "labs", "openvanilla-realm", "site")
 SETTINGS = os.path.join(HERE, "launcher_settings.json")
 
 # Anything matching these must not ship (Blizzard game data and interface code).
@@ -442,6 +445,11 @@ def assemble(out, launcher_dir, engine, version, changelog, engine_repo=None):
             skip = set(base_ignore(d, names))
             return skip | {n for n in names if os.path.normcase(os.path.join(d, n)) in unused}
         shutil.copytree(www, os.path.join(out, "Server", "www"), ignore=ignore)
+        for d, _, files in os.walk(REALM_SITE):   # the realm site's pages over the public site's "moved" pages
+            for f in files:
+                rel = os.path.relpath(os.path.join(d, f), REALM_SITE)
+                os.makedirs(os.path.dirname(os.path.join(out, "Server", "www", rel)), exist_ok=True)
+                shutil.copy2(os.path.join(d, f), os.path.join(out, "Server", "www", rel))
     os.makedirs(os.path.join(out, "Server"), exist_ok=True)
     with open(os.path.join(out, "Server", "README.txt"), "w", encoding="utf-8", newline="") as f:
         f.write("This is the realm website's files. Running your own realm is a separate download:\r\n"

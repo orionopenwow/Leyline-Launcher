@@ -14,19 +14,18 @@ keeps every file's history).
 |---|---|---|
 | `realm/` | `realm/` (all but `realm/classicplus`) | `Dockerfile` and `patches/` (the browser client and realm service), `mangos/` (world server patches), `www/` (the realm page layer), `login-backdrop/`, `achievements/`, `ascension/`, `bossfights/`, `duels/`, `transmog/`, `warfront/` (with Warfront's and Duels' committed patch-Z) |
 | `hetzner/` | `hetzner/` | Every server script: `openvanilla_realm_up.sh`, `*_up.sh`, the hot patcher, crons, systemd units, GM console, Caddy and compose files |
-| `host/` | `host/cloud_init_*.yaml` | Cloud-init files for a fresh Hetzner or Oracle VM |
+| `host/` | `host/`, `Host a Realm.command`, `docs/HOSTING_MAC_LINUX.md` | `ovhost`, the macOS/Linux realm host (retired: it ran the deleted images), its double-click starter, its manual chapter as it was (`MANUAL.md`), and the cloud-init files for a fresh Hetzner or Oracle VM |
 | `devkit/` | `devkit/{staging,loadlab,patchz,touchlab,proxy}` | The staging realm, the load-time lab, the patch-Z Docker builder, the touch lab and the dev proxy |
 | `workflows/` | `.github/workflows` and `packaging/workflows` | `hotpatch.yml` (SSH hot updates on push to `stable`), `loadgate.yml` (load-time gate), `owbot.yml` (the nightly test bot). Parked: GitHub does not run workflows from here |
 | `tools/` | `tools/` | Realm-only tools: `owbot.mjs` and `Run_Herald.bat`, `botlab/`, `telemetry/`, `update_web_client.py`, the pre-launch database checks, `combo_audit.py`, the realm UI sheet tools |
 | `web-client/` | `www/patch_wasm.py` | The one-off patcher for a browser client build (offsets fixed for one build) |
+| `site/` | `www/` | The realm website's own pages: home (`index.html`, `portal.html`), play (`game.html`, `browser.html`), the Host Guidebook and host page, Armory and guilds, realm list and nodes, streamers and creators, Herald, Boss Fights, Duels, Legend, moderation. The public site has short "moved" pages at these paths; `packaging/build_repack.py` and `build_server.py` put these back into Leyline Server's `www/` |
 | `tests/` | `tests/`, `tools/tests/` | The realm page tests (`*.mjs`), the GM console and the achievements generator tests |
 
 What stayed outside, because the classic launcher still uses it:
 
 - `realm/classicplus/`: the Classic+ SQL and fix-ups that Play Solo (`play_local.py`) and Leyline Server
   (`packaging/build_server.py`) apply. `devkit/db/test_sql.py` tests it.
-- `host/ovhost` and `Host a Realm.command`: macOS/Linux hosting from `openvanilla_server.py`. It runs the
-  deleted realm images, so a fresh install does not work until the realm has an image again.
 - `Data/Interface/`: the addon suite the launcher ships. `tools/prepush.py` still rebuilds Warfront's and
   Duels' patch-Z (in `realm/warfront` and `realm/duels` here) from it, and `devkit/check.py` still checks
   them, so they never go stale.
@@ -44,8 +43,6 @@ What stayed outside, because the classic launcher still uses it:
   `OPENVANILLA_RAW` from the environment; others set it in the script) at a commit from before the move (for example
   `https://raw.githubusercontent.com/orionopenwow/Leyline-Launcher/b214b7d`), or update the paths.
 - **Hot updates, the load gate and the nightly test bot.** Their workflows are parked in `workflows/`.
-- The public guide (`www/guide.html`, "rented server") still shows the old `curl .../stable/hetzner/...`
-  commands.
 
 ## Turning the 1.12 jobs off on the server
 

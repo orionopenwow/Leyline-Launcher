@@ -18,7 +18,7 @@ Leyline never distributes the game's files and never downloads a client. Use the
 No: characters live on the realm. Guests keep theirs by linking Discord. Solo characters live on your PC. Alpha realms may be reset; that's announced first.
 
 ### Can I play on my phone? {#phone}
-Yes, in the browser with touch controls ([Phones and tablets](browser.html#touch)).
+Yes, in the browser ([Phones and tablets](browser.html#touch)).
 
 ### Can I use my old addons? {#old-addons}
 Many Vanilla addons work. Install them from the Workshop or a zip; the Workshop label tells you how well they're expected to work.

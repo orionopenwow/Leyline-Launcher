@@ -99,11 +99,11 @@ def find_spp(argv):
 
 def main(argv):
     if sys.platform != "win32":
-        # SPP Classics is a Windows program: on macOS and Linux the realm runs in Docker (host/ovhost,
-        # docs/HOSTING_MAC_LINUX.md). With no command, the guided set-up; else ovhost's own commands.
-        ovhost = os.path.join(HERE, "host", "ovhost")
+        # SPP Classics is a Windows program: on macOS and Linux the realm ran in Docker (ovhost, retired and kept in
+        # labs/openvanilla-realm/host). With no command, the guided set-up; else ovhost's own commands.
+        ovhost = os.path.join(HERE, "labs", "openvanilla-realm", "host", "ovhost")   # retired: kept in labs
         if not os.path.isfile(ovhost):
-            print("host/ovhost is missing from this folder: get it from the Leyline repository (host/ovhost).")
+            print("Hosting on macOS and Linux is retired: host your own realm at https://play.openvanilla.app/wrath/host")
             return 1
         os.execvp("bash", ["bash", ovhost] + (argv or ["install"]))
     if "--forget" in argv:

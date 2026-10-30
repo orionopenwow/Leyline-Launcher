@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Beacons · Leyline</title>
+  <!-- Link previews (Discord, Reddit, X, iMessage) -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Leyline">
+  <meta property="og:title" content="Beacons · Leyline">
+  <meta property="og:description" content="Beacons: every Leyline realm with its own page, how to connect, and live status from the realm's own server.">
+  <meta property="og:url" content="https://openvanilla.app/realms.html">
+  <meta property="og:image" content="https://openvanilla.app/assets/og-image.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="The Leyline mark, a blue crystal in a blue and violet swirl, beside the name Leyline">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Beacons · Leyline">
+  <meta name="twitter:description" content="Beacons: every Leyline realm with its own page, how to connect, and live status from the realm's own server.">
+  <meta name="twitter:image" content="https://openvanilla.app/assets/og-image.jpg">
+  <meta name="theme-color" content="#0a0816">
+  <meta name="description" content="Beacons: every Leyline realm with its own page, how to connect, and live status from the realm's own server.">
+  <link rel="icon" href="favicon.ico">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Albert+Sans:wght@400;600;700&family=Belgrano&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --font-display: 'Belgrano', Georgia, serif;
+      --font-body: 'Albert Sans', -apple-system, 'Segoe UI', Roboto, sans-serif;
+      --gold: #f0c058;
+      --gold-bright: #ffe68a;
+      --gold-border: #6d5426;
+      --edge: #222b3d;
+      --card: rgba(18, 23, 35, 0.86);
+      --text: #e2e8f0;
+      --muted: #94a3b8;
+      --blue: #38bdf8;
+      --violet: #c4b5fd;
+      --green: #5ee08a;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: #040609 radial-gradient(circle at top, rgba(240, 192, 88, 0.08), transparent 60%);
+      color: var(--text); font-family: var(--font-body); line-height: 1.55;
+      min-height: 100vh; padding: 0 16px 48px;
+    }
+    a { color: var(--gold); }
+    a:hover { color: var(--gold-bright); }
+    .wrap { max-width: 960px; margin: 0 auto; }
+    header { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 18px 0 28px; }
+    header a.home { font-family: var(--font-display); font-size: 1.15rem; color: var(--gold-bright); text-decoration: none; letter-spacing: 1px; }
+    .pill { font-size: 0.7rem; font-weight: 700; letter-spacing: 1px; color: var(--gold); border: 1px solid var(--gold-border); padding: 2px 8px; border-radius: 3px; }
+    h1 { font-family: var(--font-display); font-weight: 400; font-size: clamp(1.8rem, 5vw, 2.6rem); color: #fff; margin-bottom: 10px; }
+    h2 { font-family: var(--font-display); font-weight: 400; font-size: 1.2rem; color: #fff; margin: 28px 0 10px; }
+    h2.dim { color: var(--muted); }
+    .lead { color: var(--muted); max-width: 680px; margin-bottom: 22px; font-size: 1.02rem; }
+    footer { margin-top: 40px; font-size: 0.78rem; color: var(--muted); border-top: 1px solid var(--edge); padding-top: 16px; }
+    code { font-family: Consolas, 'Courier New', monospace; font-size: 0.86em; background: #0b0f17; border: 1px solid var(--edge); border-radius: 3px; padding: 1px 5px; color: var(--gold-bright); }
+
+    .bar { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 16px; background: rgba(10, 14, 22, 0.9); border: 1px solid rgba(240, 192, 88, 0.25); border-radius: 6px; padding: 12px 16px; }
+    .bar label { font-size: 0.82rem; color: var(--muted); display: inline-flex; align-items: center; gap: 6px; }
+    .bar select { font: inherit; font-size: 0.85rem; color: var(--text); background: #0b0f17; border: 1px solid var(--edge); border-radius: 4px; padding: 4px 8px; }
+    .bar input[type=checkbox] { accent-color: var(--gold); }
+    .bar .status { margin-left: auto; font-size: 0.8rem; color: var(--muted); }
+    .bar .status.err { color: #f07a6e; }
+    .btn-hollow { display: inline-flex; align-items: center; padding: 0.4rem 0.9rem; font: inherit; font-size: 0.82rem; font-weight: 600; text-decoration: none; color: var(--gold); background: transparent; border: 1px solid var(--gold-border); border-radius: 7px !important; cursor: pointer; white-space: nowrap; }
+    .btn-hollow:hover { border-color: var(--gold); color: var(--gold-bright); }
+
+    .realm { display: grid; grid-template-columns: 34px minmax(0, 1fr) auto; align-items: center; gap: 4px 14px; background: var(--card); border: 1px solid var(--edge); border-radius: 6px; padding: 12px 16px; margin-bottom: 8px; }
+    .realm.official { border-color: var(--gold-border); }
+    .realm.unverified { opacity: 0.62; }
+    .realm .ico { width: 30px; height: 30px; color: var(--gold); }
+    .realm .ico svg { width: 30px; height: 30px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+    .realm .name { font-weight: 700; color: #fff; overflow-wrap: anywhere; }
+    .realm .desc { font-size: 0.86rem; color: var(--muted); overflow-wrap: anywhere; }
+    .realm .meta { font-size: 0.8rem; color: var(--muted); }
+    .realm .side { text-align: right; }
+    .realm .players { font-family: var(--font-display); font-size: 1.15rem; color: var(--gold-bright); }
+    .realm .players small { font-family: var(--font-body); font-size: 0.72rem; color: var(--muted); display: block; }
+    .chips { display: inline-flex; flex-wrap: wrap; gap: 4px; vertical-align: middle; margin-left: 6px; }
+    .chip { font-size: 0.66rem; font-weight: 700; letter-spacing: 0.5px; padding: 1px 7px; border-radius: 3px; border: 1px solid var(--gold-border); color: #cdb98f; background: rgba(42, 32, 20, 0.7); white-space: nowrap; }
+    .chip.official { color: var(--gold-bright); background: rgba(58, 42, 14, 0.9); }
+    .chip.verified { color: var(--green); border-color: rgba(94, 224, 138, 0.45); background: rgba(18, 48, 34, 0.8); }
+    .chip.community { color: #9aa0a6; border-color: #3a3f47; background: rgba(28, 26, 34, 0.85); }
+    .chip.e2e, .chip.node { color: #4fc3b0; border-color: rgba(79, 195, 176, 0.5); background: rgba(16, 40, 42, 0.85); }
+    .nodes-box { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 16px; background: var(--card); border: 1px solid rgba(79, 195, 176, 0.35); border-radius: 6px; padding: 12px 16px; }
+    .nodes-box b { color: #4fc3b0; font-weight: 600; }
+    .empty { text-align: center; color: var(--muted); padding: 36px 12px; background: var(--card); border: 1px solid var(--edge); border-radius: 6px; }
+    .empty b { display: block; font-family: var(--font-display); font-weight: 400; color: var(--gold-bright); font-size: 1.1rem; margin-bottom: 4px; }
+    .note { font-size: 0.85rem; color: var(--muted); margin-top: 14px; }
+    @media (max-width: 640px) {
+      .realm { grid-template-columns: 30px minmax(0, 1fr); }
+      .realm .side { grid-column: 2; text-align: left; display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
+      .realm .players small { display: inline; margin-left: 4px; }
+      .bar .status { margin-left: 0; width: 100%; }
+    }
+
+    /* Beacons: one card per realm record (www/realms/*.json), and a page per realm at #slug */
+    .beacons { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 10px; }
+    .beacon { display: flex; flex-direction: column; gap: 8px; background: var(--card); border: 1px solid var(--edge); border-radius: 6px; padding: 14px 16px; min-width: 0; }
+    .beacon.official { border-color: var(--gold-border); }
+    .beacon.dim { opacity: 0.72; }
+    .beacon .top { display: flex; align-items: center; gap: 12px; min-width: 0; }
+    .beacon .emblem, .bpage .emblem { width: 40px; height: 40px; flex: 0 0 auto; object-fit: contain; }
+    .beacon .name { font-weight: 700; color: #fff; overflow-wrap: anywhere; text-decoration: none; }
+    .beacon a.name:hover { color: var(--gold-bright); }
+    .beacon .chips, .bpage .chips { margin-left: 0; }
+    .beacon .tag, .bpage .tag { color: var(--muted); font-size: 0.9rem; overflow-wrap: anywhere; }
+    .beacon .acts { display: flex; flex-wrap: wrap; gap: 8px; margin-top: auto; }
+    .live { display: inline-flex; align-items: center; gap: 7px; font-size: 0.84rem; color: var(--muted); }
+    .live .dot { width: 9px; height: 9px; border-radius: 50%; background: #5b6474; flex: 0 0 auto; }
+    .live.on { color: var(--text); } .live.on .dot { background: var(--green); box-shadow: 0 0 6px rgba(94, 224, 138, 0.7); }
+    .live.off .dot { background: #f07a6e; }
+    .live.soon .dot { background: var(--gold); }
+    .live b { color: var(--gold-bright); font-weight: 600; }
+    .chip.state-offline { color: #f0a59c; border-color: rgba(240, 122, 110, 0.45); background: rgba(48, 20, 18, 0.8); }
+    .btn-gold { display: inline-flex; align-items: center; padding: 0.5rem 1.1rem; font: inherit; font-size: 0.9rem; font-weight: 700; text-decoration: none; color: #1a1408; background: linear-gradient(#ffd77a, #e0a83c); border: 1px solid #f3cf78; border-radius: 7px; white-space: nowrap; }
+    .btn-gold:hover { color: #1a1408; filter: brightness(1.08); }
+
+    .bpage[hidden], #indexView[hidden] { display: none; }
+    .bpage .back { display: inline-block; font-size: 0.85rem; margin-bottom: 14px; }
+    .bpage .hero { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; margin-bottom: 6px; }
+    .bpage .hero .emblem { width: 56px; height: 56px; }
+    .bpage .hero h1 { margin: 0; overflow-wrap: anywhere; }
+    .bpage .summary { color: var(--text); max-width: 680px; margin: 10px 0 0; }
+    .panel { background: var(--card); border: 1px solid var(--edge); border-radius: 6px; padding: 14px 16px; margin-top: 12px; }
+    .panel.connect { border-color: var(--gold-border); display: flex; flex-wrap: wrap; align-items: center; gap: 10px 16px; }
+    .panel.connect .note { margin: 0; flex: 1 1 260px; }
+    .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 10px; }
+    .stat { min-width: 0; }
+    .stat .v { font-family: var(--font-display); font-size: 1.25rem; color: var(--gold-bright); overflow-wrap: anywhere; }
+    .stat .k { font-size: 0.75rem; color: var(--muted); letter-spacing: 0.5px; text-transform: uppercase; }
+    .kv { display: grid; grid-template-columns: max-content minmax(0, 1fr); gap: 6px 18px; font-size: 0.92rem; }
+    .kv dt { color: var(--muted); }
+    .kv dd { overflow-wrap: anywhere; }
+    .feats { list-style: none; display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 8px; }
+    .feats li { background: rgba(10, 14, 22, 0.9); border: 1px solid var(--edge); border-radius: 6px; padding: 10px 12px; }
+    .feats b { display: block; color: #fff; font-weight: 600; }
+    .feats span { font-size: 0.86rem; color: var(--muted); }
+    .rules { padding-left: 1.2rem; } .rules li { margin: 4px 0; }
+    .shots { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 8px; }
+    .shots figure { margin: 0; } .shots img { width: 100%; height: auto; display: block; border-radius: 4px; border: 1px solid var(--edge); }
+    .shots figcaption { font-size: 0.8rem; color: var(--muted); margin-top: 4px; }
+    .links { display: flex; flex-wrap: wrap; gap: 8px; }
+    .todo { outline: 1px dashed #f07a6e; outline-offset: 2px; color: #f0a59c !important; }
+    @media (max-width: 640px) {
+      .beacons { grid-template-columns: minmax(0, 1fr); }
+      .kv { grid-template-columns: minmax(0, 1fr); gap: 0; } .kv dd { margin-bottom: 8px; }
+      .panel.connect .btn-gold { width: 100%; justify-content: center; }
+    }
+
+    /* Button lettering: Nunito, a rounded sans (softer than heavy square caps) */
+    .btn-gold-ornate, .btn-hollow, .ow-footer-discord, .realm-btn-cancel, .realm-btn-enter, .btn-fire-effect {
+      font-family: 'Nunito', var(--font-body) !important; font-weight: 800 !important; letter-spacing: 0.9px !important;
+      -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6);
+    }
+  </style>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/leyline/leyline.css">
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <a class="home" href="index.html">&larr; Leyline</a>
+      <span style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;justify-content:flex-end"><a class="pill manual-link" href="manual/realms.html" style="text-decoration:none" title="Read about this in the Leyline Manual">MANUAL</a><span class="pill">BEACONS</span></span>
+    </header>
+
+    <!-- One realm's page (its beacon), shown for realms.html#<slug> -->
+    <main class="bpage" id="beaconPage" hidden></main>
+
+    <div id="indexView">
+    <h1>Beacons</h1>
+    <p class="lead">Every realm has a beacon: its own page with how to connect, its rules and whether it is up. Status and population come from each realm's own server, with bots counted separately.</p>
+    <h2>Official realms</h2>
+    <div class="beacons" id="beaconList"><div class="empty ly-loading"><span class="ly-spin ly-fast" aria-hidden="true"><img class="ly-swirl" src="assets/leyline/swirl-128.webp" alt=""><img class="ly-crystal" src="assets/leyline/crystal-128.webp" alt=""></span><b>Loading realms…</b></div></div>
+
+    <h2>Launcher-hosted realms</h2>
+    <p class="lead">Realms in the launcher's live directory, in three tiers: <b>Verified realms</b> (Leyline's own, and community realms the maintainer has vetted), <b>Community P2P realms</b> (hosted by players, checked automatically, not vetted), and the <a href="nodes.html">Verified P2P nodes</a> that carry them. To play, open a realm in the Leyline Launcher (Realms tab) and press Join.</p>
+
+    <div class="bar" role="group" aria-label="Filters">
+      <label>Type
+        <select id="fType">
+          <option value="all">All types</option><option value="pve">PvE</option><option value="pvp">PvP</option>
+          <option value="rp">RP</option><option value="rppvp">RP-PvP</option>
+        </select>
+      </label>
+      <label>Template
+        <select id="fTemplate">
+          <option value="all">All templates</option><option value="classicplus">Classic+</option><option value="vanilla">Vanilla</option>
+        </select>
+      </label>
+      <label><input type="checkbox" id="fRoom"> Has room</label>
+      <button class="btn-hollow" id="refresh" type="button">Refresh</button>
+      <span class="status" id="status" aria-live="polite">Loading…</span>
+    </div>
+
+    <div id="list"></div>
+
+    <h2>Verified P2P nodes</h2>
+    <div class="nodes-box" id="nodesBox"><span><b>Nodes</b> are volunteers' relays: players connect through them, so hosts open no ports and nobody's address is shown. They carry only end-to-end encrypted game traffic.</span> <a class="btn-hollow" href="nodes.html">Supporters &amp; how to become one</a></div>
+
+    <div class="note" style="background: rgba(10, 14, 22, 0.9); border: 1px solid rgba(240, 192, 88, 0.25); border-radius: 6px; padding: 12px 16px; color: var(--text);">
+      <b style="color: var(--gold-bright); font-weight: 600;">Play without Leyline.</b> If this list is down, Leyline is offline: you can still host and join friends directly. In the launcher, host with “Direct from my home connection” or “My local network only” and send a guest invite; friends paste it in the Realms tab or use Join by address. In direct mode your friends see your home IP address, so only invite people you trust.
+    </div>
+    <p class="note">Private realms aren't listed; they're joined with an invite link from their host. Ping isn't shown here: the launcher measures it from your PC.</p>
+    </div>
+
+    <footer>
+      <a href="index.html">Home</a> · <a href="host.html">Host a server</a> · <a href="nodes.html">Nodes</a> · <a href="solo.html">Play Solo</a> · <a href="herald.html">Herald</a> ·
+      <a href="privacy.html">Privacy</a> · <a href="terms.html">Terms</a> · <a href="security.html">Security</a> ·
+      World of Warcraft is a trademark of Blizzard Entertainment, Inc. Leyline is an independent fan project, not affiliated with or endorsed by Blizzard Entertainment.
+    </footer>
+  </div>
+  <script>
+    // Read-only: GET /api/directory on play.openvanilla.app (public, CORS *). Everything from the network
+    // is written with textContent, never as HTML.
+    (function () {
+      var API = location.hostname === "play.openvanilla.app" ? "/api/directory" : "https://play.openvanilla.app/api/directory";
+      var TYPES = { pve: "PvE", pvp: "PvP", rp: "RP", rppvp: "RP-PvP" };
+      var TEMPLATES = { classicplus: "Classic+", vanilla: "Vanilla" };
+      var ICONS = {  // the launcher's line icons: shield (PvE), crossed swords (PvP), scroll (RP)
+        pve: '<path d="M12 3l8 3v5c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6z"/><path d="M8.5 12l2.5 2.5 4.5-5"/>',
+        pvp: '<path d="M4 4l12 12M20 4L8 16"/><path d="M14 19l5-5M5 14l5 5"/>',
+        rp: '<rect x="6" y="4" width="13" height="16" rx="1"/><circle cx="5" cy="5" r="2"/><path d="M9 9h7M9 12.5h7M9 16h5"/>'
+      };
+      ICONS.rppvp = ICONS.pvp;
+      var realms = null, list = document.getElementById("list"), status = document.getElementById("status");
+      var f = { type: document.getElementById("fType"), template: document.getElementById("fTemplate"), room: document.getElementById("fRoom") };
+
+      function str(v, n) { return String(v == null ? "" : v).replace(/[\u0000-\u001f\u007f]/g, "").slice(0, n); }
+      function el(tag, cls, text) { var e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; return e; }
+      function typeOf(s) {
+        var t = str(s.type, 10).toLowerCase();
+        if (TYPES[t]) return t;
+        var tags = (s.tags || []).map(function (x) { return str(x, 24).toLowerCase(); });
+        if (tags.indexOf("rppvp") >= 0) return "rppvp";
+        if (tags.indexOf("rppve") >= 0 || tags.indexOf("rp") >= 0) return "rp";
+        if (tags.indexOf("pvp") >= 0) return "pvp";
+        return "pve";
+      }
+      function clean(s) {
+        var tags = Array.isArray(s.tags) ? s.tags.slice(0, 8).map(function (t) { return str(t, 24); }) : [];
+        var pop = parseInt(s.population, 10), cap = parseInt(s.max_players, 10);
+        var humans = parseInt(s.human_players != null ? s.human_players : s.population, 10);
+        var bots = parseInt(s.bot_players != null ? s.bot_players : 0, 10);
+        var uptimeStreak = parseInt(s.uptime_days != null ? s.uptime_days : 0, 10);
+        var isNew = s.created_at ? (Date.now() - new Date(s.created_at).getTime() < 14 * 86400000) : false;
+        return {
+          name: str(s.name, 40) || str(s.host, 60), description: str(s.description, 200), type: typeOf(s), tags: tags,
+          template: TEMPLATES[s.template] ? s.template : (tags.indexOf("Classic+") >= 0 ? "classicplus" : "vanilla"),
+          official: s.official === true || tags.indexOf("official") >= 0, verified: s.verified === true,
+          population: pop >= 0 ? pop : 0, humans: humans >= 0 ? humans : 0, bots: bots >= 0 ? bots : 0,
+          uptimeStreak: uptimeStreak, isNew: isNew, isPick: s.is_pick === true,
+          max: cap > 0 ? cap : null, relay: s.relay === true,
+          e2e: s.e2e === true && /^[a-z2-7]{16}$/.test(s.key || ""),
+          onNode: s.relay === true && /^wss?:\/\//.test(s.relay_url || "") && !/relay\.openvanilla\.app/.test(s.relay_url || ""),
+          hostId: /^[a-z2-7]{16}$/.test(s.host_id || "") ? s.host_id : ""
+        };
+      }
+      function group(r) { return r.official ? 0 : (r.verified ? 1 : 2); }
+
+      function render() {
+        list.textContent = "";
+        if (!realms) return;
+        var shown = realms.filter(function (r) {
+          // an official realm that has a beacon above is shown there, not twice
+          if (r.official && window.ovBeaconNames && window.ovBeaconNames[r.name.toLowerCase()]) return false;
+          return (f.type.value === "all" || r.type === f.type.value) &&
+                 (f.template.value === "all" || r.template === f.template.value) &&
+                 (!f.room.checked || !r.max || r.population < r.max);
+        }).sort(function (a, b) {
+          return group(a) - group(b) ||
+                 (b.isPick ? 1 : 0) - (a.isPick ? 1 : 0) ||
+                 b.uptimeStreak - a.uptimeStreak ||
+                 b.humans - a.humans ||
+                 a.name.localeCompare(b.name);
+        });
+        if (!shown.length) {
+          var e = el("div", "empty");
+          e.appendChild(el("b", null, realms.length ? "No realm matches these filters" : "No realms are listed right now"));
+          e.appendChild(document.createTextNode(realms.length ? "Change the filters above to see more." :
+            "Run your own with Leyline Server (host.html), or join a friend's with an invite link."));
+          list.appendChild(e);
+          return;
+        }
+        var heads = ["Verified realms · official", "Verified realms · vetted by the maintainer",
+                     "Community P2P realms · not vetted, play at your own risk"], last = -1;
+        shown.forEach(function (r) {
+          var g = group(r);
+          if (g !== last) { last = g; list.appendChild(el("h2", g === 2 ? "dim" : null, heads[g])); }
+          var row = el("div", "realm" + (g === 0 ? " official" : g === 2 ? " unverified" : ""));
+          var ico = el("div", "ico");
+          ico.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true">' + ICONS[r.type] + "</svg>";  // constant markup only
+          ico.title = TYPES[r.type];
+          row.appendChild(ico);
+          var mid = el("div");
+          var head = el("div");
+          head.appendChild(el("span", "name", r.name));
+          var chips = el("span", "chips");
+          if (r.official) chips.appendChild(el("span", "chip official", "OFFICIAL"));
+          else if (r.verified) chips.appendChild(el("span", "chip verified", "VERIFIED"));
+          else chips.appendChild(el("span", "chip community", "COMMUNITY"));
+          if (r.isPick) chips.appendChild(el("span", "chip", "CURATOR PICK"));
+          if (r.isNew) chips.appendChild(el("span", "chip", "NEW"));
+          if (r.e2e) chips.appendChild(el("span", "chip e2e", "ENCRYPTED"));
+          [TYPES[r.type], TEMPLATES[r.template]].concat(r.tags.filter(function (t) {
+            return ["community", "official", "Classic+", "PvE", "PvP", "RPPvE", "RPPvP"].indexOf(t) < 0;
+          }).slice(0, 3)).forEach(function (t) { chips.appendChild(el("span", "chip", t)); });
+          head.appendChild(chips);
+          mid.appendChild(head);
+          if (r.description) mid.appendChild(el("div", "desc", r.description));
+          if (r.relay) mid.appendChild(el("div", "meta", r.onNode ? "Reached through a verified community node" :
+                                                           "Reached through Leyline's relay"));
+          row.appendChild(mid);
+          var side = el("div", "side");
+          var popLabel = r.max ? r.humans + "/" + r.max : String(r.humans);
+          var p = el("div", "players", popLabel);
+          p.appendChild(el("small", null, r.bots > 0 ? "humans (+" + r.bots + " bots)" : "players"));
+          side.appendChild(p);
+          if (r.hostId) {
+            var a = el("a", "btn-hollow", "Open in launcher");
+            a.href = "openvanilla://join/" + r.hostId;
+            side.appendChild(a);
+          }
+          row.appendChild(side);
+          list.appendChild(row);
+        });
+      }
+
+      function load() {
+        status.className = "status";
+        status.textContent = "Loading…";
+        fetch(API, { headers: { Accept: "application/json" }, cache: "no-store" }).then(function (r) {
+          if (!r.ok) throw new Error("HTTP " + r.status);
+          return r.json();
+        }).then(function (data) {
+          var servers = data && Array.isArray(data.servers) ? data.servers : [];
+          realms = servers.filter(function (s) { return s && typeof s === "object" && s.visibility !== "private"; }).map(clean);
+          status.textContent = realms.length + (realms.length === 1 ? " realm" : " realms") + " · updated " +
+            new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
+          render();
+        }).catch(function (e) {
+          status.className = "status err";
+          status.textContent = "Leyline is offline: you can still host and join friends directly.";
+          if (!realms) { realms = null; list.textContent = ""; }
+        });
+      }
+
+      // The node tier's totals (www/community/nodes.json, built by the directory; no addresses in it).
+      fetch("community/nodes.json", { cache: "no-store" }).then(function (r) { return r.ok ? r.json() : null; }).then(function (d) {
+        var n = d && d.network;
+        if (!n) return;
+        var box = document.getElementById("nodesBox");
+        box.insertBefore(el("span", "meta", (parseInt(n.nodes_verified, 10) || 0) + " verified · " +
+          (parseInt(n.nodes_pending, 10) || 0) + " being checked · " + (Number(n.relay_gb) || 0) + " GB relayed in 30 days"), box.lastChild);
+      }).catch(function () {});
+
+      window.ovDirectoryRender = render;  // the beacons script re-renders once it knows the beacon names
+      [f.type, f.template, f.room].forEach(function (x) { x.addEventListener("change", render); });
+      document.getElementById("refresh").addEventListener("click", load);
+      load();
+      setInterval(function () { if (!document.hidden) load(); }, 60000);
+    })();
+  </script>
+  <script>
+    // Beacons: the realm records in realms/*.json (schema: realms/SCHEMA.md), rendered as the list
+    // above and as one page per realm at realms.html#<slug>. Live status comes only from each realm's
+    // own status endpoint. Everything is written with textContent; links and image paths are checked.
+    (function () {
+      var PREVIEW = /[?&]preview=1\b/.test(location.search);  // shows the owner's TODO placeholders
+      var SLUG = /^[a-z0-9-]{1,40}$/;
+      var TYPES = { pve: "PvE", pvp: "PvP", rp: "RP", "rp-pvp": "RP-PvP", fun: "Fun" };
+      var listEl = document.getElementById("beaconList"), pageEl = document.getElementById("beaconPage"),
+          indexEl = document.getElementById("indexView"), baseTitle = document.title;
+      var beacons = null, statusCache = {}, liveEls = [];
+
+      function str(v, n) { return typeof v === "string" ? v.replace(/[\u0000-\u001f\u007f]/g, " ").slice(0, n || 400) : ""; }
+      function el(tag, cls, text) { var e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; return e; }
+      function isTodo(v) { return typeof v === "string" && /^\s*TODO\b/.test(v); }
+      // A text node for owner-written copy: hidden while it is a TODO, outlined in preview mode.
+      function copy(tag, cls, v, n) {
+        var t = str(v, n);
+        if (!t) return null;
+        if (isTodo(t)) { if (!PREVIEW) return null; var e = el(tag, cls, t); e.classList.add("todo"); return e; }
+        return el(tag, cls, t);
+      }
+      function link(u, allowApp) {  // https only (and openvanilla:// for Connect)
+        var s = str(u, 500);
+        if (/^https:\/\/[^\s"'<>\\]+$/.test(s)) return s;
+        if (allowApp && /^openvanilla:\/\/[A-Za-z0-9/_.-]+$/.test(s)) return s;
+        return "";
+      }
+      function asset(p) {  // a path inside the site: no scheme, no "..", no leading slash
+        var s = str(p, 300);
+        return /^[A-Za-z0-9_-][A-Za-z0-9_./-]*\.(webp|png|jpe?g|avif)(\?v=\w+)?$/.test(s) && s.indexOf("..") < 0 ? s : "";
+      }
+      function num(v) { return typeof v === "number" && isFinite(v) && v >= 0 ? Math.floor(v) : null; }
+      function typeLabel(t) { return TYPES[str(t, 12).toLowerCase()] || ""; }
+      function stateOf(b) { return ["live", "offline", "soon"].indexOf(b.state) >= 0 ? b.state : "soon"; }
+      function stateChip(st) {
+        return st === "soon" ? el("span", "chip", "SOON") : st === "offline" ? el("span", "chip state-offline", "OFFLINE") : null;
+      }
+      function emblem(b) {
+        var src = asset(b.media && b.media.icon);
+        if (!src) return null;
+        var im = el("img", "emblem"); im.src = src; im.alt = ""; im.loading = "lazy"; im.decoding = "async";
+        return im;
+      }
+      function chips(b) {
+        var c = el("span", "chips");
+        if (b.official === true) c.appendChild(el("span", "chip official", "OFFICIAL"));
+        var sc = stateChip(stateOf(b)); if (sc) c.appendChild(sc);
+        var t = typeLabel(b.type); if (t) c.appendChild(el("span", "chip", t));
+        var v = b.profile && str(b.profile.version, 12); if (v && !isTodo(v)) c.appendChild(el("span", "chip", v));
+        return c;
+      }
+      function connectButton(b) {
+        var c = b.connect;
+        if (stateOf(b) !== "live" || !c || typeof c !== "object") return null;
+        var u = link(c.url, true), label = str(c.label, 40);
+        if (!u || !label || isTodo(label)) return null;
+        var a = el("a", "btn-gold", label); a.href = u;
+        return a;
+      }
+      function fmtUptime(s) {
+        if (s == null) return "—";
+        var d = Math.floor(s / 86400), h = Math.floor(s % 86400 / 3600), m = Math.floor(s % 3600 / 60);
+        return d ? d + "d " + h + "h" : h ? h + "h " + m + "m" : m + "m";
+      }
+
+      // ---- live status (each realm's own endpoint; never votes) ----
+      function fetchStatus(url) {
+        var c = statusCache[url];
+        if (c && Date.now() - c.at < 30000) return Promise.resolve(c.data);
+        var ctl = window.AbortController ? new AbortController() : null;
+        var timer = ctl ? setTimeout(function () { ctl.abort(); }, 8000) : 0;
+        return fetch(url, { cache: "no-store", headers: { Accept: "application/json" }, signal: ctl ? ctl.signal : undefined })
+          .then(function (r) { if (!r.ok) throw new Error("HTTP " + r.status); return r.json(); })
+          .then(function (d) {
+            var data = d && typeof d === "object" ? {
+              online: d.online === true, players: num(d.players), bots: num(d.bots), uptime: num(d.uptime_s),
+              build: str(d.build, 20), updated: str(d.updated_at, 40)
+            } : null;
+            statusCache[url] = { at: Date.now(), data: data };
+            return data;
+          })
+          .catch(function () { statusCache[url] = { at: Date.now(), data: null }; return null; })
+          .then(function (d) { clearTimeout(timer); return d; });
+      }
+      function statusUrl(b) { return b.status && typeof b.status === "object" ? link(b.status.url) : ""; }
+
+      // One line: "Online · 3 players · 200 bots", "Offline", "Status unavailable", "Coming soon".
+      function paintLine(box, b, d) {
+        box.textContent = "";
+        var st = stateOf(b), url = statusUrl(b), cls = "live", parts = [];
+        if (st === "soon") { cls += " soon"; parts.push("Coming soon"); }
+        else if (!url) { cls += st === "offline" ? " off" : ""; parts.push(st === "offline" ? (str(b.stateNote, 120) || "Offline") : "Live status not published"); }
+        else if (d === undefined) parts.push("Checking…");
+        else if (d === null) parts.push("Status unavailable");
+        else if (!d.online) { cls += " off"; parts.push("Offline"); }
+        else {
+          cls += " on"; parts.push("Online");
+          if (d.players != null) parts.push(d.players + (d.players === 1 ? " player" : " players"));
+          if (d.bots) parts.push(d.bots + (d.bots === 1 ? " bot" : " bots"));
+        }
+        box.className = cls;
+        box.appendChild(el("span", "dot"));
+        box.appendChild(el("span", null, parts.join(" · ")));
+      }
+      function paintStats(box, b, d) {
+        box.textContent = "";
+        var url = statusUrl(b);
+        if (!url || stateOf(b) === "soon") { box.hidden = true; return; }
+        box.hidden = false;
+        function stat(k, v, title) { var s = el("div", "stat"); s.appendChild(el("div", "v", v)); s.appendChild(el("div", "k", k)); if (title) s.title = title; box.appendChild(s); }
+        var known = d && d.online;
+        stat("Status", d === undefined ? "…" : d === null ? "Unavailable" : d.online ? "Online" : "Offline");
+        stat("Players", known && d.players != null ? String(d.players) : "—", "Real players, from the realm's own server");
+        stat("Bots", known && d.bots != null ? String(d.bots) : "—", "Counted separately from players");
+        stat("Uptime", known ? fmtUptime(d.uptime) : "—");
+        if (d && d.updated) {
+          var t = new Date(d.updated);
+          if (!isNaN(t)) stat("Checked", t.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }));
+        }
+      }
+      function refreshLive() {
+        liveEls.forEach(function (x) {
+          var url = statusUrl(x.b);
+          if (!url || stateOf(x.b) === "soon") { x.paint(undefined); return; }
+          fetchStatus(url).then(function (d) { if (x.box.isConnected) x.paint(d); });
+        });
+      }
+      function watch(box, b, painter) {
+        var x = { box: box, b: b, paint: function (d) { painter(box, b, d); } };
+        x.paint(undefined); liveEls.push(x);
+      }
+
+      // ---- the list ----
+      function renderList() {
+        listEl.textContent = "";
+        if (!beacons.length) {
+          var e = el("div", "empty"); e.appendChild(el("b", null, "No realm records found"));
+          listEl.appendChild(e); return;
+        }
+        beacons.forEach(function (b) {
+          var card = el("article", "beacon" + (b.official === true ? " official" : "") + (stateOf(b) === "live" ? "" : " dim"));
+          var top = el("div", "top"), em = emblem(b); if (em) top.appendChild(em);
+          var nm = el("div");
+          var a = el("a", "name", str(b.name, 40)); a.href = "#" + b.slug; nm.appendChild(a);
+          nm.appendChild(document.createElement("br")); nm.appendChild(chips(b));
+          top.appendChild(nm); card.appendChild(top);
+          var tag = copy("div", "tag", b.tagline, 140); if (tag) card.appendChild(tag);
+          var line = el("div"); card.appendChild(line); watch(line, b, paintLine);
+          var acts = el("div", "acts"), cb = connectButton(b); if (cb) acts.appendChild(cb);
+          var more = el("a", "btn-hollow", "Realm page"); more.href = "#" + b.slug; acts.appendChild(more);
+          card.appendChild(acts);
+          listEl.appendChild(card);
+        });
+      }
+
+      // ---- one realm's page ----
+      function section(title, body) { var s = el("section", "panel"); s.appendChild(el("h2", null, title)); s.firstChild.style.marginTop = "0"; s.appendChild(body); return s; }
+      function renderPage(b) {
+        pageEl.textContent = "";
+        var back = el("a", "back", "← All beacons"); back.href = "realms.html" + (PREVIEW ? "?preview=1" : ""); pageEl.appendChild(back);
+        if (!b) {
+          var e = el("div", "empty"); e.appendChild(el("b", null, "No beacon here"));
+          e.appendChild(document.createTextNode("This realm has no page yet. See all beacons for the realms there are."));
+          pageEl.appendChild(e); document.title = baseTitle; return;
+        }
+        document.title = str(b.name, 40) + " · Beacons · Leyline";
+        var hero = el("div", "hero"), em = emblem(b); if (em) hero.appendChild(em);
+        var hh = el("div"); hh.appendChild(el("h1", null, str(b.name, 40))); hh.appendChild(chips(b)); hero.appendChild(hh);
+        pageEl.appendChild(hero);
+        var tag = copy("p", "tag", b.tagline, 140); if (tag) pageEl.appendChild(tag);
+        var sum = copy("p", "summary", b.summary, 1200); if (sum) pageEl.appendChild(sum);
+
+        // live status
+        var line = el("div"); var lp = el("div", "panel"); lp.appendChild(line); watch(line, b, paintLine);
+        var stats = el("div", "stats"); stats.style.marginTop = "10px"; lp.appendChild(stats); watch(stats, b, paintStats);
+        pageEl.appendChild(lp);
+
+        // connect
+        var cb = connectButton(b);
+        if (cb) {
+          var cp = el("div", "panel connect"); cp.appendChild(cb);
+          var cn = copy("p", "note", b.connect.note, 300); if (cn) cp.appendChild(cn);
+          pageEl.appendChild(cp);
+        }
+
+        // profile: the same fields the launcher's Connect uses
+        var p = b.profile && typeof b.profile === "object" ? b.profile : null;
+        if (p) {
+          var dl = el("dl", "kv");
+          function row(k, v, keepTodo) { if (v == null || v === "") return; if (isTodo(v) && !PREVIEW) return; dl.appendChild(el("dt", null, k)); var dd = el("dd", isTodo(v) ? "todo" : null, String(v)); dl.appendChild(dd); return dd; }
+          row("Game", str(p.game, 60));
+          var ver = str(p.version, 12), build = num(p.build);
+          row("Client", ver ? ver + (build ? " (build " + build + ")" : "") : "");
+          if (str(p.address, 120)) {
+            var dd = row("Realmlist", "set realmlist " + str(p.address, 120));
+            if (dd) { dd.textContent = ""; dd.appendChild(el("code", null, "set realmlist " + str(p.address, 120))); }
+          }
+          if (num(p.port)) row("Auth port", String(num(p.port)));
+          if (typeof p.warden === "boolean") row("Warden", p.warden ? "On" : "Off");
+          row("Ruleset", str(p.ruleset, 40));
+          if (Array.isArray(p.patches)) {
+            if (!p.patches.length) row("Required patches", "None");
+            else p.patches.slice(0, 12).forEach(function (x, i) {
+              var f = str(x && x.file, 80), h = str(x && x.sha256, 64);
+              if (!f) return;
+              var dd = row(i ? "" : "Required patches", f); if (!dd) return;
+              if (/^[0-9a-f]{64}$/i.test(h)) { dd.appendChild(document.createTextNode(" ")); dd.appendChild(el("code", null, "SHA-256 " + h)); }
+              var u = link(x.url); if (u) { dd.appendChild(document.createTextNode(" ")); var a = el("a", null, "Download"); a.href = u; a.rel = "noopener"; dd.appendChild(a); }
+            });
+          }
+          if (p.clientFiles === "own") row("Game files", "Bring your own. Leyline never hosts game data.");
+          if (p.clientFiles === "stream-or-own") row("Game files", "Dalaran streams to your browser after you sign in; the whole world uses your own.");
+          if (dl.firstChild) pageEl.appendChild(section("Realm profile", dl));
+        }
+
+        // features and rules
+        var feats = Array.isArray(b.features) ? b.features.slice(0, 24) : [];
+        var ul = el("ul", "feats");
+        feats.forEach(function (f) {
+          var t = str(f && f.title, 60); if (!t || (isTodo(t) && !PREVIEW)) return;
+          var li = el("li"); li.appendChild(el("b", isTodo(t) ? "todo" : null, t));
+          var d = copy("span", null, f.text, 200); if (d) li.appendChild(d);
+          ul.appendChild(li);
+        });
+        if (ul.firstChild) pageEl.appendChild(section("Features", ul));
+        var ol = el("ul", "rules");
+        (Array.isArray(b.rules) ? b.rules.slice(0, 40) : []).forEach(function (r) { var li = copy("li", null, r, 300); if (li) ol.appendChild(li); });
+        if (ol.firstChild) pageEl.appendChild(section("Rules", ol));
+
+        // screenshots (the owner's own gameplay shots only)
+        var shots = el("div", "shots");
+        ((b.media && Array.isArray(b.media.screenshots)) ? b.media.screenshots.slice(0, 12) : []).forEach(function (s) {
+          var src = asset(s && s.src); if (!src) return;
+          var fig = el("figure"), im = el("img"); im.src = src; im.alt = str(s.alt, 160); im.loading = "lazy"; im.decoding = "async";
+          fig.appendChild(im); var cap = copy("figcaption", null, s.caption, 160); if (cap) fig.appendChild(cap);
+          shots.appendChild(fig);
+        });
+        if (shots.firstChild) pageEl.appendChild(section("Screenshots", shots));
+
+        // links: trailer, Discord, leaderboards
+        var links = el("div", "links");
+        function ext(label, u) { u = link(u); if (!u) return; var a = el("a", "btn-hollow", label); a.href = u; a.target = "_blank"; a.rel = "noopener"; links.appendChild(a); }
+        ext("Watch the trailer", b.media && b.media.trailer);
+        ext("Discord", b.discord);
+        var lb = b.leaderboards && typeof b.leaderboards === "object" ? b.leaderboards : {};
+        if (lb.duels) ext(str(lb.duels.label, 40) || "Duels Legends", lb.duels.url);
+        if (lb.bossfights) ext(str(lb.bossfights.label, 40) || "Boss Fights times", lb.bossfights.url);
+        if (links.firstChild) pageEl.appendChild(section("Links", links));
+      }
+
+      // ---- routing: realms.html (list) and realms.html#<slug> (a page) ----
+      function route() {
+        if (!beacons) return;
+        liveEls = liveEls.filter(function (x) { return x.box.isConnected && !pageEl.contains(x.box); });
+        var h = decodeURIComponent(location.hash.replace(/^#/, ""));
+        if (SLUG.test(h)) {
+          var b = beacons.filter(function (x) { return x.slug === h; })[0];
+          renderPage(b || null);
+          indexEl.hidden = true; pageEl.hidden = false; window.scrollTo(0, 0);
+        } else {
+          pageEl.hidden = true; pageEl.textContent = ""; indexEl.hidden = false; document.title = baseTitle;
+        }
+        refreshLive();
+      }
+
+      function getJson(u) { return fetch(u, { cache: "no-cache" }).then(function (r) { if (!r.ok) throw new Error(u + " " + r.status); return r.json(); }); }
+      getJson("realms/index.json").then(function (idx) {
+        var slugs = (idx && Array.isArray(idx.realms) ? idx.realms : []).filter(function (s) { return typeof s === "string" && SLUG.test(s); }).slice(0, 100);
+        return Promise.all(slugs.map(function (s) {
+          return getJson("realms/" + s + ".json").then(function (b) {
+            return b && typeof b === "object" && b.slug === s && (b.schema === 1) && str(b.name, 40) ? b : null;
+          }).catch(function () { return null; });
+        }));
+      }).then(function (list) {
+        beacons = list.filter(Boolean).sort(function (a, b) {
+          return ((num(a.order) || 999) - (num(b.order) || 999)) || str(a.name).localeCompare(str(b.name));
+        });
+        var names = {}; beacons.forEach(function (b) { names[str(b.name, 40).toLowerCase()] = true; });
+        window.ovBeaconNames = names;
+        if (window.ovDirectoryRender) window.ovDirectoryRender();
+        renderList(); route();
+      }).catch(function () {
+        beacons = [];
+        listEl.textContent = "";
+        var e = el("div", "empty"); e.appendChild(el("b", null, "Realm pages didn't load")); e.appendChild(document.createTextNode("Reload the page to try again."));
+        listEl.appendChild(e); route();
+      });
+      window.addEventListener("hashchange", route);
+      setInterval(function () { if (!document.hidden && beacons) refreshLive(); }, 60000);
+    })();
+  </script>
+</body>
+</html>

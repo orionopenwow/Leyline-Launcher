@@ -17,7 +17,7 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(HERE)
 WWW = os.path.join(ROOT, "www")
 sys.path.insert(0, HERE)
-from test_streams_pages import HAVE_PW, serve  # noqa: E402
+from pagekit import HAVE_PW, serve  # noqa: E402
 
 if HAVE_PW:
     from playwright.sync_api import sync_playwright

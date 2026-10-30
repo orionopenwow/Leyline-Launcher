@@ -28,7 +28,7 @@ Launcher: **Settings → Folders → Open logs**. The files that matter are `lau
 
 ## Browser messages {#browser}
 
-See [Playing in the browser](browser.html#trouble). The usual fix for a black screen is updating the browser and graphics driver (the client needs WebGPU).
+See [Playing in the browser](browser.html#trouble). Refreshing once, or trying another browser, fixes most problems.
 
 ## In the game {#in-game}
 
@@ -42,14 +42,7 @@ See [Playing in the browser](browser.html#trouble). The usual fix for a black sc
 
 ## Hosting {#hosting}
 
-| Problem | Fix |
-| --- | --- |
-| "Information is not valid" at login | Reset the account's password in the server window |
-| The server window closes straight away | Python isn't on PATH: reinstall Python and tick "Add to PATH" |
-| The database won't start | Something else uses port 3310; close it |
-| Friends can't connect | Forward TCP 3724 and 8085; check your firewall; give them your public address |
-
-More in the Host Guidebook's [Troubleshooting](../guide.html#trouble).
+Hosting now uses Leyline's one-click hosting ([Host your own realm](hosting.html)). If your realm doesn't come online, run the starter file again and ask in the Discord **help** forum with what it printed.
 
 ## Still stuck? {#still-stuck}
 

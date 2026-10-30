@@ -1,29 +1,31 @@
 slug: start
 title: Getting started
 kicker: Chapter 1 · Start
-summary: What Leyline is, the three ways to play, what you need, and your account.
+summary: What Leyline is, the ways to play, what you need, and your account.
 
 ## What Leyline is {#what}
 
-Leyline is a free, community-run home for classic Vanilla. You can play on the official **Vanilla Remastered** realm (Vanilla with careful quality-of-life additions), play **solo offline** with bots, or **host your own realm** for friends. It's built on the open-source **benilla** client and runs in your browser or on Windows.
+Leyline is a free, open-source **mod launcher** and **peer-to-peer realm network**. Anyone can host a realm in one click, from the browser or the desktop; players find it on the shared realm list and join, and mods come along. Try it now on the **Dalaran Hangout**, Leyline's sample realm.
 
-> **Note:** Leyline is a fan project. It isn't affiliated with or endorsed by Blizzard, it sells nothing, and it never ships Blizzard's game files: you use a copy of Vanilla Client v1.3 you obtain yourself.
+> **Note:** Leyline is a fan project. It isn't affiliated with or endorsed by Blizzard, it sells nothing, and it never ships Blizzard's game files.
+
+This manual also covers the **classic Leyline Launcher**, the earlier desktop app, which existing players still use.
 
 ## Three ways to play {#ways}
 
 | Way | Best for | Needs |
 | --- | --- | --- |
-| **Browser** | Trying it right now, phones and tablets, any PC | A browser with WebGPU; nothing to install |
-| **Launcher** (Windows) | The full experience, your own addons, Solo and hosting | Windows 10/11 64-bit and your own 1.12.1 game client |
-| **Play Solo** | Offline play with bots, no other players | The launcher, a few GB of disk, 8 GB+ RAM recommended |
+| **Browser** | Trying it right now on the Dalaran Hangout | A current browser; nothing to install |
+| **Leyline launcher** | Playing on any realm, hosting your own, mods | The [Leyline launcher](https://github.com/orionopenwow/Leyline/releases/latest) |
+| **Classic launcher** | Players who already have it: Play Solo, the Workshop | Windows and your own game client ([The launcher](launcher.html)) |
 
 ## Quick start: browser {#quick-browser}
 
-1. Open [play.openvanilla.app](https://play.openvanilla.app/).
-2. Press **Sign in with Discord**, or **Play as guest** to try it first.
-3. Create a character and play. The first load downloads game data; after that it loads from your disk.
+1. Open [play.openvanilla.app/wrath](https://play.openvanilla.app/wrath).
+2. Press **Play** and sign in.
+3. You're on the Dalaran Hangout.
 
-Details: [Playing in the browser](browser.html).
+Details: [Playing in the browser](browser.html). Want your own realm? [Host your own realm](hosting.html).
 
 ## Quick start: launcher {#quick-launcher}
 
@@ -37,9 +39,8 @@ Details: [The launcher](launcher.html).
 
 ## Your account {#account}
 
-- **Sign in with Discord** is the one button for new and returning players: the first time, it creates your realm account and adds you to the Leyline Discord. Leyline never sees your Discord password or messages.
-- **Guests** get a real account tied to that device (kept for 30 days of inactivity). Press **Save your heroes — link Discord** in game to keep your characters for good.
-- Accounts live on each realm: a community realm has its own accounts and its own website.
+- On the Leyline hub and the Dalaran Hangout you sign in on [play.openvanilla.app](https://play.openvanilla.app/wrath).
+- A realm someone hosts has its own accounts: its host tells you how to join.
 - Staff will never ask for your password.
 
 ## What you need: Vanilla Client v1.3 {#client}
@@ -49,5 +50,5 @@ The desktop game needs your own copy of **Vanilla Client v1.3** (English, build 
 ## Where to go next {#next}
 
 - New to the interface? [In-game features](classic-plus.html), then the [command cheat sheet](classic-plus.html#commands).
-- Want friends? [Realms and friends](realms.html), [Community](community.html).
+- Want friends? [Host your own realm](hosting.html), [Community](community.html).
 - Want to build? [Edit your own game](editing.html), [Connect an AI](ai.html), [Publish to the Workshop](workshop.html).

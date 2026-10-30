@@ -1,44 +1,32 @@
-"""The streams & creators web pages in a real browser (Playwright + Chromium), against the canned
-www/community/streams.mock.json: streamers.html, creators.html, the "Live now" strip on index.html /
-portal.html, and the realm's link page (labs/openvanilla-realm/realm/www/creator-link.html) with a fake /api/creator/link.
+"""The 1.12 realm site's streams & creators pages in a real browser (Playwright + Chromium), against the
+canned www/community/streams.mock.json: streamers.html, creators.html, the "Live now" strip on the realm
+site's index.html / portal.html (labs/openvanilla-realm/site, served over www/ by realm_site.py), and the realm's link page (labs/openvanilla-realm/realm/www/creator-link.html) with a fake /api/creator/link.
 Nothing leaves the machine: every request to another host is answered here or aborted.
 
-    python3 -m unittest tests.test_streams_pages -v        (skips without playwright/chromium)
+    python3 -m pytest -q labs/openvanilla-realm/tests/test_streams_pages.py        (skips without playwright/chromium)
 """
-import functools
-import http.server
 import json
 import os
-import threading
+import shutil
 import unittest
 
-ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-WWW = os.path.join(ROOT, "www")
+import realm_site
+from pagekit import HAVE_PW, serve  # noqa: E402  (realm_site puts tests/ on the path)
+
+ROOT = realm_site.ROOT
 REALM_WWW = os.path.join(ROOT, "labs", "openvanilla-realm", "realm", "www")
-
-try:
+if HAVE_PW:
     from playwright.sync_api import sync_playwright
-    HAVE_PW = True
-except ImportError:
-    HAVE_PW = False
-
-
-def serve(directory):
-    class Quiet(http.server.SimpleHTTPRequestHandler):
-        def log_message(self, *a):
-            pass
-    srv = http.server.ThreadingHTTPServer(("127.0.0.1", 0), functools.partial(Quiet, directory=directory))
-    threading.Thread(target=srv.serve_forever, daemon=True).start()
-    return srv, f"http://127.0.0.1:{srv.server_address[1]}/"
 
 
 @unittest.skipUnless(HAVE_PW, "playwright is not installed")
 class StreamsPages(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
-        cls.srv, cls.base = serve(WWW)
+        cls.site = realm_site.build()
+        cls.srv, cls.base = serve(cls.site)
         cls.rsrv, cls.rbase = serve(REALM_WWW)
-        with open(os.path.join(WWW, "community", "streams.mock.json"), encoding="utf-8") as f:
+        with open(os.path.join(cls.site, "community", "streams.mock.json"), encoding="utf-8") as f:
             cls.mock = json.load(f)
         cls.pw = sync_playwright().start()
         try:
@@ -47,6 +35,7 @@ class StreamsPages(unittest.TestCase):
             cls.pw.stop()
             cls.srv.shutdown()
             cls.rsrv.shutdown()
+            shutil.rmtree(cls.site, ignore_errors=True)
             raise unittest.SkipTest(f"no Chromium for Playwright: {e}")
 
     @classmethod
@@ -57,6 +46,7 @@ class StreamsPages(unittest.TestCase):
         cls.rsrv.shutdown()
         cls.srv.server_close()
         cls.rsrv.server_close()
+        shutil.rmtree(cls.site, ignore_errors=True)
 
     def page(self, doc=None, extra_routes=None):
         """A page whose remote streams.json is `doc` (default: the mock); other hosts aborted."""

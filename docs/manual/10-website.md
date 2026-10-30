@@ -1,82 +1,56 @@
 slug: website
-title: The website, Armory and streams
+title: The website
 kicker: Chapter 10 · Together
-summary: What each page on openvanilla.app is for: the Armory, guilds, the realm list, streamers and creators, the node network, and your privacy.
+summary: What each page on openvanilla.app is for, where the retired realm pages went, and your privacy.
 
 ## The site at a glance {#pages}
 
 | Page | What it's for |
 | --- | --- |
-| [Home](../index.html) | Play, download the launcher, sign in, the Workshop, news, hosting, Starfall Giving |
-| [Armory](../armory.html) | Look up any public character, rankings and realm firsts |
-| [Guilds](../guilds.html) | Every guild, filter by realm and faction |
-| [Realms](../realms.html) | The live list of realms you can join |
+| [Home](../index.html) | What Leyline is: play now, host your own, the realm list, the launcher |
 | [Workshop](../workshop.html) | Addons and community content, with ratings ([chapter 15](workshop.html)) |
 | [Projects](../project.html) | Community projects and forks |
-| [Streamers](../streamers.html) and [Creators](../creators.html) | Who's live, videos, creator of the month |
-| [Herald](../herald.html) | What Herald does and how he plays |
-| [Nodes](../nodes.html) | The volunteer node network |
-| [Host](../host.html) and the [Host Guidebook](../guide.html) | Running your own realm ([chapter 11](hosting.html)) |
-| [Solo](../solo.html), [Clients](../clients.html), [AI](../ai.html) | Play offline, get Vanilla Client v1.3, use your own AI |
+| [Solo](../solo.html), [Clients](../clients.html), [AI](../ai.html) | The classic launcher's offline play, game clients, use your own AI |
 | [Privacy](../privacy.html), [Terms](../terms.html), [Security](../security.html) | The promises and the rules |
 
-## The Armory {#armory}
+Playing, hosting and the realm list live on the Leyline hub:
 
-The [Armory](../armory.html) shows characters from Leyline realms: search by name, pick a realm, and browse the rankings (level, achievement points, honorable kills, each profession) and **realm firsts**.
+- **Play now:** the Dalaran Hangout, Leyline's sample realm, at [play.openvanilla.app/wrath](https://play.openvanilla.app/wrath).
+- **Host your own:** [play.openvanilla.app/wrath/host](https://play.openvanilla.app/wrath/host) ([Host your own realm](hosting.html)).
+- **Realm list:** [play.openvanilla.app/wrath/leyline-preview/realms](https://play.openvanilla.app/wrath/leyline-preview/realms).
+- **Everything else:** the [Leyline hub](https://play.openvanilla.app/wrath/leyline).
 
-A character page shows worn gear (enchants, sets, durability), stats, both talent specs, achievements, professions, reputations and honor. The data is exported from the realm every 10 minutes, so changes show up shortly after you log out.
+## Retired pages {#retired}
 
-### Who can see your character {#armory-privacy}
+The pages that belonged to the earlier realm are retired: they now send you to the Leyline hub. That covers the play page and the host guide, the Armory, Guilds, the old realm list and node pages, Streamers and Creators, Herald, Boss Fights, Duels, Legend and Moderation.
 
-You choose, in game: **Social (O) → settings → Armory**.
+### The Armory {#armory}
 
-| Setting | What happens |
-| --- | --- |
-| **Public** (default) | Anyone can find you; you appear in rankings and firsts |
-| **Friends only** | Only people with your private link can see you. The game shows the link to copy; **New link** retires the old one. You're left out of search and rankings, and a realm first shows as "a private player" |
-| **Hidden** | No Armory page at all; guilds count you but never name you |
+The Armory showed characters from the earlier realm. It is retired with that realm.
 
-Never on the Armory, whatever you choose: your account, IP, mail, bags, bank, money, chat, guild notes and guild bank.
+### Who could see your character {#armory-privacy}
 
-## Guilds {#guilds}
+Nothing new is published. Character pages, rankings and guild pages are no longer served.
 
-[Guilds](../guilds.html) lists every guild (search, realm, faction). A guild's page shows its roster, classes, professions and recent achievements; members set to Friends only or Hidden are shown only in totals. Looking for one in game? See the guild finder in [In-game features](classic-plus.html#guilds).
+### Guilds {#guilds}
 
-## The realm list {#realm-list}
+The guild pages were part of the Armory and are retired with it.
 
-[Realms](../realms.html) is the live list, in three tiers: **Verified** realms, **Community** realms hosted by players, and **Verified nodes**. Filter by type (PvE, PvP, RP, RP-PvP), template (Vanilla Remastered or Vanilla) and "has room". Private realms are never listed. To join one, see [Realms and friends](realms.html).
+### Streamers and creators {#streams}
 
-## Streamers and creators {#streams}
-
-- [Streamers](../streamers.html) shows who's live now and who's coming up, from Twitch, YouTube, TikTok and Kick.
-- [Creators](../creators.html) collects videos and shorts (filter by topic, class, platform) and a **Creator of the month** board: hours streamed, audience and videos published. It resets on the 1st, and it's a thank-you, not a contest with prizes.
-
-Players embedded on these pages load only when you click them.
+The streamers and creators pages listed channels for the earlier realm. They are retired.
 
 ### Link your channel {#link-channel}
 
-1. Sign in at [play.openvanilla.app/ow/creator-link.html](https://play.openvanilla.app/ow/creator-link.html).
-2. Add your channel name (one per platform).
-3. Prove it's yours: put the code you're given (it looks like `OW-7K2Q9M`) in your Twitch About text or a live title, or your YouTube channel description. You're listed within about 15 minutes, and can remove the code afterwards.
-
-TikTok is confirmed when staff connect it; Kick channels are added by staff.
+Channel linking ended with the earlier realm. Nothing more is collected.
 
 ### The LIVE mark in game {#live-mark}
 
-Other players can see a **● LIVE** mark on you (friends list, /who, tooltips, Persona) when all three are true: you ticked **Show me as LIVE** on the link page and named your character, your channel is live right now, and in game **Social → settings → Show me as LIVE** is on (it's off by default). `/live` lists who's live and where to watch.
+The in-game LIVE mark needed the earlier realm's server and no longer shows.
 
 ## Share what you're listening to {#now-playing}
 
-Off by default. When on, your Persona shows "Listening: title – artist", nothing more.
-
-- **Desktop:** launcher **Settings → Privacy** (Windows media or Spotify).
-- **Browser:** the game page's ☰ menu → **♫ Listening**.
-
-Don't want to see other people's? Persona setting **Show what others listen to**.
-
-## The node network {#nodes}
-
-[Nodes](../nodes.html) explains the volunteer network that helps relay connections and seed downloads. Becoming a node is optional, capped by bandwidth limits you set, and listed with what is and isn't shared. It's in a test round. More in [Realms and friends](realms.html#nodes).
+Off by default. In the classic launcher, **Settings → Privacy** turns it on or off. When on, your Persona shows "Listening: title – artist", nothing more.
 
 ## Your privacy {#privacy}
 

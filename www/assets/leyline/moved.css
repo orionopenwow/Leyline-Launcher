@@ -1,0 +1,14 @@
+/* The "this page has moved" pages: one centred card on the flat Leyline background. */
+html, body { margin: 0; min-height: 100%; background: var(--ly-bg); color: var(--ly-text); font-family: var(--ly-sans); }
+body.ly-moved { display: flex; align-items: center; justify-content: center; min-height: 100vh; padding: 16px; box-sizing: border-box; }
+.ly-moved main { max-width: 34rem; width: 100%; background: var(--ly-panel); border: 1px solid var(--ly-line); border-radius: 14px;
+  padding: 2rem 1.5rem; text-align: center; box-sizing: border-box; }
+.ly-moved .ly-brand { color: var(--ly-text); font-size: 1.6rem; --ly-size: 48px; }
+.ly-moved h1 { font-size: 1.5rem; margin: 1.4rem 0 .6rem; }
+.ly-moved p { color: var(--ly-muted); line-height: 1.55; margin: .6rem 0; }
+.ly-moved .ly-go { margin: 1.4rem 0; }
+.ly-moved .ly-cta { display: inline-block; padding: .75rem 1.4rem; border-radius: 999px; font-weight: 800; text-decoration: none;
+  color: #fff; background: linear-gradient(90deg, var(--ly-blue), var(--ly-violet)); }
+.ly-moved .ly-cta:focus-visible, .ly-moved a:focus-visible { outline: 2px solid #fff; outline-offset: 3px; }
+.ly-moved .ly-more a { color: var(--ly-text); }
+.ly-moved .ly-note { font-size: .85rem; }

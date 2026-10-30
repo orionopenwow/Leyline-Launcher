@@ -1,7 +1,9 @@
 slug: realms
 title: Realms and friends
 kicker: Chapter 4 · Play
-summary: Find a realm, add a server by address, join friends with invite links, and how relays, direct connections and nodes work.
+summary: The classic launcher's realm browser: add a server by address, join friends with invite links, and how relays, direct connections and nodes work.
+
+> **Note:** This chapter is about the classic launcher. The Leyline realm list is at [play.openvanilla.app/wrath/leyline-preview/realms](https://play.openvanilla.app/wrath/leyline-preview/realms), and hosting your own is one click: see [Host your own realm](hosting.html).
 
 ## The realm browser {#browser}
 
@@ -13,7 +15,7 @@ In the launcher, **Realms → Realm browser** shows the live directory, filterab
 | **Verified realms · Vetted** | Checked by the maintainers |
 | **Community P2P realms** | Hosted by players; not vetted, play at your own risk |
 
-The website's [realm list](../realms.html) shows the same directory.
+The [Leyline realm list](https://play.openvanilla.app/wrath/leyline-preview/realms) shows the realms on the Leyline network.
 
 ## Add a server by address {#add-server}
 
@@ -41,9 +43,7 @@ The launcher remembers a host's key the first time you join. If it changes, it w
 
 ## The node network {#nodes}
 
-Nodes are volunteers' PCs that help carry relay traffic (end-to-end encrypted, never game files). It's optional and in a test round; Leyline's own relay comes first.
-
-To volunteer: launcher **Host → Become a node** (or Esc → **Become a Node** in game to read about it), set caps for speed and data per day (at the daily cap it pauses until midnight UTC), make sure TCP port 3728 is reachable (UPnP or a forwarded port; carrier-grade NAT can't host), and press **Turn on my node**. You can list it as anonymous or with a display name. Approved nodes, after three days of steady uptime, get a **NODE** badge. More on [nodes.html](../nodes.html).
+The classic launcher's volunteer node network never left its test round and is retired. Leyline's network carries players to hosts for you.
 
 ## How the player network works {#p2p}
 

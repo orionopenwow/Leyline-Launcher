@@ -29,6 +29,9 @@ FILES = ["openvanilla_server.py", "launcher_gui.py", "server_control.py", "asset
          "launcher/account.py", "launcher/launcher_art.py"]   # launcher_art: the Server Host's buttons
 OPTIONAL = {"bin/caddy.exe", "bin/heraldlite.exe"}   # (no Caddyfile: launcher_gui writes its own, and the local one holds your IP) built by the release workflow; a local build may not have them
 RENAME = {"Host a Realm.bat": "Start Leyline Server.bat"}
+# The 1.12 realm site's own pages: the public website (www/) has "moved" pages in their place, but the
+# realm website Leyline Server runs is the full one, so these go in the zip at their www/ paths instead.
+REALM_SITE = "labs/openvanilla-realm/site"
 TREES = ["studio", "assets", "realm/classicplus", "www", "autopilot", "launcher/assets/launcher/fonts"]
 SKIP = ["__pycache__", "*.pyc", "*.zip", "*.exe", "*.part", "*.log", "*.db", "*.sqlite*", ".env*", "*.mpq", "*.MPQ",
         "settings.json", "launcher_settings.json", "server_settings.json", "node_modules", ".git*"]
@@ -88,6 +91,11 @@ def main():
             rd = os.path.relpath(d, HERE).replace(os.sep, "/")
             dirs[:] = sorted(x for x in dirs if not skipped(f"{rd}/{x}"))
             entries += [(f"{rd}/{f}", f"{rd}/{f}") for f in sorted(files) if not skipped(f"{rd}/{f}")]
+    site = os.path.join(HERE, *REALM_SITE.split("/"))
+    for d, _, files in os.walk(site):
+        for f in files:
+            rel = os.path.relpath(os.path.join(d, f), site).replace(os.sep, "/")
+            entries = [e for e in entries if e[1] != f"www/{rel}"] + [(f"{REALM_SITE}/{rel}", f"www/{rel}")]
     for _, dst in entries:
         low = dst.lower()
         if low.endswith(NEVER):

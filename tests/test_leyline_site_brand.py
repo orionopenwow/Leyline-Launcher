@@ -77,29 +77,36 @@ class SpinnerTests(unittest.TestCase):
         self.assertRegex(css, r"prefers-reduced-motion: reduce\)\s*\{\s*\.ly-spin > \.ly-swirl \{ animation: none; \}")
         self.assertNotRegex(css, r"\.ly-crystal\s*\{[^}]*animation", "the crystal never turns")
 
-    def test_home_page_header_hero_and_loading_use_the_spinner(self):
+    def test_home_page_header_hero_and_footer_use_the_spinner(self):
         for page in ("index.html", "portal.html"):
             html = read(f"www/{page}")
             with self.subTest(page=page):
                 self.assertIn('href="assets/leyline/leyline.css"', html)
-                self.assertIn('href="assets/leyline/site-flat.css"', html)
                 header = html[html.index('<header class="ovh3">'):html.index("</header>")]
                 self.assertRegex(header, SPIN, "the header logo is the spinner")
                 self.assertIn('<span class="ly-word">Leyline</span>', header)
                 hero = html[html.index('<div class="hero-logo-container">'):]
                 self.assertRegex(hero[:600], SPIN, "the hero logo is the spinner")
-                self.assertGreaterEqual(len(SPIN.findall(html)), 7, "header, hero, trailer, three sign-in boxes, footer")
+                self.assertGreaterEqual(len(SPIN.findall(html)), 3, "header, hero, footer")
                 for swirl, crystal in SPIN.findall(html):
                     self.assertTrue(os.path.isfile(os.path.join(WWW, swirl)), swirl)
                     self.assertTrue(os.path.isfile(os.path.join(WWW, crystal)), crystal)
-                self.assertNotIn("nav_v2/", header, "the header's painted label buttons are text now")
+
+    def test_realm_site_home_page_still_uses_the_spinner(self):
+        """The 1.12 realm site's own home page (labs/openvanilla-realm/site, shipped in Leyline Server)."""
+        for page in ("index.html", "portal.html"):
+            html = read(f"labs/openvanilla-realm/site/{page}")
+            with self.subTest(page=page):
+                self.assertIn('href="assets/leyline/site-flat.css"', html)
+                self.assertGreaterEqual(len(SPIN.findall(html)), 7, "header, hero, trailer, three sign-in boxes, footer")
 
     def test_loading_screens_use_the_spinner(self):
         boot = read("www/boot.js")
         self.assertIn('<span class="ly-spin" role="img" aria-label="Leyline is loading">', boot)
         self.assertIn("root.className = 'ly-flat';", boot)
-        for rel, pre in (("www/armory/character.html", "../"), ("www/guild.html", ""), ("www/realms.html", ""),
-                         ("www/duels.html", ""), ("www/project.html", "")):
+        site = "labs/openvanilla-realm/site/"   # the realm site's pages (www/ has "moved" pages in their place)
+        for rel, pre in ((site + "armory/character.html", "../"), (site + "guild.html", ""), (site + "realms.html", ""),
+                         (site + "duels.html", ""), ("www/project.html", "")):
             html = read(rel)
             with self.subTest(page=rel):
                 self.assertIn(f'href="{pre}assets/leyline/leyline.css"', html)
@@ -261,7 +268,7 @@ class NoOrionArtTests(unittest.TestCase):
         self.assertRegex(js, r"prefers-reduced-motion: reduce\) \{ #ow-login-backdrop \.ly-swirl \{ animation: none; \}")
         self.assertNotRegex(js, r"\.ly-crystal \{[^}]*animation", "the crystal never turns")
         self.assertEqual(js, read("www/ow/login-backdrop.js"))
-        html = read("www/game.html")
+        html = read("labs/openvanilla-realm/site/game.html")   # the realm site's play page
         m = re.search(r"spin: \{ swirl: '([^']+)', crystal: '([^']+)' \}", html)
         self.assertTrue(m, "game.html hands login-backdrop.js the two layers")
         for rel in m.groups():

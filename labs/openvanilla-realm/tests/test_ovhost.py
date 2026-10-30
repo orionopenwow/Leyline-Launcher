@@ -12,8 +12,8 @@ import tempfile
 import textwrap
 import unittest
 
-ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-OVHOST = os.path.join(ROOT, "host", "ovhost")
+ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))   # the repo (this file is in labs/openvanilla-realm/tests)
+OVHOST = os.path.join(ROOT, "labs", "openvanilla-realm", "host", "ovhost")
 WENILLA_REALM = os.environ.get("OVHOST_TEST_WENILLA_REALM", "")
 
 DOCKER = r'''#!/usr/bin/env python3
@@ -221,7 +221,7 @@ class HelpAndManual(OvhostCase):
     def test_every_message_in_the_troubleshooting_table_exists_in_the_script(self):
         """The manual quotes ovhost's messages: they must still be what it prints."""
         import re
-        manual = open(os.path.join(ROOT, "docs", "manual", "11b-host-mac-linux.md"), encoding="utf-8").read()
+        manual = open(os.path.join(ROOT, "labs", "openvanilla-realm", "host", "MANUAL.md"), encoding="utf-8").read()
         script = open(OVHOST, encoding="utf-8").read()
         trouble = manual.split("## Troubleshooting", 1)[1].split("Other problems", 1)[0]
         quoted = re.findall(r"^\| \*\*(.+?)\*\*", trouble, re.M)
@@ -234,7 +234,7 @@ class HelpAndManual(OvhostCase):
 
     def test_every_command_in_the_manual_exists(self):
         import re
-        manual = open(os.path.join(ROOT, "docs", "manual", "11b-host-mac-linux.md"), encoding="utf-8").read()
+        manual = open(os.path.join(ROOT, "labs", "openvanilla-realm", "host", "MANUAL.md"), encoding="utf-8").read()
         used = set(re.findall(r"bash host/ovhost ([a-z-]+)", manual))
         rc, out = self.run_ov("help")
         for c in used:

@@ -396,7 +396,7 @@ plat() {  # run "$@" with x86-64 as Docker's default platform on ARM (pulls of x
 
 realm_up_script() {  # the Leyline layer: from this checkout when there is one, else the stable branch
   if [ -n "${OVHOST_REALM_UP:-}" ]; then echo "$OVHOST_REALM_UP"; return; fi
-  local up="$SCRIPT_DIR/../labs/openvanilla-realm/hetzner/openvanilla_realm_up.sh"
+  local up="$SCRIPT_DIR/../hetzner/openvanilla_realm_up.sh"
   if [ ! -f "$up" ]; then up="$DIR/openvanilla_realm_up.sh"; curl -fsSL "$RAW/hetzner/openvanilla_realm_up.sh" -o "$up"; fi
   echo "$up"
 }
@@ -693,7 +693,7 @@ cmd_help() {
 
 # The manual: the Leyline Manual's chapter for this tool. install puts a copy in the realm folder
 # (MANUAL.md), so it's there offline next to the realm it explains.
-MANUAL_SRC=docs/manual/11b-host-mac-linux.md
+MANUAL_SRC=host/MANUAL.md   # beside this script (labs/openvanilla-realm/host): the manual chapter as it was
 install_manual() {  # install_manual DEST: from this checkout, else downloaded
   local dest="$1"
   if [ -f "$SCRIPT_DIR/../$MANUAL_SRC" ]; then cp "$SCRIPT_DIR/../$MANUAL_SRC" "$dest"; return 0; fi

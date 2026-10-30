@@ -118,7 +118,7 @@ test('Python and JS derive the same Hero ID for random keys', async () => {
 });
 
 test('legend.html inlines the current legend.js', () => {
-  const html = readFileSync(join(here, '..', '..', 'www', 'legend.html'), 'utf8');   // labs/legend -> the repo's www
+  const html = readFileSync(join(here, '..', 'openvanilla-realm', 'site', 'legend.html'), 'utf8');   // the realm site's page
   const lib = readFileSync(join(here, 'legend.js'), 'utf8').trim();
   assert.ok(html.includes(lib), 'legend.html is out of date: re-run build_html.py');
 });

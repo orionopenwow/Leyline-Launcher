@@ -38,46 +38,27 @@ New members start as **Outsiders** and see only #welcome. This keeps bots and ra
 
 ## Herald {#herald}
 
-Herald is Leyline's bot. In Discord he runs the gate, #arrivals and the live #server-status message (online or offline and for how long, players online, Adventurers by faction), bridges world chat and passes tickets to staff. In the game he is a character too: **Herald, a Human Hunter**, who signs in to test every update (graphics, art, frame rate, sign-in, vendors, trade) before players see it. He never does PvP, never plays the economy, never races for server firsts.
+Herald was the earlier realm's bot: the Discord gate, the server-status message, the chat bridge and the nightly test runs. He is retired with that realm, and his code is kept in the Leyline-Launcher repository (`labs/herald`).
 
 ### Herald's Discord commands {#herald-commands}
 
-| Command | Who | What it does |
-| --- | --- | --- |
-| `/status` | Everyone | Is the realm up? |
-| `/census` | Everyone | Alliance vs Horde, adventurer and recruit counts, classes |
-| `/herald` | Everyone | Ask Herald to proclaim something |
-| `/feed show` / `/feed hide` | Everyone | Show your name and avatar on the website's new-adventurer feed (default: "A new adventurer") |
-| `/waitlist` | Everyone | Your place in line, when sign-ups open in waves |
-| `/guild discord #channel` | Guild officers | Link a Discord channel to your guild's in-game chat (see below) |
-| `/guild unlink #channel` | Guild officers | Remove that link |
-| `/tickets`, `/wave`, `/lockdown`, `/promote`, `/bridge`, `/art` | Staff | Ticket queue, sign-up waves, raid shield, promotions, chat bridge, live art |
-
-You can also DM Herald: `appeal <character> <text>` appeals a moderation decision.
+Herald's commands are retired with him.
 
 ### Let Herald play {#herald-autopilot}
 
-**Herald Autopilot** can play your character for you: a desktop app (`Herald Autopilot.bat`) and, in game, the Herald addon's **Let Herald play** button or `/herald` (and `/herald stop` or **Take back control**). It drives the realm's own playerbot self-bot with rules and a gear simulator. It isn't an AI chatbot and doesn't hide from staff. Autoplay is currently off on the official realm; it works in the offline demo and on test and your own realms. See [herald.html](../herald.html) for the showcase.
+**Herald Autopilot** is a desktop app for the classic launcher's own and test realms (`Herald Autopilot.bat`). It isn't used on the Leyline hub or the Dalaran Hangout.
 
 ## World chat between Discord and the game {#world-chat}
 
-The in-game **World** tab and Discord's #world are one conversation.
-
-- In game: type `/world <text>` or `/4 <text>`, or press Enter with the World tab open. Discord lines show as `[D] Name: text`. Lost the tab? `/cpchat world` brings it back.
-- In Discord: Adventurers and staff can talk into the game from #world (one message every 3 seconds, 12 a minute, 255 bytes).
-- Mutes and ignore lists work both ways.
+The bridge between Discord and the earlier realm's World chat is retired.
 
 ### Link your guild's chat {#guild-link}
 
-1. In Discord, a guild officer types `/guild discord #your-channel`. Herald replies with a 6-digit code.
-2. In game, the guild master or an officer types `/guildlink <code>`.
-3. Guild chat and that channel are now bridged. `/guild unlink #your-channel` ends it.
+Guild chat links were part of that bridge and are retired too.
 
 ## Get help: tickets {#tickets}
 
-Stuck in a wall, dead in a bad spot, talents broken? Open a ticket in game: **Help → Talk to a GM**.
-
-Herald posts it to the staff queue within about 30 seconds with a suggested fix (unstuck, revive, reset talents, reply). When a GM approves, it runs on the realm, you get an in-game mail saying what was done, and the ticket closes. Can't log in at all? Post in the **help** forum on Discord instead.
+Stuck, or something doesn't work? Post in the **help** forum on the Leyline Discord: what you did, what you expected and what happened. On a realm someone hosts, its host or staff can help with characters and accounts.
 
 ## Report a bug {#bugs}
 
@@ -85,7 +66,4 @@ Use the **bug-reports** forum on Discord: what happened, what you expected, the 
 
 ## Report a player {#report-player}
 
-- **In game:** right-click their name → **Report**. The report includes the chat around it, so staff see context.
-- **On the website:** realms, Workshop addons and streams have a report option.
-
-Herald sorts reports and suggests an action; **humans decide** (dismiss, warn, mute, kick, ban). The only things Herald does by itself are hiding repeated spam and a 10-minute mute for hard spam or gold selling, and both can be undone. Appeal with `/appeal <text>` in game or a DM to Herald.
+Report players to the staff of the realm you play on. On the Dalaran Hangout and the Leyline Discord, use the Discord's report option or the **help** forum. Humans decide every case.

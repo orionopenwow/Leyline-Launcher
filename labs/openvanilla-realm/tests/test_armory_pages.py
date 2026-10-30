@@ -3,7 +3,7 @@ fixture realm (tests/armory_fixture.py): www/armory.html, www/armory/character.h
 pages (www/guilds.html, www/guild.html) reading the guild files the exporter wrote. Nothing leaves the
 machine: requests to other hosts are aborted (icons fall back to the lettered slot).
 
-    python3 -m unittest tests.test_armory_pages -v        (skips without playwright/chromium)
+    python3 -m pytest -q labs/openvanilla-realm/tests/test_armory_pages.py        (skips without playwright/chromium)
 """
 import os
 import shutil
@@ -11,12 +11,13 @@ import sys
 import tempfile
 import unittest
 
-ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+import realm_site  # noqa: E402  (puts tests/ on the path)
+ROOT = realm_site.ROOT
+SITE = realm_site.SITE   # the realm site's own armory and guild pages
 sys.path.insert(0, os.path.join(ROOT, "tools"))
-sys.path.insert(0, os.path.join(ROOT, "tests"))
 import armory_export as AE  # noqa: E402
 import armory_fixture as F  # noqa: E402
-from test_streams_pages import HAVE_PW, serve  # noqa: E402
+from pagekit import HAVE_PW, serve  # noqa: E402
 
 if HAVE_PW:
     from playwright.sync_api import sync_playwright
@@ -29,9 +30,10 @@ class ArmoryPages(unittest.TestCase):
         cls.tmp = tempfile.mkdtemp(prefix="armory-site-")
         site = cls.site = os.path.join(cls.tmp, "www")
         os.makedirs(os.path.join(site, "armory"))
-        for f in ("armory.html", "guilds.html", "guild.html", "favicon.ico"):
-            shutil.copy(os.path.join(ROOT, "www", f), site)
-        shutil.copy(os.path.join(ROOT, "www", "armory", "character.html"), os.path.join(site, "armory"))
+        for f in ("armory.html", "guilds.html", "guild.html"):
+            shutil.copy(os.path.join(SITE, f), site)
+        shutil.copy(os.path.join(ROOT, "www", "favicon.ico"), site)
+        shutil.copy(os.path.join(SITE, "armory", "character.html"), os.path.join(site, "armory"))
         for d in ("armory", "guilds"):
             shutil.copytree(os.path.join(ROOT, "www", "assets", d), os.path.join(site, "assets", d))
         conn = F.sqlite_db()

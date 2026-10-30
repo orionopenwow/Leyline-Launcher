@@ -44,24 +44,14 @@
   "title": "Getting started",
   "chapter": "Getting started"
  },
+ "browser#play-now": {
+  "url": "manual/browser.html#play-now",
+  "title": "Play now",
+  "chapter": "Playing in the browser"
+ },
  "browser#requirements": {
   "url": "manual/browser.html#requirements",
   "title": "What you need",
-  "chapter": "Playing in the browser"
- },
- "browser#first-load": {
-  "url": "manual/browser.html#first-load",
-  "title": "The first load and caching",
-  "chapter": "Playing in the browser"
- },
- "browser#textures": {
-  "url": "manual/browser.html#textures",
-  "title": "Textures: auto, lite, full",
-  "chapter": "Playing in the browser"
- },
- "browser#dock": {
-  "url": "manual/browser.html#dock",
-  "title": "The dock and page tools",
   "chapter": "Playing in the browser"
  },
  "browser#touch": {
@@ -69,9 +59,9 @@
   "title": "Phones and tablets",
   "chapter": "Playing in the browser"
  },
- "browser#guest": {
-  "url": "manual/browser.html#guest",
-  "title": "Guest play",
+ "browser#realms": {
+  "url": "manual/browser.html#realms",
+  "title": "Other realms",
   "chapter": "Playing in the browser"
  },
  "browser#trouble": {
@@ -339,60 +329,10 @@
   "title": "In-game features: the Vanilla Remastered addons",
   "chapter": "In-game features: the Vanilla Remastered addons"
  },
- "realm-rules#combos": {
-  "url": "manual/realm-rules.html#combos",
-  "title": "Races and classes",
-  "chapter": "The Vanilla Remastered realm"
- },
- "realm-rules#levelling": {
-  "url": "manual/realm-rules.html#levelling",
-  "title": "Levelling",
-  "chapter": "The Vanilla Remastered realm"
- },
- "realm-rules#loot-mail": {
-  "url": "manual/realm-rules.html#loot-mail",
-  "title": "Loot and mail",
-  "chapter": "The Vanilla Remastered realm"
- },
- "realm-rules#star-pouches": {
-  "url": "manual/realm-rules.html#star-pouches",
-  "title": "Star Pouches",
-  "chapter": "The Vanilla Remastered realm"
- },
- "realm-rules#realm-achievements": {
-  "url": "manual/realm-rules.html#realm-achievements",
-  "title": "Achievements on the realm",
-  "chapter": "The Vanilla Remastered realm"
- },
- "realm-rules#playerbots": {
-  "url": "manual/realm-rules.html#playerbots",
-  "title": "Playerbots",
-  "chapter": "The Vanilla Remastered realm"
- },
  "realm-rules": {
   "url": "manual/realm-rules.html",
   "title": "The Vanilla Remastered realm",
   "chapter": "The Vanilla Remastered realm"
- },
- "warfront#kits": {
-  "url": "manual/warfront.html#kits",
-  "title": "Your first login: pick a kit",
-  "chapter": "Warfront: the PvP realm"
- },
- "warfront#gear": {
-  "url": "manual/warfront.html#gear",
-  "title": "Gear tiers and the shop",
-  "chapter": "Warfront: the PvP realm"
- },
- "warfront#arena": {
-  "url": "manual/warfront.html#arena",
-  "title": "Arenas and the duel ladder",
-  "chapter": "Warfront: the PvP realm"
- },
- "warfront#bounties": {
-  "url": "manual/warfront.html#bounties",
-  "title": "Kill streaks and bounties",
-  "chapter": "Warfront: the PvP realm"
  },
  "warfront": {
   "url": "manual/warfront.html",
@@ -462,106 +402,81 @@
  "website#pages": {
   "url": "manual/website.html#pages",
   "title": "The site at a glance",
-  "chapter": "The website, Armory and streams"
+  "chapter": "The website"
+ },
+ "website#retired": {
+  "url": "manual/website.html#retired",
+  "title": "Retired pages",
+  "chapter": "The website"
  },
  "website#armory": {
   "url": "manual/website.html#armory",
   "title": "The Armory",
-  "chapter": "The website, Armory and streams"
+  "chapter": "The website"
  },
  "website#armory-privacy": {
   "url": "manual/website.html#armory-privacy",
-  "title": "Who can see your character",
-  "chapter": "The website, Armory and streams"
+  "title": "Who could see your character",
+  "chapter": "The website"
  },
  "website#guilds": {
   "url": "manual/website.html#guilds",
   "title": "Guilds",
-  "chapter": "The website, Armory and streams"
- },
- "website#realm-list": {
-  "url": "manual/website.html#realm-list",
-  "title": "The realm list",
-  "chapter": "The website, Armory and streams"
+  "chapter": "The website"
  },
  "website#streams": {
   "url": "manual/website.html#streams",
   "title": "Streamers and creators",
-  "chapter": "The website, Armory and streams"
+  "chapter": "The website"
  },
  "website#link-channel": {
   "url": "manual/website.html#link-channel",
   "title": "Link your channel",
-  "chapter": "The website, Armory and streams"
+  "chapter": "The website"
  },
  "website#live-mark": {
   "url": "manual/website.html#live-mark",
   "title": "The LIVE mark in game",
-  "chapter": "The website, Armory and streams"
+  "chapter": "The website"
  },
  "website#now-playing": {
   "url": "manual/website.html#now-playing",
   "title": "Share what you're listening to",
-  "chapter": "The website, Armory and streams"
- },
- "website#nodes": {
-  "url": "manual/website.html#nodes",
-  "title": "The node network",
-  "chapter": "The website, Armory and streams"
+  "chapter": "The website"
  },
  "website#privacy": {
   "url": "manual/website.html#privacy",
   "title": "Your privacy",
-  "chapter": "The website, Armory and streams"
+  "chapter": "The website"
  },
  "website": {
   "url": "manual/website.html",
-  "title": "The website, Armory and streams",
-  "chapter": "The website, Armory and streams"
+  "title": "The website",
+  "chapter": "The website"
  },
- "hosting#needs": {
-  "url": "manual/hosting.html#needs",
-  "title": "What you need",
+ "hosting#browser": {
+  "url": "manual/hosting.html#browser",
+  "title": "From the browser",
   "chapter": "Host your own realm"
  },
- "hosting#first-realm": {
-  "url": "manual/hosting.html#first-realm",
-  "title": "Your first realm",
-  "chapter": "Host your own realm"
- },
- "hosting#accounts-rules": {
-  "url": "manual/hosting.html#accounts-rules",
-  "title": "Accounts, GMs and rules",
-  "chapter": "Host your own realm"
- },
- "hosting#friends": {
-  "url": "manual/hosting.html#friends",
-  "title": "Letting friends in",
-  "chapter": "Host your own realm"
- },
- "hosting#capacity": {
-  "url": "manual/hosting.html#capacity",
-  "title": "How many players can you host?",
-  "chapter": "Host your own realm"
- },
- "hosting#grow": {
-  "url": "manual/hosting.html#grow",
-  "title": "Growing your realm",
-  "chapter": "Host your own realm"
- },
- "hosting#studio": {
-  "url": "manual/hosting.html#studio",
-  "title": "Server Studio",
-  "chapter": "Host your own realm"
- },
- "hosting#backups-vps": {
-  "url": "manual/hosting.html#backups-vps",
-  "title": "Backups and moving to Linux",
+ "hosting#launcher": {
+  "url": "manual/hosting.html#launcher",
+  "title": "From the Leyline launcher",
   "chapter": "Host your own realm"
  },
  "hosting#list": {
   "url": "manual/hosting.html#list",
-  "title": "List your realm",
+  "title": "The realm list",
+  "chapter": "Host your own realm"
+ },
+ "hosting#mods": {
+  "url": "manual/hosting.html#mods",
+  "title": "Mods",
+  "chapter": "Host your own realm"
+ },
+ "hosting#try": {
+  "url": "manual/hosting.html#try",
+  "title": "Try it first",
   "chapter": "Host your own realm"
  },
  "hosting": {
@@ -572,116 +487,6 @@
  "host-mac-linux#what": {
   "url": "manual/host-mac-linux.html#what",
   "title": "What it is",
-  "chapter": "Host on a Mac or Linux"
- },
- "host-mac-linux#before": {
-  "url": "manual/host-mac-linux.html#before",
-  "title": "Before you start",
-  "chapter": "Host on a Mac or Linux"
- },
- "host-mac-linux#before-mac": {
-  "url": "manual/host-mac-linux.html#before-mac",
-  "title": "On a Mac",
-  "chapter": "Host on a Mac or Linux"
- },
- "host-mac-linux#before-linux": {
-  "url": "manual/host-mac-linux.html#before-linux",
-  "title": "On Linux",
-  "chapter": "Host on a Mac or Linux"
- },
- "host-mac-linux#before-vps": {
-  "url": "manual/host-mac-linux.html#before-vps",
-  "title": "On a rented server (a VPS)",
-  "chapter": "Host on a Mac or Linux"
- },
- "host-mac-linux#doctor": {
-  "url": "manual/host-mac-linux.html#doctor",
-  "title": "Check your computer",
-  "chapter": "Host on a Mac or Linux"
- },
- "host-mac-linux#install": {
-  "url": "manual/host-mac-linux.html#install",
-  "title": "Set up your realm",
-  "chapter": "Host on a Mac or Linux"
- },
- "host-mac-linux#install-options": {
-  "url": "manual/host-mac-linux.html#install-options",
-  "title": "Skip the questions",
-  "chapter": "Host on a Mac or Linux"
- },
- "host-mac-linux#maps": {
-  "url": "manual/host-mac-linux.html#maps",
-  "title": "The map build",
-  "chapter": "Host on a Mac or Linux"
- },
- "host-mac-linux#first-visit": {
-  "url": "manual/host-mac-linux.html#first-visit",
-  "title": "Your first visit",
-  "chapter": "Host on a Mac or Linux"
- },
- "host-mac-linux#gm": {
-  "url": "manual/host-mac-linux.html#gm",
-  "title": "Become a GM",
-  "chapter": "Host on a Mac or Linux"
- },
- "host-mac-linux#players": {
-  "url": "manual/host-mac-linux.html#players",
-  "title": "Let people in",
-  "chapter": "Host on a Mac or Linux"
- },
- "host-mac-linux#daily": {
-  "url": "manual/host-mac-linux.html#daily",
-  "title": "Every day",
-  "chapter": "Host on a Mac or Linux"
- },
- "host-mac-linux#update": {
-  "url": "manual/host-mac-linux.html#update",
-  "title": "Update",
-  "chapter": "Host on a Mac or Linux"
- },
- "host-mac-linux#backup": {
-  "url": "manual/host-mac-linux.html#backup",
-  "title": "Back up and restore",
-  "chapter": "Host on a Mac or Linux"
- },
- "host-mac-linux#move": {
-  "url": "manual/host-mac-linux.html#move",
-  "title": "Move to another computer",
-  "chapter": "Host on a Mac or Linux"
- },
- "host-mac-linux#uninstall": {
-  "url": "manual/host-mac-linux.html#uninstall",
-  "title": "Stop for good",
-  "chapter": "Host on a Mac or Linux"
- },
- "host-mac-linux#files": {
-  "url": "manual/host-mac-linux.html#files",
-  "title": "Where things are",
-  "chapter": "Host on a Mac or Linux"
- },
- "host-mac-linux#settings": {
-  "url": "manual/host-mac-linux.html#settings",
-  "title": "Settings you can change",
-  "chapter": "Host on a Mac or Linux"
- },
- "host-mac-linux#security": {
-  "url": "manual/host-mac-linux.html#security",
-  "title": "Keep it safe",
-  "chapter": "Host on a Mac or Linux"
- },
- "host-mac-linux#capacity": {
-  "url": "manual/host-mac-linux.html#capacity",
-  "title": "How big can it get?",
-  "chapter": "Host on a Mac or Linux"
- },
- "host-mac-linux#trouble": {
-  "url": "manual/host-mac-linux.html#trouble",
-  "title": "Troubleshooting",
-  "chapter": "Host on a Mac or Linux"
- },
- "host-mac-linux#faq": {
-  "url": "manual/host-mac-linux.html#faq",
-  "title": "FAQ",
   "chapter": "Host on a Mac or Linux"
  },
  "host-mac-linux": {
