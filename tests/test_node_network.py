@@ -729,14 +729,14 @@ class NodeServiceTests(unittest.TestCase):
 # ---------------------------------------------------------------- the real Rust relay (when built)
 
 def _relay_bin():
-    for p in (os.environ.get("OPENVANILLA_RELAY_BIN"), os.path.join(ROOT, "relay", "target", "debug", "openvanilla-relay"),
-              os.path.join(ROOT, "relay", "target", "release", "openvanilla-relay")):
+    for p in (os.environ.get("OPENVANILLA_RELAY_BIN"), os.path.join(ROOT, "labs", "relay", "target", "debug", "openvanilla-relay"),
+              os.path.join(ROOT, "labs", "relay", "target", "release", "openvanilla-relay")):
         if p and os.path.isfile(p) and os.access(p, os.X_OK):
             return p
     return None
 
 
-@unittest.skipUnless(_relay_bin(), "build relay/ first (cargo build) or set OPENVANILLA_RELAY_BIN")
+@unittest.skipUnless(_relay_bin(), "build labs/relay first (cargo build) or set OPENVANILLA_RELAY_BIN")
 class RustRelaySmokeTests(unittest.TestCase):
     """tools/relay_smoke.py (the maintainer's test-round check) against the real relay binary:
     the Python host agent and player bridge, sealed and plain, through relay/."""

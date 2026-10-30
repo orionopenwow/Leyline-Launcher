@@ -84,7 +84,7 @@ player's game ─TCP─ launcher bridge ══ WebSocket (sealed) ══ node �
 
 ### Why the node is Python, not the bundled Rust relay
 
-The node speaks the relay's exact wire protocol (`relay/README.md`), so the host agent
+The node speaks the relay's exact wire protocol (`labs/relay/README.md`), so the host agent
 (`host.RelayAgent`) and the player bridge (`bridge.Bridge`) work against either one unchanged
 (`tests/test_node_network.py` and `tools/relay_smoke.py`, against the real relay binary). Doing it
 in-process means:
@@ -94,7 +94,7 @@ in-process means:
 * caps are enforced where the volunteer set them.
 
 The load is small. Game traffic is about 5 KB/s per player, so a node at its default 512 KB/s (both
-directions) carries about 50 players, well under one core. The official relay stays Rust (`relay/`)
+directions) carries about 50 players, well under one core. The official relay stays Rust (`labs/relay/`)
 because it is the hot path for everyone.
 
 ## What a volunteer sees
@@ -186,7 +186,7 @@ is the bottleneck or the single target.
   desktop client connects directly and the browser through wenilla-realm's WebSockets.
 * **In the launcher, working:** hosting for friends (Solo-based) with Direct and LAN. "Through Leyline"
   (the relay) is hidden until live flag `relay`. Joining by invite link and by address, seeding.
-* **Built, not deployed:** the relay (`relay/`), the directory, identity tokens and tracker (patch 0012),
+* **Built, not deployed:** the relay (`labs/relay/`), the directory, identity tokens and tracker (patch 0012),
   the node network (this doc: launcher code behind live flag `nodes`, patch 0018).
 * **How players join slices once enough nodes exist:** Realms tab → pick a realm under its tier → Join.
   The launcher signs in with a Leyline token, opens a sealed bridge to whichever relay the directory
@@ -200,7 +200,7 @@ Each step can be undone on its own, and nothing reaches players until a live fla
 **Step 0: Leyline's relay on the existing Hetzner box (no change to the realm or the launcher).**
 
 1. DNS: an A (and AAAA) record for `relay.openvanilla.app` pointing at the realm server.
-2. On the server, from a checkout: `bash labs/openvanilla-realm/hetzner/relay_up.sh`. This builds `relay/` and runs it as the
+2. On the server, from a checkout: `bash labs/openvanilla-realm/hetzner/relay_up.sh`. This builds `labs/relay/` and runs it as the
    container `openvanilla-relay`:
    * on the realm's Docker network, with no published ports;
    * limits: 1 CPU, 256 MB, 256 PIDs, read-only, no capabilities;
@@ -249,5 +249,5 @@ live flags. None of it was done here.
 * `xvfb-run -a python3.12 -m unittest tests.test_p2p_gui`: the Become a node tab (waits for the test
   round, explanation first, one-click off, leaderboard) and the tab list.
 * `lua5.1 devkit/sim/run_tests.lua`: `tests/node.lua` (Esc menu button, window, status states).
-* `cargo test` in `relay/`: the `e2e` flag reaches the agent.
+* `cargo test` in `labs/relay/`: the `e2e` flag reaches the agent.
 * Patch 0018: `cargo test -p wenilla-realm` (nodes unit tests; tests/p2p.rs unchanged and passing).

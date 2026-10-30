@@ -6,8 +6,8 @@
     svc.status()                      # dict for the launcher panel and the in-game window
     svc.turn_off()                    # one click, from any state: server down, port unmapped, setting off
 
-Why a Python node and not the bundled Rust relay (relay/): the node speaks exactly the relay's wire
-protocol (docs: relay/README.md), so hosts' agents (host.RelayAgent) and players' bridges
+Why a Python node and not the bundled Rust relay (labs/relay/): the node speaks exactly the relay's wire
+protocol (docs: labs/relay/README.md), so hosts' agents (host.RelayAgent) and players' bridges
 (bridge.Bridge) work against it unchanged, and it reuses p2p.ws. Shipping a second native binary
 per OS means signing it, antivirus false positives and a process to babysit; in-process, "off"
 really is one click and the caps are enforced right here. The load is small: 1.12 game traffic is
@@ -288,7 +288,7 @@ def utc_day(t):
 
 
 class RelayNode:
-    """The relay protocol (relay/README.md) in Python, for volunteers. require_e2e is always on for
+    """The relay protocol (labs/relay/README.md) in Python, for volunteers. require_e2e is always on for
     volunteers; tests may switch it off to check the refusal."""
 
     def __init__(self, node_id, keys, bind=("0.0.0.0", NODE_PORT), limits=None, clock=time.time, node_key=None,

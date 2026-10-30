@@ -172,7 +172,7 @@ tests/            the test suite (python3 -m pytest -q tests; the GUI tests unde
 The live realm and the other apps (not part of the launcher build)
 realm/            the live realm: wenilla-realm and CMaNGOS patches, Vanilla Remastered SQL, Warfront/Duels patch-Z
 labs/openvanilla-realm/hetzner/, host/   server scripts run on the Linux host, and the cloud-init / ovhost installers
-labs/herald/, relay/      Herald (the Discord bot and autopilot API) and the relay service the realm runs
+labs/herald/, labs/relay/      Herald (the Discord bot and autopilot API) and the relay service the realm runs
 legend/           signed character records (Legend v1), issued by the Duels realm
 forge/            Vanilla Forge, the creator app (Rust + Tauri): forge/README.md; Vanilla Forge.bat runs it
 devkit/           checks (check.py), the Lua sim, heraldlite, staging, load lab, UI Studio
