@@ -1,10 +1,12 @@
 # Source: packaging/workflows/uptime.yml (Ship.bat and Release.bat copy it into .github/workflows).
-# Uptime: every 10 minutes, check that the website, the realm and (when set) Warfront answer, and
-# post to Discord only when something goes down or comes back. No AI and no tokens: curl only.
+# Uptime: every 10 minutes, check that the website, the Dalaran Hangout (Leyline's sample realm) and the
+# Leyline hub answer, and post to Discord only when something goes down or comes back. No AI and no
+# tokens: curl only.
 # GitHub may run scheduled jobs a few minutes late; a second check 20 s apart avoids false alarms.
 #
-# Secrets: REALM_URL (e.g. https://play.openvanilla.app). Optional: SITE_URL (default
-# https://openvanilla.app), WARFRONT_URL (only checked once Warfront is open), OWBOT_WEBHOOK (Discord).
+# The Hangout's /wrath/healthz answers 200 "ok" while its world server answers, 503 when it doesn't.
+# Optional secrets: SITE_URL (default https://openvanilla.app), HANGOUT_URL (default
+# https://play.openvanilla.app/wrath), OWBOT_WEBHOOK (Discord). The old 1.12 realm is no longer checked.
 name: uptime
 on:
   schedule:
@@ -22,8 +24,7 @@ jobs:
     timeout-minutes: 5
     env:
       SITE_URL: ${{ secrets.SITE_URL || 'https://openvanilla.app' }}
-      REALM_URL: ${{ secrets.REALM_URL }}
-      WARFRONT_URL: ${{ secrets.WARFRONT_URL }}
+      HANGOUT_URL: ${{ secrets.HANGOUT_URL || 'https://play.openvanilla.app/wrath' }}
       OWBOT_WEBHOOK: ${{ secrets.OWBOT_WEBHOOK }}
     steps:
       - name: Last known state
@@ -45,8 +46,8 @@ jobs:
           }
           : > now.txt
           probe site "$SITE_URL/" >> now.txt
-          [ -n "$REALM_URL" ] && probe realm "$REALM_URL/healthz" >> now.txt
-          [ -n "$WARFRONT_URL" ] && probe warfront "$WARFRONT_URL/healthz" >> now.txt
+          probe hangout "$HANGOUT_URL/healthz" >> now.txt
+          probe hub "$HANGOUT_URL/leyline" >> now.txt
           cat now.txt
           { echo '### Uptime'; echo '```'; cat now.txt; echo '```'; } >> "$GITHUB_STEP_SUMMARY"
           if [ ! -f uptime-state.txt ]; then cp now.txt uptime-state.txt; echo "first=1" >> "$GITHUB_OUTPUT"; fi
