@@ -13,6 +13,6 @@ if "</script" in lib.lower():
     raise SystemExit("legend.js must not contain </script")
 start, end = src.index(BEGIN) + len(BEGIN), src.index(END)
 out = src[:start] + "\n" + lib + "\n" + src[end:]
-with open(os.path.join(HERE, "..", "www", "legend.html"), "w", encoding="utf-8") as f:
+with open(os.path.join(HERE, "..", "..", "www", "legend.html"), "w", encoding="utf-8") as f:   # labs/legend -> the repo's www
     f.write(out)
 print("wrote www/legend.html (%d bytes)" % len(out.encode("utf-8")))
