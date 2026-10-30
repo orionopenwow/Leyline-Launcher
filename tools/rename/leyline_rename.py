@@ -6,6 +6,8 @@ GitHub CLI sign-in (owner decision 2026-10-29: "rename repo to Leyline Launcher"
     py -3 tools\\rename\\leyline_rename.py --dry-run       only say what it would do
     py -3 leyline_rename.py --find-clone --wu C:\\...\\WrathUnleashed
                                                          (the Autopilot copy) find the PC's clone first
+    py -3 leyline_rename.py --find-clone --land FILE.bundle [--branch NAME]
+                                                         fast-forward main to a branch from a git bundle, push main
 
 Safe to run again: every step looks first and skips what is already done.
   1. GitHub sign-in: gh must be signed in as orionopenwow. It refuses the account "Chumpton", always.
@@ -234,6 +236,53 @@ class Renamer:
         return 0
 
 
+def land(clone, bundle, branch, runner=run, out=print, account=OWNER, dry_run=False):
+    """Bring a branch from a git bundle (made where GitHub can't be pushed to) onto the clone's main and push
+    main: fast-forward only, a clean checkout of main only, gh signed in as the owner. Makes no commits and
+    never force-pushes. Run after the rename (origin then points at the new address)."""
+    say = lambda m: out(redact(m))
+    git = lambda *a: runner(["git", "-C", clone] + list(a))
+    Renamer(runner=runner, out=out, account=account).check_account()
+    if not clone or not os.path.isdir(os.path.join(clone, ".git")):
+        raise RenameError("no clone to land the branch in (pass --clone, or set OPENVANILLA_DIR)")
+    if not os.path.isfile(bundle):
+        raise RenameError(f"the bundle {bundle} is not on this PC")
+    rc, head = git("rev-parse", "--abbrev-ref", "HEAD")
+    if rc != 0 or head.strip() != "main":
+        raise RenameError(f"{clone} is on '{head.strip()}', not main: switch to main first (git switch main)")
+    rc, dirty = git("status", "--porcelain", "--untracked-files=no")
+    if rc != 0 or dirty.strip():
+        raise RenameError(f"{clone} has changes that aren't committed: commit or stash them first")
+    rc, txt = git("fetch", "-q", "origin", "main")
+    if rc != 0:
+        raise RenameError("git fetch origin failed: " + txt)
+    ref = f"refs/remotes/bundle/{branch}"
+    rc, txt = git("fetch", "-q", os.path.abspath(bundle), f"+{branch}:{ref}")
+    if rc != 0:
+        raise RenameError("could not read the branch from the bundle: " + txt)
+    for base in ("origin/main", "HEAD"):
+        rc, _ = git("merge-base", "--is-ancestor", base, ref)
+        if rc != 0:
+            raise RenameError(f"{branch} does not build on {base} (someone pushed since it was made): "
+                              "nothing landed; ask Claude for a fresh bundle")
+    rc, n = git("rev-list", "--count", f"origin/main..{ref}")
+    say(f"  {branch}: {n.strip()} new commit(s) on top of origin/main")
+    if n.strip() == "0":
+        say("  already on GitHub  (skipped)")
+        return 0
+    if dry_run:
+        say("  would fast-forward main and push it")
+        return 0
+    rc, txt = git("merge", "-q", "--ff-only", ref)
+    if rc != 0:
+        raise RenameError("fast-forward failed: " + txt)
+    rc, txt = git("push", "origin", "main")
+    if rc != 0:
+        raise RenameError("git push failed: " + txt)
+    say("  main pushed. Next: the release (dev\\Release.bat 1.57.0 in this folder).")
+    return 0
+
+
 def main(argv=None):
     ap = argparse.ArgumentParser(description=__doc__.split("\n")[0])
     here = os.path.dirname(os.path.abspath(__file__))
@@ -242,6 +291,9 @@ def main(argv=None):
     ap.add_argument("--wu", help="the WrathUnleashed folder (with --find-clone: also look beside it)")
     ap.add_argument("--dry-run", action="store_true")
     ap.add_argument("--account", default=OWNER, help="the gh account to require (never Chumpton)")
+    ap.add_argument("--land", metavar="BUNDLE", help="instead of renaming: fast-forward main to --branch from this "
+                    "git bundle and push main")
+    ap.add_argument("--branch", default="feat-leyline-launcher-rename")
     a = ap.parse_args(argv)
     if a.clone:
         clone = os.path.abspath(a.clone) if os.path.isdir(os.path.join(a.clone, ".git")) else None
@@ -251,6 +303,9 @@ def main(argv=None):
         root = os.path.dirname(os.path.dirname(here))
         clone = root if os.path.isdir(os.path.join(root, ".git")) else None
     try:
+        if a.land:
+            print(f"Land {a.branch} on main and push it: {clone or '(no clone found)'}")
+            return land(clone, a.land, a.branch, account=a.account, dry_run=a.dry_run)
         return Renamer(clone=clone, account=a.account, dry_run=a.dry_run).main()
     except RenameError as e:
         print("  STOPPED: " + redact(e))

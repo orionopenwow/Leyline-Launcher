@@ -202,5 +202,74 @@ class BatTests(unittest.TestCase):
         self.assertNotIn("auth token", bat)
 
 
+class LandTests(unittest.TestCase):
+    """--land: a real throwaway origin, clone and bundle (git only, no network); gh is faked."""
+
+    def setUp(self):
+        import shutil
+        import subprocess
+        if not shutil.which("git"):
+            self.skipTest("git not installed")
+        self.tmp = tempfile.mkdtemp()
+        self.addCleanup(shutil.rmtree, self.tmp, True)
+        self.sp = subprocess
+        env = dict(os.environ, GIT_AUTHOR_NAME="t", GIT_AUTHOR_EMAIL="t@x", GIT_COMMITTER_NAME="t",
+                   GIT_COMMITTER_EMAIL="t@x", GIT_CONFIG_GLOBAL=os.devnull, GIT_CONFIG_NOSYSTEM="1")
+        self.env = env
+        self.origin = os.path.join(self.tmp, "origin.git")
+        self.pc = os.path.join(self.tmp, "pc")
+        self.work = os.path.join(self.tmp, "claude")
+        self.g("init", "-q", "--bare", "-b", "main", self.origin)
+        self.g("clone", "-q", self.origin, self.pc)
+        self.commit(self.pc, "a.txt", "1")
+        self.g("-C", self.pc, "push", "-q", "origin", "main")
+        self.g("clone", "-q", self.origin, self.work)
+        self.g("-C", self.work, "switch", "-q", "-c", "feat")
+        self.commit(self.work, "b.txt", "2")
+        self.bundle = os.path.join(self.tmp, "feat.bundle")
+        self.g("-C", self.work, "bundle", "create", "-q", self.bundle, "origin/main..feat")
+
+    def g(self, *args):
+        r = self.sp.run(["git"] + list(args), env=self.env, capture_output=True, text=True)
+        self.assertEqual(r.returncode, 0, r.stderr)
+        return r.stdout.strip()
+
+    def commit(self, repo, name, text):
+        with open(os.path.join(repo, name), "w") as f:
+            f.write(text)
+        self.g("-C", repo, "add", name)
+        self.g("-C", repo, "commit", "-q", "-m", name)
+
+    def runner(self, cmd, cwd=None):
+        if cmd[0] == "gh":
+            return 0, "orionopenwow"
+        r = self.sp.run(cmd, env=self.env, capture_output=True, text=True)
+        return r.returncode, (r.stdout + r.stderr).strip()
+
+    def test_lands_and_pushes_then_skips(self):
+        lines = []
+        self.assertEqual(R.land(self.pc, self.bundle, "feat", runner=self.runner, out=lines.append), 0)
+        self.assertEqual(self.g("--git-dir", self.origin, "rev-parse", "main"), self.g("-C", self.work, "rev-parse", "feat"))
+        lines.clear()
+        R.land(self.pc, self.bundle, "feat", runner=self.runner, out=lines.append)
+        self.assertTrue(any("skipped" in l for l in lines))
+
+    def test_refuses_dirty_or_diverged(self):
+        with open(os.path.join(self.pc, "a.txt"), "w") as f:
+            f.write("changed")
+        with self.assertRaises(R.RenameError):
+            R.land(self.pc, self.bundle, "feat", runner=self.runner, out=lambda s: None)
+        self.g("-C", self.pc, "checkout", "-q", "--", "a.txt")
+        self.commit(self.pc, "c.txt", "3")       # the PC has a commit the bundle doesn't build on
+        with self.assertRaises(R.RenameError) as e:
+            R.land(self.pc, self.bundle, "feat", runner=self.runner, out=lambda s: None)
+        self.assertIn("does not build on", str(e.exception))
+        self.assertNotEqual(self.g("--git-dir", self.origin, "rev-parse", "main"), self.g("-C", self.work, "rev-parse", "feat"))
+
+    def test_refuses_chumpton(self):
+        with self.assertRaises(R.RenameError):
+            R.land(self.pc, self.bundle, "feat", runner=lambda c, cwd=None: (0, "Chumpton"), out=lambda s: None)
+
+
 if __name__ == "__main__":
     unittest.main()
