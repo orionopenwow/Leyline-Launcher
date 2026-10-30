@@ -7,8 +7,8 @@
  "category": "unitframes",
  "compat": "needs-fixes",
  "ours": false,
- "rehost": true,
- "install": true,
+ "rehost": false,
+ "install": false,
  "license": "MIT",
  "version": "git-bf6c9cc",
  "added": "2026-10-15",
@@ -17,7 +17,7 @@
  ],
  "thumb": "assets/workshop/cat_unitframes.webp",
  "verified": true,
- "browser": true,
+ "browser": false,
  "stats": {
   "rating": 0,
   "votes": 0,
@@ -27,17 +27,7 @@
  "screenshots": [],
  "source_url": "https://github.com/Ko0z/UnitFramesImproved_Vanilla",
  "homepage": "https://github.com/Ko0z/UnitFramesImproved_Vanilla",
- "files": [
-  {
-   "name": "unitframesimproved-9e223a18b618.zip",
-   "url": "community/workshop/files/unitframesimproved-9e223a18b618.zip",
-   "sha256": "9e223a18b6185ab4c5c55456dd104d01f585f8f8ec20947d97643f24dff59cae",
-   "size": 340737,
-   "folders": [
-    "UnitFramesImproved_Vanilla"
-   ]
-  }
- ],
+ "files": [],
  "folders": [
   "UnitFramesImproved_Vanilla"
  ],
@@ -95,15 +85,8 @@
   "license": "MIT",
   "source": "https://github.com/Ko0z/UnitFramesImproved_Vanilla",
   "commit": "bf6c9cc40b2039f107a2af7b6bc3db2e695661c1",
-  "text": "UnitFramesImproved — packaged by the Open Vanilla Workshop\n\nAuthor:   Ko0z\nSource:   https://github.com/Ko0z/UnitFramesImproved_Vanilla\nCommit:   bf6c9cc40b2039f107a2af7b6bc3db2e695661c1\nLicence:  MIT\n\nThis package is the author's code as published, unmodified except for this file (and a copy of\nthe licence when the addon folder had none). All credit belongs to the author. Report problems\nwith the addon to the author; problems with the package to https://openvanilla.app/workshop.html.\n"
+  "text": null
  },
- "install_url": "openvanilla://workshop/install/unitframesimproved",
- "versions": [
-  {
-   "version": "git-bf6c9cc",
-   "date": "2026-10-15",
-   "sha256": "9e223a18b6185ab4c5c55456dd104d01f585f8f8ec20947d97643f24dff59cae",
-   "size": 340737
-  }
- ]
+ "install_url": null,
+ "versions": []
 }

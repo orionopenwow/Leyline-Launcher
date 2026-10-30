@@ -5,18 +5,11 @@ summary: 'pfUI''s nameplates as a standalone addon: cast bars, debuffs and class
 description: 'pfUI''s nameplates as a standalone addon: cast bars, debuffs and class colours on plates.'
 category: combat
 license: MIT
-rehost: true
+rehost: false
 source_url: https://github.com/shagu/ShaguPlates
 homepage: https://github.com/shagu/ShaguPlates
 version: git-9b2ebdf
 added: '2026-10-15'
-files:
-- name: shaguplates-c45fe20a191c.zip
-  url: community/workshop/files/shaguplates-c45fe20a191c.zip
-  sha256: c45fe20a191c1def10a1b06819127497caf13c944e3ee728b9071aed9462adb0
-  size: 2137645
-  folders:
-  - ShaguPlates
 screenshots: []
 tags:
 - nameplates
@@ -65,3 +58,5 @@ scan:
   - ShaguPlates_playerDB
   - ShaguPlates_profiles
   xml_files: 5
+no_rehost: true
+no_rehost_reason: the package carries textures made from the game's own art; link to the author instead

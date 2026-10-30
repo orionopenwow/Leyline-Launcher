@@ -5,18 +5,11 @@ summary: Bigger, clearer stock unit frames with class colours and health numbers
 description: Bigger, clearer stock unit frames with class colours and health numbers.
 category: unitframes
 license: MIT
-rehost: true
+rehost: false
 source_url: https://github.com/Ko0z/UnitFramesImproved_Vanilla
 homepage: https://github.com/Ko0z/UnitFramesImproved_Vanilla
 version: git-bf6c9cc
 added: '2026-10-15'
-files:
-- name: unitframesimproved-9e223a18b618.zip
-  url: community/workshop/files/unitframesimproved-9e223a18b618.zip
-  sha256: 9e223a18b6185ab4c5c55456dd104d01f585f8f8ec20947d97643f24dff59cae
-  size: 340737
-  folders:
-  - UnitFramesImproved_Vanilla
 screenshots: []
 tags:
 - unitframes
@@ -75,3 +68,5 @@ scan:
   - ufiDarkMode
   - ufiImprovedPet
   xml_files: 0
+no_rehost: true
+no_rehost_reason: the package carries textures made from the game's own art; link to the author instead

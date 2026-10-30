@@ -5,18 +5,11 @@ summary: Zoom and pan the world map.
 description: Zoom and pan the world map.
 category: maps
 license: MIT
-rehost: true
+rehost: false
 source_url: https://github.com/luskanek/Magnify
 homepage: https://github.com/luskanek/Magnify
 version: git-3ff15a8
 added: '2026-10-15'
-files:
-- name: magnify-dd5076cb692b.zip
-  url: community/workshop/files/magnify-dd5076cb692b.zip
-  sha256: dd5076cb692b8b9e7081d83675264470f16294108c2a161b75c80edf28043a78
-  size: 8875
-  folders:
-  - Magnify
 screenshots: []
 tags:
 - map
@@ -47,3 +40,5 @@ scan:
   saved:
   - Magnify_Settings
   xml_files: 1
+no_rehost: true
+no_rehost_reason: the package carries textures made from the game's own art; link to the author instead

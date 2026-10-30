@@ -5,18 +5,11 @@ summary: A set of small, optional improvements to the stock interface, each one 
 description: A set of small, optional improvements to the stock interface, each one a switch.
 category: interface
 license: MIT
-rehost: true
+rehost: false
 source_url: https://github.com/shagu/ShaguTweaks
 homepage: https://github.com/shagu/ShaguTweaks
 version: git-7d67021
 added: '2026-10-15'
-files:
-- name: shagutweaks-06d339cc852a.zip
-  url: community/workshop/files/shagutweaks-06d339cc852a.zip
-  sha256: 06d339cc852aa1315434628bc1b4364995aad10a88b3484817fe3b74fd71de37
-  size: 1503535
-  folders:
-  - ShaguTweaks
 screenshots: []
 tags:
 - tweaks
@@ -56,3 +49,5 @@ scan:
   - ShaguTweaks_cache
   - ShaguTweaks_config
   xml_files: 0
+no_rehost: true
+no_rehost_reason: the package carries textures made from the game's own art; link to the author instead

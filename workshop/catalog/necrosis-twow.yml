@@ -5,18 +5,11 @@ summary: 'The warlock companion: soul shard counter, summons, stones and timers.
 description: 'The warlock companion: soul shard counter, summons, stones and timers.'
 category: combat
 license: LGPL-3.0
-rehost: true
+rehost: false
 source_url: https://github.com/BlackHobbiT/necrosis-twow
 homepage: https://github.com/BlackHobbiT/necrosis-twow
 version: git-b7eb990
 added: '2026-10-15'
-files:
-- name: necrosis-twow-2559c2640af1.zip
-  url: community/workshop/files/necrosis-twow-2559c2640af1.zip
-  sha256: 2559c2640af16d77c3e69fbb804f0de3aa0451a1a102f4245469c9ac2ea23721
-  size: 2948088
-  folders:
-  - Necrosis
 screenshots: []
 tags:
 - warlock
@@ -52,3 +45,5 @@ scan:
   saved:
   - NecrosisConfig
   xml_files: 8
+no_rehost: true
+no_rehost_reason: the package carries textures made from the game's own art; link to the author instead

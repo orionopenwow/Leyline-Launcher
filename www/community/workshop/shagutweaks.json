@@ -7,8 +7,8 @@
  "category": "interface",
  "compat": "needs-fixes",
  "ours": false,
- "rehost": true,
- "install": true,
+ "rehost": false,
+ "install": false,
  "license": "MIT",
  "version": "git-7d67021",
  "added": "2026-10-15",
@@ -18,7 +18,7 @@
  ],
  "thumb": "assets/workshop/cat_interface.webp",
  "verified": true,
- "browser": true,
+ "browser": false,
  "stats": {
   "rating": 0,
   "votes": 0,
@@ -28,17 +28,7 @@
  "screenshots": [],
  "source_url": "https://github.com/shagu/ShaguTweaks",
  "homepage": "https://github.com/shagu/ShaguTweaks",
- "files": [
-  {
-   "name": "shagutweaks-06d339cc852a.zip",
-   "url": "community/workshop/files/shagutweaks-06d339cc852a.zip",
-   "sha256": "06d339cc852aa1315434628bc1b4364995aad10a88b3484817fe3b74fd71de37",
-   "size": 1503535,
-   "folders": [
-    "ShaguTweaks"
-   ]
-  }
- ],
+ "files": [],
  "folders": [
   "ShaguTweaks"
  ],
@@ -75,15 +65,8 @@
   "license": "MIT",
   "source": "https://github.com/shagu/ShaguTweaks",
   "commit": "7d670218a9b1e0a6a9a9062c0f458508398f2e48",
-  "text": "ShaguTweaks — packaged by the Open Vanilla Workshop\n\nAuthor:   Shagu\nSource:   https://github.com/shagu/ShaguTweaks\nCommit:   7d670218a9b1e0a6a9a9062c0f458508398f2e48\nLicence:  MIT\n\nThis package is the author's code as published, unmodified except for this file (and a copy of\nthe licence when the addon folder had none). All credit belongs to the author. Report problems\nwith the addon to the author; problems with the package to https://openvanilla.app/workshop.html.\n"
+  "text": null
  },
- "install_url": "openvanilla://workshop/install/shagutweaks",
- "versions": [
-  {
-   "version": "git-7d67021",
-   "date": "2026-10-15",
-   "sha256": "06d339cc852aa1315434628bc1b4364995aad10a88b3484817fe3b74fd71de37",
-   "size": 1503535
-  }
- ]
+ "install_url": null,
+ "versions": []
 }

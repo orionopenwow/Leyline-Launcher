@@ -7,8 +7,8 @@
  "category": "combat",
  "compat": "needs-fixes",
  "ours": false,
- "rehost": true,
- "install": true,
+ "rehost": false,
+ "install": false,
  "license": "MIT",
  "version": "git-9b2ebdf",
  "added": "2026-10-15",
@@ -27,17 +27,7 @@
  "screenshots": [],
  "source_url": "https://github.com/shagu/ShaguPlates",
  "homepage": "https://github.com/shagu/ShaguPlates",
- "files": [
-  {
-   "name": "shaguplates-c45fe20a191c.zip",
-   "url": "community/workshop/files/shaguplates-c45fe20a191c.zip",
-   "sha256": "c45fe20a191c1def10a1b06819127497caf13c944e3ee728b9071aed9462adb0",
-   "size": 2137645,
-   "folders": [
-    "ShaguPlates"
-   ]
-  }
- ],
+ "files": [],
  "folders": [
   "ShaguPlates"
  ],
@@ -85,15 +75,8 @@
   "license": "MIT",
   "source": "https://github.com/shagu/ShaguPlates",
   "commit": "9b2ebdf486864fea61a0bb8a5506cc88983ce37b",
-  "text": "ShaguPlates — packaged by the Open Vanilla Workshop\n\nAuthor:   Shagu\nSource:   https://github.com/shagu/ShaguPlates\nCommit:   9b2ebdf486864fea61a0bb8a5506cc88983ce37b\nLicence:  MIT\n\nThis package is the author's code as published, unmodified except for this file (and a copy of\nthe licence when the addon folder had none). All credit belongs to the author. Report problems\nwith the addon to the author; problems with the package to https://openvanilla.app/workshop.html.\n"
+  "text": null
  },
- "install_url": "openvanilla://workshop/install/shaguplates",
- "versions": [
-  {
-   "version": "git-9b2ebdf",
-   "date": "2026-10-15",
-   "sha256": "c45fe20a191c1def10a1b06819127497caf13c944e3ee728b9071aed9462adb0",
-   "size": 2137645
-  }
- ]
+ "install_url": null,
+ "versions": []
 }

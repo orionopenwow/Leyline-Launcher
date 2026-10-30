@@ -7,8 +7,8 @@
  "category": "bags",
  "compat": "needs-fixes",
  "ours": false,
- "rehost": true,
- "install": true,
+ "rehost": false,
+ "install": false,
  "license": "MIT",
  "version": "git-6104959",
  "added": "2026-10-15",
@@ -28,17 +28,7 @@
  "screenshots": [],
  "source_url": "https://github.com/NiclasEriksen/Bagshui",
  "homepage": "https://github.com/NiclasEriksen/Bagshui",
- "files": [
-  {
-   "name": "bagshui-e51066a1f8ee.zip",
-   "url": "community/workshop/files/bagshui-e51066a1f8ee.zip",
-   "sha256": "e51066a1f8eeb1dbd99fdb92cfb728eaa0b43259e1b0399b4b859106058bf752",
-   "size": 708230,
-   "folders": [
-    "Bagshui"
-   ]
-  }
- ],
+ "files": [],
  "folders": [
   "Bagshui"
  ],
@@ -79,15 +69,8 @@
   "license": "MIT",
   "source": "https://github.com/NiclasEriksen/Bagshui",
   "commit": "6104959ea36dcfb7b672d2f25c768faf54de963f",
-  "text": "Bagshui — packaged by the Open Vanilla Workshop\n\nAuthor:   veechs\nSource:   https://github.com/NiclasEriksen/Bagshui\nCommit:   6104959ea36dcfb7b672d2f25c768faf54de963f\nLicence:  MIT\n\nThis package is the author's code as published, unmodified except for this file (and a copy of\nthe licence when the addon folder had none). All credit belongs to the author. Report problems\nwith the addon to the author; problems with the package to https://openvanilla.app/workshop.html.\n"
+  "text": null
  },
- "install_url": "openvanilla://workshop/install/bagshui",
- "versions": [
-  {
-   "version": "git-6104959",
-   "date": "2026-10-15",
-   "sha256": "e51066a1f8eeb1dbd99fdb92cfb728eaa0b43259e1b0399b4b859106058bf752",
-   "size": 708230
-  }
- ]
+ "install_url": null,
+ "versions": []
 }

@@ -7,8 +7,8 @@
  "category": "quests",
  "compat": "partly",
  "ours": false,
- "rehost": true,
- "install": true,
+ "rehost": false,
+ "install": false,
  "license": "MIT",
  "version": "git-709ba27",
  "added": "2026-10-15",
@@ -28,17 +28,7 @@
  "screenshots": [],
  "source_url": "https://github.com/shagu/pfQuest-icons",
  "homepage": "https://github.com/shagu/pfQuest-icons",
- "files": [
-  {
-   "name": "pfquest-icons-f5dd982b7c20.zip",
-   "url": "community/workshop/files/pfquest-icons-f5dd982b7c20.zip",
-   "sha256": "f5dd982b7c208ae8212cbbad2754611fd2a9a3ddaa95bbb87be22e17549ea95d",
-   "size": 1996431,
-   "folders": [
-    "pfQuest-icons"
-   ]
-  }
- ],
+ "files": [],
  "folders": [
   "pfQuest-icons"
  ],
@@ -57,15 +47,8 @@
   "license": "MIT",
   "source": "https://github.com/shagu/pfQuest-icons",
   "commit": "709ba275b7198b93713b5b06cf896dc9006ebeea",
-  "text": "pfQuest Icons — packaged by the Open Vanilla Workshop\n\nAuthor:   Shagu\nSource:   https://github.com/shagu/pfQuest-icons\nCommit:   709ba275b7198b93713b5b06cf896dc9006ebeea\nLicence:  MIT\n\nThis package is the author's code as published, unmodified except for this file (and a copy of\nthe licence when the addon folder had none). All credit belongs to the author. Report problems\nwith the addon to the author; problems with the package to https://openvanilla.app/workshop.html.\n"
+  "text": null
  },
- "install_url": "openvanilla://workshop/install/pfquest-icons",
- "versions": [
-  {
-   "version": "git-709ba27",
-   "date": "2026-10-15",
-   "sha256": "f5dd982b7c208ae8212cbbad2754611fd2a9a3ddaa95bbb87be22e17549ea95d",
-   "size": 1996431
-  }
- ]
+ "install_url": null,
+ "versions": []
 }

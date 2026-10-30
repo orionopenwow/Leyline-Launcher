@@ -7,18 +7,11 @@ description: 'A complete replacement of the vanilla interface: unit frames, acti
   and more, all configurable in one window.'
 category: interface
 license: MIT
-rehost: true
+rehost: false
 source_url: https://github.com/shagu/pfUI
 homepage: https://github.com/shagu/pfUI
 version: git-b2f6df8
 added: '2026-10-15'
-files:
-- name: pfui-7e0ed67152fb.zip
-  url: community/workshop/files/pfui-7e0ed67152fb.zip
-  sha256: 7e0ed67152fb24c8f15af5de4a36e684b1d9e5f3fdb190f82a416d70f1e33821
-  size: 2164486
-  folders:
-  - pfUI
 screenshots: []
 tags:
 - ui-suite
@@ -69,3 +62,5 @@ scan:
   - pfUI_playerDB
   - pfUI_profiles
   xml_files: 6
+no_rehost: true
+no_rehost_reason: the package carries textures made from the game's own art; link to the author instead

@@ -230,9 +230,9 @@ class WorkshopPages(unittest.TestCase):
 
     def test_hosted_addon_page_rating_and_reviews(self):
         realm = FakeRealm(signed_in=True)
-        p = self.page("workshop/addon.html?id=pfui", realm)
-        self.assertEqual(p.title(), "pfUI · Leyline Workshop")
-        self.assertEqual(p.get_attribute("#install", "href"), "openvanilla://workshop/install/pfui")
+        p = self.page("workshop/addon.html?id=shaguchat", realm)
+        self.assertEqual(p.title(), "ShaguChat · Leyline Workshop")
+        self.assertEqual(p.get_attribute("#install", "href"), "openvanilla://workshop/install/shaguchat")
         self.assertIn("Licence:  MIT", p.inner_text("#credits"))
         self.assertIn("1.2k installs", p.inner_text("#get"))
         self.assertIn("SHA-256", p.inner_text("#versions"))
@@ -244,7 +244,7 @@ class WorkshopPages(unittest.TestCase):
         p.fill("#rt", "Works with the Classic+ bags.")
         p.click("#rf button[type=submit]")
         p.wait_for_timeout(300)
-        self.assertEqual(realm.posts, [("rate", "tok123", {"addon": "pfui", "stars": 4, "review": "Works with the Classic+ bags."})])
+        self.assertEqual(realm.posts, [("rate", "tok123", {"addon": "shaguchat", "stars": 4, "review": "Works with the Classic+ bags."})])
         self.assertIn("saved", p.inner_text("#rm"))
         self.assertEqual(self.errors, [])
 
@@ -259,9 +259,9 @@ class WorkshopPages(unittest.TestCase):
         self.assertEqual(self.errors, [])
 
     def test_addon_page_offline_and_missing(self):
-        p = self.page("workshop/addon.html?id=pfui", FakeRealm(online=False))
+        p = self.page("workshop/addon.html?id=shaguchat", FakeRealm(online=False))
         self.assertIn("read-only", p.inner_text("#reviewList"))
-        self.assertEqual(p.get_attribute("#install", "href"), "openvanilla://workshop/install/pfui")
+        self.assertEqual(p.get_attribute("#install", "href"), "openvanilla://workshop/install/shaguchat")
         p = self.page("workshop/addon.html?id=no-such-addon")
         self.assertEqual(p.inner_text("#name"), "Addon not found")
         self.assertEqual(self.errors, [])

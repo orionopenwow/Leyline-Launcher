@@ -5,18 +5,11 @@ summary: Icon pack add-on for pfQuest's map markers.
 description: Icon pack add-on for pfQuest's map markers.
 category: quests
 license: MIT
-rehost: true
+rehost: false
 source_url: https://github.com/shagu/pfQuest-icons
 homepage: https://github.com/shagu/pfQuest-icons
 version: git-709ba27
 added: '2026-10-15'
-files:
-- name: pfquest-icons-f5dd982b7c20.zip
-  url: community/workshop/files/pfquest-icons-f5dd982b7c20.zip
-  sha256: f5dd982b7c208ae8212cbbad2754611fd2a9a3ddaa95bbb87be22e17549ea95d
-  size: 1996431
-  folders:
-  - pfQuest-icons
 screenshots: []
 tags:
 - questing
@@ -43,3 +36,5 @@ scan:
   sim_gaps: 1
   saved: []
   xml_files: 0
+no_rehost: true
+no_rehost_reason: the package carries textures made from the game's own art; link to the author instead
