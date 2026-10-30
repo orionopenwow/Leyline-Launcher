@@ -21,6 +21,10 @@ Layout of a repack folder (see packaging/build_repack.py):
     launcher/version.json       this build's version
 """
 import json
+
+# Support / tips (rail heart, SUPPORT THE REALM button, the support page) are hidden on the owner's request
+# (2026-10-29) until he brings them back: set this to True.
+SHOW_SUPPORT = False
 import math
 import os
 import queue
@@ -1487,7 +1491,8 @@ class Launcher(tk.Tk):
                                  tip=r.get("name", r.get("host")), realm=i)
             y += 60
         self._rail_medallion("addrealm", y, "plus", None, lambda: self.show_page("servers"), tip="Add or find a server")
-        self._rail_medallion("support", WIN_H - 160, "heart", None, lambda: self.show_page("support"), tip="Support the realm")
+        if SHOW_SUPPORT:
+            self._rail_medallion("support", WIN_H - 160, "heart", None, lambda: self.show_page("support"), tip="Support the realm")
         self._rail_medallion("settings", WIN_H - 104, "settings", None, lambda: self.show_page("settings"), tip="Settings")
         self._rail_medallion("help", WIN_H - 48, "help", None, lambda: self.show_page("help"), tip="Help")
         ind = self.cv.create_rectangle(0, 0, 4, 0, fill=CYAN, outline="")
@@ -2040,6 +2045,8 @@ class Launcher(tk.Tk):
         self.cv.unbind_all("<MouseWheel>")
 
     def show_page(self, page, animate=True):
+        if page == "support" and not SHOW_SUPPORT:
+            page = "play"
         self.page = page
         self._set_tabs(page)
         self.clear_page()
@@ -2223,9 +2230,10 @@ class Launcher(tk.Tk):
         by = ART_Y + ART_H - 46 - 44
         label, link = self.live.button("discord", "JOIN THE DISCORD", self.community_links().get("discord"))
         self.pill_button(bx, by, pw, 32, label, lambda l=link: self.open_live_link(l), style="discord", size=8, icon="discord")
-        label, link = self.live.button("support", "SUPPORT THE REALM")
-        self.pill_button(bx, by - 40, pw, 32, label, (lambda l=link: self.open_live_link(l)) if link else
-                         (lambda: self.show_page("support")), style="ghost", size=8, icon="heart")
+        if SHOW_SUPPORT:
+            label, link = self.live.button("support", "SUPPORT THE REALM")
+            self.pill_button(bx, by - 40, pw, 32, label, (lambda l=link: self.open_live_link(l)) if link else
+                             (lambda: self.show_page("support")), style="ghost", size=8, icon="heart")
 
     def open_live_link(self, link):
         """A link from live content or a button: openvanilla://page/<page> opens a launcher page; https opens the browser."""

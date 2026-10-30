@@ -93,4 +93,4 @@ Program files (`OpenVanilla.exe`, `app\`, `Game\`, `Server\`) are replaced by up
 
 ## Help and support {#help}
 
-The **Help** medallion has four cards: Playing, Play Solo, Hosting, Folders & Updates. **Support the realm** opens the tip jar ([Tips](community.html#tips)). And this manual is always one click away from the website.
+The **Help** medallion has four cards: Playing, Play Solo, Hosting, Folders & Updates. And this manual is always one click away from the website.

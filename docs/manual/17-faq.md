@@ -9,7 +9,7 @@ summary: Short answers to common questions, and the words you'll meet in Leyline
 No. Leyline is a free fan project, not affiliated with or endorsed by Blizzard. World of Warcraft is a trademark of Blizzard Entertainment, Inc.
 
 ### Does it cost anything? {#cost}
-No. Tips are optional and never buy power, items or game time ([Tips](community.html#tips)).
+No. Leyline is free, and nothing in it is for sale.
 
 ### Why do I need my own 1.12.1 game client? {#own-client}
 Leyline never distributes the game's files and never downloads a client. Use the 1.12.1 client you already have, or play in your browser.

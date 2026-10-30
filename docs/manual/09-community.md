@@ -1,7 +1,7 @@
 slug: community
 title: Community, Discord and Herald
 kicker: Chapter 9 · Together
-summary: The Discord server and its gate, Herald the bot, world chat between Discord and the game, tickets, reports, and how tips work.
+summary: The Discord server and its gate, Herald the bot, world chat between Discord and the game, tickets, reports.
 
 ## The Discord server {#discord}
 
@@ -89,13 +89,3 @@ Use the **bug-reports** forum on Discord: what happened, what you expected, the 
 - **On the website:** realms, Workshop addons and streams have a report option.
 
 Herald sorts reports and suggests an action; **humans decide** (dismiss, warn, mute, kick, ban). The only things Herald does by itself are hiding repeated spam and a 10-minute mute for hard spam or gold selling, and both can be undone. Appeal with `/appeal <text>` in game or a DM to Herald.
-
-## Tips: supporting the realm {#tips}
-
-Leyline is free and run by volunteers. Tips keep it that way.
-
-- **Where:** [ko-fi.com/orionvanilla](https://ko-fi.com/orionvanilla) (card or PayPal, once or monthly), also linked from **Support the realm** on the site and in the launcher.
-- **Where it goes:** hosting first, then fixes and features, community developers, Herald's test runs and community goals. The site's **Starfall Giving** section shows the buckets and the public receipts.
-- **What you get:** the **Supporter** role on Discord and a vote on what gets built next.
-
-> **Never:** Tips never buy power, items or game time. Not now, not ever.
