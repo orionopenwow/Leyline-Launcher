@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Write the Leyline mark into every file that shows the logo (website, realm page, launchers).
+"""Write the Leyline mark into every file that shows the logo (website, realm page, launchers, glue logo).
 
 Sources (assets/branding/):
   leyline-swirl-512.png    the swirl alone: it turns (the spinner and the launcher's emblem)
@@ -68,6 +68,33 @@ def og_image(mark):
     return im
 
 
+def glue_logo(mark):
+    r"""The login screen's corner logo for 1.12 realms (Interface\Glues\Common\Glues-WoW-Logo.blp, which
+    tools/sync_patchz.py packs into patch-Z): the mark beside the word "Leyline", on transparent, 512 x 256."""
+    W, H = 512, 256
+    f = nunito(84)
+    tw = ImageDraw.Draw(Image.new("L", (1, 1))).textlength("Leyline", font=f)
+    ms, gap = 168, 14
+    x0 = int((W - (ms + gap + tw)) / 2)
+    im = Image.new("RGBA", (W, H), (0, 0, 0, 0))
+    im.alpha_composite(mark.resize((ms, ms), LANCZOS), (x0, (H - ms) // 2))
+    a = Image.new("L", (W, H), 0)   # a dark halo behind the word, so it reads on any backdrop
+    ImageDraw.Draw(a).text((x0 + ms + gap, H // 2 + 3), "Leyline", font=f, fill=190, anchor="lm")
+    halo = Image.new("RGBA", (W, H), (8, 10, 20, 255))
+    halo.putalpha(a.filter(ImageFilter.GaussianBlur(5)))
+    im = Image.alpha_composite(halo, im)
+    ImageDraw.Draw(im).text((x0 + ms + gap, H // 2), "Leyline", font=f, fill=TEXT, anchor="lm")
+    return im
+
+
+def save_glue_logo(mark):
+    import sys
+    sys.path.insert(0, str(ROOT / "tools"))
+    import png_to_blp
+    p = ROOT / "Data/Interface/ClassicPlus/Glues/Common/Glues-WoW-Logo.blp"
+    p.write_bytes(png_to_blp.encode(glue_logo(mark)))
+
+
 def main():
     swirl = Image.open(BR / "leyline-swirl-512.png").convert("RGBA")
     crystal = Image.open(BR / "leyline-crystal-512.png").convert("RGBA")
@@ -94,7 +121,9 @@ def main():
     save(crystal.resize((128, 128), LANCZOS), "launcher/assets/launcher/kit/emblem_crystal.png")
     # Leyline Server's window header (launcher_gui.py shows it at 185 x 105)
     save(lockup(mark, 370, 210, 140, 46), "assets/leyline_logo_header.png")
-    n += 3
+    # 1.12 realms' login screen (patch-Z; rebuild it with tools/prepush.py afterwards)
+    save_glue_logo(mark)
+    n += 4
     print("wrote", n, "files")
 
 
