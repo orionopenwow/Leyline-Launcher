@@ -171,7 +171,7 @@ tests/            the test suite (python3 -m pytest -q tests; the GUI tests unde
 
 The live realm and the other apps (not part of the launcher build)
 realm/            the live realm: wenilla-realm and CMaNGOS patches, Vanilla Remastered SQL, Warfront/Duels patch-Z
-hetzner/, host/   server scripts run on the Linux host, and the cloud-init / ovhost installers
+labs/openvanilla-realm/hetzner/, host/   server scripts run on the Linux host, and the cloud-init / ovhost installers
 bot/, relay/      Herald (the Discord bot and autopilot API) and the relay service the realm runs
 legend/           signed character records (Legend v1), issued by the Duels realm
 forge/            Vanilla Forge, the creator app (Rust + Tauri): forge/README.md; Vanilla Forge.bat runs it
@@ -193,7 +193,7 @@ Releases: work lands on `main`; the maintainer tags releases, which move the `st
 `studio/` is the realm admin web app: services, players and roles, bans, messages, timed restarts, backups and realm settings, with an undo history. It is drawn entirely from a generated art kit (`tools/gen_ui_art.py` → `tools/build_ui_kit.py` → `www/studio/kit/`); see `www/studio/kit.html`.
 
 - **Windows (SPP):** the website starts it on <http://localhost:18091/studio/>; the control panel has an *Open Server Studio* button.
-- **Linux (wenilla-realm Docker stack):** `studio_server.py --mode docker`, see `hetzner/README.md` section 7.
+- **Linux (wenilla-realm Docker stack):** `studio_server.py --mode docker`, see `labs/openvanilla-realm/hetzner/README.md` section 7.
 - **Try it:** `py -3 studio_server.py --demo`, sign in as ADMIN / ADMIN.
 - **Tests:** `py -3 -m pytest tests/test_studio.py`
 

@@ -112,9 +112,12 @@ class Config:
         self.upstream_origin = f"{u.scheme}://{u.authority}"
         self.upstream_ws = u.with_scheme("wss" if u.scheme == "https" else "ws")
         self.repo = repo.resolve()
-        self.www = self.repo / "realm" / "www"
+        realm = self.repo / "labs" / "openvanilla-realm" / "realm"   # the 1.12 realm, frozen in labs
+        if not realm.is_dir():
+            realm = self.repo / "realm"
+        self.www = realm / "www"
         self.classicplus = self.repo / "realm" / "classicplus"
-        self.backdrop = self.repo / "realm" / "login-backdrop"
+        self.backdrop = realm / "login-backdrop"
         self.data = self.repo / "Data"
         self.https = https
         self.insecure = insecure

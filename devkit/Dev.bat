@@ -71,7 +71,7 @@ goto :done
 :proxy
 %PY% -c "import aiohttp" >nul 2>&1 || %PY% -m pip install -q aiohttp
 start "" http://localhost:8080/
-%PY% devkit\proxy\devproxy.py --upstream %REALM_URL% --port 8080 --repo .
+%PY% labs\openvanilla-realm\devkit\proxy\devproxy.py --upstream %REALM_URL% --port 8080 --repo .
 goto :done
 
 :hl
@@ -93,12 +93,12 @@ set "CHROMIUM=%ProgramFiles%\Google\Chrome\Application\chrome.exe"
 if not exist "%CHROMIUM%" set "CHROMIUM=%ProgramFiles(x86)%\Microsoft\Edge\Application\msedge.exe"
 if not exist tools\node_modules\playwright (pushd tools & set PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD=1& call npm i --no-save --silent playwright@1.47.2 & popd)
 set "PLAYWRIGHT_MODULE=%cd%\tools\node_modules\playwright\index.mjs"
-node devkit\loadlab\measure.mjs --url %REALM_URL% --out devkit\loadlab\last.json
+node labs\openvanilla-realm\devkit\loadlab\measure.mjs --url %REALM_URL% --out labs\openvanilla-realm\devkit\loadlab\last.json
 goto :done
 
 :patchz
 where docker >nul 2>&1 || (echo Docker Desktop is needed: https://www.docker.com/products/docker-desktop & goto :done)
-docker build -q -t openvanilla-patchz devkit\patchz >nul || goto :done
+docker build -q -t openvanilla-patchz labs\openvanilla-realm\devkit\patchz >nul || goto :done
 docker run --rm -v "%cd%":/repo openvanilla-patchz
 goto :done
 

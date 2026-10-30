@@ -6,7 +6,7 @@ so the character screen offers only the stock 1.12.1 race/class pairs and everyt
 client is stock data. Warfront's world server runs a stock world database.
 
     python3 tools/warfront/make_patch_w.py
-writes realm/warfront/patch-Z.MPQ (served as the browser client's patch-Z on the Warfront stack).
+writes labs/openvanilla-realm/realm/warfront/patch-Z.MPQ (served as the browser client's patch-Z on the Warfront stack).
 """
 import os
 import sys
@@ -15,7 +15,7 @@ ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)
 sys.path.insert(0, os.path.join(ROOT, "devkit"))
 from mpqread import MPQ  # noqa: E402
 
-OUT = os.path.join(ROOT, "realm", "warfront", "patch-Z.MPQ")
+OUT = os.path.join(ROOT, "labs", "openvanilla-realm", "realm", "warfront", "patch-Z.MPQ")
 
 
 def main():

@@ -1,4 +1,4 @@
--- Open Vanilla: per-character armory privacy (world server patch realm/mangos/pending/0008-openvanilla-armory.patch,
+-- Open Vanilla: per-character armory privacy (world server patch labs/openvanilla-realm/realm/mangos/pending/0008-openvanilla-armory.patch,
 -- tools/armory_export.py, docs/ARMORY.md). Run against classicmangos like the other files here; the table
 -- lives in classiccharacters. Safe to run twice (MariaDB 10.0.2+: ADD COLUMN IF NOT EXISTS).
 -- Undo (the setting is lost; everyone is public again):
@@ -26,4 +26,4 @@ ALTER TABLE classiccharacters.openvanilla_character
 --   GRANT SELECT ON classicmangos.openvanilla_achievement TO 'armory'@'%';
 --   GRANT SELECT (id, name) ON classicrealmd.realmlist TO 'armory'@'%';
 --   GRANT SELECT (id, username) ON classicrealmd.account TO 'armory'@'%';
--- hetzner/armory_cron.sh install does this for you.
+-- labs/openvanilla-realm/hetzner/armory_cron.sh install does this for you.

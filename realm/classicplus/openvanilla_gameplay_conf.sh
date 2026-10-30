@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # Open Vanilla Classic+ gameplay settings in the world server's mangosd.conf (PENDING: launch day, with
-# realm/mangos/pending 0003/0004). Safe to re-run; the world server reads mangosd.conf at start-up.
+# labs/openvanilla-realm/realm/mangos/pending 0003/0004). Safe to re-run; the world server reads mangosd.conf at start-up.
 #   bash openvanilla_gameplay_conf.sh            apply: the Vanilla Remastered pace (below) + the OpenVanilla.* switches
 #                                            (all on except OpenVanilla.StarterPet: hunters tame their first pet at 10, as stock)
 #   bash openvanilla_gameplay_conf.sh rollback   stock rates, every OpenVanilla.* switch off
@@ -16,12 +16,12 @@
 # Switch one feature off later by editing its line (0 = off) and restarting the world server:
 #   OpenVanilla.AutoLearn, OpenVanilla.FreeRespec, OpenVanilla.DualSpec, OpenVanilla.StarterPet, OpenVanilla.AoeLoot,
 #   OpenVanilla.AoeLoot.Range (yards), OpenVanilla.InstantAccountMail, OpenVanilla.ClosedCombos,
-#   OpenVanilla.Mounts (the racial mount from level 1, the swift one from 40: realm/mangos/0023)
+#   OpenVanilla.Mounts (the racial mount from level 1, the swift one from 40: labs/openvanilla-realm/realm/mangos/0023)
 set -euo pipefail
 REALM_DIR=${OW_REALM_DIR:-/opt/wenilla-realm}
 MODE=${1:-apply}
 cd "$REALM_DIR"
-# Setting names: OpenVanilla.* from realm/mangos/0012-openvanilla-names.patch on. An older world server
+# Setting names: OpenVanilla.* from labs/openvanilla-realm/realm/mangos/0012-openvanilla-names.patch on. An older world server
 # image only reads the Open Vanilla.* spelling, so on one of those the old names are written (they keep
 # working after the image update too); the next run on the new image switches the lines over.
 # Never a stop: a deploy that brings the new image runs this before that image is up.
@@ -55,12 +55,12 @@ docker run --rm -e INN="$INN" -e WILD="$WILD" -e QXP="$QXP" -e KXP="$KXP" -e WSK
   for k in AutoLearn FreeRespec DualSpec AoeLoot InstantAccountMail ClosedCombos Mounts; do
     setkey "$P.$k" "$ON"
   done
-  # Above QUEUE_WORLD of the login queue (80, hetzner/openvanilla_realm_up.sh): the queue is the gate, not mangosd.
+  # Above QUEUE_WORLD of the login queue (80, labs/openvanilla-realm/hetzner/openvanilla_realm_up.sh): the queue is the gate, not mangosd.
   setkey PlayerLimit 100
   # Off in both modes, and written out: the server defaults it to on when the line is missing.
   setkey "$P.StarterPet" 0
   setkey "$P.AoeLoot.Range" 30
-  # mounts anywhere: indoors, dungeons and raids (realm/mangos/0028; owner, 2026-10-22)
+  # mounts anywhere: indoors, dungeons and raids (labs/openvanilla-realm/realm/mangos/0028; owner, 2026-10-22)
   setkey "$P.Mounts.Anywhere" "$ON"
   # the pace: XP rates, weapon skill, and patch 0013 (only that image reads the Pace keys)
   setkey Rate.XP.Kill "$KXP"

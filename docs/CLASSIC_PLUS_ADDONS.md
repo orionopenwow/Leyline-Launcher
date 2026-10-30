@@ -48,7 +48,7 @@ Also in the folder: **Repack** (the ElvUI-style makeover, off until you add it f
    * adds `Data/Interface/ClassicPlus/*.blp` to the asset index, so the brass compass ring, rose, pins, level medallion, parchment and stone slots draw in the web client. Until the restart, every window uses its stock-texture fallback.
    * revalidates the index (`no-cache` + ETag) instead of caching it for a day.
    * revalidates addon files instead of caching them for a year, so updates reach players on their next load.
-2. **Re-run `www/patch_wasm.py`** (it still reads `wenilla_bg.wasm.orig`). The bundled stub rows no longer define slash commands. The old `Raid` stub set `SLASH_RAID2 = '/rally'`, which turned `/rally` into raid chat and broke `/ra`. The Raid addon repairs this at load in the meantime. The script now also rewrites `wenilla_bg.wasm.gz`, and `.br` when the `brotli` module is installed. Without `brotli` it deletes the stale `.br`.
+2. **Re-run `labs/openvanilla-realm/web-client/patch_wasm.py`** (it still reads `wenilla_bg.wasm.orig`). The bundled stub rows no longer define slash commands. The old `Raid` stub set `SLASH_RAID2 = '/rally'`, which turned `/rally` into raid chat and broke `/ra`. The Raid addon repairs this at load in the meantime. The script now also rewrites `wenilla_bg.wasm.gz`, and `.br` when the `brotli` module is installed. Without `brotli` it deletes the stale `.br`.
 
 Safe to delete: `Data/Interface/ClassicPlusStaging/` (a test copy). Originals of every replaced file: `backups/classicplus-before-2026-10-12/`.
 

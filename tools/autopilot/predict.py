@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Turn the planned route into predictions shaped like tools/botlab/botlab_report.py's report.
+"""Turn the planned route into predictions shaped like labs/openvanilla-realm/tools/botlab/botlab_report.py's report.
 
   predict.py [--kb ...] [--costs out/combat_costs.json] [--out out/] [--no-sensitivity]
 

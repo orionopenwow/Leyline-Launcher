@@ -4,7 +4,7 @@
 # Run it by hand: Actions -> solo-pack -> Run workflow, with the pack version. Four jobs:
 #   pins    the CMaNGOS, PlayerBots and classic-db commits the live realm runs (wenilla-realm's
 #           upstreams.env on main, the same source realm/realm-image.yml reads), unless given
-#   server  windows-2022: mangos-classic + PlayerBots at those commits, with realm/mangos/*.patch (our
+#   server  windows-2022: mangos-classic + PlayerBots at those commits, with labs/openvanilla-realm/realm/mangos/*.patch (our
 #           server hooks; never pending/) and solo/patches/*.patch (movement maps optional), built with
 #           the extractors, AHBot and PlayerBots; the VC++ runtime DLLs copied in (app-local)
 #   db      ubuntu: classic-db's InstallFullDB.sh (world + PlayerBots + AHBot) on a throwaway MariaDB,
@@ -237,7 +237,7 @@ jobs:
           python3 tools/build_solo_pack.py --version "${{ inputs.version }}" \
             --server in/server.zip --mariadb in/mariadb-${MARIADB_VERSION}-winx64.zip --db in/db \
             --sql-applied --commit "$GITHUB_SHA" --out dist/solo \
-            --server-note "mangos-classic ${{ needs.pins.outputs.mangos }} + playerbots ${{ needs.pins.outputs.bots }} + realm/mangos + solo/patches (run $GITHUB_RUN_ID)" \
+            --server-note "mangos-classic ${{ needs.pins.outputs.mangos }} + playerbots ${{ needs.pins.outputs.bots }} + labs/openvanilla-realm/realm/mangos + solo/patches (run $GITHUB_RUN_ID)" \
             --mariadb-note "MariaDB ${MARIADB_VERSION} winx64 (archive.mariadb.org)" \
             --db-note "classic-db ${{ needs.pins.outputs.classicdb }} + playerbots + ahbot + realm/classicplus"
       - uses: actions/upload-artifact@v4

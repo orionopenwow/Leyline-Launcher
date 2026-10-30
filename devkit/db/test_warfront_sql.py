@@ -13,7 +13,7 @@ sys.path.insert(0, HERE)
 import test_sql as base  # noqa: E402  (start_local, start_docker, fingerprint, check, results)
 
 ROOT = os.path.dirname(os.path.dirname(HERE))
-WF = os.path.join(ROOT, "realm", "warfront")
+WF = os.path.join(ROOT, "labs", "openvanilla-realm", "realm", "warfront")
 FIX = os.path.join(HERE, "fixtures")
 check = base.check
 

@@ -425,7 +425,7 @@ export default wenilla;
 // ---- Open Vanilla overlay (not upstream wenilla): the Classic+ addon suite ----------------------
 // The addons ship in patch-Z.MPQ on the realm (served through /data like every game file);
 // addons-loader.js streams them into the UI's Lua VM after world entry. Never load-bearing: if it
-// fails, the game runs exactly as stock. Rebuilt by hetzner/classicplus_up.sh from upstream's
+// fails, the game runs exactly as stock. Rebuilt by labs/openvanilla-realm/hetzner/classicplus_up.sh from upstream's
 // bridge.js whenever the realm image changes.
 import('./addons-loader.js?v=1.1.0').then(({ initNativeAddons }) => {
   wenilla.on('ready', () => initNativeAddons(wenilla));
@@ -439,6 +439,6 @@ import('./addons-loader.js?v=1.1.0').then(({ initNativeAddons }) => {
   });
 }).catch((e) => console.warn('addons-loader.js:', e));
 
-// Open Vanilla page layer (realm/www, bind-mounted at /app/www/ow and hot-swappable without an image
+// Open Vanilla page layer (labs/openvanilla-realm/realm/www, bind-mounted at /app/www/ow and hot-swappable without an image
 // rebuild): the account dock off the minimap, the boot-screen art, and window.owdiag self-tests.
 import('./ow/openvanilla.js').then(({ install }) => install(wenilla)).catch((e) => console.warn('ow/openvanilla.js:', e));

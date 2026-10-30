@@ -1,4 +1,4 @@
-# transmog_spawns: each Transmogrifier is in view where realm/transmog/transmog_world.sql puts
+# transmog_spawns: each Transmogrifier is in view where labs/openvanilla-realm/realm/transmog/transmog_world.sql puts
 # it, and the floor under its spot (".gps" from that spot) is within reach of its Z.
 login
 expect wnl HI within 10s

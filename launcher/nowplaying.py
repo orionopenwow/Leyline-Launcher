@@ -25,7 +25,7 @@ desktop route is a SavedVariables shim. The launcher rewrites Persona's per-char
     <WoW 1.12 folder>/WTF/Account/<ACC>/<Realm>/<Character>/SavedVariables/Persona.lua
 The client reads it when the character enters the world; Persona shows it for 10 minutes after it
 was written (it cannot be refreshed during the session; /reload re-reads the copy the client saved
-itself). The web client gets live updates instead through realm/www/nowplaying.js.
+itself). The web client gets live updates instead through labs/openvanilla-realm/realm/www/nowplaying.js.
 
 Turning the switch off writes an empty shim and an empty nowplaying.json.
 """

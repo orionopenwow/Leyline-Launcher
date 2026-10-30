@@ -1,7 +1,7 @@
 # Leyline player network (P2P)
 
 Status: design. Phase 2 has a prototype in wenilla-realm (`/api/directory`, off unless
-`DIRECTORY_ENABLED=1`; patch `realm/patches/0006-directory.patch`). Nothing here is deployed.
+`DIRECTORY_ENABLED=1`; patch `labs/openvanilla-realm/realm/patches/0006-directory.patch`). Nothing here is deployed.
 
 Next layer: volunteer relay nodes, the three tiers (Verified realms / Community P2P realms / Verified
 P2P nodes), end-to-end encrypted streams and the supporter leaderboard are in `docs/NODE_NETWORK.md`.

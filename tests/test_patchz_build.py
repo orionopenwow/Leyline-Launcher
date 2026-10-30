@@ -73,7 +73,7 @@ class BuildTests(unittest.TestCase):
         files = subprocess.run(["git", "-C", ROOT, "ls-files"], capture_output=True, text=True).stdout.split("\n")
         self.assertNotIn("realm/classicplus/patch-Z.MPQ", files)
         self.assertFalse([f for f in files if f.lower().endswith(".dbc")])
-        for rel in ("realm/warfront/patch-Z.MPQ", "realm/duels/patch-Z.MPQ"):
+        for rel in ("labs/openvanilla-realm/realm/warfront/patch-Z.MPQ", "labs/openvanilla-realm/realm/duels/patch-Z.MPQ"):
             names = mpq.Archive(os.path.join(ROOT, rel)).names()
             self.assertFalse([n for n in names if n.lower().startswith("dbfilesclient\\")], rel)
 

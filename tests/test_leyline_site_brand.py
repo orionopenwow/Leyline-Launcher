@@ -151,12 +151,12 @@ OLD_ORION_ART = {
     "982def2b390f1ef6dcf548853d8b94deecf4270227a4ad8b6138e8847c9c1b37",  # login-backdrop.webp
     "3f259f92fd0f35c0d28106c061869df7d04cc95c918c3f2b5084e0bce9359b15",  # login-backdrop.mp4
     "bd3cd038167a5e3557e8fb242e8ea024669e36668459b22b18db1355e7d8793f",  # login-backdrop.webm
-    "1dde3113730d34ec866d296c81b5e265ec41031de441830fe3ac2de26ab154e1",  # realm/login-backdrop/login-backdrop.webp
-    "6b89ca3b4f2077240515e8b9c6b38bf27bfe6666a52e355263a153916731a8da",  # realm/login-backdrop/login-backdrop.mp4
-    "6d032637f8f05f0596eea553e762078eb5120c87b173bf033c9c7de68b2720fb",  # realm/www/login-backdrop.webp
-    "dec60a08e15cd0b47b041e83b9c5a255f170708a94e211e9e2d75ca4a987490d",  # realm/www/ow-signin.webp
-    "5fae28b2f8c32fb1d47c7dba7048dd472ab7d5269a9678375fad73bee4912c61",  # realm/www/ow-signin.mp4
-    "e9725552d2b33c56fba4ce0f7bfb6de78c6db8940168b87fd60fe37af1b625c3",  # realm/www/ow-signin.webm
+    "1dde3113730d34ec866d296c81b5e265ec41031de441830fe3ac2de26ab154e1",  # labs/openvanilla-realm/realm/login-backdrop/login-backdrop.webp
+    "6b89ca3b4f2077240515e8b9c6b38bf27bfe6666a52e355263a153916731a8da",  # labs/openvanilla-realm/realm/login-backdrop/login-backdrop.mp4
+    "6d032637f8f05f0596eea553e762078eb5120c87b173bf033c9c7de68b2720fb",  # labs/openvanilla-realm/realm/www/login-backdrop.webp
+    "dec60a08e15cd0b47b041e83b9c5a255f170708a94e211e9e2d75ca4a987490d",  # labs/openvanilla-realm/realm/www/ow-signin.webp
+    "5fae28b2f8c32fb1d47c7dba7048dd472ab7d5269a9678375fad73bee4912c61",  # labs/openvanilla-realm/realm/www/ow-signin.mp4
+    "e9725552d2b33c56fba4ce0f7bfb6de78c6db8940168b87fd60fe37af1b625c3",  # labs/openvanilla-realm/realm/www/ow-signin.webm
     "860429302c9d327393f07792a41a2c9178be55a199dc2e61e03972b251ca91ef",  # launcher bg_static.jpg
     "e525e3bfcdac193ec84696f855faa11e2eec560c59eac4bae65d34ebaf4219fb",  # launcher bg/f000.jpg
     "9ecef5153308cf99a967cfc2ea71914c51860d42381b98e8077946fde3b5815d",  # launcher bg/f062.jpg
@@ -170,7 +170,7 @@ OLD_ORION_ART = {
 }
 MEDIA = (".png", ".jpg", ".jpeg", ".webp", ".gif", ".mp4", ".webm", ".avif")
 FLAT_BG = (8, 10, 20)
-BACKDROP_DIRS = ("www", "www/ow", "realm/www", "realm/login-backdrop")
+BACKDROP_DIRS = ("www", "www/ow", "labs/openvanilla-realm/realm/www", "labs/openvanilla-realm/realm/login-backdrop")
 
 
 def tracked_media():
@@ -218,7 +218,7 @@ class NoOrionArtTests(unittest.TestCase):
             with self.subTest(still=rel):
                 self.assertEqual(size_of(os.path.join(ROOT, rel)), (960, 540))
                 self.assertTrue(flat_corners(os.path.join(ROOT, rel)))
-        sign = os.path.join(ROOT, "realm/www/ow-signin.webp")
+        sign = os.path.join(ROOT, "labs/openvanilla-realm/realm/www/ow-signin.webp")
         self.assertEqual(size_of(sign), (864, 426))
         self.assertTrue(flat_corners(sign))
         for d in BACKDROP_DIRS:
@@ -232,7 +232,7 @@ class NoOrionArtTests(unittest.TestCase):
         from PIL import Image
         import io
         for rel, size in [(f"{d}/login-backdrop.{e}", (1280, 720)) for d in BACKDROP_DIRS for e in ("mp4", "webm")] + \
-                         [(f"realm/www/ow-signin.{e}", (864, 426)) for e in ("mp4", "webm")]:
+                         [(f"labs/openvanilla-realm/realm/www/ow-signin.{e}", (864, 426)) for e in ("mp4", "webm")]:
             with self.subTest(video=rel):
                 png = subprocess.run(["ffmpeg", "-v", "error", "-ss", "1", "-i", os.path.join(ROOT, rel), "-frames:v", "1",
                                       "-f", "image2pipe", "-vcodec", "png", "-"], capture_output=True, check=True).stdout

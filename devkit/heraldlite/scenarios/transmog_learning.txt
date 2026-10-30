@@ -3,7 +3,7 @@
 # and switched with the outfit. [b] (HL_USER2): a quest's reward choices are all learned, the
 # ones not taken too ("The Grand Betrayal": cloth, leather and mail legs; [b] takes the mail,
 # and the cloth it left is announced as new).
-# On a reused test realm, clear the account's rows first (realm/transmog/README.md, Tests).
+# On a reused test realm, clear the account's rows first (labs/openvanilla-realm/realm/transmog/README.md, Tests).
 login
 [b] login
 expect wnl HI within 10s

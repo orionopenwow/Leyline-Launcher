@@ -1,6 +1,6 @@
 -- Open Vanilla: Herald's custom bot-AI strategy "herald" (the Herald addon switches it on with
 -- ".bot cmd <you> nc +custom::herald"; Herald Autopilot's API does too). Run against classicmangos
--- (the table lives in classiccharacters, made by hetzner/playerbots_db.sh); safe to run twice.
+-- (the table lives in classiccharacters, made by labs/openvanilla-realm/hetzner/playerbots_db.sh); safe to run twice.
 --
 -- Why: the bot AI only loots corpses on its loot list, and "add all loot" (which fills that list)
 -- runs at relevance 1, while "attack anything" (the next pull) runs at 5 the moment Herald has no
@@ -37,7 +37,7 @@ INSERT INTO classiccharacters.ai_playerbot_custom_strategy (name, idx, owner, ac
 -- (not 'high mana': that trigger is mana below 65%, hard-coded, so he drank long before he needed to)
 
 -- Herald's fight log and stuck log (written by the world server, playerbot/HeraldBrain.cpp in
--- realm/mangos/0020-openvanilla-herald-brain.patch; read by hetzner/herald_check.sh --score and the GM
+-- labs/openvanilla-realm/realm/mangos/0020-openvanilla-herald-brain.patch; read by labs/openvanilla-realm/hetzner/herald_check.sh --score and the GM
 -- console). One row per fight and per stuck step of a character Herald plays. Undo:
 --   DROP TABLE classiccharacters.openvanilla_herald_fight, classiccharacters.openvanilla_herald_stuck;
 CREATE TABLE IF NOT EXISTS classiccharacters.openvanilla_herald_fight (

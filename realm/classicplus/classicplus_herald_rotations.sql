@@ -1,6 +1,6 @@
 -- Open Vanilla: Herald's class rotations by level band (realm/classicplus/classicplus_herald_rotations.sql).
 -- The Herald addon and the Autopilot API switch on herald_<class>_<band> for his class and level
--- (co +custom::herald_mage_20, the other bands off). Applied by hetzner/openvanilla_realm_up.sh; safe to
+-- (co +custom::herald_mage_20, the other bands off). Applied by labs/openvanilla-realm/hetzner/openvanilla_realm_up.sh; safe to
 -- run twice. Undo: DELETE FROM classiccharacters.ai_playerbot_custom_strategy WHERE owner = 0 AND name LIKE 'herald\_%\_%';
 -- Warriors from 20 have no Overpower line: the class strategies hold Berserker Stance from 30, and Overpower
 -- needs Battle Stance, so the line would make him switch stances back and forth.

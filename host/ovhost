@@ -396,7 +396,7 @@ plat() {  # run "$@" with x86-64 as Docker's default platform on ARM (pulls of x
 
 realm_up_script() {  # the Leyline layer: from this checkout when there is one, else the stable branch
   if [ -n "${OVHOST_REALM_UP:-}" ]; then echo "$OVHOST_REALM_UP"; return; fi
-  local up="$SCRIPT_DIR/../hetzner/openvanilla_realm_up.sh"
+  local up="$SCRIPT_DIR/../labs/openvanilla-realm/hetzner/openvanilla_realm_up.sh"
   if [ ! -f "$up" ]; then up="$DIR/openvanilla_realm_up.sh"; curl -fsSL "$RAW/hetzner/openvanilla_realm_up.sh" -o "$up"; fi
   echo "$up"
 }

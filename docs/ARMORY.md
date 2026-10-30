@@ -5,11 +5,11 @@ the site queries a database: the realm server exports files every ten minutes an
 
 | Piece | Where |
 |---|---|
-| Exporter | `tools/armory_export.py` (cron: `hetzner/armory_cron.sh`, timer `hetzner/systemd/openvanilla-armory.timer`) |
+| Exporter | `tools/armory_export.py` (cron: `labs/openvanilla-realm/hetzner/armory_cron.sh`, timer `labs/openvanilla-realm/hetzner/systemd/openvanilla-armory.timer`) |
 | Pages | `www/armory.html` (search, realms, rankings), `www/armory/character.html?r=<realm>&n=<name>[&k=<key>]`, `www/guilds.html`, `www/guild.html` |
 | Privacy setting | `classiccharacters.openvanilla_character.armory` / `armory_key` (`realm/classicplus/pending/classicplus_armory.sql`) |
-| In game | Social's settings: "Armory: Public / Friends only / Hidden" → `.wnl armory <mode>` (`realm/mangos/pending/0008-openvanilla-armory.patch`) |
-| Community realms | the host agent exports its own realm hourly (opt-in) and uploads it: `POST /api/armory/upload` (`realm/patches/pending/0014-openvanilla-armory-upload.patch`) |
+| In game | Social's settings: "Armory: Public / Friends only / Hidden" → `.wnl armory <mode>` (`labs/openvanilla-realm/realm/mangos/pending/0008-openvanilla-armory.patch`) |
+| Community realms | the host agent exports its own realm hourly (opt-in) and uploads it: `POST /api/armory/upload` (`labs/openvanilla-realm/realm/patches/pending/0014-openvanilla-armory-upload.patch`) |
 | Guild files | `docs/ARMORY_GUILDS.md` (the exporter follows it exactly) |
 | Art | `tools/gen_armory_art.py` → `www/assets/armory/` |
 
@@ -162,7 +162,7 @@ not load, the slot shows the quality-coloured frame with the item's initial, so 
 ## Running it
 
 ```
-# on the realm server (hetzner/armory_cron.sh install does all of this)
+# on the realm server (labs/openvanilla-realm/hetzner/armory_cron.sh install does all of this)
 ARMORY_DB_PASSWORD=… python3 tools/armory_export.py --out /opt/openvanilla-herald/public/armory --realm classicplus \
     --realm-name "Open Vanilla Classic+" --dbc-dir /var/lib/openvanilla-armory/dbc --db-port 13306 \
     --community-dir /opt/wenilla-realm/state/armory-uploads
@@ -191,7 +191,7 @@ signature changed. Characters deleted or renamed lose their old file in the same
 
 The realm itself serves the folder at `https://play.openvanilla.app/community/armory/` (the Herald public
 folder, like `community/streams.json`); the site's pages read `armory/` beside them, so the static site
-needs either `--publish` or a `/armory/` route to that folder. `hetzner/armory_cron.sh install` sets all
+needs either `--publish` or a `/armory/` route to that folder. `labs/openvanilla-realm/hetzner/armory_cron.sh install` sets all
 of this up on the realm server (database login, DBC copy, env file, timer).
 
 ## Community realms

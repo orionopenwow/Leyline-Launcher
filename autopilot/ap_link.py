@@ -2,7 +2,7 @@
 
 Two links with the same shape:
 
-  RealmLink  a realm's autopilot API (hetzner/herald_autopilot_api.py) over HTTPS, signed in with
+  RealmLink  a realm's autopilot API (labs/openvanilla-realm/hetzner/herald_autopilot_api.py) over HTTPS, signed in with
              the Open Vanilla launcher's token. The realm says whether autoplay is allowed, which of the
              account's characters are online, and runs the character with its own bot AI.
   DemoLink   a small offline world (Elwynn Forest, a hunter, wolves and kobolds) so the program can

@@ -5,7 +5,7 @@ to record one. Nothing here is implemented yet: owbot has no drive or record mod
 
 ## What exists today
 
-- `tools/owbot.mjs` signs in to a realm with headless Chromium (Playwright), enters the world as
+- `labs/openvanilla-realm/tools/owbot.mjs` signs in to a realm with headless Chromium (Playwright), enters the world as
   Herald and runs the owdiag checks. `--shots` saves a PNG of each screen it passes into
   `owbot-shots/`. `--patrol N` walks around for N minutes. WebGPU runs on SwiftShader (the CPU), so
   the world renders at a few frames per second.

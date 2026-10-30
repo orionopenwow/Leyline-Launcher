@@ -13,7 +13,8 @@ Checks:
   js          node --check on the page layer, bridge, loader and tools (needs node)
   shell       bash -n on the server scripts (needs bash)
   python      every tracked .py compiles
-  realm_up    openvanilla_realm_up.sh downloads every file in realm/www and the SQL it runs
+  realm_up    openvanilla_realm_up.sh downloads every file in the realm page layer and the SQL it runs
+              (the 1.12 realm is frozen in labs/openvanilla-realm; these checks keep it consistent)
   version     launcher/version.json matches the client zip the website links
   citations   no stock-client addresses or internal symbols in what we write (devkit/citations.py)
   game data   no Blizzard game files are about to be committed (MPQs other than our Interface-only patch-Zs,
@@ -40,7 +41,8 @@ results = []
 # Open Vanilla's own MPQs in git, Interface only: Warfront's patch-Z (patch-Z's sources without client tables,
 # tools/warfront/make_patch_w.py) and Duels' copy of Warfront's with the Duels addon (tools/duels/make_patch_d.py).
 # Classic+'s patch-Z holds client tables made from the creator's own files, so it is built locally, never committed.
-OWN_MPQS = ("realm/warfront/patch-Z.MPQ", "realm/duels/patch-Z.MPQ")
+OWN_MPQS = ("labs/openvanilla-realm/realm/warfront/patch-Z.MPQ", "labs/openvanilla-realm/realm/duels/patch-Z.MPQ")
+REALM = os.path.join(ROOT, "labs", "openvanilla-realm")   # the frozen 1.12 realm (labs/README.md)
 
 
 def report(name, ok, detail=""):
@@ -117,9 +119,9 @@ def check_patchz():
         if os.path.isfile(p):
             tables += [f"{rel_path}: {n}" for n in MPQ(p).names() if n.lower().startswith("dbfilesclient\\")]
     report("no client tables (DBFilesClient) in the MPQs in git", not tables, ", ".join(tables[:4]))
-    path = os.path.join(ROOT, "realm", "warfront", "patch-Z.MPQ")
+    path = os.path.join(REALM, "realm", "warfront", "patch-Z.MPQ")
     if not os.path.isfile(path):
-        return report("patch-Z matches Data/Interface", False, "no realm/warfront/patch-Z.MPQ")
+        return report("patch-Z matches Data/Interface", False, "no labs/openvanilla-realm/realm/warfront/patch-Z.MPQ")
     m = MPQ(path)
     have = {n.lower(): n for n in m.names()}
     want = {}
@@ -148,7 +150,7 @@ def check_patchz():
 
 def check_json_yaml():
     bad = []
-    pats = ["www/community/*.json", "www/downloads/*.json", "launcher/*.json", "realm/www/**/*.json"]
+    pats = ["www/community/*.json", "www/downloads/*.json", "launcher/*.json", "labs/openvanilla-realm/realm/www/**/*.json"]
     n = 0
     for pat in pats:
         for f in glob.glob(os.path.join(ROOT, pat), recursive=True):
@@ -164,6 +166,7 @@ def check_json_yaml():
         return skip("workflow yaml parses", "PyYAML not installed (py -3 -m pip install pyyaml)")
     bad = []
     files = glob.glob(os.path.join(ROOT, "packaging", "workflows", "*.yml"))   # the workflows' one source
+    files += glob.glob(os.path.join(ROOT, "labs", "*", "workflows", "*.yml"))   # parked with their project (labs/)
     for f in files:
         try:
             yaml.safe_load(open(f, encoding="utf-8"))
@@ -176,9 +179,10 @@ def check_js():
     node = tool("node")
     if not node:
         return skip("js parses", "no node on PATH")
-    files = glob.glob(os.path.join(ROOT, "realm", "www", "*.js")) + \
+    files = glob.glob(os.path.join(REALM, "realm", "www", "*.js")) + \
         [os.path.join(ROOT, "realm", "classicplus", f) for f in ("bridge.js", "addons-loader.js")] + \
-        glob.glob(os.path.join(ROOT, "tools", "*.mjs")) + glob.glob(os.path.join(HERE, "loadlab", "*.mjs"))
+        glob.glob(os.path.join(ROOT, "tools", "*.mjs")) + glob.glob(os.path.join(REALM, "tools", "*.mjs")) + \
+        glob.glob(os.path.join(REALM, "devkit", "loadlab", "*.mjs"))
     bad = []
     for f in files:
         if not os.path.isfile(f):
@@ -199,7 +203,8 @@ def check_shell():
     bash = tool("bash")
     if not bash or os.name == "nt":
         return skip("shell scripts parse", "no bash here (runs in CI)")
-    files = glob.glob(os.path.join(ROOT, "hetzner", "*.sh")) + glob.glob(os.path.join(HERE, "**", "*.sh"), recursive=True)
+    files = glob.glob(os.path.join(REALM, "hetzner", "*.sh")) + glob.glob(os.path.join(HERE, "**", "*.sh"), recursive=True) + \
+        glob.glob(os.path.join(REALM, "devkit", "**", "*.sh"), recursive=True)
     bad = [rel(f) for f in files if subprocess.run([bash, "-n", f], capture_output=True).returncode]
     report(f"shell scripts parse ({len(files)} files)", not bad, ", ".join(bad))
 
@@ -222,11 +227,11 @@ def check_python():
 
 
 def check_realm_up():
-    p = os.path.join(ROOT, "hetzner", "openvanilla_realm_up.sh")
+    p = os.path.join(REALM, "hetzner", "openvanilla_realm_up.sh")
     if not os.path.isfile(p):
-        return report("realm_up downloads every page file", False, "hetzner/openvanilla_realm_up.sh missing")
+        return report("realm_up downloads every page file", False, "labs/openvanilla-realm/hetzner/openvanilla_realm_up.sh missing")
     s = open(p, encoding="utf-8").read()
-    www = [os.path.basename(f) for f in glob.glob(os.path.join(ROOT, "realm", "www", "*")) if os.path.isfile(f)]
+    www = [os.path.basename(f) for f in glob.glob(os.path.join(REALM, "realm", "www", "*")) if os.path.isfile(f)]
     missing = [f for f in www if f not in s]
     report(f"realm_up downloads every page file ({len(www)})", not missing, "not downloaded: " + ", ".join(missing))
     sql = re.findall(r'"\$CP/(classicplus_\w+\.sql)"', s)
@@ -291,8 +296,8 @@ def check_generated():
            "; ".join(stale) + " (run: python tools/prepush.py)" if stale else (r.stderr.strip()[-300:] or "prepush failed"))
 
 
-# Copies of upstream wenilla files (their text is upstream's, kept as is; listed for the owner, not edited).
-UPSTREAM_COPIES = {"www/GameMenuAdapters_wasm.xml", "www/extracted_addonlist.lua"}
+# Copies of upstream files whose text is upstream's (kept as is; none left: the wasm dumps were removed).
+UPSTREAM_COPIES = set()
 CITE_SKIP = ("forge/app/ui/vendor/", "devkit/citations.py", "tests/test_citations.py")   # the pattern, its tests
 
 

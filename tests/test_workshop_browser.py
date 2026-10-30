@@ -1,5 +1,5 @@
 """Workshop addons in browser play: the builder's `browser` flag (tools/workshop_build.py browser_ok)
-and the page layer that adds and loads them (realm/www/workshop.js, realm/classicplus/addons-loader.js)."""
+and the page layer that adds and loads them (labs/openvanilla-realm/realm/www/workshop.js, realm/classicplus/addons-loader.js)."""
 import io
 import json
 import os
@@ -66,7 +66,7 @@ class PageLayer(unittest.TestCase):
         return open(os.path.join(ROOT, rel), encoding="utf-8").read()
 
     def test_workshop_js_checks_and_never_parses_html(self):
-        js = self.read("realm/www/workshop.js")
+        js = self.read("labs/openvanilla-realm/realm/www/workshop.js")
         self.assertIn("crypto.subtle.digest('SHA-256'", js)          # the download must match the Workshop's checksum
         self.assertIn("unsafe path in zip", js)
         self.assertIn("noaddons", js)                                # safe mode
@@ -74,8 +74,8 @@ class PageLayer(unittest.TestCase):
             self.assertNotIn(bad, js)
 
     def test_wired_in(self):
-        self.assertIn("import(BASE + 'workshop.js')", self.read("realm/www/openvanilla.js"))
-        self.assertIn(" workshop.js ", self.read("hetzner/openvanilla_realm_up.sh"))
+        self.assertIn("import(BASE + 'workshop.js')", self.read("labs/openvanilla-realm/realm/www/openvanilla.js"))
+        self.assertIn(" workshop.js ", self.read("labs/openvanilla-realm/hetzner/openvanilla_realm_up.sh"))
         loader = self.read("realm/classicplus/addons-loader.js")
         self.assertIn("await loadWorkshop();", loader)
         self.assertIn("dispatchFrom", loader)                        # login events only to the Workshop addons' frames

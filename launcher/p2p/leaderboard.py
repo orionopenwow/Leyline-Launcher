@@ -3,7 +3,7 @@
     data = aggregate(nodes, reports, now)       # -> the www/community/nodes.json document
     rows = parse(data)                          # the launcher's view of it (tolerant of junk)
 
-Inputs are what the directory keeps (realm/patches/pending/0016-openvanilla-node-network.patch):
+Inputs are what the directory keeps (labs/openvanilla-realm/realm/patches/pending/0016-openvanilla-node-network.patch):
   nodes   [{"node_id", "status", "region", "first_seen", "leaderboard": off|anonymous|named,
             "display_name", "probes_ok_30d", "probes_total_30d", "accepting"}]
   reports [{"node_id", "day": "YYYY-MM-DD", "relay_bytes", "seed_bytes"}]   one row per node per UTC day

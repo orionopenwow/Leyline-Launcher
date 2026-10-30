@@ -14,7 +14,7 @@ been idle a while — never mid-run, at most once every 30 minutes, and after a 
 longer each time. Nothing is sent before the player answers the first-run question with yes;
 Settings shows the exact text that would go next, and turning learning off deletes what's queued.
 
-What comes back: the realm turns everyone's batches into profiles.json (hetzner/
+What comes back: the realm turns everyone's batches into profiles.json (labs/openvanilla-realm/hetzner/
 herald_autopilot_api.py): for each class and level band, the rule values that gave the best XP
 per hour without dying. Those become Herald's defaults (ap_core.defaults_for). They are data,
 checked against the rule list, never code; the player's own choices always win.

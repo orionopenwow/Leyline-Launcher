@@ -888,7 +888,7 @@ def run_script(path, argv, log_path=None):
 
 
 def fix_server_dbcs(paths, pairs_text, reporter=None, script_dirs=None):
-    """The same server DBC fix-ups the live realm runs (hetzner/openvanilla_realm_up.sh, openvanilla_server_dbc.sh):
+    """The same server DBC fix-ups the live realm runs (labs/openvanilla-realm/hetzner/openvanilla_realm_up.sh, openvanilla_server_dbc.sh):
     starting gear and weapon skills for every Classic+ race/class pair. Always from the stock file
     (kept as .orig), so it is safe to run on every launch."""
     reporter = reporter or Reporter()

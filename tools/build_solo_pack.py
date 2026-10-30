@@ -9,7 +9,7 @@ Inputs (folders or .zip files):
              realmd.exe, their DLLs and *.conf.dist, and the extractors (ad.exe, vmap_extractor.exe,
              vmap_assembler.exe, MoveMapGen.exe) in Extractors\\ or tools\\. Made by packaging/workflows/solo-pack.yml.off
              (GitHub Actions, windows-2022, at the CMaNGOS/PlayerBots commits the live realm runs, with
-             realm/mangos/*.patch and solo/patches/*.patch applied); or a pinned release you trust.
+             labs/openvanilla-realm/realm/mangos/*.patch and solo/patches/*.patch applied); or a pinned release you trust.
   --mariadb  the portable MariaDB for Windows (mariadb-<ver>-winx64.zip from archive.mariadb.org).
              Only what a server needs is kept: bin\\mariadbd.exe, mariadb.exe, mariadb-admin.exe,
              mariadb-install-db.exe, mariadb-dump.exe, the DLLs, share\\ and lib\\plugin\\.

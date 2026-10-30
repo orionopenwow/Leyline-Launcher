@@ -1,5 +1,5 @@
 # transmog_smoke: retail transmog end to end on a level 60 GM Hunter wearing mail (run
-# warfront_smoke first for the gear). Needs OpenVanilla.Transmog = 1 and realm/transmog/*.sql.
+# warfront_smoke first for the gear). Needs OpenVanilla.Transmog = 1 and labs/openvanilla-realm/realm/transmog/*.sql.
 #   collection seeded from worn gear, learn on bind, the Transmogrifier rule, save (first free),
 #   the look on the visible slot, hidden slots, free switching, relog, situations, outfit unlock.
 login

@@ -2,7 +2,7 @@
 
 Predicts how a **Human Hunter** levels from 1 to 12 in Northshire (zone 9) and Elwynn Forest
 (zone 12) on our realm: CMaNGOS classic, classic-db, and our Classic+ SQL. Tomorrow we compare
-these predictions with the playerbot logs from `tools/botlab` (`botlab_report.py`).
+these predictions with the playerbot logs from `labs/openvanilla-realm/tools/botlab` (`botlab_report.py`).
 
 Everything runs offline once the data has been fetched. It needs Python 3.10+ (standard library
 only) and, for the knowledge base, the MariaDB binaries (`apt install mariadb-server`). No

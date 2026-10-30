@@ -2,7 +2,7 @@
 -- twice. Every value changed here is saved first in openvanilla_pace_backup, and
 -- classicplus_pace_rollback.sql puts each one back. The world server side (faster flights, flight
 -- paths by level, campfire rest, Veteran Mentor, exploration XP, starter items on abandon, the
--- dummies' script) is realm/mangos/0013-openvanilla-pace.patch; rates are in openvanilla_gameplay_conf.sh.
+-- dummies' script) is labs/openvanilla-realm/realm/mangos/0013-openvanilla-pace.patch; rates are in openvanilla_gameplay_conf.sh.
 --
 --   1. Quest drops: every quest-only creature drop below 100% becomes 100% (1,918 rows, classic-db 4d230bb).
 --   2. Shared quest drops: those items become party loot (ITEM_FLAG_MULTI_DROP), so everyone in the

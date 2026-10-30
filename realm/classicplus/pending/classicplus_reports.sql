@@ -1,4 +1,4 @@
--- Open Vanilla: player reports and moderation (world server patch realm/mangos/pending/0006-openvanilla-reports.patch,
+-- Open Vanilla: player reports and moderation (world server patch labs/openvanilla-realm/realm/mangos/pending/0006-openvanilla-reports.patch,
 -- Herald's bot/herald_mod.py). Run against classicmangos like the other files here; every table lives in
 -- classiccharacters. Safe to run twice. Undo:
 --   DROP TABLE classiccharacters.openvanilla_report, classiccharacters.openvanilla_appeal,

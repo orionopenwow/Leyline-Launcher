@@ -78,7 +78,7 @@ bash ovhost install --domain realm.example.org --data /srv/client/Data
 
 ## Community mode of openvanilla_realm_up.sh
 
-`ovhost` runs `hetzner/openvanilla_realm_up.sh` with `OW_COMMUNITY=1`. This mode:
+`ovhost` runs `labs/openvanilla-realm/hetzner/openvanilla_realm_up.sh` with `OW_COMMUNITY=1`. This mode:
 
 - needs no root, only ownership of the realm folder;
 - uses no `/opt` or `/etc` paths;

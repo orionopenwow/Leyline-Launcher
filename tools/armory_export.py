@@ -6,7 +6,7 @@
         [--socket /run/mysqld/mysqld.sock] [--dbc-dir /opt/mangos/data/dbc] [--state FILE]
         [--full] [--dry-run] [--publish git|r2] [--torrent DIR] [-v]
 
-Runs on the realm server every 10 minutes (hetzner/armory_cron.sh, systemd timer openvanilla-armory).
+Runs on the realm server every 10 minutes (labs/openvanilla-realm/hetzner/armory_cron.sh, systemd timer openvanilla-armory).
 Read-only on the databases. The schema of everything it writes is in docs/ARMORY.md, the guild
 files follow docs/ARMORY_GUILDS.md exactly.
 

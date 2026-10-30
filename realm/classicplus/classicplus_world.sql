@@ -1,5 +1,5 @@
 -- Open Vanilla: the World channel and the Discord bridge (world server patch
--- realm/mangos/0007-openvanilla-world-channel.patch, Herald's bot/herald_bridge.py, docs/DISCORD_BRIDGE.md).
+-- labs/openvanilla-realm/realm/mangos/0007-openvanilla-world-channel.patch, Herald's bot/herald_bridge.py, docs/DISCORD_BRIDGE.md).
 -- Run against classicmangos like the other files here; every table lives in classiccharacters.
 -- Safe to run twice. Undo:
 --   DROP TABLE classiccharacters.openvanilla_world_log, classiccharacters.openvanilla_world_pref,

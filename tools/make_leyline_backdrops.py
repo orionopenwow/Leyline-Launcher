@@ -3,8 +3,8 @@
 
 Every file keeps its name, size and format, so nothing that loads it changes:
   login-backdrop.webp / .mp4 / .webm   the game's login screen and the loading screen before it
-                                       (www/, www/ow/, realm/www/, realm/login-backdrop/)
-  realm/www/ow-signin.webp/.mp4/.webm  the realm page's "Signing in" cover
+                                       (www/, www/ow/, and labs/openvanilla-realm/realm/{www,login-backdrop}/)
+  labs/openvanilla-realm/realm/www/ow-signin.webp/.mp4/.webm  the realm page's "Signing in" cover
   launcher/assets/launcher/bg_static.jpg and bg/f*.jpg
                                        the launcher's background (the frames are the animation)
 
@@ -32,7 +32,7 @@ TURN_S = 7.0          # one turn of the swirl, as .ly-spin in www/assets/leyline
 LANCZOS = Image.Resampling.LANCZOS
 BICUBIC = Image.Resampling.BICUBIC
 
-BACKDROPS = ("www", "www/ow", "realm/www", "realm/login-backdrop")
+BACKDROPS = ("www", "www/ow", "labs/openvanilla-realm/realm/www", "labs/openvanilla-realm/realm/login-backdrop")
 
 
 class Mark:
@@ -110,10 +110,10 @@ def login_backdrop():
 
 
 def signin_cover():
-    """realm/www/ow-signin.*: 864 x 426, the mark and "Signing in" in the middle (the page also crops it)."""
+    """labs/openvanilla-realm/realm/www/ow-signin.*: 864 x 426, the mark and "Signing in" in the middle (the page also crops it)."""
     s = Scene(864, 426, 432, 186, 200, text="Signing in", text_px=30)
-    s.at().save(ROOT / "realm/www/ow-signin.webp", "WEBP", quality=88, method=6)
-    video(s, 24, "realm/www/ow-signin.mp4", "realm/www/ow-signin.webm")
+    s.at().save(ROOT / "labs/openvanilla-realm/realm/www/ow-signin.webp", "WEBP", quality=88, method=6)
+    video(s, 24, "labs/openvanilla-realm/realm/www/ow-signin.mp4", "labs/openvanilla-realm/realm/www/ow-signin.webm")
 
 
 def launcher_background():

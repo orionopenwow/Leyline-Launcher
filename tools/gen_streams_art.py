@@ -41,7 +41,7 @@ GOLD_DK = (150, 108, 40)
 RED = (236, 52, 48)
 RED_HI = (255, 140, 120)
 INK = (9, 8, 16)
-FONTS = [os.path.join(ROOT, "realm", "www", "Cinzel-SemiBold.ttf"), "/usr/share/fonts/truetype/dejavu/DejaVuSerif-Bold.ttf"]
+FONTS = [os.path.join(ROOT, "labs", "openvanilla-realm", "realm", "www", "Cinzel-SemiBold.ttf"), "/usr/share/fonts/truetype/dejavu/DejaVuSerif-Bold.ttf"]
 SANS = "/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf"
 PLATFORMS = {  # colour, glyph
     "twitch": ((145, 70, 255), "tab"),

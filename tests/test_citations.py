@@ -29,7 +29,7 @@ class CitationTests(unittest.TestCase):
         self.assertTrue(citations.hits("x.patch", patch + "+// test (`CanTargetUnit 0x6e4440`).\n"))
 
     def test_the_client_patches_cite_nothing_on_their_own_lines(self):
-        pdir = os.path.join(ROOT, "realm", "patches")
+        pdir = os.path.join(ROOT, "labs", "openvanilla-realm", "realm", "patches")
         for name in sorted(os.listdir(pdir)):
             if name.endswith(".patch"):
                 with open(os.path.join(pdir, name), encoding="utf-8") as f:

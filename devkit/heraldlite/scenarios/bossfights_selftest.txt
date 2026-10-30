@@ -1,5 +1,5 @@
 # bossfights_selftest: Boss Fights end to end with two test accounts, run on the server by
-# hetzner/bossfights_check.sh (direct mode, the Modes world server, OpenVanilla.BossFights.SelfTest = 1).
+# labs/openvanilla-realm/hetzner/bossfights_check.sh (direct mode, the Modes world server, OpenVanilla.BossFights.SelfTest = 1).
 # [a] is the tank, [b] the healer: level-60 characters the script's accounts own (BFTEST1, BFTEST2; made by
 # Herald Lite with HL_CREATE_A / HL_CREATE_B when missing). Test accounts queue in a pool of their own, so
 # players are never pulled into this run and its results stay off the website.
@@ -9,7 +9,7 @@
 # Lair (world buffs, consumables) -> a wipe is counted -> the boss is killed -> cleared, tier 2 open, the tier
 # aura -> both back in the hangout, refreshed -> a second run is a DIFFERENT copy -> leaving early: the leaver
 # lock -> the run ends with nobody in it -> both back in the hangout.
-# realm/mangos/0062 (the run's extras) adds: the week's twist; the Rally Horn in the hangout (once a minute); the
+# labs/openvanilla-realm/realm/mangos/0062 (the run's extras) adds: the week's twist; the Rally Horn in the hangout (once a minute); the
 # wipe's quick reset (everyone up and back at the start, no "revive" needed); the first clear's rewards (Dragon
 # Scales, a Dragon Egg, the "nobreath" feat) and the shop; a practice run (Onyxia at 64% at the pull, the leader's
 # ready check and pull countdown, the ghost line, a wipe and reset with her back at full, Iron Will: no consumables
@@ -17,11 +17,11 @@
 # unlocks, the "hardcore" feat; [b] no longer a game master after). (The results rows, test = 1, are read by
 # the script afterwards; it also checks that nothing of this reached bossfights_live.json.)
 #
-# Readiness (realm/mangos/0052, ".wnl wf bf ready"): checked on arrival and after the run when the server
+# Readiness (labs/openvanilla-realm/realm/mangos/0052, ".wnl wf bf ready"): checked on arrival and after the run when the server
 # answers; skipped ("ready patch not live") when it doesn't. The keys are read with field(), so the line may be
 # "k=v,..." or "k:v ..."; BF_READY_* name them (defaults below) until 0052's README-ready.md fixes them.
-set why_ready ready patch not live (realm/mangos/0052)
-set why_r2 ready patch not live (realm/mangos/0052)
+set why_ready ready patch not live (labs/openvanilla-realm/realm/mangos/0052)
+set why_r2 ready patch not live (labs/openvanilla-realm/realm/mangos/0052)
 
 # ── log in, a clean start ──
 login

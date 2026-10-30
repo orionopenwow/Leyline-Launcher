@@ -9,10 +9,10 @@ launcher, server patches and creator tools, all open source.
 |---|---|
 | `launcher/` | The desktop launcher (Python, Tk) |
 | `www/` | The website, openvanilla.app |
-| `realm/patches/` | Patches to the browser client and realm service (wenilla) |
-| `realm/mangos/` | Patches to the world server (CMaNGOS and PlayerBots) |
+| `labs/openvanilla-realm/realm/patches/` | Patches to the browser client and realm service (wenilla) |
+| `labs/openvanilla-realm/realm/mangos/` | Patches to the world server (CMaNGOS and PlayerBots) |
 | `realm/classicplus/`, `Data/Interface/AddOns/` | Realm SQL and the in-game addons |
-| `hetzner/` | Server setup and admin scripts |
+| `labs/openvanilla-realm/hetzner/` | Server setup and admin scripts |
 | `forge/` | Vanilla Forge, the map and content tool |
 | `devkit/` | Fast checks, the addon simulator, SQL tests, a local proxy, a test bot |
 
@@ -48,5 +48,5 @@ Security problems: see `SECURITY.md` and report them privately.
 ## Licensing
 
 Your contribution is released under the MIT License in `LICENSE`. Patches that modify another
-project (`realm/mangos/*.patch` for CMaNGOS and PlayerBots, `realm/patches/*.patch` for wenilla)
+project (`labs/openvanilla-realm/realm/mangos/*.patch` for CMaNGOS and PlayerBots, `labs/openvanilla-realm/realm/patches/*.patch` for wenilla)
 also fall under the license of the project they modify.

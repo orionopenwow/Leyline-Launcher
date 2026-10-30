@@ -1,5 +1,5 @@
 -- Open Vanilla Classic+: class and pet trainers know you learn as you level (PENDING: launch day, with
--- realm/mangos/pending 0003/0004: OpenVanilla.AutoLearn teaches every class spell and rank at level-up).
+-- labs/openvanilla-realm/realm/mangos/pending 0003/0004: OpenVanilla.AutoLearn teaches every class spell and rank at level-up).
 -- Run against classicmangos; idempotent. The trainer window's greeting becomes
 -- "You already know everything for your level." (it still lists what the trainer teaches, all
 -- greyed out once learned). The old greetings are kept in openvanilla_trainer_greeting_backup;

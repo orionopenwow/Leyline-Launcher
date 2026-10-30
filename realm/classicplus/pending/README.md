@@ -1,13 +1,13 @@
 # realm/classicplus/pending — world database changes waiting for launch day
 
 Nothing here runs today: `openvanilla_realm_up.sh` and the hotpatch only apply the files one folder up.
-On launch day these go in together with the world server patches in `realm/mangos/pending/`
+On launch day these go in together with the world server patches in `labs/openvanilla-realm/realm/mangos/pending/`
 (see that README for the C++ side: spells by level, free respec, dual spec, hunter starter pet,
 AoE looting, zone NPCs, account mail, closed combos).
 
 Every file is run against **classicmangos** (tables in classiccharacters are named with it), is safe
 to run twice, and was applied twice to a full classic-db (the realm's own 4d230bb + core and db
-updates) in a scratch MariaDB, then audited with `tools/combo_audit.py` (56 combos, 448 checks, 0
+updates) in a scratch MariaDB, then audited with `labs/openvanilla-realm/tools/combo_audit.py` (56 combos, 448 checks, 0
 failures). `classicplus_achievements.sql` belongs to the achievements work and has its own notes.
 
 ## Files
@@ -21,16 +21,16 @@ failures). `classicplus_achievements.sql` belongs to the achievements work and h
 | `classicplus_starpouch_money.sql` | Star Pouches pay a fixed sum, the middle of the old range: 50 s (2-10), 1 g 50 s (11-20), 3 g (21-30), 5 g 50 s (31-40), 9 g (41-50), 13 g 50 s (51-60). The green item and its 25% second chance are unchanged. Also fold the numbers into `../classicplus_starpouch.sql` on launch day (that file only sets them on a fresh install). | `classicplus_starpouch_money_rollback.sql` |
 | `classicplus_xp.sql` | Gentler pacing in `player_xp_for_level` (exists in this CMaNGOS and is read at start-up by `ObjectMgr::LoadPlayerInfo`): levels 1-10 −5%, 11-20 −10%, 21-40 −15%, 41-50 −10%, 51-60 −5%, rounded to 10 XP (1→60: 3,706,790 XP instead of 4,084,700). Quest XP is untouched. | `classicplus_xp_rollback.sql` (stock values) |
 | `classicplus_trainers.sql` | Class and pet trainers greet with "You already know everything for your level." (`trainer_greeting`; the old greetings are kept in `openvanilla_trainer_greeting_backup`). | `classicplus_trainers_rollback.sql` |
-| `classicplus_reports.sql` | Creates `classiccharacters.openvanilla_report`, `openvanilla_appeal`, `openvanilla_mod_note`, `openvanilla_mod_log` for player reports and moderation (patch 0006, Herald's moderation desk). Run before the 0006 server starts; then re-run `hetzner/herald_up.sh` so Herald may read/update them. | `DROP TABLE classiccharacters.openvanilla_report, classiccharacters.openvanilla_appeal, classiccharacters.openvanilla_mod_note, classiccharacters.openvanilla_mod_log;` |
+| `classicplus_reports.sql` | Creates `classiccharacters.openvanilla_report`, `openvanilla_appeal`, `openvanilla_mod_note`, `openvanilla_mod_log` for player reports and moderation (patch 0006, Herald's moderation desk). Run before the 0006 server starts; then re-run `labs/openvanilla-realm/hetzner/herald_up.sh` so Herald may read/update them. | `DROP TABLE classiccharacters.openvanilla_report, classiccharacters.openvanilla_appeal, classiccharacters.openvanilla_mod_note, classiccharacters.openvanilla_mod_log;` |
 | `classicplus_armory.sql` | Adds `armory` (`public` default \| `friends` \| `hidden`) and `armory_key` to `classiccharacters.openvanilla_character` (creating the table if `classicplus_characters.sql` has not run) for the website armory's privacy setting (patch 0008, `tools/armory_export.py`); lists the grants for the exporter's read-only `armory` login. Run before the 0008 server starts (without it the setting answers "off"). Tested twice on the real CMaNGOS `characters` DDL (`tests/test_armory_export.py`). | `ALTER TABLE classiccharacters.openvanilla_character DROP COLUMN armory, DROP COLUMN armory_key;` |
-| `classicplus_world.sql` (live: moved to `realm/classicplus/` with patch 0007; `openvanilla_realm_up.sh` runs it) | Creates `classiccharacters.openvanilla_world_log` (every World line and linked guild line, newest 1,000 kept by the server), `openvanilla_world_pref` (`.wnl worldoff`), `openvanilla_guild_bridge` and `openvanilla_guild_link_code` (guild chat ↔ Discord links) for the World channel and Herald's Discord bridge (patch 0007, `bot/herald_bridge.py`, `docs/DISCORD_BRIDGE.md`). Run before the 0007 server starts; then re-run `hetzner/herald_up.sh` so Herald may edit the guild link tables. | `DROP TABLE classiccharacters.openvanilla_world_log, classiccharacters.openvanilla_world_pref, classiccharacters.openvanilla_guild_bridge, classiccharacters.openvanilla_guild_link_code;` |
+| `classicplus_world.sql` (live: moved to `realm/classicplus/` with patch 0007; `openvanilla_realm_up.sh` runs it) | Creates `classiccharacters.openvanilla_world_log` (every World line and linked guild line, newest 1,000 kept by the server), `openvanilla_world_pref` (`.wnl worldoff`), `openvanilla_guild_bridge` and `openvanilla_guild_link_code` (guild chat ↔ Discord links) for the World channel and Herald's Discord bridge (patch 0007, `bot/herald_bridge.py`, `docs/DISCORD_BRIDGE.md`). Run before the 0007 server starts; then re-run `labs/openvanilla-realm/hetzner/herald_up.sh` so Herald may edit the guild link tables. | `DROP TABLE classiccharacters.openvanilla_world_log, classiccharacters.openvanilla_world_pref, classiccharacters.openvanilla_guild_bridge, classiccharacters.openvanilla_guild_link_code;` |
 | `classicplus_herald.sql` | Herald's **Greenwood outfit** (www/herald.html, docs/HERALD.md). Creates `classiccharacters.openvanilla_bot_account` (the server-side bot flag: one row per account Open Vanilla runs as a bot) and registers the account set in `@herald_account` (edit it first) as `herald`. Then it only **prints** `.send items Herald ...` commands, one per item (Vanilla mail carries one item), for the 11 items Herald doesn't own or have in his mail yet, and only if exactly one character is named Herald, is a Hunter and sits on that registered account. Send the lines over SOAP or the server console (GM 3). Items are made by the server, never INSERTed: rows written behind a running world server can collide with its item guids. Items: 2579 Green Linen Shirt, 4907 Woodland Tunic, 4689 Hunting Cloak, 4690 Hunting Belt, 2303 Handstitched Leather Pants, 2975 Hunting Boots, 3207 Hunting Bracers, 5394 Archery Training Gloves, 2506 Hornwood Recurve Bow, 7278 Light Leather Quiver, 2512 Rough Arrow x200; all white, required level 0-9, no class or race limit (display ids in the file). Run twice = nothing new. Tested on the CMaNGOS `characters`/`realmd` DDL in a scratch MariaDB: right account sends what's missing, a rerun or a Herald on another account prints nothing. Give it to the showcase Herald, not to the fresh characters the autopilot benchmarks level with. | delete the items in game; `DELETE FROM classiccharacters.openvanilla_bot_account WHERE label = 'herald';` (or `DROP TABLE classiccharacters.openvanilla_bot_account;`) |
 | `openvanilla_gameplay_conf.sh` | Edits `mangosd.conf` in the realm's config volume: rested XP 25% faster (`Rate.Rest.InGame`, `Rate.Rest.Offline.InTavernOrCity`, `Rate.Rest.Offline.InWilderness` = 1.25) and the `OpenVanilla.*` switches (all on; `OpenVanilla.AoeLoot.Range = 30`). Keeps the original as `mangosd.conf.openvanilla-orig`. | `bash openvanilla_gameplay_conf.sh rollback` (rest 1, every switch off) |
 
 ## Launch day, in order
 
 1. Census first (to know who is grandfathered): `classicplus_combo_census.sql`.
-2. Build the world server image with `realm/mangos/pending/*.patch` moved into `realm/mangos/`
+2. Build the world server image with `labs/openvanilla-realm/realm/mangos/pending/*.patch` moved into `labs/openvanilla-realm/realm/mangos/`
    (see that README) — while the old server keeps running.
 3. Copy `classicplus_races.sql` over `../classicplus_races.sql`; fold the Star Pouch sums into
    `../classicplus_starpouch.sql`; add the files below to `openvanilla_realm_up.sh`'s download list
@@ -43,7 +43,7 @@ failures). `classicplus_achievements.sql` belongs to the achievements work and h
    bash openvanilla_gameplay_conf.sh
    ```
 4. Restart the world server on the new image (`realm_up` step 6). Everything above is read at start-up.
-5. Check: `python3 tools/combo_audit.py --socket …` (or `-H/-u/-p`) → 0 failures; census again (same counts).
+5. Check: `python3 labs/openvanilla-realm/tools/combo_audit.py --socket …` (or `-H/-u/-p`) → 0 failures; census again (same counts).
 
 ## Rollback
 

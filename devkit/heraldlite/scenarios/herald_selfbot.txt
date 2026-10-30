@@ -1,5 +1,5 @@
 # herald_selfbot: Herald plays a player's own character on the live realm and gives it back
-# (AiPlayerbot.Enabled = 1, SelfBotLevel = 2: hetzner/herald_selfbot.sh on). hetzner/herald_check.sh
+# (AiPlayerbot.Enabled = 1, SelfBotLevel = 2: labs/openvanilla-realm/hetzner/herald_selfbot.sh on). labs/openvanilla-realm/hetzner/herald_check.sh
 # runs it, then checks in the database that the character moved while Herald had it.
 # The orders are the Herald addon's, line for line (Herald.lua orders()): the "Level up" goal plus
 # its safety list, the "herald" custom strategy (loot every kill, rest before the next pull:

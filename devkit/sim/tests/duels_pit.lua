@@ -1,6 +1,6 @@
 -- Duels: the pit (Data/Interface/AddOns/Duels/Pit.lua): the arrival, the announcer, the opponent card,
 -- the countdown, the result card, the tracker (winner stays on), the brawl, challenges and the cup.
--- The server side is OpenVanilla/DuelsPit.cpp (realm/mangos/0061-openvanilla-duels-pit.patch).
+-- The server side is OpenVanilla/DuelsPit.cpp (labs/openvanilla-realm/realm/mangos/0061-openvanilla-duels-pit.patch).
 local T, api = ...
 
 local function duels(opts)

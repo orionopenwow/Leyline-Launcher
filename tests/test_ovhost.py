@@ -375,7 +375,7 @@ class Install(OvhostCase):
 @unittest.skipUnless(WENILLA_REALM and os.path.isfile(os.path.join(WENILLA_REALM, "realmctl")),
                      "set OVHOST_TEST_WENILLA_REALM to a wenilla-realm checkout")
 class RealmUpCommunity(OvhostCase):
-    """hetzner/openvanilla_realm_up.sh in community mode (OW_COMMUNITY=1), as ovhost runs it: every download and
+    """labs/openvanilla-realm/hetzner/openvanilla_realm_up.sh in community mode (OW_COMMUNITY=1), as ovhost runs it: every download and
     Docker call faked, then the compose files it writes checked with the real `docker compose config`."""
 
     def test_writes_a_valid_override_without_discord_or_root_paths(self):
@@ -393,7 +393,7 @@ class RealmUpCommunity(OvhostCase):
         write(os.path.join(self.bin, "curl"), '#!/bin/sh\nwhile [ $# -gt 0 ]; do [ "$1" = -o ] && { echo "# stub" > "$2"; exit 0; }; shift; done\nexit 0\n')
         os.makedirs(cp, exist_ok=True)   # patch-Z is built on the realm (openvanilla_build_patchz.sh, stubbed here)
         write(os.path.join(cp, "patch-Z.MPQ"), "# stub patch-Z")
-        script = os.path.join(ROOT, "hetzner", "openvanilla_realm_up.sh")
+        script = os.path.join(ROOT, "labs", "openvanilla-realm", "hetzner", "openvanilla_realm_up.sh")
         r = subprocess.run(["bash", script], cwd=self.tmp, capture_output=True, text=True, stdin=subprocess.DEVNULL, timeout=120,
                            env=self.env(OW_REALM_DIR=realm, OW_CP=cp, OW_COMMUNITY=1, OW_WARN_MIN=0))
         out = r.stdout + r.stderr

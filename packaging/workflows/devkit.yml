@@ -37,9 +37,9 @@ jobs:
       - name: Warfront SQL tests (throwaway MariaDB, the world server's own queries)
         run: python devkit/db/test_warfront_sql.py --local
       - name: Warfront rule tests (kits, arena matchmaking, rating; no server)
-        run: sh realm/warfront/tests/run_logic_tests.sh
+        run: sh labs/openvanilla-realm/realm/warfront/tests/run_logic_tests.sh
       - name: Dev proxy tests
-        run: python devkit/proxy/test_devproxy.py
+        run: python labs/openvanilla-realm/devkit/proxy/test_devproxy.py
   heraldlite:
     runs-on: ubuntu-latest
     timeout-minutes: 20

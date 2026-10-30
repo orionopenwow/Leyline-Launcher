@@ -224,7 +224,7 @@ def scan_summary(scan):
 
 
 def browser_ok(zip_path):
-    """True when browser play can load this package (realm/www/workshop.js): every addon folder's .toc
+    """True when browser play can load this package (labs/openvanilla-realm/realm/www/workshop.js): every addon folder's .toc
     lists only .lua files (the page loader has no XML frame loader yet) and its required dependencies
     are folders in the same package."""
     import zipfile
@@ -315,7 +315,7 @@ def build(args, log=print):
     ids = {e["id"] for e in entries}
     cards = []
     for e in sorted(entries, key=lambda x: (not x.get("ours"), x["name"].lower())):
-        # browser play (realm/www/workshop.js) loads a hosted package when it is Lua-only
+        # browser play (labs/openvanilla-realm/realm/www/workshop.js) loads a hosted package when it is Lua-only
         files = e.get("files") or []
         e["browser"] = bool(files) and not e.get("ours") and bool(e.get("rehost")) and len(files) == 1 \
             and browser_ok(os.path.join(args.out, "files", files[0]["name"]))

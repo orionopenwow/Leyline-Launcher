@@ -1,5 +1,5 @@
 # Race/class pairs the Classic+ client offers (race class), the union with the creator's own
-# CharBaseInfo.dbc. Our row delta: tools/classicplus_dbc.py adds these. 58 pairs (realm/www/combos.json
+# CharBaseInfo.dbc. Our row delta: tools/classicplus_dbc.py adds these. 58 pairs (labs/openvanilla-realm/realm/www/combos.json
 # lists 56: Dwarf Shaman 3 7 and Tauren Paladin 6 2 are offered by the client table only).
 1 1
 1 2

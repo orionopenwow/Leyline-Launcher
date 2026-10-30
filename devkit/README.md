@@ -36,7 +36,7 @@ dev proxy: live realm + your files        nightly: full Herald in a real browser
 
 - Addon bug: a `T.test(...)` in `sim/tests/<addon>.lua` that fails before the fix (see `sim/README.md`).
 - Server/SQL bug: a check in `db/test_sql.py`, or a scenario line in `heraldlite/scenarios/`.
-- Page bug: a check in `realm/www/owdiag-checks.js`.
+- Page bug: a check in `labs/openvanilla-realm/realm/www/owdiag-checks.js`.
 
 ## Rules
 

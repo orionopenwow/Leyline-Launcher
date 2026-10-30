@@ -1,6 +1,6 @@
 """The streams & creators web pages in a real browser (Playwright + Chromium), against the canned
 www/community/streams.mock.json: streamers.html, creators.html, the "Live now" strip on index.html /
-portal.html, and the realm's link page (realm/www/creator-link.html) with a fake /api/creator/link.
+portal.html, and the realm's link page (labs/openvanilla-realm/realm/www/creator-link.html) with a fake /api/creator/link.
 Nothing leaves the machine: every request to another host is answered here or aborted.
 
     python3 -m unittest tests.test_streams_pages -v        (skips without playwright/chromium)
@@ -14,7 +14,7 @@ import unittest
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 WWW = os.path.join(ROOT, "www")
-REALM_WWW = os.path.join(ROOT, "realm", "www")
+REALM_WWW = os.path.join(ROOT, "labs", "openvanilla-realm", "realm", "www")
 
 try:
     from playwright.sync_api import sync_playwright

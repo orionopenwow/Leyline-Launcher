@@ -1,5 +1,5 @@
-# bossfights_onyxia_real: a REAL Onyxia fight, no test kill (realm/mangos/0059, run by
-# hetzner/bossfights_check.sh --real, once a day). [a] (the self-test's first account) queues alone as damage for a
+# bossfights_onyxia_real: a REAL Onyxia fight, no test kill (labs/openvanilla-realm/realm/mangos/0059, run by
+# labs/openvanilla-realm/hetzner/bossfights_check.sh --real, once a day). [a] (the self-test's first account) queues alone as damage for a
 # raid of ten with bots=1: nine fill bots come (two tanks, three healers, four damage). Herald Lite can't fight, so
 # [a] watches: "test pull" makes it a spectator (game master: nothing targets it) in a corner of the lair, places the
 # bots around Onyxia and starts her on the bot tank. The bots then fight with their Onyxia strategy (tank at the

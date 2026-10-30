@@ -75,8 +75,8 @@ and follows the repo (the cron pulls it hourly). **Linked** (below the marker) i
 pass from the realm service's staff-only `GET /api/creator/links`.
 
 Players link channels on the realm: `https://play.openvanilla.app/ow/creator-link.html`
-(`realm/www/creator-link.html`, page layer) talks to wenilla-realm pending patch
-`realm/patches/pending/0015-openvanilla-creators.patch`:
+(`labs/openvanilla-realm/realm/www/creator-link.html`, page layer) talks to wenilla-realm pending patch
+`labs/openvanilla-realm/realm/patches/pending/0015-openvanilla-creators.patch`:
 
 * `GET/POST/DELETE /api/creator/link` (signed in; POST/DELETE need the `X-CSRF-Token` the GET
   returns): one channel per platform per account, one account per channel, handles validated with
@@ -97,7 +97,7 @@ All of these must be true: the creator linked a channel, named one of their own 
 ticked "Show me as LIVE" on the link page; the channel is proven and live right now; the player
 switched on Social → settings → **Show me as LIVE** (off by default; the addon sends
 `.wnl liveopt 1`). Herald pushes the names every 5 minutes (`bot/herald_streams.py`; a stale file
-clears the list after 20 minutes); the world server (`realm/mangos/pending/0009-openvanilla-live.patch`)
+clears the list after 20 minutes); the world server (`labs/openvanilla-realm/realm/mangos/pending/0009-openvanilla-live.patch`)
 keeps only online, opted-in characters and broadcasts `LV Name;Name`. `Social/Live.lua` shows the
 mark in friends, /who, the Dungeons board, the player tooltip and Persona (badge `Persona_Live`,
 profile plate `Persona_LiveBadge`); `/live` lists who is live and where to watch.
@@ -120,7 +120,7 @@ SavedVariables file (`Persona_NowPlaying = {text, at}`) in every character folde
 running 1.12 client cannot be told anything, so the game sees the song **when the character enters
 the world**, and Persona shows it for 10 minutes; a later song shows after the next login.
 
-**Web** (`realm/www/nowplaying.js`, the game page's ☰ menu → "♫ Listening"): a browser tab cannot
+**Web** (`labs/openvanilla-realm/realm/www/nowplaying.js`, the game page's ☰ menu → "♫ Listening"): a browser tab cannot
 see the system's media session, so the sources are the player's Spotify (PKCE in a popup via
 `ow/nowplaying-callback.html`, needs the realm's Spotify app id in `ow/nowplaying.json`; a Spotify app
 in development mode serves only the 25 accounts added to it), typing "Title - Artist", or another
@@ -133,7 +133,7 @@ reach a browser tab.
 
 1. Realm service: apply pending `0015` with the others, set `CREATOR_EXPORT_TOKEN`
    (`openssl rand -hex 24`), restart. Page layer files ship with the hot-patch.
-2. `bash hetzner/streams_cron.sh install` (root), fill `/etc/openvanilla-streams.env` (Twitch, YouTube,
+2. `bash labs/openvanilla-realm/hetzner/streams_cron.sh install` (root), fill `/etc/openvanilla-streams.env` (Twitch, YouTube,
    the same `CREATOR_EXPORT_TOKEN`, `REALM_URL`), `systemctl start openvanilla-streams` once and check
    `journalctl -u openvanilla-streams`.
 3. Herald: nothing to set (`STREAMS_INGAME=1` is the default; it reads

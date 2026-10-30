@@ -17,7 +17,7 @@ release/OpenVanilla_Client_Win64/
 
 # Blizzard game data never goes in the repo: only Open Vanilla's own addons and art under Data/
 # Classic+'s patch-Z holds client tables made from the creator's own files: built locally, never committed
-# (tools/sync_patchz.py --dbc-dir DIR, hetzner/openvanilla_build_patchz.sh on the realm)
+# (tools/sync_patchz.py --dbc-dir DIR, labs/openvanilla-realm/hetzner/openvanilla_build_patchz.sh on the realm)
 realm/classicplus/patch-Z.MPQ
 realm/classicplus/patch-Z.MPQ.*
 *.dbc
@@ -33,8 +33,8 @@ Data/Interface/addons/Blizzard_*/
 Data/Interface/addons/blizzard_*/
 
 # Database dumps hold player accounts and characters
-hetzner/database/dumps/
-hetzner/.env
+labs/openvanilla-realm/hetzner/database/dumps/
+labs/openvanilla-realm/hetzner/.env
 
 # Big binaries: browser client build, third-party exes, release zips (published to www/downloads)
 www/wenilla_bg.wasm*
@@ -90,7 +90,7 @@ www/downloads/*.sha256
 rate_limits.json
 .git_local_backup/
 
-# Herald test bot output (tools/owbot.mjs, tools/Run_Herald.bat)
+# Herald test bot output (labs/openvanilla-realm/tools/owbot.mjs, tools/Run_Herald.bat)
 owbot-report.json
 owbot-summary.txt
 owbot-shots/

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Write realm/www/manifests/_ui.json: the files the browser client reads ONE AT A TIME (synchronous
+"""Write labs/openvanilla-realm/realm/www/manifests/_ui.json: the files the browser client reads ONE AT A TIME (synchronous
 reads), so ow/prefetch.js can put them in memory before the client asks.
 
     python tools/gen_ui_manifest.py
@@ -27,7 +27,7 @@ import urllib.parse
 HERE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 ADDONS = os.path.join(HERE, "Data", "Interface", "AddOns")
 BASE = os.path.join(HERE, "tools", "ui_manifest_base.json")
-OUT = os.path.join(HERE, "realm", "www", "manifests", "_ui.json")
+OUT = os.path.join(HERE, "labs", "openvanilla-realm", "realm", "www", "manifests", "_ui.json")
 
 
 def enc(path):

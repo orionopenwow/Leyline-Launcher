@@ -1,5 +1,5 @@
 -- Boss Fights: the boss warnings (BossFights/Warnings.lua) and Bot Captain (BossFights/Captain.lua).
--- The bots' own Onyxia tactics are server side (realm/mangos/0059 and 0063).
+-- The bots' own Onyxia tactics are server side (labs/openvanilla-realm/realm/mangos/0059 and 0063).
 local T, api = ...
 
 local function bf(opts)

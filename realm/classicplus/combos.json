@@ -1,5 +1,5 @@
 {
-  "_about": "Open Vanilla race/class combinations the realm allows (56). The browser client's character-create grid offers exactly these (play page -> class_combos); the world server's SQL (realm/classicplus/pending) allows the same set. Keys are race ids, values class ids. Keep realm/www/combos.json identical (devkit/loadlab/test_loadlab.mjs checks).",
+  "_about": "Open Vanilla race/class combinations the realm allows (56). The browser client's character-create grid offers exactly these (play page -> class_combos); the world server's SQL (realm/classicplus/pending) allows the same set. Keys are race ids, values class ids. Keep labs/openvanilla-realm/realm/www/combos.json identical (labs/openvanilla-realm/devkit/loadlab/test_loadlab.mjs checks).",
   "version": 1,
   "races": {
     "1": "Human",

@@ -17,7 +17,7 @@ What a new map needs, and where this script puts it:
     check      python3 arena_map.py check DBC_DIR                  prints the new rows
 
 DBC_DIR holds the stock tables (the server's extracted dbc folder: the same files as the client's).
-Run by hetzner/duels_up.sh at install and update, on the server: the tables are Blizzard's data, so
+Run by labs/openvanilla-realm/hetzner/duels_up.sh at install and update, on the server: the tables are Blizzard's data, so
 the result is never committed or published anywhere but the realm's own client patch. The maps,
 vmaps and mmaps for map 900 are links to map 0's files (duels_up.sh, arena_links). Both steps
 are idempotent: a table that already has the row is rewritten the same.

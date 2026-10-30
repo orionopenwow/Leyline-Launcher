@@ -5,14 +5,14 @@ Writes Data/Interface/AddOns/Duels/ArmoryData.lua: what the Armory window's gear
 an item without asking the realm, and every class's vanilla tier sets.
 
   ArmorySource[item] = "MC" | "ONY" | "BWL" | "ZG" | "AQ20" | "AQ40" | "NAXX" | "PVP<rank>" | "WORLD" | "KIT"
-      where the realm's gear picker pool (realm/warfront/warfront_item_pool.sql, made by
+      where the realm's gear picker pool (labs/openvanilla-realm/realm/warfront/warfront_item_pool.sql, made by
       tools/warfront/gen_pool.py from the world database's loot tables) says the item comes from.
       An item with no entry is not in the realm's pool: the Armory shows it but can't put it on.
   ArmoryTierSets[CLASS] = { { tier = "T1", name = "...", source = "MC", items = { ids } }, ... }
       T0 to T3 from the client's own ItemSet.dbc (set name -> item ids). The client files are never
       committed; this file only carries item ids and the sets' names.
 
-  python3 tools/duels/gen_armory_data.py <path to itemset.dbc> realm/warfront/warfront_item_pool.sql \
+  python3 tools/duels/gen_armory_data.py <path to itemset.dbc> labs/openvanilla-realm/realm/warfront/warfront_item_pool.sql \
       Data/Interface/AddOns/Duels/ArmoryData.lua
 """
 import re

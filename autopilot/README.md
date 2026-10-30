@@ -23,7 +23,7 @@ The simplest way, and the one that works everywhere the realm allows it:
 
 The realm owner decides: it needs `AiPlayerbot.SelfBotLevel = 2`. Open Vanilla Server and Play Solo set
 it (Open Vanilla Server: `"herald_selfbot": false` in server_settings.json turns it off). On Vanilla
-Remastered: `bash hetzner/herald_selfbot.sh on`. Herald Autopilot (this program) can then change his
+Remastered: `bash labs/openvanilla-realm/hetzner/herald_selfbot.sh on`. Herald Autopilot (this program) can then change his
 goal from the desktop through `bot/herald_autopilot_api.py` (`.rndbot cmd <name> nc <strategies>` over the console).
 
 ### How Herald fights and loots
@@ -36,7 +36,7 @@ and every five minutes; the API after every start and resume):
   more mobs. Herald fights it out and drinks a healing potion if he has one.
 - **Loots every kill** (`nc +custom::herald`, `realm/classicplus/classicplus_herald_ai.sql`): the corpses
   around him go on his loot list before he picks the next fight.
-- **Doesn't pull into packs** (world server patch `realm/mangos/0016`): playing solo he skips a mob with
+- **Doesn't pull into packs** (world server patch `labs/openvanilla-realm/realm/mangos/0016`): playing solo he skips a mob with
   two or more idle, aggressive mobs within 12 yards (three for a quest mob) and prefers lone mobs.
 
 ## Where it can play
@@ -49,7 +49,7 @@ Pick the realm in **Settings**:
 |---|---|---|
 | **Demo (offline)** | A small simulated Elwynn Forest (`ap_link.DemoLink`) | Works now. Good for trying it, tests and screenshots. |
 | **Herald Lite (a bot account)** | `devkit/heraldlite`'s autopilot, a headless client that logs a **bot account** in and plays a `tools/autopilot` route | Works once Herald Lite is built (`cargo build --release` in `devkit/heraldlite`). It plays only on `play.openvanilla.app`, `staging.openvanilla.app`, `127.0.0.1`, `localhost`, `*.test` and `*.localhost`. The binary hard-codes this list and the program checks it too. |
-| **Vanilla Remastered / another realm** | The realm's own bot AI, through `bot/herald_autopilot_api.py` | The realm turns it on with `hetzner/herald_selfbot.sh on` (`AiPlayerbot.SelfBotLevel = 2` and `AUTOPILOT_ALLOWED=1`). START hands the online character to the realm's bot AI from the server (`.wnl autopilot <name> on`, realm/mangos 0015), then drives it with `.rndbot cmd <name> nc <strategies>`; STOP gives it back. The player watches in game and can take control back from the Herald panel. Selling, the auction house, mail, bank, guild, PvP and chat are always off on a player's character. |
+| **Vanilla Remastered / another realm** | The realm's own bot AI, through `bot/herald_autopilot_api.py` | The realm turns it on with `labs/openvanilla-realm/hetzner/herald_selfbot.sh on` (`AiPlayerbot.SelfBotLevel = 2` and `AUTOPILOT_ALLOWED=1`). START hands the online character to the realm's bot AI from the server (`.wnl autopilot <name> on`, labs/openvanilla-realm/realm/mangos 0015), then drives it with `.rndbot cmd <name> nc <strategies>`; STOP gives it back. The player watches in game and can take control back from the Herald panel. Selling, the auction house, mail, bank, guild, PvP and chat are always off on a player's character. |
 
 ## The window
 
@@ -119,7 +119,7 @@ It is data, checked against the rule list, never code.
 | `ap_art.py` | the window's art: the rounded frame, glass panels, icons, map (`python autopilot/ap_art.py` rebuilds `assets/ui/`) |
 | `ap_kit.py` | pieces cut from the Herald UI kit sheet (`assets/kit/herald_kit_sheet.png`): corner flourishes, close/minimise, nav bars, the START/STOP button, plaques, toggles, checkboxes |
 | `assets/` | Cinzel and Marcellus (SIL OFL), Herald's portrait, the built UI images |
-| `../bot/herald_autopilot_api.py` | the realm side: autopilot API and learning (`hetzner/herald_up.sh` runs it) |
+| `../bot/herald_autopilot_api.py` | the realm side: autopilot API and learning (`labs/openvanilla-realm/hetzner/herald_up.sh` runs it) |
 
 ## Tests
 

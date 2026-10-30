@@ -19,23 +19,23 @@ Optional: an officer can link a guild's chat to another Discord channel the same
 
 | Piece | File | What |
 |---|---|---|
-| World server | `realm/mangos/0007-openvanilla-world-channel.patch` (`OpenVanilla/World.h/.cpp`) | the channel, `/world`/`.world`, the log, `.wnl worldsay`, `.wnl worldoff/worldon`, guild links |
+| World server | `labs/openvanilla-realm/realm/mangos/0007-openvanilla-world-channel.patch` (`OpenVanilla/World.h/.cpp`) | the channel, `/world`/`.world`, the log, `.wnl worldsay`, `.wnl worldoff/worldon`, guild links |
 | Tables | `realm/classicplus/classicplus_world.sql` | `openvanilla_world_log`, `openvanilla_world_pref`, `openvanilla_guild_bridge`, `openvanilla_guild_link_code` |
 | Herald | `bot/herald_bridge.py`, hooked from `bot/herald.py` | both directions, `/bridge` and `/guild` slash commands |
 | Chat addon | `Data/Interface/AddOns/Chat/World.lua` | the World tab, `[W]`, `[D]` lines, channel cycle, `/world`, settings |
-| Grants | `hetzner/herald_up.sh` | Herald's database login may edit the guild link tables |
+| Grants | `labs/openvanilla-realm/hetzner/herald_up.sh` | Herald's database login may edit the guild link tables |
 | Tests | `tests/test_herald_bridge.py`, `devkit/sim/tests/chat_world.lua` (+ `devkit/sim/ext/world.lua`) | fakes for Discord, SOAP, the DB and the server |
 
 ## Setup (launch day)
 
-1. **World server.** Move `0007` into `realm/mangos/` with the other pending patches (it applies after
+1. **World server.** Move `0007` into `labs/openvanilla-realm/realm/mangos/` with the other pending patches (it applies after
    0001–0005 alone and with any of 0006 / 0008 / 0009) and build the image. The feature switch is
    `OpenVanilla.WorldChannel` in `mangosd.conf` (default 1; 0 = no World channel, `.wnl worldsay` refuses).
 2. **Tables.** Run `classicplus_world.sql` against `classicmangos` *before* the new server starts:
    ```
    docker compose exec -T -e MYSQL_PWD="$DB_ROOT_PASSWORD" mariadb mariadb -uroot classicmangos < classicplus_world.sql
    ```
-3. **Herald's grants.** Re-run `hetzner/herald_up.sh`: it grants the guild link tables once they exist
+3. **Herald's grants.** Re-run `labs/openvanilla-realm/hetzner/herald_up.sh`: it grants the guild link tables once they exist
    (the log is covered by the `SELECT` on `classiccharacters.*` Herald already has). The console account
    (`SOAP_USER`, HELPDESK, GM level 3) is the one the support desk made; SOAP runs commands at console
    level, which `.wnl worldsay` requires.
@@ -66,7 +66,7 @@ posted (`bridge_state` in its SQLite), so a restart carries on where it stopped.
 
 ## Check it works (after each realm update)
 
-On the server, as root, once `dev\Server.bat` 1 and `bash hetzner/herald_up.sh` have run:
+On the server, as root, once `dev\Server.bat` 1 and `bash labs/openvanilla-realm/hetzner/herald_up.sh` have run:
 
     bash /opt/openvanilla-classicplus/repo/hetzner/world_chat_check.sh
 
@@ -76,7 +76,7 @@ must be taken (`BG ok`). Then the script checks the database (`openvanilla_world
 and Herald: within 60 s the report is marked posted (it is in #bug-reports) and the bridge has read past the
 World line (it is in #world). Each check prints PASS or FAIL with where to look; the exit code is 1 if any failed.
 Both Discord posts say "Herald test, please ignore". Needs Herald Lite built
-(`bash devkit/staging/staging_up.sh build-heraldlite`) and `/opt/wenilla-realm/heraldlite.env` with a **live**
+(`bash labs/openvanilla-realm/devkit/staging/staging_up.sh build-heraldlite`) and `/opt/wenilla-realm/heraldlite.env` with a **live**
 login (`HL_WEB=https://play.openvanilla.app`, `HL_USER`, `HL_PASS`, `chmod 600`). One run a minute at most:
 the bug button allows one report a minute per account.
 
@@ -86,7 +86,7 @@ Herald marks every #world message it could not relay:
 
 * ⚠ the world server refused it. `/bridge status` (staff) says why, and Herald's log has `[bridge] Discord -> game: ...`.
   Usually Herald's console account (HELPDESK) is gone or has another password, for example after a fresh or
-  restored realm database: run `bash hetzner/herald_up.sh` on the server (it now puts HELPDESK back with the
+  restored realm database: run `bash labs/openvanilla-realm/hetzner/herald_up.sh` on the server (it now puts HELPDESK back with the
   password from `/etc/openvanilla-herald.env` on every run), then `systemctl restart openvanilla-herald`.
   At start Herald also tries the console once and logs `[bridge] Discord -> game is OFF: ...` if it can't.
 * 🔒 the member doesn't have the Adventurer role (BRIDGE_ROLE) yet: their lines stay on Discord (once an hour per member).
@@ -174,6 +174,6 @@ Names are cleaned to `A-Za-z0-9_.-` (24), texts to printable characters (255 byt
   the settings, hiding the tab, `/world`, Enter in the tab, the channel cycle, `worldoff/worldon`.
 * World server: `git apply` of 0007 after 0001–0005 alone and with every combination of 0006 / 0008 /
   0009, and `g++ -fsyntax-only` with the game target's flags on every changed file (see
-  `realm/mangos/pending/README.md`). Not yet run on a live realm: a test realm should check two
+  `labs/openvanilla-realm/realm/mangos/pending/README.md`). Not yet run on a live realm: a test realm should check two
   characters of opposite factions talking in World, the 2-second limit, a muted player, `worldoff`
   across a relog, and a real Discord round trip.

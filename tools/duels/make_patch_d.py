@@ -1,12 +1,12 @@
 """
 make_patch_d.py  (Open Vanilla / Duels)
 
-The Duels realm's client patch: Warfront's patch-Z (realm/warfront/patch-Z.MPQ: the Classic+ addons
+The Duels realm's client patch: Warfront's patch-Z (labs/openvanilla-realm/realm/warfront/patch-Z.MPQ: the Classic+ addons
 and art, no client tables, stock race/class pairs) plus the Duels addon (Data/Interface/AddOns/Duels)
 and the Boss Fights addon (Data/Interface/AddOns/BossFights), which runs on the same world server.
 
     STORMLIB=/path/to/libstorm.so python3 tools/duels/make_patch_d.py
-writes realm/duels/patch-Z.MPQ (served as the browser client's patch-Z on the Duels stack).
+writes labs/openvanilla-realm/realm/duels/patch-Z.MPQ (served as the browser client's patch-Z on the Duels stack).
 Run it again after tools/warfront/make_patch_w.py, or after a change to the Duels addon.
 """
 import os
@@ -19,9 +19,9 @@ ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)
 sys.path.insert(0, os.path.join(ROOT, "devkit"))
 from mpqread import MPQ  # noqa: E402
 
-SRC = os.path.join(ROOT, "realm", "warfront", "patch-Z.MPQ")
+SRC = os.path.join(ROOT, "labs", "openvanilla-realm", "realm", "warfront", "patch-Z.MPQ")
 ADDONS = ("Duels", "BossFights")     # the Modes realm's own addons, on top of Warfront's patch
-OUT = os.path.join(ROOT, "realm", "duels", "patch-Z.MPQ")
+OUT = os.path.join(ROOT, "labs", "openvanilla-realm", "realm", "duels", "patch-Z.MPQ")
 
 
 def files():

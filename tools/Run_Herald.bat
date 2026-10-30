@@ -2,7 +2,7 @@
 setlocal
 TITLE Open Vanilla - Herald test bot
 cd /d "%~dp0\.."
-rem Runs Herald (tools\owbot.mjs) from this PC against the live realm: signs in, enters the world as
+rem Runs Herald (labs\openvanilla-realm\tools\owbot.mjs) from this PC against the live realm: signs in, enters the world as
 rem Herald the Human Hunter, runs every check and data routine, and writes owbot-summary.txt and
 rem owbot-report.json here. Needs Node.js and Chrome or Edge. Credentials come from .env:
 rem   REALM_URL=https://play.openvanilla.app   OWBOT_USER=herald   OWBOT_PASS=...
@@ -23,7 +23,7 @@ if not exist tools\node_modules\playwright (
   set PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD=1
   pushd tools & call npm i --no-save --silent playwright@1.47.2 & popd
 )
-node tools\owbot.mjs --full %*
+node labs\openvanilla-realm\tools\owbot.mjs --full %*
 echo.
 type owbot-summary.txt
 pause

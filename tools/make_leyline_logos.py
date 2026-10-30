@@ -113,7 +113,7 @@ def main():
     save(og_image(mark), "www/assets/og-image.jpg")
     n += 5
     # the realm's in-game page (corner logo on the login screen)
-    for rel, px in (("realm/www/ow-corner-logo.webp", 158), ("realm/www/ow-corner-logo@2x.webp", 317)):
+    for rel, px in (("labs/openvanilla-realm/realm/www/ow-corner-logo.webp", 158), ("labs/openvanilla-realm/realm/www/ow-corner-logo@2x.webp", 317)):
         save(lockup(mark, px, px, round(px * 0.72), round(px * 0.17)), rel)
         n += 1
     # the launcher: the emblem's two layers (the swirl turns, the crystal stays upright)

@@ -6,12 +6,13 @@
 
 In order (each step reads the one before it):
   1. realm/classicplus/patch-Z.MPQ   not in git any more: built locally (tools/sync_patchz.py --dbc-dir DIR)
-  2. realm/warfront/patch-Z.MPQ      patch-Z's sources without client tables (tools/warfront/make_patch_w.py)
-  3. realm/duels/patch-Z.MPQ         Warfront's plus the Duels addon (tools/duels/make_patch_d.py)
-  4. realm/www/manifests/_ui.json    the browser client's prefetch list (tools/gen_ui_manifest.py)
+  2. labs/openvanilla-realm/realm/warfront/patch-Z.MPQ      patch-Z's sources without client tables (tools/warfront/make_patch_w.py)
+  3. labs/openvanilla-realm/realm/duels/patch-Z.MPQ         Warfront's plus the Duels addon (tools/duels/make_patch_d.py)
+  4. labs/openvanilla-realm/realm/www/manifests/_ui.json    the browser client's prefetch list (tools/gen_ui_manifest.py)
   5. www/community/workshop          our own addons' Workshop packages (cp-*), when the addon changed
                                      (tools/workshop_build.py --fetch --only <those>): a stale one put
                                      an old Meters without Chrome.lua next to the new one (2026-10-21)
+Steps 2-4 keep the frozen 1.12 realm (labs/openvanilla-realm) in step with Data/Interface.
 Steps 2 and 3 build into a temporary file and replace the real one only when a file inside differs,
 so an unchanged archive is never rewritten (no empty binary changes in git).
 Uses StormLib when STORMLIB points at it, else the model porter's pure-Python MPQ writer (Windows).
@@ -82,7 +83,7 @@ def derived(name, module, rel_out):
 
 
 def ui_manifest():
-    out = os.path.join(ROOT, "realm", "www", "manifests", "_ui.json")
+    out = os.path.join(ROOT, "labs", "openvanilla-realm", "realm", "www", "manifests", "_ui.json")
     before = open(out, "rb").read() if os.path.exists(out) else b""
     if CHECK:
         tmpdir = tempfile.mkdtemp(prefix="prepush-")
@@ -157,8 +158,8 @@ def workshop():
 def main():
     print("Generated files" + (" (check only)" if CHECK else "") + ":", flush=True)
     changed = [classicplus(),
-               derived("Warfront patch-Z", "tools/warfront/make_patch_w.py", "realm/warfront/patch-Z.MPQ"),
-               derived("Duels patch-Z", "tools/duels/make_patch_d.py", "realm/duels/patch-Z.MPQ"),
+               derived("Warfront patch-Z", "tools/warfront/make_patch_w.py", "labs/openvanilla-realm/realm/warfront/patch-Z.MPQ"),
+               derived("Duels patch-Z", "tools/duels/make_patch_d.py", "labs/openvanilla-realm/realm/duels/patch-Z.MPQ"),
                ui_manifest(),
                workshop()]
     if CHECK and any(changed):

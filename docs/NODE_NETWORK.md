@@ -1,8 +1,8 @@
 # The Leyline node network
 
 Status: **built, tested, not deployed.** Code: `launcher/p2p/{node,e2e,tiers,leaderboard}.py`, the
-Node addon (in game: Esc > Become a Node), `www/nodes.html`, `hetzner/relay_up.sh`,
-`tools/relay_smoke.py`, pending realm patch `realm/patches/pending/0018-openvanilla-node-network.patch`.
+Node addon (in game: Esc > Become a Node), `www/nodes.html`, `labs/openvanilla-realm/hetzner/relay_up.sh`,
+`tools/relay_smoke.py`, pending realm patch `labs/openvanilla-realm/realm/patches/pending/0018-openvanilla-node-network.patch`.
 Builds on `docs/P2P_NETWORK.md` (hosting, directory, relay, identity).
 
 ## In one paragraph
@@ -200,7 +200,7 @@ Each step can be undone on its own, and nothing reaches players until a live fla
 **Step 0: Leyline's relay on the existing Hetzner box (no change to the realm or the launcher).**
 
 1. DNS: an A (and AAAA) record for `relay.openvanilla.app` pointing at the realm server.
-2. On the server, from a checkout: `bash hetzner/relay_up.sh`. This builds `relay/` and runs it as the
+2. On the server, from a checkout: `bash labs/openvanilla-realm/hetzner/relay_up.sh`. This builds `relay/` and runs it as the
    container `openvanilla-relay`:
    * on the realm's Docker network, with no published ports;
    * limits: 1 CPU, 256 MB, 256 PIDs, read-only, no capabilities;

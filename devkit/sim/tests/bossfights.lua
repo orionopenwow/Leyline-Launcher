@@ -1,5 +1,5 @@
 -- Boss Fights: the window (Data/Interface/AddOns/BossFights), riding on Warfront's channel.
--- The server side is OpenVanilla/BossFights.cpp with realm/mangos/0027-openvanilla-bossfights.patch.
+-- The server side is OpenVanilla/BossFights.cpp with labs/openvanilla-realm/realm/mangos/0027-openvanilla-bossfights.patch.
 local T, api = ...
 
 local function bf(opts)

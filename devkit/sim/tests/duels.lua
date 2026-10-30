@@ -1,5 +1,5 @@
 -- Duels: the Duels realm's panel (Data/Interface/AddOns/Duels), riding on the Warfront addon.
--- The server side is OpenVanilla/WarfrontArena.cpp with realm/mangos/0021-openvanilla-duels.patch.
+-- The server side is OpenVanilla/WarfrontArena.cpp with labs/openvanilla-realm/realm/mangos/0021-openvanilla-duels.patch.
 local T, api = ...
 
 local function duels(opts)

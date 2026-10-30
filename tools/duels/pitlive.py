@@ -1,4 +1,4 @@
-"""The pit's part of the website's duels_live.json (patch 0061; hetzner/duels_up.sh write_live).
+"""The pit's part of the website's duels_live.json (patch 0061; labs/openvanilla-realm/hetzner/duels_up.sh write_live).
 
     pit_section(env, now, CLASS, RACE, stats, matchups) -> dict
 

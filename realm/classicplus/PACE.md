@@ -9,7 +9,7 @@ with its own undo:
 | Rates and switches | `openvanilla_gameplay_conf.sh` (writes `mangosd.conf`) | `bash openvanilla_gameplay_conf.sh rollback` |
 | World server code | `../mangos/0013-openvanilla-pace.patch` (`src/game/OpenVanilla/Pace.*`, `TrainingDummy.cpp`) | every `OpenVanilla.Pace.*` switch off (the default) |
 
-`hetzner/openvanilla_realm_up.sh` applies the first two on every realm update; the patch arrives
+`labs/openvanilla-realm/hetzner/openvanilla_realm_up.sh` applies the first two on every realm update; the patch arrives
 with the next realm image (`realm-image` workflow).
 
 ## The rules

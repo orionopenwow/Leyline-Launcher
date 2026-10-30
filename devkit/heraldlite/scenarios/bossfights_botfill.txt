@@ -1,4 +1,4 @@
-# bossfights_botfill: bot fill (realm/mangos/0054) with one test account, run by hetzner/bossfights_check.sh after
+# bossfights_botfill: bot fill (labs/openvanilla-realm/realm/mangos/0054) with one test account, run by labs/openvanilla-realm/hetzner/bossfights_check.sh after
 # bossfights_selftest.txt when the Modes world server has OpenVanilla.BossFights.BotFill = 1. [a] (the tank, the
 # self-test's first account) queues alone for a raid of five with bots=1 (a self-test ticket's bots come at once):
 # four bots (a healer and three damage dealers) log in at the hangout, the raid pops with them, all five are in ONE
