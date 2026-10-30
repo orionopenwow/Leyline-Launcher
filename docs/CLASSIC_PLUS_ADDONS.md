@@ -50,7 +50,7 @@ Also in the folder: **Repack** (the ElvUI-style makeover, off until you add it f
    * revalidates addon files instead of caching them for a year, so updates reach players on their next load.
 2. **Re-run `www/patch_wasm.py`** (it still reads `wenilla_bg.wasm.orig`). The bundled stub rows no longer define slash commands. The old `Raid` stub set `SLASH_RAID2 = '/rally'`, which turned `/rally` into raid chat and broke `/ra`. The Raid addon repairs this at load in the meantime. The script now also rewrites `wenilla_bg.wasm.gz`, and `.br` when the `brotli` module is installed. Without `brotli` it deletes the stale `.br`.
 
-Safe to delete: `Data/Interface/ClassicPlusStaging/` and `www/addons-loader.next.js` (test copies). Originals of every replaced file: `backups/classicplus-before-2026-10-12/`.
+Safe to delete: `Data/Interface/ClassicPlusStaging/` (a test copy). Originals of every replaced file: `backups/classicplus-before-2026-10-12/`.
 
 ## Server packets (for a future vMaNGOS hook)
 
