@@ -3,7 +3,7 @@
 
 Every file keeps its name, size and format, so nothing that loads it changes:
   login-backdrop.webp / .mp4 / .webm   the game's login screen and the loading screen before it
-                                       (www/, www/ow/, realm/www/, realm/login-backdrop/, docs/queue/a/)
+                                       (www/, www/ow/, realm/www/, realm/login-backdrop/)
   realm/www/ow-signin.webp/.mp4/.webm  the realm page's "Signing in" cover
   launcher/assets/launcher/bg_static.jpg and bg/f*.jpg
                                        the launcher's background (the frames are the animation)
@@ -107,7 +107,6 @@ def login_backdrop():
     for d in BACKDROPS[1:]:
         for ext in ("webp", "mp4", "webm"):
             shutil.copyfile(first / f"login-backdrop.{ext}", ROOT / d / f"login-backdrop.{ext}")
-    shutil.copyfile(first / "login-backdrop.webp", ROOT / "docs/queue/a/login-backdrop.webp")
 
 
 def signin_cover():

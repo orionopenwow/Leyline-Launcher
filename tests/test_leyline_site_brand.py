@@ -213,7 +213,7 @@ class NoOrionArtTests(unittest.TestCase):
         self.assertFalse(os.path.exists(os.path.join(WWW, "assets", "animated_cosmic_bg.jpg")))
 
     def test_backdrops_keep_their_names_and_sizes_and_are_flat(self):
-        stills = [f"{d}/login-backdrop.webp" for d in BACKDROP_DIRS] + ["docs/queue/a/login-backdrop.webp"]
+        stills = [f"{d}/login-backdrop.webp" for d in BACKDROP_DIRS]
         for rel in stills:
             with self.subTest(still=rel):
                 self.assertEqual(size_of(os.path.join(ROOT, rel)), (960, 540))

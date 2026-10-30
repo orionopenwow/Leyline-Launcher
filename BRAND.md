@@ -20,7 +20,7 @@ anything new that a player, creator or visitor reads.
 
 | What | Now | Notes |
 |---|---|---|
-| Repository | `github.com/orionopenwow/Leyline-Launcher` | Renamed from `OpenVanilla` with `tools/rename/Rename to Leyline Launcher.bat`. GitHub redirects the old address (web, git, API, release downloads) as long as no new repo takes the old name |
+| Repository | `github.com/orionopenwow/Leyline-Launcher` | Renamed from `OpenVanilla` on 29 October 2026 (the one-off rename tool is in git history). GitHub redirects the old address (web, git, API, release downloads) as long as no new repo takes the old name |
 | Launcher | `OpenVanilla.exe`; window, tray, Start menu and desktop shortcuts say "Leyline Launcher" | 1.57.0 removes the old "Open Vanilla" shortcuts and shows one card with a button to the Leyline launcher download |
 | Engine | `Game\Open Vanilla Game.exe` | File name kept: installs and the updater look for it |
 | Downloads | `OpenVanilla-Setup-<v>.exe`, `OpenVanilla_<v>_Win64.zip`, `OpenVanilla-Server.zip` | File names kept, so old links and the updater keep working |

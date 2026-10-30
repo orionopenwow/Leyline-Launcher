@@ -85,9 +85,8 @@ def main():
     save(app.resize((256, 256), LANCZOS), "www/favicon.ico")
     save(og_image(mark), "www/assets/og-image.jpg")
     n += 5
-    # the realm's in-game page (corner logo on the login screen) and the queue window
-    for rel, px in (("realm/www/ow-corner-logo.webp", 158), ("realm/www/ow-corner-logo@2x.webp", 317),
-                    ("docs/queue/a/ow-corner-logo@2x.webp", 317)):
+    # the realm's in-game page (corner logo on the login screen)
+    for rel, px in (("realm/www/ow-corner-logo.webp", 158), ("realm/www/ow-corner-logo@2x.webp", 317)):
         save(lockup(mark, px, px, round(px * 0.72), round(px * 0.17)), rel)
         n += 1
     # the launcher: the emblem's two layers (the swirl turns, the crystal stays upright)
