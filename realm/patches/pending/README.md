@@ -114,9 +114,9 @@ Tests added: `the_device_waits_for_a_revealed_world_then_movement_or_three_secon
 was the stock logo (`Interface\Glues\Common\Glues-WoW-Logo`, drawn by the engine in
 `login/screen.rs`, `char_select/screen.rs`, `char_create/screen.rs` from `glue/art.rs`). With
 `glue_logo: "page"` in the page env (`WOW_GLUE_LOGO=page` natively) the engine no longer loads it,
-and `realm/www/openvanilla.js` draws the main site's hero logo there instead
-(`realm/www/ow-corner-logo.webp` 280×158 and `ow-corner-logo@2x.webp` 560×317, from
-`www/assets/openvanilla_logo_hero.png`), at the 4:3 glue area's top-left, 14 % of the height, only on
+and `realm/www/openvanilla.js` draws the Leyline mark there instead
+(`realm/www/ow-corner-logo.webp` 158×158 and `ow-corner-logo@2x.webp` 317×317, written by
+`tools/make_leyline_logos.py`), at the 4:3 glue area's top-left, 14 % of the height, only on
 those three screens. This patch also adds `glue_logo: 'page'` to `play.html`'s env.
 
 **Class grid from `combos.json`.** Patch 0005 made the grid nine slots, filled with the race's

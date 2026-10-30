@@ -985,7 +985,19 @@ def button_face(base, label, px, color, engraved=False, icon_img=None, max_w=Non
 
 
 def emblem_frames(size, count=48):
-    """The kit emblem with its vortex turning: `count` frames for one revolution."""
+    """The Leyline mark turning: `count` frames for one revolution. The swirl layer
+    (kit/emblem_swirl.png) turns clockwise while the crystal (kit/emblem_crystal.png) stays upright,
+    like the website's spinner. Without the layers, the old kit emblem's core is turned instead."""
+    swirl, crystal = kit("emblem_swirl"), kit("emblem_crystal")
+    if swirl is not None and crystal is not None:
+        swirl = swirl.resize((size, size), Image.Resampling.LANCZOS)
+        crystal = crystal.resize((size, size), Image.Resampling.LANCZOS)
+        frames = []
+        for i in range(count):
+            im = swirl.rotate(-i * 360 / count, resample=Image.Resampling.BICUBIC)
+            im.alpha_composite(crystal)
+            frames.append(im)
+        return frames
     src = kit_image("emblem", height=size)
     w, h = src.size
     cx, cy, r = w * 0.488, h * 0.495, w * 0.215
@@ -1012,7 +1024,23 @@ def dropdown(width, height):
     return _three_slice(src, nw, 16, 64).resize((width, height), Image.Resampling.LANCZOS)
 
 
-def wordmark(text="OPENVANILLA", size=30):
+def flat_wordmark(text="Leyline", size=26, color="#e8ecff"):
+    """The Leyline wordmark: plain rounded sans (the bundled Nunito ExtraBold), no gold, no rim."""
+    f = font("rounded", size * 2)
+    try:
+        f.set_variation_by_name("ExtraBold")
+    except (AttributeError, OSError, ValueError):
+        pass
+    d0 = ImageDraw.Draw(Image.new("RGBA", (1, 1)))
+    l, t, r, b = d0.textbbox((0, 0), text, font=f)
+    pad = 6
+    W, H = r - l + pad * 2, b - t + pad * 2
+    out = Image.new("RGBA", (W, H), (0, 0, 0, 0))
+    ImageDraw.Draw(out).text((pad - l, pad - t), text, font=f, fill=_hex(color))
+    return out.resize((W // 2, H // 2), Image.Resampling.LANCZOS)
+
+
+def wordmark(text="LEYLINE", size=30):
     """Gold-gradient Cinzel wordmark with a dark rim, like the kit's title lettering."""
     f = font("display", size * 2)
     d0 = ImageDraw.Draw(Image.new("RGBA", (1, 1)))

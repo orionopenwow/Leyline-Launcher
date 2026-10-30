@@ -1298,15 +1298,9 @@ class Launcher(tk.Tk):
         # bottom bar
         self._build_bottom()
 
-        # the site's hero logo, hanging over the top bar's edge like a crest
-        logo_path = os.path.join(ASSETS, "logo_hero.png")
-        if os.path.isfile(logo_path):
-            logo = Image.open(logo_path).convert("RGBA")
-            logo = logo.resize((round(logo.width * 104 / logo.height), 104), Image.Resampling.LANCZOS)
-            cv.create_image(RAIL + 4, -4, anchor="nw", image=self.img("logo", logo), tags=("drag", "logo"))
-        else:
-            cv.create_image(RAIL + 14, TOP // 2 + 1, anchor="w", image=self.img("logo", art.wordmark("LEYLINE", 25)),
-                            tags=("drag", "logo"))
+        # the name beside the turning mark, in the website's flat style
+        cv.create_image(RAIL + 12, TOP // 2 + 1, anchor="w", image=self.img("logo", art.flat_wordmark("Leyline", 25)),
+                        tags=("drag", "logo"))
 
         # frame border over everything
         cv.create_rectangle(0, 0, WIN_W - 1, WIN_H - 1, outline="#5a4626", width=1, tags="border")

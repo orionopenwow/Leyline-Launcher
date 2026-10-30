@@ -489,7 +489,7 @@ function glueLogo(wenilla) {
   }
   const img = document.createElement('img');
   img.id = 'ow-glue-logo';
-  img.alt = 'Open Vanilla';
+  img.alt = 'Leyline';
   img.decoding = 'async';
   img.src = BASE + 'ow-corner-logo.webp';
   img.srcset = `${BASE}ow-corner-logo.webp 1x, ${BASE}ow-corner-logo@2x.webp 2x`;

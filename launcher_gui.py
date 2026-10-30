@@ -369,10 +369,8 @@ class WarcraftLauncher(tk.Tk):
                     print(f"Error loading {name}: {e}")
             return None
 
-        # 1. Proportional Authentic Leyline header logo (185x105)
-        self.images["logo"] = load_img("openvanilla_logo_proportional.png", (185, 105))
-        if not self.images["logo"]:
-            self.images["logo"] = load_img("openvanilla_logo_hero.png", (185, 105))
+        # 1. The Leyline header logo: the mark over the name (185x105; tools/make_leyline_logos.py)
+        self.images["logo"] = load_img("leyline_logo_header.png", (185, 105))
 
         # 2. Status gem LEDs
         self.images["gem_green"] = load_img("gem_green_24.png", (20, 20))
