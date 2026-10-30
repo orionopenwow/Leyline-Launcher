@@ -1,6 +1,6 @@
 -- classicplus_herald.sql: Herald's "Greenwood" outfit, a Robin Hood-style set of ordinary low-level Hunter
 -- items, for the character named Herald on a registered bot account and nobody else (www/herald.html,
--- docs/HERALD.md). PENDING: needs the go-ahead before it touches a live realm.
+-- labs/herald/HERALD.md). PENDING: needs the go-ahead before it touches a live realm.
 --
 -- Why this file does not INSERT the items itself:
 --   Items live in item_instance (+ mail / mail_items or character_inventory) and need fresh item guids. The
@@ -34,7 +34,7 @@ CREATE TABLE IF NOT EXISTS classiccharacters.openvanilla_bot_account (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Open Vanilla: accounts flagged as bots (Herald)';
 
 INSERT IGNORE INTO classiccharacters.openvanilla_bot_account (account, label, note)
-SELECT a.id, 'herald', 'Herald: Open Vanilla test bot (owbot / Herald Lite). docs/HERALD.md'
+SELECT a.id, 'herald', 'Herald: Open Vanilla test bot (owbot / Herald Lite). labs/herald/HERALD.md'
 FROM classicrealmd.account a
 WHERE a.username = UPPER(@herald_account);
 

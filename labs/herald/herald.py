@@ -625,7 +625,7 @@ def main():
         print(f"[mod] moderation desk off: {e} (keep herald_mod.py beside herald.py)")
 
     # ---------------------------------------------------------------- the World bridge (herald_bridge.py)
-    # #world <-> the in-game World channel, and guild chats linked by their officers (docs/DISCORD_BRIDGE.md).
+    # #world <-> the in-game World channel, and guild chats linked by their officers (labs/herald/DISCORD_BRIDGE.md).
     bridge = None
     try:
         import herald_bridge

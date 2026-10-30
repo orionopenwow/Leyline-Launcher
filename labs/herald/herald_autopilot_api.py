@@ -83,7 +83,7 @@ MAP_BOUNDS = {12: (1535.42, -1941.67, -7939.58, -10254.17)}
 # Strategies Autopilot always switches off on a player's own character: the bot AI's selling, auction
 # house, mail, bank, guild, crafting, battleground, duel and chatter habits (its "rpg vendor" would
 # sell even an epic mount), and "maintenance" (it destroys, disenchants and opens items and abandons
-# quests). Herald stays out of the economy and PvP (docs/HERALD.md). "-mount": he travels on foot
+# quests). Herald stays out of the economy and PvP (labs/herald/HERALD.md). "-mount": he travels on foot
 # for now (owner, 2026-10-24); "+mount" brings riding back.
 SAFE = "-rpg vendor,-rpg bank,-rpg guild,-rpg craft,-rpg bg,-rpg player,-maintenance,-guild,-pvp,-bg,-arena,-lfg,-duel,-start duel,-ads,-ai chat,-say,-emote,+silent,-mount"
 # Every run: never flee from two mobs (the bot AI's "flee" runs a lone character the moment it is

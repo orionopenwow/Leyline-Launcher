@@ -112,7 +112,7 @@ PY
     if [ "$(sql -e "SELECT COUNT(*) FROM information_schema.tables WHERE table_schema='classiccharacters' AND table_name='openvanilla_bug_report'")" = 1 ]; then
       sql -e "GRANT SELECT, UPDATE ON classiccharacters.openvanilla_bug_report TO 'herald'@'%';" && echo "Bug desk: bug report table granted."
     fi
-    # World bridge (herald_bridge.py, docs/DISCORD_BRIDGE.md): guild links, once
+    # World bridge (herald_bridge.py, labs/herald/DISCORD_BRIDGE.md): guild links, once
     # realm/classicplus/classicplus_world.sql has run (the World log itself is covered by SELECT above).
     if [ "$(sql -e "SELECT COUNT(*) FROM information_schema.tables WHERE table_schema='classiccharacters' AND table_name='openvanilla_guild_bridge'")" = 1 ]; then
       sql -e "GRANT SELECT, INSERT, UPDATE, DELETE ON classiccharacters.openvanilla_guild_bridge TO 'herald'@'%';

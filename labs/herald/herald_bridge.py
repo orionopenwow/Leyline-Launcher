@@ -1,4 +1,4 @@
-"""Herald's Discord <-> in-game "World" channel bridge (docs/DISCORD_BRIDGE.md).
+"""Herald's Discord <-> in-game "World" channel bridge (labs/herald/DISCORD_BRIDGE.md).
 
 Game -> Discord. The world server (patch realm/mangos/0007-openvanilla-world-channel.patch) appends
 every World line to classiccharacters.openvanilla_world_log. Herald tails it every BRIDGE_POLL_SEC (2 s) and

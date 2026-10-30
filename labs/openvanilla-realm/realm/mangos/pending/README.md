@@ -121,7 +121,7 @@ New `src/game/OpenVanilla/Reports.h/.cpp`; tables in `realm/classicplus/pending/
 
 New `src/game/OpenVanilla/World.h/.cpp`; tables in `realm/classicplus/pending/classicplus_world.sql` (run it before
 the server starts); Herald's side is `bot/herald_bridge.py`, the client's `Chat/World.lua`; the whole picture
-and the moderation rules are in `docs/DISCORD_BRIDGE.md`. Applies after 0001–0005 alone and with every
+and the moderation rules are in `labs/herald/DISCORD_BRIDGE.md`. Applies after 0001–0005 alone and with every
 combination of 0006 / 0008 / 0009 (all eight checked with `git apply` on de8f729; `g++ -fsyntax-only` with
 the game target's flags clean on every changed file alone and with all four; `World.cpp`, `Wnl.cpp` and
 `Chat.cpp` in each combination).
