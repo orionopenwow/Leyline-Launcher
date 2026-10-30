@@ -183,8 +183,7 @@ class PromptTests(unittest.TestCase):
         for p in AI.list_prompts(KIT):
             self.assertIn(html.escape(p["text"]), page, p["id"])
         self.assertNotIn("partner", page.lower().replace("no partnership", ""))
-        for name in ("index.html", "portal.html"):
-            self.assertIn('href="ai.html"', read(os.path.join(ROOT, "www", name)))
+        # the home (index.html, portal.html) now sends visitors to the Leyline front page, which links to Agents
         self.assertEqual(read(os.path.join(ROOT, "www", "index.html")), read(os.path.join(ROOT, "www", "portal.html")))
 
     def test_parse_needs_a_text_block(self):

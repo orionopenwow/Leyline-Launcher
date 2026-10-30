@@ -77,20 +77,16 @@ class SpinnerTests(unittest.TestCase):
         self.assertRegex(css, r"prefers-reduced-motion: reduce\)\s*\{\s*\.ly-spin > \.ly-swirl \{ animation: none; \}")
         self.assertNotRegex(css, r"\.ly-crystal\s*\{[^}]*animation", "the crystal never turns")
 
-    def test_home_page_header_hero_and_footer_use_the_spinner(self):
+    def test_home_page_sends_visitors_to_the_leyline_front_page(self):
+        """openvanilla.app's home is the Leyline front page on play.openvanilla.app (owner 2026-10-30)."""
         for page in ("index.html", "portal.html"):
             html = read(f"www/{page}")
             with self.subTest(page=page):
-                self.assertIn('href="assets/leyline/leyline.css"', html)
-                header = html[html.index('<header class="ovh3">'):html.index("</header>")]
-                self.assertRegex(header, SPIN, "the header logo is the spinner")
-                self.assertIn('<span class="ly-word">Leyline</span>', header)
-                hero = html[html.index('<div class="hero-logo-container">'):]
-                self.assertRegex(hero[:600], SPIN, "the hero logo is the spinner")
-                self.assertGreaterEqual(len(SPIN.findall(html)), 3, "header, hero, footer")
-                for swirl, crystal in SPIN.findall(html):
-                    self.assertTrue(os.path.isfile(os.path.join(WWW, swirl)), swirl)
-                    self.assertTrue(os.path.isfile(os.path.join(WWW, crystal)), crystal)
+                self.assertIn('<meta http-equiv="refresh" content="0; url=https://play.openvanilla.app/wrath/leyline">', html)
+                self.assertIn('<link rel="canonical" href="https://play.openvanilla.app/wrath/leyline">', html)
+                self.assertIn('location.replace("https://play.openvanilla.app/wrath/leyline"', html)
+                self.assertIn('<a href="https://play.openvanilla.app/wrath/leyline">Open Leyline</a>', html)
+                self.assertNotRegex(html, r"(?i)herald|world of warcraft|blizzard")
 
     def test_realm_site_home_page_still_uses_the_spinner(self):
         """The 1.12 realm site's own home page (labs/openvanilla-realm/site, shipped in Leyline Server)."""

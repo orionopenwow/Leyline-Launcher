@@ -76,7 +76,7 @@ class HtmlTests(unittest.TestCase):
         with open(os.path.join(WWW, "portal.html"), encoding="utf-8") as f:
             portal = f.read()
         self.assertEqual(index, portal, "index.html and portal.html stay identical")
-        self.assertEqual(index.count('href="workshop.html"'), 1)
+        self.assertIn("https://play.openvanilla.app/wrath/leyline", index)
 
     def test_assets_exist(self):
         for name in ("hero_workshop.webp", "badge_works.webp", "badge_partly.webp", "badge_needs.webp", "badge_ours.webp",

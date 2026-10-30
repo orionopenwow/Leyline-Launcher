@@ -3,6 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- The home of openvanilla.app is the Leyline front page on play.openvanilla.app (owner 2026-10-30: "we want the base
+       openvanilla.app to be this one too"). The other pages here (the manual, privacy, terms, rules) stay where they are. -->
+  <meta http-equiv="refresh" content="0; url=https://play.openvanilla.app/wrath/leyline">
+  <link rel="canonical" href="https://play.openvanilla.app/wrath/leyline">
   <title>Leyline: the mod launcher and realm network where anyone can host</title>
   <meta name="description" content="Leyline is a free, open-source mod launcher and peer-to-peer realm network. Host your own realm in one click from the browser or the desktop, find realms other players host, and bring your mods. Play now on the Dalaran Hangout.">
   <meta property="og:type" content="website">
@@ -21,201 +25,18 @@
   <meta name="theme-color" content="#080a14">
   <link rel="icon" href="favicon.ico">
   <link rel="apple-touch-icon" href="assets/leyline/apple-touch-icon.png">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/leyline/leyline.css">
   <style>
-    :root { --ly-glow: rgba(90, 123, 224, .18); --ly-radius: 14px; }
-    * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
-    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
-    body { margin: 0; background: var(--ly-bg); color: var(--ly-text); font-family: var(--ly-sans); line-height: 1.55; }
-    a { color: var(--ly-text); }
-    a:focus-visible, button:focus-visible { outline: 2px solid #fff; outline-offset: 3px; }
-    .wrap { max-width: 1120px; margin: 0 auto; padding: 0 16px; }
-
-    header.ovh3 { position: sticky; top: 0; z-index: 10; background: rgba(8, 10, 20, .92); backdrop-filter: blur(8px);
-      border-bottom: 1px solid var(--ly-line); }
-    .ovh3-bar { display: flex; align-items: center; gap: 1rem; min-height: 60px; }
-    .ovh3-logo { --ly-size: 34px; font-size: 1.3rem; color: var(--ly-text); }
-    .ovh3-nav { display: flex; gap: .25rem; margin-left: auto; flex-wrap: wrap; }
-    .ovh3-nav a { text-decoration: none; color: var(--ly-muted); font-weight: 700; padding: .45rem .7rem; border-radius: 8px; }
-    .ovh3-nav a:hover { color: var(--ly-text); background: var(--ly-panel); }
-    .ovh3-nav a.play { color: #fff; background: linear-gradient(90deg, var(--ly-blue), var(--ly-violet)); }
-    @media (max-width: 640px) { .ovh3-nav a.opt { display: none; } }
-
-    .hero { text-align: center; padding: 4.5rem 0 3.5rem; background: radial-gradient(60% 70% at 50% 0%, var(--ly-glow), transparent 70%); }
-    .hero-logo-container { display: flex; flex-direction: column; align-items: center; gap: .9rem; --ly-size: 132px; }
-    .hero h1 { font-size: clamp(2.6rem, 8vw, 4.2rem); margin: 0; }
-    .hero .pitch { font-size: clamp(1.1rem, 2.6vw, 1.35rem); color: var(--ly-text); max-width: 40rem; margin: 1.3rem auto .5rem; }
-    .hero .sub { color: var(--ly-muted); max-width: 38rem; margin: 0 auto; }
-    .cta { display: flex; gap: .75rem; justify-content: center; flex-wrap: wrap; margin-top: 2rem; }
-    .btn { display: inline-flex; align-items: center; justify-content: center; min-height: 48px; padding: .7rem 1.4rem; border-radius: 999px;
-      font-weight: 800; text-decoration: none; border: 1px solid var(--ly-line); background: var(--ly-panel); color: var(--ly-text); }
-    .btn:hover { border-color: var(--ly-blue); }
-    .btn.primary { color: #fff; border-color: transparent; background: linear-gradient(90deg, var(--ly-blue), var(--ly-violet)); }
-
-    section { padding: 3.2rem 0; }
-    section h2 { font-size: clamp(1.5rem, 4vw, 2rem); margin: 0 0 .4rem; }
-    section .lead { color: var(--ly-muted); margin: 0 0 1.6rem; max-width: 42rem; }
-    .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1rem; }
-    .card { background: var(--ly-panel); border: 1px solid var(--ly-line); border-radius: var(--ly-radius); padding: 1.4rem;
-      display: flex; flex-direction: column; gap: .6rem; }
-    .card h3 { margin: 0; font-size: 1.15rem; }
-    .card p { margin: 0; color: var(--ly-muted); flex: 1; }
-    .card .go { font-weight: 800; text-decoration: none; color: var(--ly-text); }
-    .card .go::after { content: " →"; }
-    .card .num { width: 2rem; height: 2rem; border-radius: 50%; display: grid; place-items: center; font-weight: 800;
-      background: linear-gradient(135deg, var(--ly-blue), var(--ly-violet)); color: #fff; }
-
-    .band { background: var(--ly-panel); border-top: 1px solid var(--ly-line); border-bottom: 1px solid var(--ly-line); }
-    .split { display: grid; grid-template-columns: 1.2fr 1fr; gap: 2rem; align-items: center; }
-    @media (max-width: 760px) { .split { grid-template-columns: 1fr; } }
-    .split ul { margin: 0; padding-left: 1.2rem; color: var(--ly-muted); }
-    .split li { margin: .35rem 0; }
-    .note { color: var(--ly-muted); font-size: .95rem; }
-
-    footer { padding: 2.5rem 0 3rem; color: var(--ly-muted); font-size: .9rem; border-top: 1px solid var(--ly-line); }
-    .foot { display: flex; flex-wrap: wrap; gap: 1.5rem 3rem; justify-content: space-between; }
-    .foot .ly-brand { --ly-size: 30px; font-size: 1.15rem; color: var(--ly-text); }
-    .foot nav { display: flex; flex-wrap: wrap; gap: .5rem 1.1rem; max-width: 40rem; }
-    .foot nav a { color: var(--ly-muted); text-decoration: none; }
-    .foot nav a:hover { color: var(--ly-text); }
-    .legal { margin-top: 1.8rem; font-size: .8rem; max-width: 60rem; }
+    body { margin: 0; min-height: 100vh; display: grid; place-items: center; background: #11131c; color: #e8ebf5;
+      font: 16px/1.5 system-ui, -apple-system, "Segoe UI", sans-serif; text-align: center; padding: 16px; }
+    a { color: #8fb0ff; font-weight: 700; }
   </style>
+  <script>location.replace("https://play.openvanilla.app/wrath/leyline" + location.hash);</script>
 </head>
 <body>
-  <header class="ovh3">
-    <div class="wrap ovh3-bar">
-      <a href="index.html" class="ovh3-logo ly-brand" aria-label="Leyline home"><span class="ly-spin" aria-hidden="true"><img class="ly-swirl" src="assets/leyline/swirl-256.webp" alt=""><img class="ly-crystal" src="assets/leyline/crystal-256.webp" alt=""></span><span class="ly-word">Leyline</span></a>
-      <nav class="ovh3-nav" aria-label="Main">
-        <a class="opt" href="https://play.openvanilla.app/wrath/leyline-preview/realms">Realms</a>
-        <a class="opt" href="https://play.openvanilla.app/wrath/host">Host</a>
-        <a class="opt" href="#make">Mods</a>
-        <a class="play" href="https://play.openvanilla.app/wrath">Play now</a>
-      </nav>
-    </div>
-  </header>
-
   <main>
-    <section class="hero">
-      <div class="wrap">
-        <div class="hero-logo-container">
-          <span class="ly-spin" aria-hidden="true"><img class="ly-swirl" src="assets/leyline/swirl-512.webp" alt=""><img class="ly-crystal" src="assets/leyline/crystal-512.webp" alt=""></span>
-          <h1 class="ly-word">Leyline</h1>
-        </div>
-        <p class="pitch">A mod launcher and a peer-to-peer realm network. Host your own realm in one click, from the browser or the desktop.</p>
-        <p class="sub">Players find it on the shared realm list and join, and the mods come with it. Free and open source.</p>
-        <div class="cta">
-          <a class="btn primary" href="https://play.openvanilla.app/wrath">Play now</a>
-          <a class="btn" href="https://play.openvanilla.app/wrath/host">Host your own</a>
-          <a class="btn" href="https://github.com/orionopenwow/Leyline/releases/latest" rel="noopener noreferrer">Get the launcher</a>
-        </div>
-      </div>
-    </section>
-
-    <section id="how">
-      <div class="wrap">
-        <h2>How Leyline works</h2>
-        <p class="lead">Every realm is someone's own. Leyline connects them: it carries players to the host, so nobody opens ports and nobody sees anybody's address.</p>
-        <div class="cards">
-          <article class="card">
-            <span class="num" aria-hidden="true">1</span>
-            <h3>Play now</h3>
-            <p>Start on the Dalaran Hangout, Leyline's sample realm, right in your browser. Nothing to install.</p>
-            <a class="go" href="https://play.openvanilla.app/wrath">Play on the Hangout</a>
-          </article>
-          <article class="card">
-            <span class="num" aria-hidden="true">2</span>
-            <h3>Host in one click</h3>
-            <p>Start a realm from the browser or the Leyline launcher. It runs on your computer and joins the network by itself.</p>
-            <a class="go" href="https://play.openvanilla.app/wrath/host">Host your own</a>
-          </article>
-          <article class="card">
-            <span class="num" aria-hidden="true">3</span>
-            <h3>Find realms</h3>
-            <p>The realm list shows every public realm on the network while it's online, from small friend groups to big communities.</p>
-            <a class="go" href="https://play.openvanilla.app/wrath/leyline-preview/realms">See the realm list</a>
-          </article>
-          <article class="card">
-            <span class="num" aria-hidden="true">4</span>
-            <h3>Bring your mods</h3>
-            <p>The Leyline hub collects mods, addons and community projects to run on your realm.</p>
-            <a class="go" href="https://play.openvanilla.app/wrath/leyline">Open the Leyline hub</a>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="band" id="launcher">
-      <div class="wrap split">
-        <div>
-          <h2>The Leyline launcher</h2>
-          <p class="lead">One app to play, host and mod: the realm list, one-click hosting and your mods.</p>
-          <div class="cta" style="justify-content: flex-start; margin-top: 0;">
-            <a class="btn primary" href="https://github.com/orionopenwow/Leyline/releases/latest" rel="noopener noreferrer">Download the launcher</a>
-            <a class="btn" href="https://github.com/orionopenwow/Leyline" rel="noopener noreferrer">Source code</a>
-          </div>
-        </div>
-        <div>
-          <p class="note"><strong>Already have the classic Leyline Launcher?</strong> It keeps updating itself and will point you to the new one. You can still <a href="https://github.com/orionopenwow/Leyline-Launcher/releases/latest" rel="noopener noreferrer">download the classic launcher</a>, and the <a href="manual/index.html">manual</a> covers it.</p>
-        </div>
-      </div>
-    </section>
-
-    <section id="make">
-      <div class="wrap">
-        <h2>Make things</h2>
-        <p class="lead">Everything here is open source. Build on it, share it, and put it on a realm.</p>
-        <div class="cards">
-          <article class="card">
-            <h3>Workshop</h3>
-            <p>Addons and community content, with checks and ratings, ready to install with one click.</p>
-            <a class="go" href="workshop.html">Browse the Workshop</a>
-          </article>
-          <article class="card">
-            <h3>Your own AI</h3>
-            <p>Connect Claude or another AI agent to make addons and mods with you.</p>
-            <a class="go" href="ai.html">Use your own AI</a>
-          </article>
-          <article class="card">
-            <h3>Projects</h3>
-            <p>Forks, tools and community projects people are building around Leyline.</p>
-            <a class="go" href="project.html">See the projects</a>
-          </article>
-          <article class="card">
-            <h3>Vanilla Forge</h3>
-            <p>The creator app for maps, models, quests and packs. Early access.</p>
-            <a class="go" href="forge.html">About Forge</a>
-          </article>
-        </div>
-      </div>
-    </section>
+    <h1>Leyline</h1>
+    <p>Leyline has moved to its new home.</p>
+    <p><a href="https://play.openvanilla.app/wrath/leyline">Open Leyline</a></p>
   </main>
-
-  <footer>
-    <div class="wrap">
-      <div class="foot">
-        <a class="ly-brand" href="index.html" aria-label="Leyline home"><span class="ly-spin" aria-hidden="true"><img class="ly-swirl" src="assets/leyline/swirl-128.webp" alt=""><img class="ly-crystal" src="assets/leyline/crystal-128.webp" alt=""></span><span class="ly-word">Leyline</span></a>
-        <nav aria-label="Footer">
-          <a href="https://play.openvanilla.app/wrath">Play now</a>
-          <a href="https://play.openvanilla.app/wrath/host">Host your own</a>
-          <a href="https://play.openvanilla.app/wrath/leyline-preview/realms">Realm list</a>
-          <a href="https://play.openvanilla.app/wrath/leyline">Leyline hub</a>
-          <a href="manual/index.html">The Manual</a>
-          <a href="covenant.html">Realm Covenant</a>
-          <a href="https://discord.gg/hVeUxYwbkr" rel="noopener noreferrer">Discord</a>
-          <a href="https://github.com/orionopenwow/Leyline" rel="noopener noreferrer">GitHub</a>
-          <a href="privacy.html">Privacy</a>
-          <a href="terms.html">Terms</a>
-          <a href="rules.html">Rules</a>
-          <a href="security.html">Security</a>
-        </nav>
-      </div>
-      <p class="legal">World of Warcraft, Warcraft, and Blizzard Entertainment are registered trademarks of Blizzard Entertainment, Inc. Leyline is an independent community project and is in no way affiliated with, associated with, or endorsed by Blizzard Entertainment.</p>
-      <p class="legal">&copy; 2026 Leyline Project contributors. Open source under MIT / Apache-2.0.</p>
-    </div>
-  </footer>
 </body>
 </html>
